@@ -9,6 +9,7 @@ import store from './store/index.js'
 import { Quasar , Notify } from 'quasar'
 import quasarLang from 'quasar/lang/fa-IR'
 import '/src/assets/css/fonts.css'
+import methods from "@/includes/methods.js";
 
 import quasarIconSet from 'quasar/icon-set/fontawesome-v6'
 // Import icon libraries
@@ -50,6 +51,7 @@ app.use(Quasar, {
 
 })
 
+app.mixin(methods)
 app.mount('#app')
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
