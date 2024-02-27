@@ -1,11 +1,12 @@
 import {QSpinnerGears, useQuasar} from 'quasar'
-const $q = useQuasar();
+
 
 export default {
-    created() {
-
+    mounted() {
+        const $q = useQuasar();
     },
     methods:{
+        //All notifications methods
         Methods_Notify_Generator(message,color='pink-7',icon='fas fa-envelope-open-text',caption=null,timeout=null,position='bottom'){
             this.$q.notify({
                 message: message,
@@ -37,6 +38,17 @@ export default {
                 classes : 'glossy',
                 avatar : avatar
             })
+        },
+
+        //Validations check and error message methods
+        Methods_Validation_Check(errors=[],field){
+            return !!(errors[field] && errors[field].length);
+        },
+        Methods_Validation_Notify(){
+            this.Methods_Notify_Generator('اطلاعات ارسالی ناقض است!','red-7','fas fa-triangle-exclamation')
+        },
+        Methods_Validation_Errors(errors=[],field){
+            return errors[field] && errors[field].length ? errors[field] : {};
         }
 
 

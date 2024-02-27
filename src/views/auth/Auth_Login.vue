@@ -1,6 +1,48 @@
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
-  name: "Auth_Login"
+  name: "Auth_Login",
+  data(){
+    return{
+      errors:[],
+      login_loading:false,
+      login : {
+        email : null,
+        password : null,
+      },
+    }
+  },
+  methods:{
+    ...mapActions([
+        "Modules_Authenticate_Action_Login",
+        "Modules_Authenticate_Action_Save"
+    ]),
+    Login(){
+      this.login_loading=true;
+      this.Modules_Authenticate_Action_Login(this.login).then(response => {
+        this.Modules_Authenticate_Action_Save(response.data.result)
+        this.Methods_Notify_Generator('باموفقیت وارد حساب کاربریتان شدید !','green-8','fas fa-check')
+
+        return this.login_loading=false;
+      }).catch(error => {
+        //check validation code
+        if (error.response.status === 422) {
+          this.Methods_Validation_Notify();
+          this.errors = error.response.data;
+        }
+        if (error.response.status === 401){
+          this.Methods_Notify_Generator('آدرس ایمیل یا گذرواژه نادرست است !','red-8','fas fa-times');
+        }
+        this.login_loading=false;
+      })
+    }
+
+
+
+  }
+
+
 }
 </script>
 
@@ -24,13 +66,21 @@ export default {
           <div class="row justify-center">
             <div class="col-md-6 col-sm-12 col-xs-12">
               <div class="q-mb-lg">
-                <q-input outlined v-model="text" label="موبایل یا آدرس ایمیل" />
+                <q-input :error="this.Methods_Validation_Check(errors,'email')" outlined v-model="login.email" type="text" label="آدرس ایمیل">
+                  <template v-slot:error>
+                    <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'email')" />
+                  </template>
+                </q-input>
               </div>
               <div class="q-mb-lg">
-                <q-input outlined v-model="text" label="گذرواژه" />
+                <q-input :error="this.Methods_Validation_Check(errors,'password')" outlined v-model="login.password" type="password" label="گذرواژه" >
+                  <template v-slot:error>
+                    <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'password')" />
+                  </template>
+                </q-input>
               </div>
               <div class="text-center q-mb-xl">
-                <q-btn glossy color="pink-8" class="font-15" > ورود به حساب کاربری</q-btn>
+                <q-btn glossy color="pink-8" class="font-15" :loading="login_loading"  @click="Login" > ورود به حساب کاربری</q-btn>
               </div>
             </div>
           </div>
