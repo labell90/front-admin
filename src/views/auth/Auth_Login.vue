@@ -23,7 +23,7 @@ export default {
       this.Modules_Authenticate_Action_Login(this.login).then(response => {
         this.Modules_Authenticate_Action_Save(response.data.result)
         this.Methods_Notify_Generator('باموفقیت وارد حساب کاربریتان شدید !','green-8','fas fa-check')
-
+        this.$router.push({name:'home'});
         return this.login_loading=false;
       }).catch(error => {
         //check validation code

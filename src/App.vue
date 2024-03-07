@@ -1,6 +1,19 @@
 <script>
+import Template_Header_User from "@/components/template/header/Template_Header_User.vue";
+import Template_Header_Notifications from "@/components/template/header/Template_Header_Notifications.vue";
+import Template_Header_Shortcuts from "@/components/template/header/Template_Header_Shortcuts.vue";
+import Template_Menu_Main from "@/components/template/menu/Template_Menu_Main.vue";
+import Template_Title from "@/components/template/Template_Title.vue";
+
 export default {
 
+  components:{
+    'template_header_user' : Template_Header_User,
+    'template_header_notification' : Template_Header_Notifications,
+    'template_header_shortcuts' : Template_Header_Shortcuts,
+    'template_menu_main' : Template_Menu_Main,
+    'template_title' : Template_Title,
+  },
   data() {
     return {
       leftDrawerOpen: false,
@@ -27,18 +40,19 @@ export default {
 
     <q-header  class="header_bg text-white">
       <q-toolbar>
-        <q-btn dense flat round icon="fas fa-list" @click="toggleLeftDrawer" />
+        <q-btn v-if="this.$route.name !== 'auth_login'" dense flat round icon="fas fa-list" @click="toggleLeftDrawer" />
         <q-toolbar-title>
           <img class="q-mt-xs" src="assets/images/logo.png" width="150" alt="">
         </q-toolbar-title>
-
 <!--        <q-btn dense flat round icon="fas fa-list" @click="toggleRightDrawer" />-->
-
+          <template_header_shortcuts v-if="this.$route.name !== 'auth_login'"  ></template_header_shortcuts>
+          <template_header_notification  class="q-ml-xs" v-if="this.$route.name !== 'auth_login'"  ></template_header_notification>
+          <template_header_user class="q-ml-md" v-if="this.$route.name !== 'auth_login'"></template_header_user>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" side="left" style="background-color: #0d1425">
-
+    <q-drawer v-if="this.$route.name !== 'auth_login'" v-model="leftDrawerOpen" side="left" style="background-color: #0d0e12" >
+      <template_menu_main></template_menu_main>
     </q-drawer>
 
 <!--    <q-drawer  v-model="rightDrawerOpen" side="right" bordered>-->
@@ -48,7 +62,8 @@ export default {
     <q-page-container >
 
       <q-page class="q-pa-sm q-px-sm">
-        <RouterView />
+        <template_title v-if="this.$route.name !== 'auth_login'"></template_title>
+        <router-view></router-view>
       </q-page>
 
 
@@ -60,7 +75,7 @@ export default {
 <style scoped>
 
 .header_bg{
-  background-color: #0c041c;
+  background-color: #0B0C10;
 }
 .right_side_bg{
   background-color: #0c1219;

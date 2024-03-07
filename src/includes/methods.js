@@ -2,10 +2,12 @@ import {QSpinnerGears, useQuasar} from 'quasar'
 
 
 export default {
+
     mounted() {
         const $q = useQuasar();
     },
     methods:{
+
         //All notifications methods
         Methods_Notify_Generator(message,color='pink-7',icon='fas fa-envelope-open-text',caption=null,timeout=null,position='bottom'){
             this.$q.notify({
@@ -53,7 +55,5 @@ export default {
 
 
     }
-
-
 
 }

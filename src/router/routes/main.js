@@ -9,7 +9,11 @@ const route_main = [
     {
         path: '/',
         name: 'home',
-        component: HomeView
+        component: HomeView,
+        meta : {
+            title : 'داشبورد',
+            subtitle : ''
+        },
     },
     {
         path : '/login',

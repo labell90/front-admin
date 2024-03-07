@@ -1,0 +1,73 @@
+[
+  {
+    "fa" : "داشبورد",
+    "en" : "Dashboard",
+    "icon" : "fas fa-dashboard",
+    "route_path" : "/",
+    "route_name" : "home",
+    "level"      : 0,
+    "subs" : [
+
+    ]
+  },
+  {
+    "fa" : "کابران",
+    "en" : "Dashboard",
+    "icon" : "fas fa-dashboard",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+
+    "subs" : [
+      {
+        "fa" : "مدیران",
+        "en" : "Dashboard",
+        "icon" : "fas fa-dashboard",
+        "route_path" : "/",
+        "route_name" : "home",
+        "level"      : 0.2,
+
+        "subs" : [
+
+        ]
+      },
+      {
+        "fa" : "مشتریان",
+        "en" : "Dashboard",
+        "icon" : "fas fa-dashboard",
+        "route_path" : "/",
+        "route_name" : "home",
+        "level"      : 0.2,
+
+        "subs" : [
+
+        ]
+      }
+
+    ]
+  },
+  {
+    "fa" : "تنظیمات",
+    "en" : "Setting",
+    "icon" : "fas fa-cog fa-spin",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+
+    "subs" : [
+      {
+        "fa" : "حساب کاربری",
+        "en" : "Profile",
+        "icon" : "fas fa-user-edit",
+        "route_path" : "/",
+        "route_name" : "setting_profile",
+        "level"      : 0.2,
+        "subs" : [
+
+        ]
+      }
+
+    ]
+  }
+
+]

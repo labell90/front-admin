@@ -3,13 +3,15 @@ import store from "../store/index.js"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Imports routes
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-import route_main from "@/router/routes/main.js";
+import route_main from "../router/routes/main.js";
+import route_setting_profile from "@/router/routes/settings/profile.js";
 
 
 
 
 const routes = [
-    ...route_main
+    ...route_main,
+    ...route_setting_profile
 ]
 
 
@@ -18,7 +20,7 @@ const router = createRouter({
  routes
 })
 
-//Check Authenticate
+// Check Authenticate
 router.beforeEach((to, from, next) => {
     // trying to access a restricted page + not logged in
     // redirect to login page
@@ -30,7 +32,6 @@ router.beforeEach((to, from, next) => {
     else {
         next();
     }
-
 });
 
-export default router
+export default router;

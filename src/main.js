@@ -6,7 +6,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store/index.js'
-import { Quasar , Notify } from 'quasar'
+import { Quasar , Notify ,LoadingBar} from 'quasar'
 import quasarLang from 'quasar/lang/fa-IR'
 import '/src/assets/css/fonts.css'
 import methods from "@/includes/methods.js";
@@ -22,6 +22,8 @@ import 'quasar/dist/quasar.css'
 // Imports Global Components
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import Global_Validations_Errors from "@/components/globals/validations/Global_Validations_Errors.vue";
+import befor_created from "@/includes/befor_created.js";
+import Template_Menu_Components_Sub_Menu from "@/components/template/menu/components/Template_Menu_Components_Sub_Menu.vue";
 
 
 
@@ -34,6 +36,7 @@ const app = createApp(App)
 // Globals Components
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 app.component('global_validations_errors',Global_Validations_Errors)
+app.component('global_menu_item',Template_Menu_Components_Sub_Menu)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -46,7 +49,8 @@ app.use(router)
 app.use(store)
 app.use(Quasar, {
     plugins: {
-        Notify
+        Notify,
+        LoadingBar
     }, // import Quasar plugins and add here
     lang: quasarLang,
     iconSet: quasarIconSet,
@@ -66,7 +70,8 @@ app.use(Quasar, {
     }
 
 })
-app.mixin(methods)
+app.mixin(methods);
+app.mixin(befor_created);
 app.mount('#app')
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
