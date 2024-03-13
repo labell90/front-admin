@@ -24,6 +24,7 @@ import 'quasar/dist/quasar.css'
 import Global_Validations_Errors from "@/components/globals/validations/Global_Validations_Errors.vue";
 import befor_created from "@/includes/befor_created.js";
 import Template_Menu_Components_Sub_Menu from "@/components/template/menu/components/Template_Menu_Components_Sub_Menu.vue";
+import Global_Loading_Shape from "@/components/globals/loadings/Global_Loading_Shape.vue";
 
 
 
@@ -37,6 +38,7 @@ const app = createApp(App)
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 app.component('global_validations_errors',Global_Validations_Errors)
 app.component('global_menu_item',Template_Menu_Components_Sub_Menu)
+app.component('global_loading_shape',Global_Loading_Shape)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
