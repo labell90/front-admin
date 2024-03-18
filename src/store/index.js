@@ -4,6 +4,7 @@ import {createStore} from "vuex";
 // Imports Modules
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import authenticate from "@/store/modules/authenticate/authenticate.js";
+import profile from "@/store/modules/profile/profile.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -18,7 +19,8 @@ const store = createStore({
 
     //modules
     modules:{
-        authenticate
+        authenticate,
+        profile
     }
 
 
