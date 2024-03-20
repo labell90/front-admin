@@ -42,6 +42,12 @@ export default {
             })
         },
 
+        //Default notification message
+        Methods_Notify_Update(){
+            this.Methods_Notify_Generator('اطلاعات باموفقیت بروزرسانی شد','green-7','fa fa-check ');
+
+        },
+
         //Validations check and error message methods
         Methods_Validation_Check(errors=[],field){
             return !!(errors[field] && errors[field].length);
@@ -52,6 +58,7 @@ export default {
         Methods_Validation_Errors(errors=[],field){
             return errors[field] && errors[field].length ? errors[field] : {};
         }
+
 
 
     }

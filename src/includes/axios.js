@@ -1,12 +1,13 @@
 //Axios Configs
+import store from "../store/index.js"
+
 import axios from "axios";
 window.axios = axios;
-let user_token = localStorage.getItem('auth_token')
+
 
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.baseURL="http://labell.mehdi/api/users"
-window.axios.defaults.headers.common['Authorization'] ="Bearer "+user_token
+window.axios.defaults.baseURL="http://labell.mehdi/api"
 
 
 window.axios.interceptors.response.use(
@@ -15,6 +16,11 @@ window.axios.interceptors.response.use(
         return response; // Return the response or modify it before it's returned
     },
     error => {
+        if (error.response.status === 401) {
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('auth_user');
+            // window.location.href = '/login';
+        }
 
         return Promise.reject(error);
 

@@ -12,7 +12,7 @@ export default {
         //login
         Modules_Authenticate_Action_Login(_,item){
             return new Promise((resolve, reject) => {
-                axios.post('auth/login',item).then(response => {
+                axios.post('users/auth/login',item).then(response => {
                      resolve(response)
                 }).catch(error =>{
                      reject(error);
@@ -58,6 +58,11 @@ export default {
         //get authenticated user
         Modules_Authenticate_Getter_User(state) {
             return state.Auth_User.user;
+        },
+
+        //get authenticated token
+        Modules_Authenticate_Getter_Token(state) {
+            return state.Auth_User.token;
         }
 
 

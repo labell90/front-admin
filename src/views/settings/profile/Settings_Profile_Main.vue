@@ -12,7 +12,7 @@ export default {
 <template>
   <q-card bordered class="" >
     <q-card-section>
-      <div class="row q-mb-md">
+      <div class="row q-mb-md animation-fade-in">
         <div class="col-md-1">
           <q-avatar rounded size="100px">
             <img src="assets/images/icons/profile.png" alt="">
@@ -40,10 +40,11 @@ export default {
       <div class="q-mt-sm">
         <div class="row justify-center">
           <div class="q-px-sm col-xs-6 col-sm-6 col-md-3">
-            <q-card flat :class="{'bg-pink-6' : this.$route.name === 'setting_profile_information' , 'bg-grey-5' : this.$route.name !== 'setting_profile_information'}">
+
+            <q-card flat :class="{'bg-pink-6' : this.$route.name === 'setting_profile_information_edit' || this.$route.name === 'setting_profile_information' , 'bg-grey-5' : this.$route.name !== 'setting_profile_information' && this.$route.name !== 'setting_profile_information_edit'}">
               <router-link :to="{name : 'setting_profile_information'}">
                 <q-card-section class="text-center">
-                    <strong class="font-15" :class="{'text-white' : this.$route.name === 'setting_profile_information' , 'text-dark' : this.$route.name !== 'setting_profile_information'}">مشخصات فردی</strong>
+                    <strong class="font-15" :class="{'text-white' : this.$route.name === 'setting_profile_information' || this.$route.name === 'setting_profile_information_edit', 'text-dark' : this.$route.name !== 'setting_profile_information'}">مشخصات فردی</strong>
                 </q-card-section>
               </router-link>
             </q-card>

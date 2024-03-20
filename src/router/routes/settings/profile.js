@@ -2,6 +2,7 @@
 import Settings_Profile_Main from "@/views/settings/profile/Settings_Profile_Main.vue";
 import Setting_Profile_Information from "@/views/settings/profile/components/Setting_Profile_Information.vue";
 import Setting_Profile_Security from "@/views/settings/profile/components/Setting_Profile_Security.vue";
+import Setting_Profile_Information_Edit from "@/views/settings/profile/components/Setting_Profile_Information_Edit.vue";
 
 const route_setting_profile =[
     {
@@ -20,6 +21,15 @@ const route_setting_profile =[
                 meta : {
                     title : 'تنظیمات',
                     subtitle : 'حساب کاربری - مشخصات فردی'
+                },
+            },
+            {
+                path : "information/edit",
+                name: "setting_profile_information_edit",
+                component : Setting_Profile_Information_Edit,
+                meta : {
+                    title : 'تنظیمات',
+                    subtitle : 'حساب کاربری - ویرایش مشخصات فردی'
                 },
             },
             {
