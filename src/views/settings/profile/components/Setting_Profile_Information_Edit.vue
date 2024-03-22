@@ -1,11 +1,12 @@
 <script>
 
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "Setting_Profile_Information_Edit",
   created() {
     this.Get_Information();
+    this.Get_Locations();
 
   },
   data(){
@@ -13,6 +14,10 @@ export default {
       information : null,
       information_loading : true,
       edit_information_loading : false,
+      locations:[],
+      countries:[],
+      provinces:[],
+      cities:[],
       errors :[],
     }
   },
@@ -20,7 +25,12 @@ export default {
     ...mapActions([
       "Modules_Profile_Action_Get_Information",
       "Modules_Profile_Action_Edit_Information",
+      "Module_Location_Action_Index",
+      "Module_Location_Action_Country_Selectable",
+      "Module_Location_Action_Province_Selectable",
+      "Module_Location_Action_City_Selectable"
     ]),
+
     Get_Information(){
       this.Modules_Profile_Action_Get_Information().then(response => {
         this.information = response.data.result;
@@ -29,12 +39,71 @@ export default {
         this.information_loading = false;
       })
     },
+
+    Get_Locations(){
+      this.Module_Location_Action_Index().then(response => {
+        this.locations = response.data.result;
+        this.Get_Countries();
+
+      }).catch(error =>{
+
+      })
+
+    },
+
+    Get_Countries(){
+
+      this.Module_Location_Action_Country_Selectable(this.locations).then(response => {
+        this.countries = response;
+      }).catch(error =>{
+
+      })
+
+    },
+
+    Filter_Countries_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.countries =  this.countries.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Countries();
+        }
+      })
+    },
+
+    Filter_Provinces_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.provinces =  this.provinces.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          // this.Computed_Get_Cities();
+        }
+      })
+    },
+
+    Filter_Cities_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.cities =  this.cities.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          // this.Computed_Get_Cities();
+        }
+      })
+    },
+
     Edit_Information(){
       this.edit_information_loading=true;
       this.Modules_Profile_Action_Edit_Information(this.information).then(res =>{
         this.Methods_Notify_Update();
         this.errors=[];
         this.edit_information_loading=false;
+        return this.$router.push({name : "setting_profile_information"})
       }).catch(error =>{
         if (error.response.status === 422) {
           this.Methods_Validation_Notify();
@@ -46,6 +115,33 @@ export default {
       })
 
     }
+
+  },
+  computed : {
+    Computed_Get_Province(){
+      if (this.information.country_id){
+        let items= {
+          locations : this.locations,
+          country_id : this.information.country_id
+        }
+        this.Module_Location_Action_Province_Selectable(items).then(response => {
+          this.provinces = response;
+        });
+      }
+    },
+    Computed_Get_Cities(){
+      if (this.information.province_id){
+        let items= {
+          provinces : this.provinces,
+          province_id : this.information.province_id
+        }
+        this.Module_Location_Action_City_Selectable(items).then(response => {
+          this.information.city_id = null;
+          this.cities = response;
+        });
+      }
+    }
+
 
   }
 
@@ -121,29 +217,110 @@ export default {
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 ">
             <div class="q-pa-sm">
-              <q-input :error="this.Methods_Validation_Check(errors,'country')" outlined v-model="information.country" type="text" label="کشور">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'country')" />
+              <q-select
+                  outlined
+                  transition-show="flip-up"
+                  transition-hide="flip-down"
+                  v-model="information.country_id"
+                  label="انتخاب کشور"
+                  :options="countries"
+                  @filter="Filter_Countries_Select"
+                  @change="Computed_Get_Province"
+                  emit-value
+                  map-options
+                  use-input
+              >
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-red">
+                      گزینه ای یافت نشد
+                    </q-item-section>
+                  </q-item>
                 </template>
-              </q-input>
+                <template v-slot:option="scope">
+                  <q-item v-bind="scope.itemProps">
+                    <q-item-section avatar>
+                      <global_images_select :image="scope.opt.image" />
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>{{ scope.opt.label }}</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-slot:error>
+                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'country_id')" />
+                </template>
+              </q-select>
             </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 ">
             <div class="q-pa-sm">
-              <q-input :error="this.Methods_Validation_Check(errors,'country')" outlined v-model="information.country" type="text" label="استان">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'country')" />
+              <q-select
+                  outlined
+                  transition-show="flip-up"
+                  transition-hide="flip-down"
+                  v-model="information.province_id"
+                  label="انتخاب استان"
+                  :options="provinces"
+                  @filter="Filter_Provinces_Select"
+                  @change="Computed_Get_Cities"
+                  emit-value
+                  map-options
+                  use-input
+              >
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-red">
+                      گزینه ای یافت نشد
+                    </q-item-section>
+                  </q-item>
                 </template>
-              </q-input>
+                <template v-slot:option="scope">
+                  <q-item v-bind="scope.itemProps">
+                    <q-item-section>
+                      <q-item-label>{{ scope.opt.label }}</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-slot:error>
+                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'province_id')" />
+                </template>
+              </q-select>
+
             </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 ">
             <div class="q-pa-sm">
-              <q-input :error="this.Methods_Validation_Check(errors,'country')" outlined v-model="information.country" type="text" label="شهر">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'country')" />
+              <q-select
+                  outlined
+                  transition-show="flip-up"
+                  transition-hide="flip-down"
+                  v-model="information.city_id"
+                  label="انتخاب شهر"
+                  :options="cities"
+                  @filter="Filter_Cities_Select"
+                  emit-value
+                  map-options
+                  use-input
+              >
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-red">
+                      گزینه ای یافت نشد
+                    </q-item-section>
+                  </q-item>
                 </template>
-              </q-input>
+                <template v-slot:option="scope">
+                  <q-item v-bind="scope.itemProps">
+                    <q-item-section>
+                      <q-item-label>{{ scope.opt.label }}</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-slot:error>
+                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'city_id')" />
+                </template>
+              </q-select>
             </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 ">

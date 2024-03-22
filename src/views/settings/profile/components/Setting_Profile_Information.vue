@@ -55,7 +55,7 @@ export default {
           <div class="col-md-6">
             <div class="q-pa-md">
               <span class="text-grey-8">شماره موبایل : </span>
-              <strong>{{ information.email }}</strong>
+              <strong>{{ information.phone }}</strong>
             </div>
           </div>
           <div class="col-md-6">
@@ -67,7 +67,7 @@ export default {
           <div class="col-md-6">
             <div class="q-pa-md">
               <span class="text-grey-8">کد پرسنلی : </span>
-              <strong>{{ information.emploee_code }}</strong>
+              <strong>{{ information.employee_code }}</strong>
             </div>
           </div>
           <div class="col-md-6">
