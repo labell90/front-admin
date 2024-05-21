@@ -49,7 +49,7 @@ export default {
 <template>
 
   <div class="row justify-center">
-    <div  class="col-md-6 col-sm-12 col-xs-12 ">
+    <div  class="col-md-6 col-sm-12 col-xs-12 q-mt-xl">
       <q-card class="q-mt-lg login-bg">
         <q-card-section>
           <div class="text-center">

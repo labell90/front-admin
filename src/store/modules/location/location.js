@@ -33,7 +33,7 @@ export default {
                         })
                     }
                 })
-                resolve(data);
+                return resolve(data);
             })
 
         },
@@ -49,7 +49,7 @@ export default {
                         })
                     }
                 })
-                resolve(data);
+                return resolve(data);
             })
 
         },

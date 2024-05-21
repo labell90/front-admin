@@ -13,7 +13,7 @@
   {
     "fa" : "کابران",
     "en" : "Dashboard",
-    "icon" : "fas fa-dashboard",
+    "icon" : "fas fa-users",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -22,10 +22,9 @@
       {
         "fa" : "مدیران",
         "en" : "Dashboard",
-        "icon" : "fas fa-dashboard",
         "route_path" : "/",
         "route_name" : "home",
-        "level"      : 0.2,
+        "level"      : 1,
 
         "subs" : [
 
@@ -34,10 +33,9 @@
       {
         "fa" : "مشتریان",
         "en" : "Dashboard",
-        "icon" : "fas fa-dashboard",
         "route_path" : "/",
         "route_name" : "home",
-        "level"      : 0.2,
+        "level"      : 1,
 
         "subs" : [
 
@@ -47,9 +45,48 @@
     ]
   },
   {
+    "title" : true,
+    "fa" : "سطوح دسترسی و نقش ها",
+    "en" : "Roles ans Accesses"
+  },
+  {
+    "fa" : "نقش های کاربر",
+    "en" : "Dashboard",
+    "icon" : "fas fa-users-viewfinder",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+
+    "subs" : [
+      {
+        "fa" : "ایجاد نقش",
+        "en" : "New role",
+        "route_path" : "/",
+        "route_name" : "roles_create",
+        "level"      : 1,
+
+        "subs" : [
+
+        ]
+      },
+      {
+        "fa" : "لیست نقش ها",
+        "en" : "ًRoles",
+        "route_path" : "/",
+        "route_name" : "roles_index",
+        "level"      : 1,
+
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
+
+  {
     "fa" : "تنظیمات",
     "en" : "Setting",
-    "icon" : "fas fa-cog fa-spin",
+    "icon" : "fas fa-cog",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -58,10 +95,9 @@
       {
         "fa" : "حساب کاربری",
         "en" : "Profile",
-        "icon" : "fas fa-user-edit",
         "route_path" : "/",
         "route_name" : "setting_profile",
-        "level"      : 0.2,
+        "level"      : 1,
         "subs" : [
 
         ]

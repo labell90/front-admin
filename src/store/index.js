@@ -6,6 +6,7 @@ import {createStore} from "vuex";
 import authenticate from "@/store/modules/authenticate/authenticate.js";
 import profile from "@/store/modules/profile/profile.js";
 import location from "@/store/modules/location/location.js";
+import role from "@/store/modules/role/role.js"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -22,7 +23,8 @@ const store = createStore({
     modules:{
         authenticate,
         profile,
-        location
+        location,
+        role
     }
 
 

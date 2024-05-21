@@ -1,27 +1,34 @@
 import axios from "axios";
 
 export default {
-    actions : {
-        Modules_Profile_Action_Get_Information(){
+    actions:{
+        Module_Role_Action_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/profile').then(response =>{
+                axios.get('users/roles?per_page='+items.per_page+'&page='+items.page).then(response =>{
                     return resolve(response);
-                }).catch(error => {
+                }).catch(error =>{
                     return reject(error);
                 })
             })
+
         },
-        Modules_Profile_Action_Edit_Information(_,item){
+        Module_Role_Action_Create(_,items){
             return new Promise((resolve, reject) => {
-                axios.put('users/profile',item).then(response =>{
+                axios.post('users/roles',items).then(response =>{
                     return resolve(response);
-                }).catch(error => {
+                }).catch(error =>{
                     return reject(error);
                 })
             })
+
         },
 
+
+
+
     }
+
+
 
 
 

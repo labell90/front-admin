@@ -48,6 +48,15 @@ export default {
 
         },
 
+        Methods_Notify_Create(){
+            this.Methods_Notify_Generator('اطلاعات باموفقیت ثبت شد','green-7','fa fa-check ');
+
+        },
+        Methods_Notify_Error_Server(){
+            this.Methods_Notify_Generator('خطای سرور : سرور پاسخگو نیست !','red-7','fa fa-times ');
+
+        },
+
         //Validations check and error message methods
         Methods_Validation_Check(errors=[],field){
             return !!(errors[field] && errors[field].length);

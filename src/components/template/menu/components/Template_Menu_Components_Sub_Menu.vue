@@ -6,35 +6,43 @@ export default {
 </script>
 
 <template>
-  <template v-if="item.route_name">
-    <q-expansion-item
-        class="menu"
-        :class="{'menu-active' : this.$route.name === item.route_name}"
-        :icon="item.icon+' font-24'"
-        :label="item.fa"
-        dense-toggle
-        expand-separator
-        hide-expand-icon
-        :to="{name : item.route_name}"
-        :header-inset-level="item.level"
-    >
-    </q-expansion-item>
+  <template v-if="item.title">
+    <div class="text-teal q-pt-md q-pb-sm q-pl-md">
+      {{ item.fa }}
+    </div>
   </template>
   <template v-else>
-    <q-expansion-item
-        class="menu"
-        :icon="item.icon+' font-24'"
-        :label="item.fa"
-        dense-toggle
-        expand-separator
-        :header-inset-level="item.level"
-    >
-      <template v-if="item.subs">
-        <global_menu_item v-for="sub in item.subs" :item="sub"></global_menu_item>
+    <template v-if="item.route_name">
+      <q-expansion-item
+          class="menu"
+          :class="{'menu-active' : this.$route.name === item.route_name}"
+          :icon="item.icon"
+          :label="item.fa"
+          dense-toggle
+          expand-separator
+          hide-expand-icon
+          :to="{name : item.route_name}"
+          :header-inset-level="item.level"
+      >
+      </q-expansion-item>
+    </template>
+    <template v-else>
+      <q-expansion-item
+          class="menu "
+          :icon="item.icon"
+          :label="item.fa"
+          dense-toggle
+          expand-separator
+          :header-inset-level="item.level"
+      >
+        <template v-if="item.subs">
+          <global_menu_item v-for="sub in item.subs" :item="sub"></global_menu_item>
 
-      </template>
-    </q-expansion-item>
+        </template>
+      </q-expansion-item>
+    </template>
   </template>
+
 
 </template>
 
