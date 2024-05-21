@@ -12,6 +12,16 @@ export default {
             })
 
         },
+        Module_Role_Action_Show(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/roles/'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
         Module_Role_Action_Create(_,items){
             return new Promise((resolve, reject) => {
                 axios.post('users/roles',items).then(response =>{

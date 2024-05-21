@@ -90,7 +90,7 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
-      <q-btn :to="{name : 'roles_create'}" class="float-right" color="blue-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+      <q-btn :to="{name : 'roles_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
     </q-card-section>
     <q-card-section>
       <q-table
@@ -113,8 +113,8 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn glossy class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
-              <q-btn glossy class="q-ma-xs" color="teal-8" icon="fas fa-list" size="11px" round  />
+              <q-btn :to="{name:'roles_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
+              <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="11px" round  />
               <q-btn glossy class="q-ma-xs" color="red-8" icon="fas fa-trash" size="11px" round  />
             </div>
 

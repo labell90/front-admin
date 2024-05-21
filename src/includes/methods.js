@@ -54,7 +54,9 @@ export default {
         },
         Methods_Notify_Error_Server(){
             this.Methods_Notify_Generator('خطای سرور : سرور پاسخگو نیست !','red-7','fa fa-times ');
-
+        },
+        Methods_Notify_Error_NotFound(){
+            this.Methods_Notify_Generator('آیتم مورد نظر یافت نشد ! اطلاعات را بررسی کنید','red-7','fa fa-times ');
         },
 
         //Validations check and error message methods

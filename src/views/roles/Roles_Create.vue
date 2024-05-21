@@ -59,7 +59,7 @@ export default {
           </q-input>
         </div>
         <div class="col-12 q-pa-sm">
-          <q-btn color="blue-8" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+          <q-btn color="teal-8" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
         </div>
       </div>
     </q-card-section>
