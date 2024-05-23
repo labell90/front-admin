@@ -32,6 +32,26 @@ export default {
             })
 
         },
+        Module_Role_Action_Edit(_,items){
+            return new Promise((resolve, reject) => {
+                axios.put('users/roles/'+items.id,items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+        Module_Role_Action_Delete(_,items){
+            return new Promise((resolve, reject) => {
+                axios.delete('users/roles/'+items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
 
 
 

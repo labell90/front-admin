@@ -10,6 +10,7 @@ export default {
       return {
         items:[],
         items_loading:true,
+        delete_loading:false,
         items_selected:[],
         selected: [],
         pagination: {
@@ -53,6 +54,7 @@ export default {
   methods :{
     ...mapActions([
         "Module_Role_Action_Index",
+        "Module_Role_Action_Delete",
     ]),
     Items_Get(per_page,page){
       if (!per_page){
@@ -71,6 +73,22 @@ export default {
         this.Methods_Notify_Error_Server();
         this.items_loading=false;
       })
+    },
+    Item_Delete(id){
+      this.delete_loading=true;
+      this.Module_Role_Action_Delete(id).then(res => {
+        this.items = this.items.filter(item => {
+          return item.id !== id;
+        })
+        this.Methods_Notify_Delete();
+        this.delete_loading=false;
+      }).catch(res => {
+        this.Methods_Notify_Error_Server();
+        this.delete_loading=false;
+
+      })
+
+
     },
     updateSelected(newSelection) {
       this.selected = newSelection;
@@ -115,7 +133,7 @@ export default {
             <div class="text-center">
               <q-btn :to="{name:'roles_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
               <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="11px" round  />
-              <q-btn glossy class="q-ma-xs" color="red-8" icon="fas fa-trash" size="11px" round  />
+              <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
 
 

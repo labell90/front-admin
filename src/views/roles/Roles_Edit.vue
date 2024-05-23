@@ -19,12 +19,12 @@ export default {
   },
   methods:{
     ...mapActions([
-        "Module_Role_Action_Show"
+        "Module_Role_Action_Show",
+        "Module_Role_Action_Edit",
     ]),
     Get_Item(){
       this.Module_Role_Action_Show(this.$route.params.id).then(response => {
         this.item=response.data.result;
-        console.log(this.item);
         this.loading=false;
       }).catch(error => {
         if (error.response.status === 404) {
@@ -36,6 +36,23 @@ export default {
       })
     },
     Edit_Item(){
+      this.edit_loading=true;
+      this.Module_Role_Action_Edit(this.item).then(response => {
+          this.Methods_Notify_Update();
+          this.edit_loading=false;
+          this.$router.push({name : 'roles_index'})
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.errors = error.response.data;
+          this.Methods_Validation_Notify();
+        }else {
+            this.Methods_Notify_Error_Server();
+        }
+        this.edit_loading=false;
+      })
+
+
+
 
     }
 

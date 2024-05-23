@@ -45,13 +45,16 @@ export default {
         //Default notification message
         Methods_Notify_Update(){
             this.Methods_Notify_Generator('اطلاعات باموفقیت بروزرسانی شد','green-7','fa fa-check ');
-
         },
-
         Methods_Notify_Create(){
             this.Methods_Notify_Generator('اطلاعات باموفقیت ثبت شد','green-7','fa fa-check ');
 
         },
+        Methods_Notify_Delete(){
+            this.Methods_Notify_Generator('اطلاعات باموفقیت حذف شد','green-7','fa fa-check ');
+
+        },
+
         Methods_Notify_Error_Server(){
             this.Methods_Notify_Generator('خطای سرور : سرور پاسخگو نیست !','red-7','fa fa-times ');
         },
