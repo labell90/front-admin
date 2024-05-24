@@ -21,22 +21,42 @@
     "subs" : [
       {
         "fa" : "مدیران",
-        "en" : "Dashboard",
+        "en" : "Managers",
         "route_path" : "/",
-        "route_name" : "home",
-        "level"      : 1,
-
+        "route_name" : "",
+        "icon" : "fas fa-user-tie font-20",
+        "level"      : 0.5,
         "subs" : [
+          {
+            "fa" : "ایجاد مدیر",
+            "en" : "New manager",
+            "route_path" : "/",
+            "route_name" : "users_create",
+            "level"      : 1,
 
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست مدیران",
+            "en" : "Managers",
+            "route_path" : "/",
+            "route_name" : "users_index",
+            "level"      : 1,
+
+            "subs" : [
+
+            ]
+          }
         ]
       },
       {
         "fa" : "مشتریان",
-        "en" : "Dashboard",
+        "en" : "Customers",
         "route_path" : "/",
-        "route_name" : "home",
-        "level"      : 1,
-
+        "route_name" : "",
+        "level"      : 0.5,
         "subs" : [
 
         ]
@@ -51,7 +71,7 @@
   },
   {
     "fa" : "نقش های کاربر",
-    "en" : "Dashboard",
+    "en" : "Roles",
     "icon" : "fas fa-users-viewfinder",
     "route_path" : "/",
     "route_name" : "",
@@ -80,6 +100,23 @@
 
         ]
       }
+    ]
+  },
+
+  {
+    "title" : true,
+    "fa" : "رسانه ها و فایل ها",
+    "en" : "Media and Files"
+  },
+  {
+    "fa" : "مدیریت فایل ها",
+    "en" : "File manager",
+    "icon" : "fas fa-photo-film",
+    "route_path" : "/",
+    "route_name" : "medias_index",
+    "level"      : 0,
+    "subs" : [
+
     ]
   },
 

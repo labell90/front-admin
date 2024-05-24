@@ -6,6 +6,8 @@ import store from "../store/index.js"
 import route_main from "../router/routes/main.js";
 import route_setting_profile from "@/router/routes/settings/profile.js";
 import route_role from "@/router/routes/roles/roles.js"
+import route_users from "@/router/routes/users/users.js"
+import route_medias from "@/router/routes/medias/medias.js"
 
 
 
@@ -13,7 +15,9 @@ import route_role from "@/router/routes/roles/roles.js"
 const routes = [
     ...route_main,
     ...route_setting_profile,
-    ...route_role
+    ...route_role,
+    ...route_users,
+    ...route_medias
 ]
 
 
