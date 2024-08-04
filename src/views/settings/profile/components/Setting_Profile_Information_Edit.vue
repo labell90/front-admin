@@ -122,7 +122,7 @@ export default {
       if (this.information.country_id){
         let items= {
           locations : this.locations,
-          country_id : this.information.country_id
+          country_id : this.items.country_id
         }
         this.Module_Location_Action_Province_Selectable(items).then(response => {
           this.provinces = response;
@@ -130,15 +130,15 @@ export default {
       }
     },
     Computed_Get_Cities(){
-      if (this.information.province_id){
+      if (this.items.province_id){
         let items= {
           provinces : this.provinces,
-          province_id : this.information.province_id
+          province_id : this.items.province_id
         }
         this.Module_Location_Action_City_Selectable(items).then(response => {
-          this.information.city_id = null;
+          this.items.city_id = null;
           this.cities = response;
-        });
+        });i
       }
     }
 

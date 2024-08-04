@@ -8,6 +8,10 @@ import route_setting_profile from "@/router/routes/settings/profile.js";
 import route_role from "@/router/routes/roles/roles.js"
 import route_users from "@/router/routes/users/users.js"
 import route_medias from "@/router/routes/medias/medias.js"
+import route_lead_categories from "@/router/routes/leads/leads_categories.js"
+import route_lead_resources from "@/router/routes/leads/leads_resources.js"
+import route_lead_statuses from "@/router/routes/leads/leads_statuses.js"
+import route_campaigns from "@/router/routes/campaigns/campaigns.js"
 
 
 
@@ -17,7 +21,11 @@ const routes = [
     ...route_setting_profile,
     ...route_role,
     ...route_users,
-    ...route_medias
+    ...route_medias,
+    ...route_lead_categories,
+    ...route_lead_resources,
+    ...route_lead_statuses,
+    ...route_campaigns
 ]
 
 

@@ -2,7 +2,7 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Users_Index",
+  name: "Campaigns_Index",
   mounted() {
     this.Items_Get();
   },
@@ -37,36 +37,28 @@ export default {
           field: row => row.name,
         },
         {
-          name: 'phone',
+          name: 'color_code',
           required: true,
-          label: 'موبایل',
+          label: 'رنگ',
           align: 'left',
-          sortable: true,
-          field: row => row.phone,
+          sortable: false,
+          field: row => row.color_code,
         },
         {
-          name: 'email',
+          name: 'code',
           required: true,
-          label: 'ایمل',
+          label: 'کد',
           align: 'left',
-          sortable: true,
-          field: row => row.email,
+          sortable: false,
+          field: row => row.code,
         },
         {
-          name: 'national_code',
+          name: 'description',
           required: true,
-          label: 'کد ملی',
+          label: 'توضیحات',
           align: 'left',
           sortable: true,
-          field: row => row.national_code,
-        },
-        {
-          name: 'employee_code',
-          required: true,
-          label: 'کد پرسنلی',
-          align: 'left',
-          sortable: true,
-          field: row => row.employee_code,
+          field: row => row.description,
         },
         {
           name: 'is_active',
@@ -75,13 +67,6 @@ export default {
           align: 'left',
           sortable: true,
           field: row => row.is_active,
-        },
-        {
-          name: 'location',
-          required: true,
-          label: 'مکان',
-          align: 'left',
-          sortable: false,
         },
         {
           name: 'tools',
@@ -93,9 +78,11 @@ export default {
   },
   methods :{
     ...mapActions([
-      "Module_User_Action_Index",
-      "Module_User_Action_Delete",
-      "Module_User_Action_Activation",
+      "Module_Campaign_Action_Index",
+      "Module_Campaign_Action_Delete",
+      "Module_Campaign_Action_Activation",
+
+
     ]),
     Items_Get(per_page,page){
       if (!per_page){
@@ -104,7 +91,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_User_Action_Index({per_page:per_page,page:page}).then(res => {
+      this.Module_Campaign_Action_Index({per_page:per_page,page:page}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -117,7 +104,7 @@ export default {
     },
     Item_Delete(id){
       this.delete_loading=true;
-      this.Module_User_Action_Delete(id).then(res => {
+      this.Module_Campaign_Action_Delete(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -136,7 +123,7 @@ export default {
     },
     Item_Activation(id){
       this.activation_loading=true;
-      this.Module_User_Action_Activation(id).then(res => {
+      this.Module_Campaign_Action_Activation(id).then(res => {
         this.items = this.items.filter(item => {
           if (item.id === id){
             item.is_active = !item.is_active;
@@ -146,7 +133,7 @@ export default {
         this.activation_loading=false;
       }).catch(error =>{
         if (error.response.status === 409) {
-         this.Methods_Notify_Generator( error.response.data.error,'red-8','fas fa-times')
+          this.Methods_Notify_Generator( error.response.data.error,'red-8','fas fa-times')
         }
         this.activation_loading=false;
       })
@@ -165,7 +152,6 @@ export default {
 
 
   }
-
 }
 </script>
 
@@ -173,7 +159,7 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
-      <q-btn :to="{name : 'users_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+      <q-btn :to="{name : 'campaigns_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
     </q-card-section>
     <q-card-section>
       <q-table
@@ -194,49 +180,37 @@ export default {
           @request="Items_OnRequest"
       >
         <template v-slot:body-cell-name="props">
+
           <q-td :props="props">
-<!--            #TODO create image viewer and show user image-->
-            <div class="row">
-                <img src="assets/images/icons/user-default.png" width="35"  alt="user_profile"/>
-                <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
+            <div class="row q-pt-xs q-pb-xs" >
+              <q-icon name="fas fa-tents" size="35px" color="teal-7"/>
+              <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
             </div>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-color_code="props">
+          <q-td :props="props" :style="'background-color:'+props.row.color_code ">
+
           </q-td>
         </template>
         <template v-slot:body-cell-is_active="props">
           <q-td :props="props">
-              <global_actions_activation_item @Set_Ok="Item_Activation(props.row.id)" :status="props.row.is_active"></global_actions_activation_item>
-          </q-td>
-        </template>
-        <template v-slot:body-cell-location="props">
-          <q-td :props="props">
-            <span v-if="props.row.country">
-              {{ props.row.country }}
-              /
-            </span>
-            <span v-if="props.row.province">
-              {{ props.row.province }}
-              /
-            </span>
-            <span v-if="props.row.city">
-              {{ props.row.city }}
-
-            </span>
+            <global_actions_activation_item @Set_Ok="Item_Activation(props.row.id)" :status="props.row.is_active"></global_actions_activation_item>
           </q-td>
         </template>
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'users_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
-              <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="11px" round title="مشاهده جزئیات"/>
+              <q-btn :to="{name:'campaigns_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
-
           </q-td>
         </template>
       </q-table>
     </q-card-section>
 
   </q-card>
+
 </template>
 
 <style scoped>

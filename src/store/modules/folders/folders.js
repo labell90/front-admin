@@ -4,7 +4,11 @@ export default {
     actions:{
         Module_Folders_Action_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/folders?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/folders',
+                    {
+                        params: items,
+                    }
+                    ).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

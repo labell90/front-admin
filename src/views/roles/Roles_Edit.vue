@@ -72,14 +72,14 @@ export default {
     <q-card-section>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-          <q-input dense :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="item.name"  type="text" label="عنوان نقش">
+          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="item.name"  type="text" label="عنوان نقش">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
             </template>
           </q-input>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-          <q-input dense :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="item.description"  type="textarea" label="توضیحات">
+          <q-input  :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="item.description"  type="textarea" label="توضیحات">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'description')" />
             </template>

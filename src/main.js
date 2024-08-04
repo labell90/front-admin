@@ -8,8 +8,6 @@ import router from './router'
 import store from './store/index.js'
 import { Quasar , Notify ,LoadingBar, Dialog} from 'quasar'
 import quasarLang from 'quasar/lang/fa-IR'
-import '/src/assets/css/fonts.css'
-import '/src/assets/css/animations.css'
 import methods from "@/includes/methods.js";
 import '@/includes/axios.js';
 import quasarIconSet from 'quasar/icon-set/fontawesome-v6'
@@ -17,6 +15,10 @@ import quasarIconSet from 'quasar/icon-set/fontawesome-v6'
 import '@quasar/extras/fontawesome-v6/fontawesome-v6.css'
 // Import Quasar css
 import 'quasar/dist/quasar.css'
+
+import '/src/assets/css/fonts.css'
+import '/src/assets/css/animations.css'
+import '/src/assets/css/helper.css'
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -28,6 +30,8 @@ import Template_Menu_Components_Sub_Menu from "@/components/template/menu/compon
 import Global_Loading_Shape from "@/components/globals/loadings/Global_Loading_Shape.vue";
 import Global_Images_Select from "@/components/globals/images/Global_Images_Select.vue";
 import Global_Actions_Delete_Item from "@/components/globals/actions/Global_Actions_Delete_Item.vue";
+import Global_Actions_Activation_Item from "@/components/globals/actions/Global_Actions_Activation_Item.vue";
+import Medias_Breadcrumb_Item from "@/views/medias/components/Medias_Breadcrumb_Item.vue";
 
 
 
@@ -44,6 +48,8 @@ app.component('global_menu_item',Template_Menu_Components_Sub_Menu)
 app.component('global_loading_shape',Global_Loading_Shape)
 app.component('global_images_select',Global_Images_Select)
 app.component('global_actions_delete_item',Global_Actions_Delete_Item)
+app.component('global_actions_activation_item',Global_Actions_Activation_Item)
+app.component('global_medias_breadcrumb',Medias_Breadcrumb_Item)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

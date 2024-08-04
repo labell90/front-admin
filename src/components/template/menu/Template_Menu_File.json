@@ -17,7 +17,6 @@
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
-
     "subs" : [
       {
         "fa" : "مدیران",
@@ -55,6 +54,7 @@
         "fa" : "مشتریان",
         "en" : "Customers",
         "route_path" : "/",
+        "icon" : "fas fa-user-group font-20",
         "route_name" : "",
         "level"      : 0.5,
         "subs" : [
@@ -67,7 +67,7 @@
   {
     "title" : true,
     "fa" : "سطوح دسترسی و نقش ها",
-    "en" : "Roles ans Accesses"
+    "en" : "Roles and Accesses"
   },
   {
     "fa" : "نقش های کاربر",
@@ -76,7 +76,6 @@
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
-
     "subs" : [
       {
         "fa" : "ایجاد نقش",
@@ -84,9 +83,7 @@
         "route_path" : "/",
         "route_name" : "roles_create",
         "level"      : 1,
-
         "subs" : [
-
         ]
       },
       {
@@ -95,13 +92,161 @@
         "route_path" : "/",
         "route_name" : "roles_index",
         "level"      : 1,
-
         "subs" : [
 
         ]
       }
     ]
   },
+  {
+    "title" : true,
+    "fa" : "سرنخ ها و وابستگی ها",
+    "en" : "Lead Dependencies"
+  },
+
+  {
+    "fa" : "تنظیمات سرنخ",
+    "en" : "Lead Settings",
+    "icon" : "fas fa-clipboard-user",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "دسته بندی ها",
+        "en" : "Categories",
+        "route_path" : "/",
+        "route_name" : "",
+        "icon" : "fas fa-list font-20",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد دسته بندی",
+            "en" : "New category",
+            "route_path" : "/",
+            "route_name" : "lead_categories_create",
+            "level"      : 1,
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست دسته بندی ها",
+            "en" : "Categories",
+            "route_path" : "/",
+            "route_name" : "lead_categories_index",
+            "level"      : 1,
+
+            "subs" : [
+
+            ]
+          }
+        ]
+      },
+      {
+        "fa" : "منابع",
+        "en" : "Resources",
+        "route_path" : "/",
+        "route_name" : "",
+        "icon" : "fas fa-flag font-20",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد منبع",
+            "en" : "New source",
+            "route_path" : "/",
+            "route_name" : "lead_resources_create",
+            "level"      : 1,
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست منابع",
+            "en" : "Resources",
+            "route_path" : "/",
+            "route_name" : "lead_resources_index",
+            "level"      : 1,
+
+            "subs" : [
+
+            ]
+          }
+        ]
+      },
+      {
+        "fa" : "وضعیت ها",
+        "en" : "Statuses",
+        "route_path" : "/",
+        "route_name" : "",
+        "icon" : "fas fa-check-to-slot font-20",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد وضعیت",
+            "en" : "New Status",
+            "route_path" : "/",
+            "route_name" : "lead_statuses_create",
+            "level"      : 1,
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست وضعیت ها",
+            "en" : "Statuses",
+            "route_path" : "/",
+            "route_name" : "lead_statuses_index",
+            "level"      : 1,
+
+            "subs" : [
+
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "title" : true,
+    "fa" : "کمپین ها و رویداد ها",
+    "en" : "Campaigns and Events"
+  },
+  {
+    "fa" : "کمپین ها",
+    "en" : "Campaigns",
+    "icon" : "fas fa-tents",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد کمپین",
+        "en" : "New campaign",
+        "route_path" : "/",
+        "route_name" : "campaigns_create",
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست کمپین ها",
+        "en" : "Campaigns",
+        "route_path" : "/",
+        "route_name" : "campaigns_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
+
+
 
   {
     "title" : true,

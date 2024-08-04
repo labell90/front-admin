@@ -2,9 +2,9 @@ import axios from "axios";
 
 export default {
     actions:{
-        Module_User_Action_Index(_,items){
+        Module_Lead_Category_Action_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/users?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/leads/categories?per_page='+items.per_page+'&page='+items.page).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -12,9 +12,9 @@ export default {
             })
 
         },
-        Module_User_Action_Show(_,item){
+        Module_Lead_Category_Action_Show(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/users/'+item).then(response =>{
+                axios.get('users/leads/categories/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -22,9 +22,9 @@ export default {
             })
 
         },
-        Module_User_Action_Create(_,items){
+        Module_Lead_Category_Action_Create(_,items){
             return new Promise((resolve, reject) => {
-                axios.post('users/users',items).then(response =>{
+                axios.post('users/leads/categories',items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -32,9 +32,9 @@ export default {
             })
 
         },
-        Module_User_Action_Edit(_,items){
+        Module_Lead_Category_Action_Edit(_,items){
             return new Promise((resolve, reject) => {
-                axios.put('users/users/'+items.id,items).then(response =>{
+                axios.put('users/leads/categories/'+items.id,items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -42,9 +42,9 @@ export default {
             })
 
         },
-        Module_User_Action_Delete(_,items){
+        Module_Lead_Category_Action_Delete(_,items){
             return new Promise((resolve, reject) => {
-                axios.delete('users/users/'+items).then(response =>{
+                axios.delete('users/leads/categories/'+items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -52,9 +52,9 @@ export default {
             })
 
         },
-        Module_User_Action_Activation(_,item){
+        Module_Lead_Category_Action_Activation(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/users/change/activation/'+item).then(response =>{
+                axios.get('users/leads/categories/change/activation/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

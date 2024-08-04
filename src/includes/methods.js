@@ -67,7 +67,7 @@ export default {
             return !!(errors[field] && errors[field].length);
         },
         Methods_Validation_Notify(){
-            this.Methods_Notify_Generator('اطلاعات ارسالی ناقض است!','red-7','fas fa-triangle-exclamation')
+            this.Methods_Notify_Generator('اطلاعات ارسالی ناقص است!','red-7','fas fa-triangle-exclamation')
         },
         Methods_Validation_Errors(errors=[],field){
             return errors[field] && errors[field].length ? errors[field] : {};
