@@ -207,6 +207,38 @@
             ]
           }
         ]
+      },
+      {
+        "fa" : "صنایع",
+        "en" : "Industries",
+        "route_path" : "/",
+        "route_name" : "",
+        "icon" : "fas fa-industry font-20",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد صنعت",
+            "en" : "New Industry",
+            "route_path" : "/",
+            "route_name" : "lead_industries_create",
+            "level"      : 1,
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست صنایع",
+            "en" : "Industries",
+            "route_path" : "/",
+            "route_name" : "lead_industries_index",
+            "level"      : 1,
+
+            "subs" : [
+
+            ]
+          }
+        ]
       }
     ]
   },

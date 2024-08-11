@@ -13,6 +13,7 @@ import users from "@/store/modules/users/users.js";
 import lead_categories from "@/store/modules/leads/categories/leads_categories.js";
 import lead_resources from "@/store/modules/leads/resources/leads_resources.js";
 import lead_statuses from "@/store/modules/leads/statuses/leads_statuses.js";
+import lead_industries from "@/store/modules/leads/industries/leads_industries.js";
 import campaigns from "@/store/modules/campaigns/campaigns.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -38,6 +39,7 @@ const store = createStore({
         lead_categories,
         lead_resources,
         lead_statuses,
+        lead_industries,
         campaigns
     }
 
