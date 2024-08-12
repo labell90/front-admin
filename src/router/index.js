@@ -13,6 +13,7 @@ import route_lead_resources from "@/router/routes/leads/leads_resources.js"
 import route_lead_statuses from "@/router/routes/leads/leads_statuses.js"
 import route_leads_industries from "@/router/routes/leads/leads_industries.js";
 import route_campaigns from "@/router/routes/campaigns/campaigns.js"
+import route_leads_types from "@/router/routes/leads/leads_types.js";
 
 
 
@@ -27,7 +28,8 @@ const routes = [
     ...route_lead_resources,
     ...route_lead_statuses,
     ...route_campaigns,
-    ...route_leads_industries
+    ...route_leads_industries,
+    ...route_leads_types
 ]
 
 

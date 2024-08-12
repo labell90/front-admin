@@ -2,7 +2,7 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Lead_Industries_Index",
+  name: "Leads_Types_Index",
   mounted() {
     this.Items_Get();
   },
@@ -60,6 +60,7 @@ export default {
           sortable: true,
           field: row => row.is_active,
         },
+
         {
           name: 'tools',
           label: 'عملیات',
@@ -70,11 +71,12 @@ export default {
   },
   methods :{
     ...mapActions([
-      "Module_Lead_Industry_Action_Index",
-      "Module_Lead_Industry_Action_Delete",
-      "Module_Lead_Industry_Action_Activation",
-    ]),
+      "Module_Lead_Types_Action_Index",
+      "Module_Lead_Types_Action_Delete",
+      "Module_Lead_Types_Action_Activation",
 
+
+    ]),
     Items_Get(per_page,page){
       if (!per_page){
         per_page = '';
@@ -82,7 +84,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_Lead_Industry_Action_Index({per_page:per_page,page:page}).then(res => {
+      this.Module_Lead_Types_Action_Index({per_page:per_page,page:page}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -95,7 +97,7 @@ export default {
     },
     Item_Delete(id){
       this.delete_loading=true;
-      this.Module_Lead_Industry_Action_Delete(id).then(res => {
+      this.Module_Lead_Types_Action_Delete(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -114,7 +116,7 @@ export default {
     },
     Item_Activation(id){
       this.activation_loading=true;
-      this.Module_Lead_Industry_Action_Activation(id).then(res => {
+      this.Module_Lead_Types_Action_Activation(id).then(res => {
         this.items = this.items.filter(item => {
           if (item.id === id){
             item.is_active = !item.is_active;
@@ -138,7 +140,6 @@ export default {
     Items_OnRequest(props){
       const { page, rowsPerPage, sortBy, descending } = props.pagination
       this.Items_Get(rowsPerPage,page);
-
     },
 
 
@@ -147,10 +148,12 @@ export default {
 </script>
 
 <template>
+
+
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
-      <q-btn :to="{name : 'lead_industries_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+      <q-btn :to="{name : 'lead_types_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
     </q-card-section>
     <q-card-section>
       <q-table
@@ -191,7 +194,7 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'lead_industries_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
+              <q-btn :to="{name:'lead_types_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
           </q-td>
@@ -201,6 +204,8 @@ export default {
     </q-card-section>
 
   </q-card>
+
+
 </template>
 
 <style scoped>
