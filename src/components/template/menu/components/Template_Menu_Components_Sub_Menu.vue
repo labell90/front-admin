@@ -7,7 +7,7 @@ export default {
 
 <template>
   <template v-if="item.title">
-    <div class="text-teal q-pt-md q-pb-sm q-pl-md">
+    <div class="text-teal q-pt-md q-pb-sm q-pl-md menu-title">
       {{ item.fa }}
     </div>
   </template>
@@ -49,7 +49,7 @@ export default {
 <style scoped>
 .menu{
   color: #666666 !important;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 550;
 }
 .menu:hover{
@@ -58,6 +58,9 @@ export default {
 .menu-active{
   color: #FFFFFF !important;
 
+}
+.menu-title{
+  font-size: 11px;
 }
 
 

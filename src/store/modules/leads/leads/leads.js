@@ -3,9 +3,9 @@ import axios from "axios";
 export default {
     actions:{
 
-        Module_Lead_Industry_Action_Index(_,items){
+        Module_Lead_Action_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/industries?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/leads/leads?per_page='+items.per_page+'&page='+items.page).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -13,11 +13,11 @@ export default {
             })
 
         },
-        Module_Lead_Industry_Action_Show(_,item){
+        Module_Lead_Action_Show(_,item){
 
             return new Promise((resolve, reject) => {
 
-                axios.get('users/leads/industries/'+item).then(response =>{
+                axios.get('users/leads/leads/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -26,28 +26,18 @@ export default {
             })
 
         },
-        Module_Lead_Industry_Action_Create(_,items){
+        Module_Lead_Action_Create(_,items){
             return new Promise((resolve, reject) => {
-                axios.post('users/leads/industries',items).then(response =>{
+                axios.post('users/leads/leads',items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
                 })
             })
         },
-        Module_Lead_Industry_Action_Edit(_,items){
+        Module_Lead_Action_Edit(_,items){
             return new Promise((resolve, reject) => {
-                axios.put('users/leads/industries/'+items.id,items).then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
-
-        },
-        Module_Lead_Industry_Action_Delete(_,items){
-            return new Promise((resolve, reject) => {
-                axios.delete('users/leads/industries/'+items).then(response =>{
+                axios.put('users/leads/leads/'+items.id,items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -55,9 +45,19 @@ export default {
             })
 
         },
-        Module_Lead_Industry_Action_Activation(_,item){
+        Module_Lead_Action_Delete(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/industries/change/activation/'+item).then(response =>{
+                axios.delete('users/leads/leads/'+items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+        Module_Lead_Action_Activation(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/leads/change/activation/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

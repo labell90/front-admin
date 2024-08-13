@@ -12,9 +12,10 @@ export default {
                 })
             })
         },
+
         Module_Location_Action_Country_Selectable(_,items){
             return new Promise((resolve, reject) => {
-                let data =[ ];
+                let data =[];
                 items.forEach(item => {
                     data.push({label : item.name , image:item.flag , value : item.id})
                 })

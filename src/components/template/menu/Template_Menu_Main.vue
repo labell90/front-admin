@@ -29,16 +29,5 @@ export default {
 </template>
 
 <style scoped>
-  .menu{
-    color: #666666;
-    font-size: 15px;
-    font-weight: 550;
-  }
-  .menu:hover{
-    color: #ffffff !important;
-  }
-  .menu-active{
-    color: #FFFFFF !important;
 
-  }
 </style>

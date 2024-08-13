@@ -12,7 +12,7 @@
   },
   {
     "fa" : "کابران",
-    "en" : "Dashboard",
+    "en" : "Users",
     "icon" : "fas fa-users",
     "route_path" : "/",
     "route_name" : "",
@@ -98,173 +98,255 @@
       }
     ]
   },
-  {
-    "title" : true,
-    "fa" : "سرنخ ها و وابستگی ها",
-    "en" : "Lead Dependencies"
-  },
+
 
   {
-    "fa" : "تنظیمات سرنخ",
-    "en" : "Lead Settings",
-    "icon" : "fas fa-clipboard-user",
+    "fa" : "CRM",
+    "en" : "CRM",
+    "icon" : "fas fa-window-restore",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
     "subs" : [
       {
-        "fa" : "دسته بندی ها",
-        "en" : "Categories",
+        "title" : true,
+        "fa" : "سرنخ ها و وابستگی ها",
+        "en" : "Lead Dependencies",
+        "level" : 0.5
+      },
+      {
+        "fa" : "تنظیمات سرنخ",
+        "en" : "Lead Settings",
+        "icon" : "fas fa-clipboard-user",
         "route_path" : "/",
         "route_name" : "",
-        "icon" : "fas fa-list font-20",
         "level"      : 0.5,
         "subs" : [
           {
-            "fa" : "ایجاد دسته بندی",
-            "en" : "New category",
+            "fa" : "سرنخ ها",
+            "en" : "Leads",
             "route_path" : "/",
-            "route_name" : "lead_categories_create",
+            "route_name" : "",
+            "icon" : "fas fa-address-card font-20",
             "level"      : 1,
-
             "subs" : [
+              {
+                "fa" : "ایجاد سرنخ",
+                "en" : "New lead",
+                "route_path" : "/",
+                "route_name" : "lead_create",
+                "level"      : 1.5,
 
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست سرنخ ها",
+                "en" : "Leads",
+                "route_path" : "/",
+                "route_name" : "lead_index",
+                "level"      : 1.5,
+
+                "subs" : [
+
+                ]
+              }
             ]
           },
+
+
           {
-            "fa" : "لیست دسته بندی ها",
+            "fa" : "دسته بندی ها",
             "en" : "Categories",
             "route_path" : "/",
-            "route_name" : "lead_categories_index",
+            "route_name" : "",
+            "icon" : "fas fa-list font-20",
             "level"      : 1,
-
             "subs" : [
+              {
+                "fa" : "ایجاد دسته بندی",
+                "en" : "New category",
+                "route_path" : "/",
+                "route_name" : "lead_categories_create",
+                "level"      : 1.5,
 
-            ]
-          }
-        ]
-      },
-      {
-        "fa" : "منابع",
-        "en" : "Resources",
-        "route_path" : "/",
-        "route_name" : "",
-        "icon" : "fas fa-flag font-20",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد منبع",
-            "en" : "New source",
-            "route_path" : "/",
-            "route_name" : "lead_resources_create",
-            "level"      : 1,
+                "subs" : [
 
-            "subs" : [
+                ]
+              },
+              {
+                "fa" : "لیست دسته بندی ها",
+                "en" : "Categories",
+                "route_path" : "/",
+                "route_name" : "lead_categories_index",
+                "level"      : 1.5,
 
+                "subs" : [
+
+                ]
+              }
             ]
           },
           {
-            "fa" : "لیست منابع",
+            "fa" : "منابع",
             "en" : "Resources",
             "route_path" : "/",
-            "route_name" : "lead_resources_index",
+            "route_name" : "",
+            "icon" : "fas fa-flag font-20",
             "level"      : 1,
-
             "subs" : [
+              {
+                "fa" : "ایجاد منبع",
+                "en" : "New source",
+                "route_path" : "/",
+                "route_name" : "lead_resources_create",
+                "level"      : 1.5,
 
-            ]
-          }
-        ]
-      },
-      {
-        "fa" : "وضعیت ها",
-        "en" : "Statuses",
-        "route_path" : "/",
-        "route_name" : "",
-        "icon" : "fas fa-check-to-slot font-20",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد وضعیت",
-            "en" : "New Status",
-            "route_path" : "/",
-            "route_name" : "lead_statuses_create",
-            "level"      : 1,
+                "subs" : [
 
-            "subs" : [
+                ]
+              },
+              {
+                "fa" : "لیست منابع",
+                "en" : "Resources",
+                "route_path" : "/",
+                "route_name" : "lead_resources_index",
+                "level"      : 1.5,
 
+                "subs" : [
+
+                ]
+              }
             ]
           },
           {
-            "fa" : "لیست وضعیت ها",
+            "fa" : "وضعیت ها",
             "en" : "Statuses",
             "route_path" : "/",
-            "route_name" : "lead_statuses_index",
+            "route_name" : "",
+            "icon" : "fas fa-check-to-slot font-20",
             "level"      : 1,
-
             "subs" : [
+              {
+                "fa" : "ایجاد وضعیت",
+                "en" : "New Status",
+                "route_path" : "/",
+                "route_name" : "lead_statuses_create",
+                "level"      : 1.5,
 
-            ]
-          }
-        ]
-      },  {
-        "fa" : "نوع",
-        "en" : "Types",
-        "route_path" : "/",
-        "route_name" : "",
-        "icon" : "fas fa-layer-group font-20",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد نوع",
-            "en" : "New Types",
-            "route_path" : "/",
-            "route_name" : "lead_types_create",
-            "level"      : 1,
+                "subs" : [
 
-            "subs" : [
+                ]
+              },
+              {
+                "fa" : "لیست وضعیت ها",
+                "en" : "Statuses",
+                "route_path" : "/",
+                "route_name" : "lead_statuses_index",
+                "level"      : 1.5,
 
+                "subs" : [
+
+                ]
+              }
             ]
           },
           {
-            "fa" : "لیست نوع ها",
+            "fa" : "نوع",
             "en" : "Types",
             "route_path" : "/",
-            "route_name" : "lead_types_index",
+            "route_name" : "",
+            "icon" : "fas fa-layer-group font-20",
             "level"      : 1,
-
             "subs" : [
+              {
+                "fa" : "ایجاد نوع",
+                "en" : "New Types",
+                "route_path" : "/",
+                "route_name" : "lead_types_create",
+                "level"      : 1.5,
 
-            ]
-          }
-        ]
-      },
-      {
-        "fa" : "صنایع",
-        "en" : "Industries",
-        "route_path" : "/",
-        "route_name" : "",
-        "icon" : "fas fa-industry font-20",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد صنعت",
-            "en" : "New Industry",
-            "route_path" : "/",
-            "route_name" : "lead_industries_create",
-            "level"      : 1,
+                "subs" : [
 
-            "subs" : [
+                ]
+              },
+              {
+                "fa" : "لیست نوع ها",
+                "en" : "Types",
+                "route_path" : "/",
+                "route_name" : "lead_types_index",
+                "level"      : 1.5,
 
+                "subs" : [
+
+                ]
+              }
             ]
           },
           {
-            "fa" : "لیست صنایع",
+            "fa" : "صنایع",
             "en" : "Industries",
             "route_path" : "/",
-            "route_name" : "lead_industries_index",
+            "route_name" : "",
+            "icon" : "fas fa-industry font-20",
             "level"      : 1,
+            "subs" : [
+              {
+                "fa" : "ایجاد صنعت",
+                "en" : "New Industry",
+                "route_path" : "/",
+                "route_name" : "lead_industries_create",
+                "level"      : 1.5,
 
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست صنایع",
+                "en" : "Industries",
+                "route_path" : "/",
+                "route_name" : "lead_industries_index",
+                "level"      : 1.5,
+
+                "subs" : [
+
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title" : true,
+        "fa" : "کمپین ها و رویداد ها",
+        "en" : "Campaigns and Events",
+        "level" : 0.5
+      },
+      {
+        "fa" : "کمپین ها",
+        "en" : "Campaigns",
+        "icon" : "fas fa-tents",
+        "route_path" : "/",
+        "route_name" : "",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد کمپین",
+            "en" : "New campaign",
+            "route_path" : "/",
+            "route_name" : "campaigns_create",
+            "level"      : 1,
+            "subs" : [
+            ]
+          },
+          {
+            "fa" : "لیست کمپین ها",
+            "en" : "Campaigns",
+            "route_path" : "/",
+            "route_name" : "campaigns_index",
+            "level"      : 1,
             "subs" : [
 
             ]
@@ -273,43 +355,6 @@
       }
     ]
   },
-
-  {
-    "title" : true,
-    "fa" : "کمپین ها و رویداد ها",
-    "en" : "Campaigns and Events"
-  },
-  {
-    "fa" : "کمپین ها",
-    "en" : "Campaigns",
-    "icon" : "fas fa-tents",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد کمپین",
-        "en" : "New campaign",
-        "route_path" : "/",
-        "route_name" : "campaigns_create",
-        "level"      : 1,
-        "subs" : [
-        ]
-      },
-      {
-        "fa" : "لیست کمپین ها",
-        "en" : "Campaigns",
-        "route_path" : "/",
-        "route_name" : "campaigns_index",
-        "level"      : 1,
-        "subs" : [
-
-        ]
-      }
-    ]
-  },
-
-
 
   {
     "title" : true,
