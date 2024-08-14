@@ -14,7 +14,8 @@ import route_lead_statuses from "@/router/routes/leads/leads_statuses.js"
 import route_leads_industries from "@/router/routes/leads/leads_industries.js";
 import route_campaigns from "@/router/routes/campaigns/campaigns.js"
 import route_leads_types from "@/router/routes/leads/leads_types.js";
-import route_leads from "@/router/routes/leads/leads.js"
+import route_leads from "@/router/routes/leads/leads.js";
+import route_lead_advsource from "@/router/routes/leads/leads_advsource.js";
 
 
 
@@ -31,6 +32,7 @@ const routes = [
     ...route_campaigns,
     ...route_leads_industries,
     ...route_leads_types,
+    ...route_lead_advsource,
     ...route_leads
 
 ]

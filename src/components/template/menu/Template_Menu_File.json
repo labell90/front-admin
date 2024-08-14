@@ -253,6 +253,38 @@
             ]
           },
           {
+            "fa" : "منبع تبلیغ",
+            "en" : "Advsource",
+            "route_path" : "/",
+            "route_name" : "",
+            "icon" : "fas fa-bell font-20",
+            "level"      : 1,
+            "subs" : [
+              {
+                "fa" : "ایجاد منبع تبلیغ",
+                "en" : "New Advsource",
+                "route_path" : "/",
+                "route_name" : "lead_statuses_create",
+                "level"      : 1.5,
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست منبع تبلیغ",
+                "en" : "Advsource",
+                "route_path" : "/",
+                "route_name" : "lead_statuses_index",
+                "level"      : 1.5,
+
+                "subs" : [
+
+                ]
+              }
+            ]
+          },
+          {
             "fa" : "نوع",
             "en" : "Types",
             "route_path" : "/",
