@@ -285,6 +285,70 @@
             ]
           },
           {
+            "fa" : "Utmmedium",
+            "en" : "Utmmedium",
+            "route_path" : "/",
+            "route_name" : "",
+            "icon" : "fas fa-layer-group font-20",
+            "level"      : 1,
+            "subs" : [
+              {
+                "fa" : "ایجاد Utmmedium",
+                "en" : "New Utmmedium",
+                "route_path" : "/",
+                "route_name" : "lead_utmmedium_create",
+                "level"      : 1.5,
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست Utmmedium ها ",
+                "en" : "Utmmedium",
+                "route_path" : "/",
+                "route_name" : "lead_utmmedium_index",
+                "level"      : 1.5,
+
+                "subs" : [
+
+                ]
+              }
+            ]
+          },
+          {
+            "fa" : "Utmsource",
+            "en" : "Utmsource",
+            "route_path" : "/",
+            "route_name" : "",
+            "icon" : "fas fa-layer-group font-20",
+            "level"      : 1,
+            "subs" : [
+              {
+                "fa" : "ایجاد Utmsource",
+                "en" : "New Utmsource",
+                "route_path" : "/",
+                "route_name" : "lead_utmsource_create",
+                "level"      : 1.5,
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست Utmsource ها ",
+                "en" : "Utmsource",
+                "route_path" : "/",
+                "route_name" : "lead_utmsource_index",
+                "level"      : 1.5,
+
+                "subs" : [
+
+                ]
+              }
+            ]
+          },
+          {
             "fa" : "صنایع",
             "en" : "Industries",
             "route_path" : "/",
@@ -316,6 +380,7 @@
               }
             ]
           }
+
         ]
       },
       {
