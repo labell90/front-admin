@@ -10,7 +10,8 @@ export default {
       items:{
         name:null,
         color_code:null,
-        Code:null,
+        code:null,
+        description:null
       }
     }
   },
