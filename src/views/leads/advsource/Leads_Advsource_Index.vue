@@ -45,6 +45,14 @@ export default {
           field: row => row.color_code,
         },
         {
+          name: 'code',
+          required: true,
+          label: 'کد',
+          align: 'left',
+          sortable: false,
+          field: row => row.code,
+        },
+        {
           name: 'description',
           required: true,
           label: 'توضیحات',
