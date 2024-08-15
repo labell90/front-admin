@@ -186,7 +186,7 @@ export default {
             return item.label !== null && item.label.match(val)
           })
         }else {
-          this.Computed_Get_Cities();
+
         }
       })
     },
@@ -197,7 +197,7 @@ export default {
             return item.label !== null && item.label.match(val)
           })
         }else {
-          this.Computed_Get_Cities();
+
         }
       })
     },
