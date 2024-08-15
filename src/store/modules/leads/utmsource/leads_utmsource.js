@@ -5,7 +5,7 @@ export default {
 
         Module_Lead_Utmsource_Action_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/utmsource?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/leads/utm/sources?per_page='+items.per_page+'&page='+items.page).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -15,7 +15,7 @@ export default {
         },
         Module_Lead_Utmsource_Action_Show(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/utmsource/'+item).then(response =>{
+                axios.get('users/leads/utm/sources/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -25,7 +25,7 @@ export default {
         },
         Module_Lead_Utmsource_Action_Create(_,items){
             return new Promise((resolve, reject) => {
-                axios.post('users/leads/utmsource',items).then(response =>{
+                axios.post('users/leads/utm/sources',items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -35,7 +35,7 @@ export default {
         },
         Module_Lead_Utmsource_Action_Edit(_,items){
             return new Promise((resolve, reject) => {
-                axios.put('users/leads/utmsource/'+items.id,items).then(response =>{
+                axios.put('users/leads/utm/sources/'+items.id,items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -45,7 +45,7 @@ export default {
         },
         Module_Lead_Utmsource_Action_Delete(_,items){
             return new Promise((resolve, reject) => {
-                axios.delete('users/leads/utmsource/'+items).then(response =>{
+                axios.delete('users/leads/utm/sources/'+items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -55,7 +55,7 @@ export default {
         },
         Module_Lead_Utmsource_Action_Activation(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/utmsource/change/activation/'+item).then(response =>{
+                axios.get('users/leads/utm/sources/change/activation/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

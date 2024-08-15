@@ -91,10 +91,17 @@ export default {
 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-              <q-input :error="this.Methods_Validation_Check(errors,'Code')" outlined v-model="items.Code"
+              <q-input :error="this.Methods_Validation_Check(errors,'code')" outlined v-model="items.code"
                        type="textarea" label="کد">
                 <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'Code')"/>
+                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'code')"/>
+                </template>
+              </q-input>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+              <q-input  :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="items.description" type="textarea" label="توضیحات">
+                <template v-slot:error>
+                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'description')" />
                 </template>
               </q-input>
             </div>

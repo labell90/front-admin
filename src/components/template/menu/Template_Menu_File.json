@@ -264,7 +264,7 @@
                 "fa" : "ایجاد منبع تبلیغ",
                 "en" : "New Advsource",
                 "route_path" : "/",
-                "route_name" : "lead_statuses_create",
+                "route_name" : "lead_advsource_create",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -275,7 +275,7 @@
                 "fa" : "لیست منبع تبلیغ",
                 "en" : "Advsource",
                 "route_path" : "/",
-                "route_name" : "lead_statuses_index",
+                "route_name" : "lead_advsource_index",
                 "level"      : 1.5,
 
                 "subs" : [

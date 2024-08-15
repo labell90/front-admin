@@ -45,7 +45,7 @@ export default {
     <q-card-section>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="عنوانمنبع تبلیغ">
+          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="عنوان منبع تبلیغ">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
             </template>
@@ -66,7 +66,6 @@ export default {
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'color_code')" />
             </template>
           </q-input>
-
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
           <q-input  :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="items.description" type="textarea" label="توضیحات">

@@ -18,7 +18,6 @@ import lead_types from "@/store/modules/leads/types/leads_types.js";
 import campaigns from "@/store/modules/campaigns/campaigns.js";
 import leads_utmsource from "@/store/modules/leads/utmsource/leads_utmsource.js";
 import leads_utmmedium from "@/store/modules/leads/utmmedium/leads_utmmedium.js";
-
 import leads_advsource from "@/store/modules/leads/advsource/leads_advsource.js";
 import leads from "@/store/modules/leads/leads/leads.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -49,7 +48,9 @@ const store = createStore({
         lead_types,
         campaigns,
         leads_utmmedium,
-        leads_utmsource
+        leads_utmsource,
+        leads,
+        leads_advsource
     }
 
 

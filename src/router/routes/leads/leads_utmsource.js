@@ -6,7 +6,7 @@ import Leads_Utmsource_Edit from "@/views/leads/utmsource/Leads_Utmsource_Edit.v
 const route_leads_utmsource=[
     {
         path : "/leads/utmsource",
-        name : "lead_utmmedium_index",
+        name : "lead_utmsource_index",
         component : Leads_Utmsource_Index,
         meta : {
             title : 'تنظیمات سرنخ ها',
