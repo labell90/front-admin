@@ -18,6 +18,8 @@ import route_leads from "@/router/routes/leads/leads.js";
 import route_leads_utmmedium from "@/router/routes/leads/leads_utmmedium.js";
 import route_leads_utmsource from "@/router/routes/leads/leads_utmsource.js";
 
+import route_leads from "@/router/routes/leads/leads.js";
+import route_lead_advsource from "@/router/routes/leads/leads_advsource.js";
 
 
 
