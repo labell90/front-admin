@@ -391,6 +391,8 @@ export default {
                   emit-value
                   map-options
                   use-input
+                  :error="this.Methods_Validation_Check(errors,'lead_category_id')"
+
               >
                 <template v-slot:no-option>
                   <q-item>
@@ -426,6 +428,8 @@ export default {
                   emit-value
                   map-options
                   use-input
+                  :error="this.Methods_Validation_Check(errors,'lead_resource_id')"
+
               >
                 <template v-slot:no-option>
                   <q-item>
@@ -461,6 +465,8 @@ export default {
                   emit-value
                   map-options
                   use-input
+                  :error="this.Methods_Validation_Check(errors,'lead_industry_id')"
+
               >
                 <template v-slot:no-option>
                   <q-item>
@@ -496,6 +502,8 @@ export default {
                   emit-value
                   map-options
                   use-input
+                  :error="this.Methods_Validation_Check(errors,'lead_status_id')"
+
               >
                 <template v-slot:no-option>
                   <q-item>
@@ -531,6 +539,8 @@ export default {
                   emit-value
                   map-options
                   use-input
+                  :error="this.Methods_Validation_Check(errors,'lead_type_id')"
+
               >
                 <template v-slot:no-option>
                   <q-item>
@@ -573,6 +583,8 @@ export default {
                   emit-value
                   map-options
                   use-input
+                  :error="this.Methods_Validation_Check(errors,'country_id')"
+
               >
                 <template v-slot:no-option>
                   <q-item>

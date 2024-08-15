@@ -383,6 +383,7 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'lead_category_id')"
           >
             <template v-slot:no-option>
               <q-item>
@@ -418,6 +419,8 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'lead_resource_id')"
+
           >
             <template v-slot:no-option>
               <q-item>
@@ -453,6 +456,7 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'lead_industry_id')"
           >
             <template v-slot:no-option>
               <q-item>
@@ -488,6 +492,8 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'lead_status_id')"
+
           >
             <template v-slot:no-option>
               <q-item>
@@ -523,6 +529,8 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'lead_type_id')"
+
           >
             <template v-slot:no-option>
               <q-item>
@@ -547,7 +555,6 @@ export default {
           </q-select>
         </div>
 
-
         <div class="col-12 q-mb-md q-mt-lg">
           <q-icon name="fas fa-location" size="30px" color="teal-8"/>
           <strong class="q-ml-sm">اطلاعات مکانی</strong>
@@ -565,6 +572,9 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'country_id')"
+
+
           >
             <template v-slot:no-option>
               <q-item>
@@ -601,6 +611,7 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'province_id')"
           >
             <template v-slot:no-option>
               <q-item>
@@ -633,6 +644,7 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'city_id')"
           >
             <template v-slot:no-option>
               <q-item>
@@ -652,7 +664,6 @@ export default {
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'city_id')" />
             </template>
           </q-select>
-
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
           <q-input  :error="this.Methods_Validation_Check(errors,'postal_code')" outlined v-model="items.postal_code"  type="text" label="کد پستی">
