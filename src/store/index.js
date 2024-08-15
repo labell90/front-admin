@@ -17,6 +17,7 @@ import lead_industries from "@/store/modules/leads/industries/leads_industries.j
 import lead_types from "@/store/modules/leads/types/leads_types.js";
 import campaigns from "@/store/modules/campaigns/campaigns.js";
 import leads_advsource from "@/store/modules/leads/advsource/leads_advsource.js";
+import leads from "@/store/modules/leads/leads/leads.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -44,7 +45,8 @@ const store = createStore({
         lead_industries,
         lead_types,
         campaigns,
-        leads_advsource
+        leads_advsource,
+        leads
     }
 
 

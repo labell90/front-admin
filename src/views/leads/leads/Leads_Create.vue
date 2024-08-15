@@ -5,6 +5,12 @@ export default {
   name: "Leads_Create",
   mounted() {
     this.Get_Location();
+    this.Get_Lead_Categories();
+    this.Get_Lead_Types();
+    this.Get_Lead_Resources();
+    this.Get_Lead_Industries();
+    this.Get_Lead_Statuses();
+
   },
   data(){
    return{
@@ -57,8 +63,22 @@ export default {
         "Module_Lead_Resource_Action_Index",
         "Module_Lead_Types_Action_Index",
         "Module_Lead_Status_Action_Index",
+        "Module_Lead_Action_Create",
     ]),
     Create_Item(){
+
+      this.loading=true;
+      this.Module_Lead_Action_Create(this.items).then(response => {
+        this.loading=false;
+        this.Methods_Notify_Create();
+        this.$router.push({name:'lead_index'});
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.Methods_Validation_Notify();
+          this.errors = error.response.data;
+        }
+        this.loading=false;
+      })
 
     },
 
@@ -86,7 +106,7 @@ export default {
       this.Module_Lead_Category_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
           response.data.result.data.forEach(category => {
-            this.lead_categories.push({label:category.name, value: category.id});
+            this.lead_categories.push({label:category.name, value: category.id,color_code : category.color_code});
           })
         }
       }).catch(error => {
@@ -97,7 +117,7 @@ export default {
       this.Module_Lead_Resource_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
           response.data.result.data.forEach(resource => {
-            this.lead_resources.push({label:resource.name, value: resource.id});
+            this.lead_resources.push({label:resource.name, value: resource.id,color_code : resource.color_code});
           })
         }
       }).catch(error => {
@@ -108,7 +128,7 @@ export default {
       this.Module_Lead_Status_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
           response.data.result.data.forEach(status => {
-            this.lead_statuses.push({label:status.name, value: status.id});
+            this.lead_statuses.push({label:status.name, value: status.id,color_code : status.color_code});
           })
         }
       }).catch(error => {
@@ -119,7 +139,7 @@ export default {
       this.Module_Lead_Industry_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
           response.data.result.data.forEach(industry => {
-            this.lead_industries.push({label:industry.name, value: industry.id});
+            this.lead_industries.push({label:industry.name, value: industry.id,color_code : industry.color_code});
           })
         }
       }).catch(error => {
@@ -130,7 +150,7 @@ export default {
       this.Module_Lead_Types_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
           response.data.result.data.forEach(type => {
-            this.lead_types.push({label:type.name, value: type.id});
+            this.lead_types.push({label:type.name, value: type.id,color_code : type.color_code});
           })
         }
       }).catch(error => {
@@ -157,7 +177,7 @@ export default {
             return item.label !== null && item.label.match(val)
           })
         }else {
-          // this.Computed_Get_Cities();
+          this.Computed_Get_Cities();
         }
       })
     },
@@ -168,18 +188,63 @@ export default {
             return item.label !== null && item.label.match(val)
           })
         }else {
-          // this.Computed_Get_Cities();
+          this.Computed_Get_Cities();
         }
       })
     },
+
     Filter_Lead_Categories_Select (val, update, abort) {
       update(() => {
         if (val){
-          this.cities =  this.cities.filter(item => {
+          this.lead_categories =  this.lead_categories.filter(item => {
             return item.label !== null && item.label.match(val)
           })
         }else {
-
+          this.Get_Lead_Categories();
+        }
+      })
+    },
+    Filter_Lead_Resources_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.lead_resources =  this.lead_resources.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Lead_Resources();
+        }
+      })
+    },
+    Filter_Lead_Industries_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.lead_industries =  this.lead_industries.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Lead_Industries();
+        }
+      })
+    },
+    Filter_Lead_Statuses_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.lead_statuses =  this.lead_statuses.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Lead_Statuses();
+        }
+      })
+    },
+    Filter_Lead_Types_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.lead_types =  this.lead_types.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Lead_Types();
         }
       })
     },
@@ -277,18 +342,208 @@ export default {
             </template>
           </q-input>
         </div>
-        <div class="col-12 q-mb-md">
-          <q-separator/>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-input  :error="this.Methods_Validation_Check(errors,'brand')" outlined v-model="items.brand"  type="text" label="نام برند">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'brand')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-12 q-pa-xs">
+          <q-input rows="3" :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="items.description"  type="textarea" label="توضیحات">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'description')" />
+            </template>
+          </q-input>
         </div>
 
-        <div class="col-12 q-mb-md">
+
+        <div class="col-12 q-mb-md q-mt-lg">
           <q-icon name="fas fa-list" size="30px" color="teal-8"/>
           <strong class="q-ml-sm">اطلاعات عمومی سرنج</strong>
         </div>
         <div class="col-12 q-mb-md">
           <q-separator/>
         </div>
-        <div class="col-12 q-mb-md">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.lead_category_id"
+              label="انتخاب دسته دبندی"
+              :options="lead_categories"
+              @filter="Filter_Lead_Categories_Select"
+              emit-value
+              map-options
+              use-input
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_category_id')" />
+            </template>
+          </q-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.lead_resource_id"
+              label="انتخاب منبع"
+              :options="lead_resources"
+              @filter="Filter_Lead_Resources_Select"
+              emit-value
+              map-options
+              use-input
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_resource_id')" />
+            </template>
+          </q-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.lead_industry_id"
+              label="انتخاب منبع"
+              :options="lead_industries"
+              @filter="Filter_Lead_Industries_Select"
+              emit-value
+              map-options
+              use-input
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_industry_id')" />
+            </template>
+          </q-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.lead_status_id"
+              label="انتخاب وضعیت"
+              :options="lead_statuses"
+              @filter="Filter_Lead_Statuses_Select"
+              emit-value
+              map-options
+              use-input
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_status_id')" />
+            </template>
+          </q-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.lead_type_id"
+              label="انتخاب نوع"
+              :options="lead_types"
+              @filter="Filter_Lead_Types_Select"
+              emit-value
+              map-options
+              use-input
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_type_id')" />
+            </template>
+          </q-select>
+        </div>
+
+
+        <div class="col-12 q-mb-md q-mt-lg">
           <q-icon name="fas fa-location" size="30px" color="teal-8"/>
           <strong class="q-ml-sm">اطلاعات مکانی</strong>
         </div>
@@ -407,6 +662,34 @@ export default {
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'address')" />
             </template>
           </q-input>
+        </div>
+        <div class="col-12 q-mb-md q-mt-lg">
+          <q-icon name="fas fa-location" size="30px" color="teal-8"/>
+          <strong class="q-ml-sm">اطلاعات شبکه های اجتماعی</strong>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-input  :error="this.Methods_Validation_Check(errors,'website')" outlined v-model="items.website"  type="text" label="وبسایت">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'website')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-input  :error="this.Methods_Validation_Check(errors,'instagram')" outlined v-model="items.instagram"  type="text" label="آدرس اینستاگرام">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'instagram')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-input  :error="this.Methods_Validation_Check(errors,'telegram')" outlined v-model="items.telegram"  type="text" label="آدرس تلگرام">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'telegram')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-12 q-pa-xs">
+          <q-btn color="teal-8" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
         </div>
 
       </div>
