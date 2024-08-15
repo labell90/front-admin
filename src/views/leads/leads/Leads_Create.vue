@@ -5,11 +5,11 @@ export default {
   name: "Leads_Create",
   mounted() {
     this.Get_Location();
-    this.Get_Lead_Categories();
-    this.Get_Lead_Types();
-    this.Get_Lead_Resources();
-    this.Get_Lead_Industries();
-    this.Get_Lead_Statuses();
+    // this.Get_Lead_Categories();
+    // this.Get_Lead_Types();
+    // this.Get_Lead_Resources();
+    // this.Get_Lead_Industries();
+    // this.Get_Lead_Statuses();
 
   },
   data(){
@@ -105,6 +105,7 @@ export default {
     Get_Lead_Categories(){
       this.Module_Lead_Category_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
+          this.lead_categories=[];
           response.data.result.data.forEach(category => {
             this.lead_categories.push({label:category.name, value: category.id,color_code : category.color_code});
           })
@@ -116,6 +117,7 @@ export default {
     Get_Lead_Resources(){
       this.Module_Lead_Resource_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
+          this.lead_resources=[];
           response.data.result.data.forEach(resource => {
             this.lead_resources.push({label:resource.name, value: resource.id,color_code : resource.color_code});
           })
@@ -127,6 +129,7 @@ export default {
     Get_Lead_Statuses(){
       this.Module_Lead_Status_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
+          this.lead_statuses=[];
           response.data.result.data.forEach(status => {
             this.lead_statuses.push({label:status.name, value: status.id,color_code : status.color_code});
           })
@@ -138,6 +141,7 @@ export default {
     Get_Lead_Industries(){
       this.Module_Lead_Industry_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
+          this.lead_industries=[];
           response.data.result.data.forEach(industry => {
             this.lead_industries.push({label:industry.name, value: industry.id,color_code : industry.color_code});
           })
@@ -149,6 +153,7 @@ export default {
     Get_Lead_Types(){
       this.Module_Lead_Types_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
+          this.lead_types=[];
           response.data.result.data.forEach(type => {
             this.lead_types.push({label:type.name, value: type.id,color_code : type.color_code});
           })
