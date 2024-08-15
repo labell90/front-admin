@@ -9,7 +9,7 @@ export default {
       errors:[],
       items:{
         name:null,
-        color_code:null,
+        color_code:'#ba2d8d',
         description:null,
         code:null,
       }
