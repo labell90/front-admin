@@ -42,6 +42,8 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">افزودن منبع سرنخ جدید</strong>
+      <q-btn :to="{name : 'lead_advsource_index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
+
     </q-card-section>
     <q-card-section>
       <div class="row">

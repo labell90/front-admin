@@ -45,12 +45,12 @@ export default {
           field: row => row.color_code,
         },
         {
-          name: 'Code',
+          name: 'code',
           required: true,
           label: 'کد',
           align: 'left',
           sortable: true,
-          field: row => row.description,
+          field: row => row.code,
         },
         {
           name: 'is_active',
@@ -60,7 +60,38 @@ export default {
           sortable: true,
           field: row => row.is_active,
         },
-
+        {
+          name: 'created_by',
+          required: true,
+          label: 'ایجاد',
+          align: 'left',
+          sortable: true ,
+          field: row => row.created_by,
+        },
+        {
+          name: 'created_at',
+          required: true,
+          label: 'ت ایجاد',
+          align: 'left',
+          sortable: true ,
+          field: row => row.created_at,
+        },
+        {
+          name: 'updated_by',
+          required: true,
+          label: 'ویرایش',
+          align: 'left',
+          sortable: true ,
+          field: row => row.updated_by,
+        },
+        {
+          name: 'updated_at',
+          required: true,
+          label: 'ت ویرایش',
+          align: 'left',
+          sortable: true ,
+          field: row => row.updated_at,
+        },
         {
           name: 'tools',
           label: 'عملیات',
@@ -153,7 +184,7 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
-      <q-btn :to="{name : 'lead_types_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+      <q-btn :to="{name : 'lead_utmmedium_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
     </q-card-section>
     <q-card-section>
       <q-table
@@ -194,12 +225,31 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'lead_types_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
+              <q-btn :to="{name:'lead_utmmedium_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
           </q-td>
         </template>
-
+        <template v-slot:body-cell-created_by="props">
+          <q-td :props="props" >
+            <global_items_user :user="props.row.created_by" />
+          </q-td>
+        </template>
+        <template v-slot:body-cell-created_at="props">
+          <q-td :props="props" >
+            <global_filter_date :date="props.row.created_at" />
+          </q-td>
+        </template>
+        <template v-slot:body-cell-updated_by="props">
+          <q-td :props="props" >
+            <global_items_user :user="props.row.updated_by" />
+          </q-td>
+        </template>
+        <template v-slot:body-cell-updated_at="props">
+          <q-td :props="props" >
+            <global_filter_date :date="props.row.updated_at" />
+          </q-td>
+        </template>
       </q-table>
     </q-card-section>
 

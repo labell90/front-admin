@@ -1,10 +1,11 @@
 import {QSpinnerGears, useQuasar} from 'quasar'
-
+import moment from "moment-jalaali";
 
 export default {
 
     mounted() {
         const $q = useQuasar();
+        console.log(moment().format('jYYYY/jM/jD'))
     },
     methods:{
 

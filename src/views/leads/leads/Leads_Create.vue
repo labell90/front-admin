@@ -5,11 +5,7 @@ export default {
   name: "Leads_Create",
   mounted() {
     this.Get_Location();
-    // this.Get_Lead_Categories();
-    // this.Get_Lead_Types();
-    // this.Get_Lead_Resources();
-    // this.Get_Lead_Industries();
-    // this.Get_Lead_Statuses();
+
 
   },
   data(){
@@ -290,6 +286,8 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">افزودن سرنخ جدید</strong>
+      <q-btn :to="{name : 'lead_index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
+
     </q-card-section>
     <q-card-section>
       <div class="row">

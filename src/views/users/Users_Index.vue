@@ -53,22 +53,6 @@ export default {
           field: row => row.email,
         },
         {
-          name: 'national_code',
-          required: true,
-          label: 'کد ملی',
-          align: 'left',
-          sortable: true,
-          field: row => row.national_code,
-        },
-        {
-          name: 'employee_code',
-          required: true,
-          label: 'کد پرسنلی',
-          align: 'left',
-          sortable: true,
-          field: row => row.employee_code,
-        },
-        {
           name: 'is_active',
           required: true,
           label: 'وضعیت',
@@ -82,6 +66,22 @@ export default {
           label: 'مکان',
           align: 'left',
           sortable: false,
+        },
+        {
+          name: 'created_at',
+          required: true,
+          label: 'ت ایجاد',
+          align: 'left',
+          sortable: true ,
+          field: row => row.created_at,
+        },
+        {
+          name: 'updated_at',
+          required: true,
+          label: 'ت ویرایش',
+          align: 'left',
+          sortable: true ,
+          field: row => row.updated_at,
         },
         {
           name: 'tools',
@@ -226,13 +226,26 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'users_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
-              <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="11px" round title="مشاهده جزئیات"/>
+              <q-btn :to="{name:'users_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
+              <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="9px" round title="مشاهده جزئیات"/>
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
 
           </q-td>
         </template>
+
+        <template v-slot:body-cell-created_at="props">
+          <q-td :props="props" >
+            <global_filter_date :date="props.row.created_at" />
+          </q-td>
+        </template>
+        <template v-slot:body-cell-updated_at="props">
+          <q-td :props="props" >
+            <global_filter_date :date="props.row.updated_at" />
+          </q-td>
+        </template>
+
+
       </q-table>
     </q-card-section>
 

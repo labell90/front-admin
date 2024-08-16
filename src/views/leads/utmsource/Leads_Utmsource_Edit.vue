@@ -60,8 +60,8 @@ export default {
       <q-card>
         <q-card-section>
           <strong class="text-grey-10">ویرایش Utmsource سرنخ : <span class="text-red-8">{{ items.name }}</span></strong>
-          <q-btn :to="{name : 'lead_utmsource_index'}" class="float-right" color="yellow-9" text-color="black" glossy
-                 icon="fas fa-arrow-left" label="بازگشت"></q-btn>
+          <q-btn :to="{name : 'lead_utmsource_index'}" class="float-right" color="yellow-9" text-color="black" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
+          <q-btn :to="{name : 'lead_utmsource_create'}" class="float-right q-mr-sm" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
         </q-card-section>
         <q-card-section>
           <div class="row">

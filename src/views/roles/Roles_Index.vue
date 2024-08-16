@@ -44,6 +44,38 @@ export default {
             field: row => row.description,
           },
           {
+            name: 'created_by',
+            required: true,
+            label: 'ایجاد',
+            align: 'left',
+            sortable: true ,
+            field: row => row.created_by,
+          },
+          {
+            name: 'created_at',
+            required: true,
+            label: 'ت ایجاد',
+            align: 'left',
+            sortable: true ,
+            field: row => row.created_at,
+          },
+          {
+            name: 'updated_by',
+            required: true,
+            label: 'ویرایش',
+            align: 'left',
+            sortable: true ,
+            field: row => row.updated_by,
+          },
+          {
+            name: 'updated_at',
+            required: true,
+            label: 'ت ویرایش',
+            align: 'left',
+            sortable: true ,
+            field: row => row.updated_at,
+          },
+          {
             name: 'tools',
             label: 'عملیات',
             align: 'left',
@@ -131,12 +163,30 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'roles_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="11px" round  />
-              <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="11px" round  />
+              <q-btn :to="{name:'roles_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
+              <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
-
-
+          </q-td>
+        </template>
+        <template v-slot:body-cell-created_by="props">
+          <q-td :props="props" >
+            <global_items_user :user="props.row.created_by" />
+          </q-td>
+        </template>
+        <template v-slot:body-cell-created_at="props">
+          <q-td :props="props" >
+            <global_filter_date :date="props.row.created_at" />
+          </q-td>
+        </template>
+        <template v-slot:body-cell-updated_by="props">
+          <q-td :props="props" >
+            <global_items_user :user="props.row.updated_by" />
+          </q-td>
+        </template>
+        <template v-slot:body-cell-updated_at="props">
+          <q-td :props="props" >
+            <global_filter_date :date="props.row.updated_at" />
           </q-td>
         </template>
       </q-table>

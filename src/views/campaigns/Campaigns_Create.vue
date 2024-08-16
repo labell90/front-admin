@@ -10,7 +10,7 @@ export default {
       errors:[],
       items:{
         name:null,
-        color_code:null,
+        color_code:'#ba2d8d',
         code:null,
         description:null,
       }
@@ -42,6 +42,8 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">افزودن کمپین جدید</strong>
+      <q-btn :to="{name : 'campaigns_index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
+
     </q-card-section>
     <q-card-section>
       <div class="row">

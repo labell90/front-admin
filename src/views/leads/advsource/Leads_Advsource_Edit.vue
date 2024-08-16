@@ -37,7 +37,7 @@ export default {
       this.Module_Lead_Advsource_Action_Edit(this.items).then(response => {
         this.loading=false;
         this.Methods_Notify_Update();
-        this.$router.push({name:'lead_industries_index'});
+        this.$router.push({name:'lead_advsource_index'});
       }).catch(error => {
         if (error.response.status === 422) {
           this.Methods_Validation_Notify();
@@ -61,6 +61,8 @@ export default {
         <q-card-section>
           <strong class="text-grey-10">ویرایش منبع تبلیغ سرنخ : <span class="text-red-8">{{ items.name }}</span></strong>
           <q-btn :to="{name : 'lead_advsource_index'}" class="float-right" color="yellow-9" text-color="black" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
+          <q-btn :to="{name : 'lead_advsource_create'}" class="float-right q-mr-sm" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+
         </q-card-section>
         <q-card-section>
           <div class="row">

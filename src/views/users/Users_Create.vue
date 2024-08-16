@@ -145,7 +145,7 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">افزودن کاربر مدیر جدید</strong>
-      <q-btn :to="{name : 'users_index'}" class="float-right" color="yellow-9" text-color="dark" icon="fas fa-backward" glossy label="بازگشت"></q-btn>
+      <q-btn :to="{name : 'users_index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
 
     </q-card-section>
     <q-card-section>
