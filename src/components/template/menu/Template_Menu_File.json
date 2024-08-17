@@ -23,6 +23,7 @@
         "en" : "Managers",
         "route_path" : "/",
         "route_name" : "",
+        "feature" : "1001",
         "icon" : "fas fa-user-tie font-20",
         "level"      : 0.5,
         "subs" : [
@@ -31,8 +32,8 @@
             "en" : "New manager",
             "route_path" : "/",
             "route_name" : "users_create",
+            "feature_type" : "create",
             "level"      : 1,
-
             "subs" : [
 
             ]
@@ -42,8 +43,8 @@
             "en" : "Managers",
             "route_path" : "/",
             "route_name" : "users_index",
+            "feature_type" : "read",
             "level"      : 1,
-
             "subs" : [
 
             ]
@@ -75,6 +76,7 @@
     "icon" : "fas fa-users-viewfinder",
     "route_path" : "/",
     "route_name" : "",
+    "feature" : "1004",
     "level"      : 0,
     "subs" : [
       {
@@ -82,6 +84,8 @@
         "en" : "New role",
         "route_path" : "/",
         "route_name" : "roles_create",
+        "feature_type" : "create",
+
         "level"      : 1,
         "subs" : [
         ]
@@ -91,6 +95,38 @@
         "en" : "ًRoles",
         "route_path" : "/",
         "route_name" : "roles_index",
+        "feature_type" : "read",
+
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
+  {
+    "fa" : "گروه بندی کاربر",
+    "en" : "Group",
+    "icon" : "fas fa-users-viewfinder",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد گروه بندی",
+        "en" : "New group",
+        "route_path" : "/",
+        "route_name" : "group_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست گروه بندی",
+        "en" : "Groups",
+        "route_path" : "/",
+        "route_name" : "groups_index",
         "level"      : 1,
         "subs" : [
 
@@ -127,6 +163,7 @@
             "en" : "Leads",
             "route_path" : "/",
             "route_name" : "",
+            "feature" : "1006",
             "icon" : "fas fa-address-card font-20",
             "level"      : 1,
             "subs" : [
@@ -135,6 +172,7 @@
                 "en" : "New lead",
                 "route_path" : "/",
                 "route_name" : "lead_create",
+                "feature_type" : "create",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -146,6 +184,7 @@
                 "en" : "Leads",
                 "route_path" : "/",
                 "route_name" : "lead_index",
+                "feature_type" : "read",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -162,6 +201,7 @@
             "route_path" : "/",
             "route_name" : "",
             "icon" : "fas fa-list font-20",
+            "feature" : "1007",
             "level"      : 1,
             "subs" : [
               {
@@ -169,6 +209,7 @@
                 "en" : "New category",
                 "route_path" : "/",
                 "route_name" : "lead_categories_create",
+                "feature_type" : "create",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -180,6 +221,7 @@
                 "en" : "Categories",
                 "route_path" : "/",
                 "route_name" : "lead_categories_index",
+                "feature_type" : "read",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -193,6 +235,7 @@
             "en" : "Resources",
             "route_path" : "/",
             "route_name" : "",
+            "feature" : "1008",
             "icon" : "fas fa-flag font-20",
             "level"      : 1,
             "subs" : [
@@ -201,6 +244,7 @@
                 "en" : "New source",
                 "route_path" : "/",
                 "route_name" : "lead_resources_create",
+                "feature_type" : "create",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -212,6 +256,7 @@
                 "en" : "Resources",
                 "route_path" : "/",
                 "route_name" : "lead_resources_index",
+                "feature_type" : "read",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -225,6 +270,7 @@
             "en" : "Statuses",
             "route_path" : "/",
             "route_name" : "",
+            "feature" : "1009",
             "icon" : "fas fa-check-to-slot font-20",
             "level"      : 1,
             "subs" : [
@@ -233,6 +279,7 @@
                 "en" : "New Status",
                 "route_path" : "/",
                 "route_name" : "lead_statuses_create",
+                "feature_type" : "create",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -244,6 +291,7 @@
                 "en" : "Statuses",
                 "route_path" : "/",
                 "route_name" : "lead_statuses_index",
+                "feature_type" : "read",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -257,6 +305,7 @@
             "en" : "Advsource",
             "route_path" : "/",
             "route_name" : "",
+            "feature" : "1012",
             "icon" : "fas fa-bell font-20",
             "level"      : 1,
             "subs" : [
@@ -265,6 +314,7 @@
                 "en" : "New Advsource",
                 "route_path" : "/",
                 "route_name" : "lead_advsource_create",
+                "feature_type" : "create",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -276,6 +326,7 @@
                 "en" : "Advsource",
                 "route_path" : "/",
                 "route_name" : "lead_advsource_index",
+                "feature_type" : "read",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -289,6 +340,7 @@
             "en" : "Types",
             "route_path" : "/",
             "route_name" : "",
+            "feature" : "1011",
             "icon" : "fas fa-layer-group font-20",
             "level"      : 1,
             "subs" : [
@@ -296,6 +348,7 @@
                 "fa" : "ایجاد نوع",
                 "en" : "New Types",
                 "route_path" : "/",
+                "feature_type" : "create",
                 "route_name" : "lead_types_create",
                 "level"      : 1.5,
 
@@ -308,6 +361,7 @@
                 "en" : "Types",
                 "route_path" : "/",
                 "route_name" : "lead_types_index",
+                "feature_type" : "read",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -321,6 +375,7 @@
             "en" : "Utmmedium",
             "route_path" : "/",
             "route_name" : "",
+            "feature" : "1013",
             "icon" : "fas fa-layer-group font-20",
             "level"      : 1,
             "subs" : [
@@ -329,6 +384,7 @@
                 "en" : "New Utmmedium",
                 "route_path" : "/",
                 "route_name" : "lead_utmmedium_create",
+                "feature_type" : "create",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -340,6 +396,7 @@
                 "en" : "Utmmedium",
                 "route_path" : "/",
                 "route_name" : "lead_utmmedium_index",
+                "feature_type" : "read",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -353,6 +410,7 @@
             "en" : "Utmsource",
             "route_path" : "/",
             "route_name" : "",
+            "feature" : "1014",
             "icon" : "fas fa-layer-group font-20",
             "level"      : 1,
             "subs" : [
@@ -361,6 +419,7 @@
                 "en" : "New Utmsource",
                 "route_path" : "/",
                 "route_name" : "lead_utmsource_create",
+                "feature_type" : "create",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -372,6 +431,7 @@
                 "en" : "Utmsource",
                 "route_path" : "/",
                 "route_name" : "lead_utmsource_index",
+                "feature_type" : "read",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -385,6 +445,7 @@
             "en" : "Industries",
             "route_path" : "/",
             "route_name" : "",
+            "feature" : "1010",
             "icon" : "fas fa-industry font-20",
             "level"      : 1,
             "subs" : [
@@ -393,6 +454,7 @@
                 "en" : "New Industry",
                 "route_path" : "/",
                 "route_name" : "lead_industries_create",
+                "feature_type" : "create",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -404,6 +466,7 @@
                 "en" : "Industries",
                 "route_path" : "/",
                 "route_name" : "lead_industries_index",
+                "feature_type" : "read",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -427,6 +490,7 @@
         "icon" : "fas fa-tents",
         "route_path" : "/",
         "route_name" : "",
+        "feature" : "1015",
         "level"      : 0.5,
         "subs" : [
           {
@@ -434,6 +498,7 @@
             "en" : "New campaign",
             "route_path" : "/",
             "route_name" : "campaigns_create",
+            "feature_type" : "create",
             "level"      : 1,
             "subs" : [
             ]
@@ -443,7 +508,7 @@
             "en" : "Campaigns",
             "route_path" : "/",
             "route_name" : "campaigns_index",
-            "level"      : 1,
+            "feature_type" : "read",
             "subs" : [
 
             ]
@@ -464,6 +529,7 @@
     "icon" : "fas fa-photo-film",
     "route_path" : "/",
     "route_name" : "medias_index",
+    "feature" : "1005",
     "level"      : 0,
     "subs" : [
 
