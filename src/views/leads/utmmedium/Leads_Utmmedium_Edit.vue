@@ -37,7 +37,7 @@ export default {
       this.Module_Lead_Utmmedium_Action_Edit(this.items).then(response => {
         this.loading=false;
         this.Methods_Notify_Update();
-        this.$router.push({name:'lead_types_index'});
+        this.$router.push({name:'lead_utmmedium_index'});
       }).catch(error => {
         if (error.response.status === 422) {
           this.Methods_Validation_Notify();
