@@ -116,7 +116,7 @@
         "fa" : "ایجاد گروه بندی",
         "en" : "New group",
         "route_path" : "/",
-        "route_name" : "group_create",
+        "route_name" : "groups_create",
 
         "level"      : 1,
         "subs" : [
