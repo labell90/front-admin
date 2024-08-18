@@ -20,6 +20,7 @@ import leads_utmsource from "@/store/modules/leads/utmsource/leads_utmsource.js"
 import leads_utmmedium from "@/store/modules/leads/utmmedium/leads_utmmedium.js";
 import leads_advsource from "@/store/modules/leads/advsource/leads_advsource.js";
 import leads from "@/store/modules/leads/leads/leads.js";
+import features from "@/store/modules/features/features.js";
 import user_group from "@/store/modules/groups/user_group.js"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -52,6 +53,7 @@ const store = createStore({
         leads_utmsource,
         leads,
         leads_advsource,
+        features,
         user_group
     }
 

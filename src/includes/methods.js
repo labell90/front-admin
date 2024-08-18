@@ -5,7 +5,7 @@ export default {
 
     mounted() {
         const $q = useQuasar();
-        console.log(moment().format('jYYYY/jM/jD'))
+
     },
     methods:{
 

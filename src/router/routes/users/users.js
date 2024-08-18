@@ -1,6 +1,7 @@
 import Users_Index from "@/views/users/Users_Index.vue";
 import Users_Create from "@/views/users/Users_Create.vue";
 import Users_Edit from "@/views/users/Users_Edit.vue";
+import Users_Access from "@/views/users/Users_Access.vue";
 
 const route_users =[
     {
@@ -28,6 +29,15 @@ const route_users =[
         meta : {
             title : 'مدیران',
             subtitle : 'ویرایش مدیر'
+        },
+    },
+    {
+        path : "/users/access/:id",
+        name : "users_access",
+        component : Users_Access,
+        meta : {
+            title : 'مدیران',
+            subtitle : 'مدیریت سطوح دسترسی'
         },
     },
 

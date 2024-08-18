@@ -3,7 +3,7 @@ import {mapActions} from "vuex";
 
 export default {
   name: "Groups_Edit",
-  created() {
+  mounted() {
     this.Get_Groups();
     this.Get_Item();
 
@@ -53,14 +53,11 @@ export default {
     },
     Get_Groups(){
       this.Module_Group_Action_Index({per_page:1000}).then(response=>{
-        this.groups = [];
         response.data.result.data.forEach(item=>{
-          this.groups.push({label:item.name , value:item.id , color_code:item.color_code})
+          this.groups.push({label:item.name , value:item.id})
         })
-
+        console.log(this.groups);
       })
-
-
     },
     Filter_Group_Select (val, update, abort) {
       update(() => {
@@ -101,7 +98,7 @@ export default {
               </q-input>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+            <div v-if="groups.length" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
               <q-select
                   outlined
                   transition-show="flip-up"
@@ -109,7 +106,6 @@ export default {
                   v-model="items.parent_id"
                   label="انتخاب گروه"
                   :options="groups"
-                  @filter="Filter_Group_Select"
                   emit-value
                   map-options
                   use-input

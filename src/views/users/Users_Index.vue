@@ -226,8 +226,9 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'users_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
+              <q-btn :to="{name:'users_access',params:{id:props.row.id}}" glossy title="مدیریت دسترسی" class="q-ma-xs" color="green-8" icon="fas fa-shield-halved" size="9px" round  />
               <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="9px" round title="مشاهده جزئیات"/>
+              <q-btn :to="{name:'users_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
 
