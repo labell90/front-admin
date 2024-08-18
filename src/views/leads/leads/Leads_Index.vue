@@ -232,7 +232,9 @@ export default {
           <q-td :props="props">
             <div class="text-center">
               <q-btn :to="{name:'lead_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
-              <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="9px" round title="مشاهده کامل"/>
+
+              <q-btn :to="{name:'lead_profile',params:{id:props.row.id}}" glossy class="q-ma-xs" color="green-8" icon="fas fa-user" size="9px" round title="مشاهده پروفایل"/>
+
 
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>

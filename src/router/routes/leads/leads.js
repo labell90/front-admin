@@ -2,6 +2,7 @@
 import Leads_Index from "@/views/leads/leads/Leads_Index.vue";
 import Leads_Create from "@/views/leads/leads/Leads_Create.vue";
 import Leads_Edit from "@/views/leads/leads/Leads_Edit.vue";
+import Leads_Profile_Index from "@/views/leads/leads/profile/Leads_Profile_Index.vue";
 
 const route_leads=[
     {
@@ -29,6 +30,15 @@ const route_leads=[
         meta : {
             title : 'تنظیمات سرنخ ها',
             subtitle : 'ویرایش سرنخ'
+        },
+    },
+    {
+        path : "/leads/profile/:id",
+        name : "lead_profile",
+        component : Leads_Profile_Index,
+        meta : {
+            title : 'تنظیمات سرنخ ها',
+            subtitle : 'پروفایل سرنخ'
         },
     }
 
