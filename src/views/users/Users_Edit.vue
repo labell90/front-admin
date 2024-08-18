@@ -49,7 +49,7 @@ export default {
           this.items = response.data.result;
           this.loading=false;
       }).catch(error =>{
-
+        return this.Methods_Notify_Error_NotFound();
       })
     },
     Edit_Item(){

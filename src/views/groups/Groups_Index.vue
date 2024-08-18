@@ -217,7 +217,7 @@ export default {
         <template v-slot:body-cell-parent="props">
           <q-td :props="props">
           <template v-if="props.row.parent">
-            <strong>{{props.row.parent.name}}</strong>
+            <strong class="text-grey-8">{{props.row.parent.name}}</strong>
 
           </template>
           </q-td>
