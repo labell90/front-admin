@@ -2,6 +2,7 @@ import Users_Index from "@/views/users/Users_Index.vue";
 import Leads_Categories_Index from "@/views/leads/categories/Leads_Categories_Index.vue";
 import Leads_Categories_Create from "@/views/leads/categories/Leads_Categories_Create.vue";
 import Leads_Categories_Edit from "@/views/leads/categories/Leads_Categories_Edit.vue";
+import Leads_Categories_Trash from "@/views/leads/categories/Leads_Categories_Trash.vue";
 
 const route_lead_categories = [
     {
@@ -11,6 +12,15 @@ const route_lead_categories = [
         meta : {
             title : 'تنظیمات سرنخ ها',
             subtitle : 'لیست دسته بندی های سرنخ'
+        },
+    },
+    {
+        path : "/leads/categories",
+        name : "lead_categories_trash",
+        component : Leads_Categories_Trash,
+        meta : {
+            title : 'تنظیمات سرنخ ها',
+            subtitle : 'موارد حذف شده'
         },
     },
     {

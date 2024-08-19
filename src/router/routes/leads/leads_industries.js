@@ -1,6 +1,7 @@
 import Lead_Industries_Index from "@/views/leads/industries/Lead_Industries_Index.vue";
 import Lead_Industries_Create from "@/views/leads/industries/Lead_Industries_Create.vue";
 import Lead_Industries_Edit from "@/views/leads/industries/Lead_Industries_Edit.vue";
+import Lead_Industries_Trash from "@/views/leads/industries/Lead_Industries_Trash.vue";
 
 const route_leads_industries=[
     {
@@ -10,6 +11,15 @@ const route_leads_industries=[
         meta : {
             title : 'تنظیمات سرنخ ها',
             subtitle : 'لیست صنایع سرنخ'
+        },
+    },
+    {
+        path : "/leads/industries",
+        name : "lead_industries_trash",
+        component : Lead_Industries_Trash,
+        meta : {
+            title : 'تنظیمات سرنخ ها',
+            subtitle : 'موارد حذف شده'
         },
     },
     {

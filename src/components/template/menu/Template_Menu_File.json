@@ -107,7 +107,7 @@
   {
     "fa" : "گروه بندی کاربر",
     "en" : "Group",
-    "icon" : "fas fa-users-viewfinder",
+    "icon" : "fas fa-users-line",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -221,6 +221,7 @@
 
                 ]
               }
+
             ]
           },
 

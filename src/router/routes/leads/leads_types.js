@@ -1,6 +1,7 @@
 import Leads_Types_Index from "@/views/leads/types/Leads_Types_Index.vue";
 import Leads_Types_Create from "@/views/leads/types/Leads_Types_Create.vue";
 import Leads_Types_Edit from "@/views/leads/types/Leads_Types_Edit.vue";
+import Leads_Types_Trash from "@/views/leads/types/Leads_Types_Trash.vue";
 
 
 const route_leads_types=[
@@ -11,6 +12,15 @@ const route_leads_types=[
         meta : {
             title : 'تنظیمات سرنخ ها',
             subtitle : 'لیست نوع سرنخ'
+        },
+    },
+    {
+        path : "/leads/types",
+        name : "lead_types_trash",
+        component : Leads_Types_Trash,
+        meta : {
+            title : 'تنظیمات سرنخ ها',
+            subtitle : 'موارد حذف شده'
         },
     },
     {

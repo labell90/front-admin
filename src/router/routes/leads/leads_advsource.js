@@ -2,6 +2,7 @@
 import Leads_Advsource_Index from "@/views/leads/advsource/Leads_Advsource_Index.vue";
 import Leads_Advsource_Create from "@/views/leads/advsource/Leads_Advsource_Create.vue";
 import Leads_Advsource_Edit from "@/views/leads/advsource/Leads_Advsource_Edit.vue";
+import Leads_Advsource_Trash from "@/views/leads/advsource/Leads_Advsource_Trash.vue";
 
 const route_lead_advsource = [
     {
@@ -11,6 +12,15 @@ const route_lead_advsource = [
         meta : {
             title : 'تنظیمات سرنخ ها',
             subtitle : 'لیست منبع تبلیغ سرنخ'
+        },
+    },
+    {
+        path : "/leads/advsource",
+        name : "lead_advsource_trash",
+        component : Leads_Advsource_Trash,
+        meta : {
+            title : 'تنظیمات سرنخ ها',
+            subtitle : 'موارد حذف شده'
         },
     },
     {
