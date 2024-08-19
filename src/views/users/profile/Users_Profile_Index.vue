@@ -2,7 +2,7 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Leads_Profile_Index",
+  name: "Users_Profile_Index",
   mounted() {
     this.Get_Lead();
 
@@ -15,10 +15,10 @@ export default {
   },
   methods:{
     ...mapActions([
-        "Module_Lead_Action_Show"
+      "Module_User_Action_Show"
     ]),
     Get_Lead(){
-      this.Module_Lead_Action_Show(this.$route.params.id).then(response => {
+      this.Module_User_Action_Show(this.$route.params.id).then(response => {
         this.lead = response.data.result;
         console.log(this.lead)
         this.loading = false;

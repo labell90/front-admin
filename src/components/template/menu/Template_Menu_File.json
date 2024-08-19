@@ -134,6 +134,36 @@
       }
     ]
   },
+  {
+    "fa" : "فرم ها",
+    "en" : "ّForms",
+    "icon" : "fas fa-rectangle-list",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد فرم",
+        "en" : "New form",
+        "route_path" : "/",
+        "route_name" : "forms_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست فرم ها",
+        "en" : "ّForms",
+        "route_path" : "/",
+        "route_name" : "forms_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
 
 
   {

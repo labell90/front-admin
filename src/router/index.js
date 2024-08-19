@@ -17,8 +17,9 @@ import route_leads_types from "@/router/routes/leads/leads_types.js";
 import route_leads from "@/router/routes/leads/leads.js";
 import route_leads_utmmedium from "@/router/routes/leads/leads_utmmedium.js";
 import route_leads_utmsource from "@/router/routes/leads/leads_utmsource.js";
-import route_lead_advsource from "@/router/routes/leads/leads_advsource.js";
 import route_groups from "@/router/routes/groups/user_group.js";
+import route_lead_advsource from '@/router/routes/leads/leads_advsource.js';
+import route_forms from "@/router/routes/forms/form.js";
 
 
 
@@ -38,8 +39,9 @@ const routes = [
     ...route_leads,
     ...route_leads_utmmedium,
     ...route_leads_utmsource,
+    ...route_groups,
     ...route_lead_advsource,
-    ...route_groups
+    ...route_forms
 
 ]
 
