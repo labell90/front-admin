@@ -3,18 +3,18 @@ import {mapActions} from "vuex";
 import features from "@/store/modules/features/features.js";
 
 export default {
-  name: "Users_Access",
+  name: "Roles_Access",
   mounted() {
     this.Get_Features();
-    this.Get_User();
+    this.Get_Role();
   },
   data(){
     return{
-      user_loading:true,
+      role_loading:true,
       features_loading:true,
       counter:0,
-      user : null,
-      user_access:[],
+      role : null,
+      role_access:[],
       features:[],
       columns:[
         {
@@ -94,14 +94,14 @@ export default {
   },
   methods:{
     ...mapActions([
-        "Module_User_Action_Show",
-        "Module_User_Action_Features_Edit",
-        "Module_Feature_Action_Index"
+      "Module_Role_Action_Show",
+      "Module_Role_Action_Features_Edit",
+      "Module_Feature_Action_Index"
     ]),
-    Get_User(){
-      this.Module_User_Action_Show(this.$route.params.id).then(res => {
-        this.user = res.data.result;
-        this.user_loading=false;
+    Get_Role(){
+      this.Module_Role_Action_Show(this.$route.params.id).then(res => {
+        this.role = res.data.result;
+        this.role_loading=false;
       }).catch(error => {
         return this.Methods_Notify_Error_NotFound();
 
@@ -111,7 +111,7 @@ export default {
       this.Module_Feature_Action_Index().then(res => {
         this.features = res.data.result;
         this.features.forEach(feature => {
-          // this.user_access.push({
+          // this.role_access.push({
           //   feature : feature.code,
           //   read : false,
           //   write : false,
@@ -121,7 +121,7 @@ export default {
           //   export : false,
           //   own : false,
           // })
-          // this.user_access.push({
+          // this.role_access.push({
           //   feature : feature.code,
           //   read : false,
           //   write : false,
@@ -133,67 +133,67 @@ export default {
           // })
 
           this.access_read[feature.name]={
-              read : false,
-              write : false,
-              edit : false,
-              delete : false,
-              import : false,
-              export : false,
-              own : false,
+            read : false,
+            write : false,
+            edit : false,
+            delete : false,
+            import : false,
+            export : false,
+            own : false,
           }
           this.access_write[feature.name]={
-              read : false,
-              write : false,
-              edit : false,
-              delete : false,
-              import : false,
-              export : false,
-              own : false,
+            read : false,
+            write : false,
+            edit : false,
+            delete : false,
+            import : false,
+            export : false,
+            own : false,
           }
           this.access_edit[feature.name]={
-              read : false,
-              write : false,
-              edit : false,
-              delete : false,
-              import : false,
-              export : false,
-              own : false,
+            read : false,
+            write : false,
+            edit : false,
+            delete : false,
+            import : false,
+            export : false,
+            own : false,
           }
           this.access_delete[feature.name]={
-              read : false,
-              write : false,
-              edit : false,
-              delete : false,
-              import : false,
-              export : false,
-              own : false,
+            read : false,
+            write : false,
+            edit : false,
+            delete : false,
+            import : false,
+            export : false,
+            own : false,
           }
           this.access_import[feature.name]={
-              read : false,
-              write : false,
-              edit : false,
-              delete : false,
-              import : false,
-              export : false,
-              own : false,
+            read : false,
+            write : false,
+            edit : false,
+            delete : false,
+            import : false,
+            export : false,
+            own : false,
           }
           this.access_export[feature.name]={
-              read : false,
-              write : false,
-              edit : false,
-              delete : false,
-              import : false,
-              export : false,
-              own : false,
+            read : false,
+            write : false,
+            edit : false,
+            delete : false,
+            import : false,
+            export : false,
+            own : false,
           }
           this.access_own[feature.name]={
-              read : false,
-              write : false,
-              edit : false,
-              delete : false,
-              import : false,
-              export : false,
-              own : false,
+            read : false,
+            write : false,
+            edit : false,
+            delete : false,
+            import : false,
+            export : false,
+            own : false,
           }
 
         })
@@ -204,7 +204,7 @@ export default {
       })
     },
     Edit_Feature(){
-      this.user_access={
+      this.role_access={
         read : this.access_read,
         write : this.access_write,
         edit : this.access_edit,
@@ -213,7 +213,7 @@ export default {
         own : this.access_export,
         import : this.access_import
       }
-      console.log(this.user_access);
+      console.log(this.role_access);
     }
   }
 }
@@ -222,8 +222,8 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <strong v-if="user" class="text-grey-10">مدیریت سطوح دسترسی کاربر : <strong class="text-red">{{user.name}}</strong></strong>
-      <q-btn :to="{name : 'users_index'}" class="float-right" color="yellow-9" text-color="black" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
+      <strong v-if="role" class="text-grey-10">مدیریت سطوح دسترسی کاربر : <strong class="text-red">{{role.name}}</strong></strong>
+      <q-btn :to="{name : 'roles_index'}" class="float-right" color="yellow-9" text-color="black" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
     </q-card-section>
     <q-card-section v-if="features_loading" >
       <global_loading_shape size="90"></global_loading_shape>

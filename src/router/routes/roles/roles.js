@@ -2,6 +2,7 @@ import Roles_Index from "@/views/roles/Roles_Index.vue";
 import Roles_Create from "@/views/roles/Roles_Create.vue";
 import Roles_Edit from "@/views/roles/Roles_Edit.vue";
 import Roles_Trash from "@/views/roles/Roles_Trash.vue";
+import Roles_Access from "@/views/roles/Roles_Access.vue";
 
 const route_role =[
     {
@@ -38,6 +39,15 @@ const route_role =[
         meta : {
             title : 'نقش ها',
             subtitle : 'ویرایش نقش'
+        },
+    },
+    {
+        path : "/roles/access/:id",
+        name : "roles_access",
+        component : Roles_Access,
+        meta : {
+            title : 'نقش ها',
+            subtitle : 'مدیریت سطوح دسترسی'
         },
     },
 
