@@ -1,6 +1,7 @@
 import Leads_Resources_Index from "@/views/leads/resources/Leads_Resources_Index.vue";
 import Leads_Resources_Create from "@/views/leads/resources/Leads_Resources_Create.vue";
 import Leads_Resources_Edit from "@/views/leads/resources/Leads_Resources_Edit.vue";
+import Leads_Resources_Trash from "@/views/leads/resources/Leads_Resources_Trash.vue";
 
 
 const route_lead_resources = [
@@ -11,6 +12,15 @@ const route_lead_resources = [
         meta : {
             title : 'تنظیمات سرنخ ها',
             subtitle : 'لیست منابع سرنخ'
+        },
+    },
+    {
+        path : "/leads/resources",
+        name : "lead_resources_trash",
+        component : Leads_Resources_Trash,
+        meta : {
+            title : 'تنظیمات سرنخ ها',
+            subtitle : 'موارد حذف شده'
         },
     },
     {

@@ -2,6 +2,7 @@
 import Groups_Index from "@/views/groups/Groups_Index.vue";
 import Groups_Create from "@/views/groups/Groups_Create.vue";
 import Groups_Edit from "@/views/groups/Groups_Edit.vue";
+import Groups_Trash from "@/views/groups/Groups_Trash.vue";
 
 const route_groups = [
     {
@@ -11,6 +12,15 @@ const route_groups = [
         meta : {
             title : 'گروه بندی کاربران',
             subtitle : 'لیست گروه کاربران'
+        },
+    },
+    {
+        path : "/groups",
+        name : "groups_trash",
+        component : Groups_Trash,
+        meta : {
+            title : 'گروه بندی کاربران',
+            subtitle : 'موارد حذف شده'
         },
     },
     {

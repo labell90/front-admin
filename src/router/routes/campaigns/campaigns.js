@@ -1,6 +1,7 @@
 import Campaigns_Index from "@/views/campaigns/Campaigns_Index.vue";
 import Campaigns_Create from "@/views/campaigns/Campaigns_Create.vue";
 import Campaigns_Edit from "@/views/campaigns/Campaigns_Edit.vue";
+import Campaigns_Trash from "@/views/campaigns/Campaigns_Trash.vue";
 
 
 const route_campaigns =[
@@ -12,6 +13,15 @@ const route_campaigns =[
         meta : {
             title : 'کمپین ها',
             subtitle : 'لیست همه کمپین ها'
+        },
+    },
+    {
+        path : "/campaigns",
+        name : "campaigns_trash",
+        component : Campaigns_Trash,
+        meta : {
+            title : 'کمپین ها',
+            subtitle : 'موارد حذف شده'
         },
     },
     {

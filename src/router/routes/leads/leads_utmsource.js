@@ -1,6 +1,7 @@
 import Leads_Utmsource_Index from "@/views/leads/utmsource/Leads_Utmsource_Index.vue";
 import Leads_Utmsource_Create from "@/views/leads/utmsource/Leads_Utmsource_Create.vue";
 import Leads_Utmsource_Edit from "@/views/leads/utmsource/Leads_Utmsource_Edit.vue";
+import Leads_Utmsource_Trash from "@/views/leads/utmsource/Leads_Utmsource_Trash.vue";
 
 
 const route_leads_utmsource=[
@@ -11,6 +12,15 @@ const route_leads_utmsource=[
         meta : {
             title : 'تنظیمات سرنخ ها',
             subtitle : 'لیست Utmsource سرنخ'
+        },
+    },
+    {
+        path : "/leads/utmsource",
+        name : "lead_utmsource_trash",
+        component : Leads_Utmsource_Trash,
+        meta : {
+            title : 'تنظیمات سرنخ ها',
+            subtitle : 'موارد حذف شده'
         },
     },
     {

@@ -1,6 +1,7 @@
 import Leads_Utmmedium_Index from "@/views/leads/utmmedium/Leads_Utmmedium_Index.vue";
 import Leads_Utmmedium_Create from "@/views/leads/utmmedium/Leads_Utmmedium_Create.vue";
 import Leads_Utmmedium_Edit from "@/views/leads/utmmedium/Leads_Utmmedium_Edit.vue";
+import Leads_Utmmedium_Trash from "@/views/leads/utmmedium/Leads_Utmmedium_Trash.vue";
 
 
 const route_leads_utmmedium=[
@@ -11,6 +12,15 @@ const route_leads_utmmedium=[
         meta : {
             title : 'تنظیمات سرنخ ها',
             subtitle : 'لیست Utmmedium سرنخ'
+        },
+    },
+    {
+        path : "/leads/utmmedium",
+        name : "lead_utmmedium_trash",
+        component : Leads_Utmmedium_Trash,
+        meta : {
+            title : 'تنظیمات سرنخ ها',
+            subtitle : 'موارد حذف شده'
         },
     },
     {

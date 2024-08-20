@@ -1,6 +1,7 @@
 import Roles_Index from "@/views/roles/Roles_Index.vue";
 import Roles_Create from "@/views/roles/Roles_Create.vue";
 import Roles_Edit from "@/views/roles/Roles_Edit.vue";
+import Roles_Trash from "@/views/roles/Roles_Trash.vue";
 
 const route_role =[
     {
@@ -10,6 +11,15 @@ const route_role =[
         meta : {
             title : 'نقش ها',
             subtitle : 'لیست همه نقش ها'
+        },
+    },
+    {
+        path : "/roles",
+        name : "roles_trash",
+        component : Roles_Trash,
+        meta : {
+            title : 'نقش ها',
+            subtitle : 'موارد حذف شده'
         },
     },
     {
