@@ -5,13 +5,14 @@ import features from "@/store/modules/features/features.js";
 export default {
   name: "Users_Access",
   mounted() {
-    this.Get_User();
     this.Get_Features();
+    this.Get_User();
   },
   data(){
     return{
       user_loading:true,
       features_loading:true,
+      counter:0,
       user : null,
       user_access:[],
       features:[],
@@ -94,6 +95,7 @@ export default {
   methods:{
     ...mapActions([
         "Module_User_Action_Show",
+        "Module_User_Action_Features_Edit",
         "Module_Feature_Action_Index"
     ]),
     Get_User(){
@@ -108,10 +110,111 @@ export default {
     Get_Features(){
       this.Module_Feature_Action_Index().then(res => {
         this.features = res.data.result;
+        this.features.forEach(feature => {
+          // this.user_access.push({
+          //   feature : feature.code,
+          //   read : false,
+          //   write : false,
+          //   edit : false,
+          //   delete : false,
+          //   import : false,
+          //   export : false,
+          //   own : false,
+          // })
+          // this.user_access.push({
+          //   feature : feature.code,
+          //   read : false,
+          //   write : false,
+          //   edit : false,
+          //   delete : false,
+          //   import : false,
+          //   export : false,
+          //   own : false,
+          // })
+
+          this.access_read[feature.name]={
+              read : false,
+              write : false,
+              edit : false,
+              delete : false,
+              import : false,
+              export : false,
+              own : false,
+          }
+          this.access_write[feature.name]={
+              read : false,
+              write : false,
+              edit : false,
+              delete : false,
+              import : false,
+              export : false,
+              own : false,
+          }
+          this.access_edit[feature.name]={
+              read : false,
+              write : false,
+              edit : false,
+              delete : false,
+              import : false,
+              export : false,
+              own : false,
+          }
+          this.access_delete[feature.name]={
+              read : false,
+              write : false,
+              edit : false,
+              delete : false,
+              import : false,
+              export : false,
+              own : false,
+          }
+          this.access_import[feature.name]={
+              read : false,
+              write : false,
+              edit : false,
+              delete : false,
+              import : false,
+              export : false,
+              own : false,
+          }
+          this.access_export[feature.name]={
+              read : false,
+              write : false,
+              edit : false,
+              delete : false,
+              import : false,
+              export : false,
+              own : false,
+          }
+          this.access_own[feature.name]={
+              read : false,
+              write : false,
+              edit : false,
+              delete : false,
+              import : false,
+              export : false,
+              own : false,
+          }
+
+        })
         this.features_loading=false;
+        console.log(this.access_read)
       }).catch(error => {
         return this.Methods_Notify_Error_Server();
       })
+    },
+    Edit_Feature(){
+
+      console.log(this.access_read)
+      // this.Module_User_Action_Features_Edit({id : this.user.id,accesses : this.user_access}).then(res => {
+      //   console.log(res.data)
+      // }).catch(error => {
+      //
+      // })
+
+
+
+
     }
   }
 }
@@ -131,7 +234,11 @@ export default {
         <q-icon name="fas fa-shield-halved" size="35px" color="teal"></q-icon>
         لیست موارد دسترسی
       </div>
-      <div class="q-mt-md">
+      <div class="q-mb-xl">
+        <q-btn @click="Edit_Feature" class="float-right" color="teal-6"  glossy icon="fas fa-refresh" label="بروز رسانی دسترسی ها"></q-btn>
+      </div>
+{{access_read}}
+      <div class="q-mt-md q-mb-md">
         <q-table
             flat
             bordered
@@ -154,9 +261,76 @@ export default {
             </q-td>
           </template>
           <template v-slot:body-cell-read="props">
+
             <q-td :props="props">
               <q-toggle
-                  v-model="access_read[props.row.code]"
+                  v-model="access_read[props.row.name].read"
+                  checked-icon="fas fa-check"
+                  color="green-8"
+                  size="40px"
+                  unchecked-icon="fas fa-times"
+              />
+            </q-td>
+          </template>
+          <template v-slot:body-cell-write="props">
+            <q-td :props="props">
+              <q-toggle
+                  v-model="access_write[props.row.code]"
+                  checked-icon="fas fa-check"
+                  color="green-8"
+                  size="40px"
+                  unchecked-icon="fas fa-times"
+              />
+            </q-td>
+          </template>
+          <template v-slot:body-cell-edit="props">
+            <q-td :props="props">
+              <q-toggle
+                  v-model="access_edit[props.row.code]"
+                  checked-icon="fas fa-check"
+                  color="green-8"
+                  size="40px"
+                  unchecked-icon="fas fa-times"
+              />
+            </q-td>
+          </template>
+          <template v-slot:body-cell-delete="props">
+            <q-td :props="props">
+              <q-toggle
+                  v-model="access_delete[props.row.code]"
+                  checked-icon="fas fa-check"
+                  color="green-8"
+                  size="40px"
+                  unchecked-icon="fas fa-times"
+              />
+            </q-td>
+          </template>
+          <template v-slot:body-cell-export="props">
+            <q-td :props="props">
+              <q-toggle
+                  v-model="access_export[props.row.code]"
+                  checked-icon="fas fa-check"
+                  color="green-8"
+                  size="40px"
+                  unchecked-icon="fas fa-times"
+              />
+            </q-td>
+          </template>
+          <template v-slot:body-cell-import="props">
+            <q-td :props="props">
+              <q-toggle
+                  v-model="access_import[props.row.code]"
+                  checked-icon="fas fa-check"
+                  color="green-8"
+                  size="40px"
+                  unchecked-icon="fas fa-times"
+              />
+            </q-td>
+          </template>
+          <template v-slot:body-cell-own="props">
+            <q-td :props="props">
+              <q-toggle
+                  v-model="access_own[props.row.code]"
                   checked-icon="fas fa-check"
                   color="green-8"
                   size="40px"
@@ -170,6 +344,9 @@ export default {
         </q-table>
       </div>
 
+      <div class="q-mb-xl">
+        <q-btn @click="Edit_Feature" class="float-right" color="teal-6"  glossy icon="fas fa-refresh" label="بروز رسانی دسترسی ها"></q-btn>
+      </div>
     </q-card-section>
   </q-card>
 </template>

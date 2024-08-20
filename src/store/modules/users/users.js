@@ -63,6 +63,16 @@ export default {
 
         },
 
+        Module_User_Action_Features_Edit(_,items){
+            return new Promise((resolve, reject) => {
+                axios.post('users/users/accesses/'+items.id,items.accesses).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
 
 
 
