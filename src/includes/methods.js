@@ -43,6 +43,11 @@ export default {
             })
         },
 
+        //Default notification types
+        Methods_Notify_Message_Success(message){
+            this.Methods_Notify_Generator(message,'green-7','fa fa-check ');
+        },
+
         //Default notification message
         Methods_Notify_Update(){
             this.Methods_Notify_Generator('اطلاعات باموفقیت بروزرسانی شد','green-7','fa fa-check ');

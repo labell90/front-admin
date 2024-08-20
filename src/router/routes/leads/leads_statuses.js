@@ -15,7 +15,7 @@ const route_lead_statuses = [
         },
     },
     {
-        path : "/leads/statuses",
+        path : "/leads/statuses/trash",
         name : "lead_statuses_trash",
         component : Leads_Statuses_Trash,
         meta : {

@@ -3,15 +3,17 @@ import {mapActions} from "vuex";
 import features from "@/store/modules/features/features.js";
 
 export default {
-  name: "Roles_Access",
+  name: "Users_Access",
   mounted() {
     this.Get_Features();
     this.Get_Role();
   },
   data(){
     return{
-      role_loading:true,
+      user_loading:true,
       features_loading:true,
+      edit_loading:false,
+      get_access_loading:true,
       counter:0,
       role : null,
       role_access:[],
@@ -83,25 +85,26 @@ export default {
           sortable: false,
         },
       ],
-      access_read:[],
-      access_write:[],
-      access_edit:[],
-      access_delete:[],
-      access_export:[],
-      access_import:[],
-      access_own:[],
+      access_info:[],
     }
   },
   methods:{
     ...mapActions([
       "Module_Role_Action_Show",
-      "Module_Role_Action_Features_Edit",
+      "Module_Role_Action_Accesses_Index",
+      "Module_Role_Action_Accesses_Edit",
       "Module_Feature_Action_Index"
     ]),
+    Convert_Bool(item){
+      return item === 1;
+
+    },
     Get_Role(){
       this.Module_Role_Action_Show(this.$route.params.id).then(res => {
         this.role = res.data.result;
         this.role_loading=false;
+        this.Get_Accesses();
+
       }).catch(error => {
         return this.Methods_Notify_Error_NotFound();
 
@@ -111,28 +114,7 @@ export default {
       this.Module_Feature_Action_Index().then(res => {
         this.features = res.data.result;
         this.features.forEach(feature => {
-          // this.role_access.push({
-          //   feature : feature.code,
-          //   read : false,
-          //   write : false,
-          //   edit : false,
-          //   delete : false,
-          //   import : false,
-          //   export : false,
-          //   own : false,
-          // })
-          // this.role_access.push({
-          //   feature : feature.code,
-          //   read : false,
-          //   write : false,
-          //   edit : false,
-          //   delete : false,
-          //   import : false,
-          //   export : false,
-          //   own : false,
-          // })
-
-          this.access_read[feature.name]={
+          this.access_info[feature.name]={
             read : false,
             write : false,
             edit : false,
@@ -141,79 +123,49 @@ export default {
             export : false,
             own : false,
           }
-          this.access_write[feature.name]={
-            read : false,
-            write : false,
-            edit : false,
-            delete : false,
-            import : false,
-            export : false,
-            own : false,
-          }
-          this.access_edit[feature.name]={
-            read : false,
-            write : false,
-            edit : false,
-            delete : false,
-            import : false,
-            export : false,
-            own : false,
-          }
-          this.access_delete[feature.name]={
-            read : false,
-            write : false,
-            edit : false,
-            delete : false,
-            import : false,
-            export : false,
-            own : false,
-          }
-          this.access_import[feature.name]={
-            read : false,
-            write : false,
-            edit : false,
-            delete : false,
-            import : false,
-            export : false,
-            own : false,
-          }
-          this.access_export[feature.name]={
-            read : false,
-            write : false,
-            edit : false,
-            delete : false,
-            import : false,
-            export : false,
-            own : false,
-          }
-          this.access_own[feature.name]={
-            read : false,
-            write : false,
-            edit : false,
-            delete : false,
-            import : false,
-            export : false,
-            own : false,
-          }
-
         })
         this.features_loading=false;
-        console.log(this.access_read)
       }).catch(error => {
         return this.Methods_Notify_Error_Server();
       })
     },
     Edit_Feature(){
-      this.role_access={
-        read : this.access_read,
-        write : this.access_write,
-        edit : this.access_edit,
-        delete : this.access_delete,
-        export : this.access_export,
-        own : this.access_export,
-        import : this.access_import
+      this.edit_loading = true;
+      let accesses = [];
+      this.features.forEach(feature => {
+        accesses.push({
+          feature : feature.name,
+          access : this.access_info[feature.name]
+        })
+      })
+      this.Module_Role_Action_Accesses_Edit({id:this.role.id,access:accesses}).then(res => {
+        this.Methods_Notify_Message_Success('سطوح دسترسی نقش باموفقیت ویرایش شد');
+      }).catch(error => {
+      })
+
+    },
+    Get_Accesses(){
+      if (this.role){
+        this.Module_Role_Action_Accesses_Index({id : this.role.id}).then(res => {
+          if (res.data.result){
+            res.data.result.forEach(item => {
+              this.access_info[item.feature.name]={
+                read : this.Convert_Bool(item.read),
+                write : this.Convert_Bool(item.write),
+                edit : this.Convert_Bool(item.edit),
+                delete : this.Convert_Bool(item.delete),
+                import : this.Convert_Bool(item.import),
+                export : this.Convert_Bool(item.export),
+                own : this.Convert_Bool(item.own),
+              }
+            })
+          }
+        }).catch(error => {
+
+        })
+
+
       }
-      console.log(this.role_access);
     }
   }
 }
@@ -222,7 +174,7 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <strong v-if="role" class="text-grey-10">مدیریت سطوح دسترسی کاربر : <strong class="text-red">{{role.name}}</strong></strong>
+      <strong v-if="role" class="text-grey-10">مدیریت سطوح دسترسی نقش : <strong class="text-red">{{role.name}}</strong></strong>
       <q-btn :to="{name : 'roles_index'}" class="float-right" color="yellow-9" text-color="black" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
     </q-card-section>
     <q-card-section v-if="features_loading" >
@@ -263,7 +215,7 @@ export default {
 
             <q-td :props="props">
               <q-toggle
-                  v-model="access_read[props.row.name].read"
+                  v-model="access_info[props.row.name].read"
                   checked-icon="fas fa-check"
                   color="green-8"
                   size="40px"
@@ -274,7 +226,7 @@ export default {
           <template v-slot:body-cell-write="props">
             <q-td :props="props">
               <q-toggle
-                  v-model="access_write[props.row.name].read"
+                  v-model="access_info[props.row.name].write"
                   checked-icon="fas fa-check"
                   color="green-8"
                   size="40px"
@@ -285,7 +237,7 @@ export default {
           <template v-slot:body-cell-edit="props">
             <q-td :props="props">
               <q-toggle
-                  v-model="access_edit[props.row.name].read"
+                  v-model="access_info[props.row.name].edit"
                   checked-icon="fas fa-check"
                   color="green-8"
                   size="40px"
@@ -296,7 +248,7 @@ export default {
           <template v-slot:body-cell-delete="props">
             <q-td :props="props">
               <q-toggle
-                  v-model="access_delete[props.row.name].read"
+                  v-model="access_info[props.row.name].delete"
                   checked-icon="fas fa-check"
                   color="green-8"
                   size="40px"
@@ -307,7 +259,7 @@ export default {
           <template v-slot:body-cell-export="props">
             <q-td :props="props">
               <q-toggle
-                  v-model="access_export[props.row.name].read"
+                  v-model="access_info[props.row.name].export"
                   checked-icon="fas fa-check"
                   color="green-8"
                   size="40px"
@@ -318,7 +270,7 @@ export default {
           <template v-slot:body-cell-import="props">
             <q-td :props="props">
               <q-toggle
-                  v-model="access_import[props.row.name].read"
+                  v-model="access_info[props.row.name].import"
                   checked-icon="fas fa-check"
                   color="green-8"
                   size="40px"
@@ -329,7 +281,7 @@ export default {
           <template v-slot:body-cell-own="props">
             <q-td :props="props">
               <q-toggle
-                  v-model="access_own[props.row.name].read"
+                  v-model="access_info[props.row.name].own"
                   checked-icon="fas fa-check"
                   color="green-8"
                   size="40px"

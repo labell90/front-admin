@@ -15,7 +15,7 @@ const route_role =[
         },
     },
     {
-        path : "/roles",
+        path : "/roles/trash",
         name : "roles_trash",
         component : Roles_Trash,
         meta : {

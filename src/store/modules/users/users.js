@@ -63,9 +63,9 @@ export default {
 
         },
 
-        Module_User_Action_Features_Edit(_,items){
+        Module_User_Action_Accesses_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.post('users/users/accesses/'+items.id,items.accesses).then(response =>{
+                axios.get('users/users/accesses/'+items.id).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -73,6 +73,18 @@ export default {
             })
 
         },
+        Module_User_Action_Accesses_Edit(_,items){
+            return new Promise((resolve, reject) => {
+                axios.post('users/users/accesses/'+items.id,{access : items.access}).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+
 
 
 

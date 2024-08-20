@@ -15,7 +15,7 @@ const route_leads_utmsource=[
         },
     },
     {
-        path : "/leads/utmsource",
+        path : "/leads/utmsource/trash",
         name : "lead_utmsource_trash",
         component : Leads_Utmsource_Trash,
         meta : {

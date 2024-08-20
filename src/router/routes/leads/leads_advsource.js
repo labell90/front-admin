@@ -15,7 +15,7 @@ const route_lead_advsource = [
         },
     },
     {
-        path : "/leads/advsource",
+        path : "/leads/advsource/trash",
         name : "lead_advsource_trash",
         component : Leads_Advsource_Trash,
         meta : {

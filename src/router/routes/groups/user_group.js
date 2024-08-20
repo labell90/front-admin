@@ -15,7 +15,7 @@ const route_groups = [
         },
     },
     {
-        path : "/groups",
+        path : "/groups/trash",
         name : "groups_trash",
         component : Groups_Trash,
         meta : {

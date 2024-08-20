@@ -14,7 +14,7 @@ const route_leads_industries=[
         },
     },
     {
-        path : "/leads/industries",
+        path : "/leads/industries/trash",
         name : "lead_industries_trash",
         component : Lead_Industries_Trash,
         meta : {

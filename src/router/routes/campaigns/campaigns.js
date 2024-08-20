@@ -16,7 +16,7 @@ const route_campaigns =[
         },
     },
     {
-        path : "/campaigns",
+        path : "/campaigns/trash",
         name : "campaigns_trash",
         component : Campaigns_Trash,
         meta : {

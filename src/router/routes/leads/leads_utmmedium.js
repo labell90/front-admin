@@ -15,7 +15,7 @@ const route_leads_utmmedium=[
         },
     },
     {
-        path : "/leads/utmmedium",
+        path : "/leads/utmmedium/trash",
         name : "lead_utmmedium_trash",
         component : Leads_Utmmedium_Trash,
         meta : {

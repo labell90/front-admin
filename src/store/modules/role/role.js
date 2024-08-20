@@ -53,6 +53,27 @@ export default {
 
         },
 
+        Module_Role_Action_Accesses_Index(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/roles/accesses/'+items.id).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+        Module_Role_Action_Accesses_Edit(_,items){
+            return new Promise((resolve, reject) => {
+                axios.post('users/roles/accesses/'+items.id,{access : items.access}).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
 
 
 

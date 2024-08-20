@@ -15,7 +15,7 @@ const route_users =[
         },
     },
     {
-        path : "/users",
+        path : "/users/trash",
         name : "users_trash",
         component : Users_Trash,
         meta : {

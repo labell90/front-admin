@@ -15,7 +15,7 @@ const route_lead_categories = [
         },
     },
     {
-        path : "/leads/categories",
+        path : "/leads/categories/trash",
         name : "lead_categories_trash",
         component : Leads_Categories_Trash,
         meta : {
