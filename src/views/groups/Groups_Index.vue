@@ -142,7 +142,7 @@ export default {
         this.delete_loading=false;
       }).catch(error => {
         if (error.response.status === 409) {
-          this.Methods_Notify_Generator( error.response.data.error,'red-8','fas fa-times')
+          this.Methods_Notify_Generator( "این گروه دارای زیرمجموعه میباشد",'red-8','fas fa-times')
         }else {
           this.Methods_Notify_Error_Server();
         }

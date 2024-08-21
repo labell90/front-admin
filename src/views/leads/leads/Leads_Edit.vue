@@ -105,14 +105,41 @@ export default {
       if (this.location.length){
         this.Module_Location_Action_Country_Selectable(this.location).then(response => {
           this.countries = response;
+          this.Get_Provinces()
         }).catch(error => {
           this.Methods_Notify_Error_Internal();
         })
       }
     },
+    Get_Provinces(){
+      if (this.items.country_id){
+        let items = {
+          locations : this.location,
+          country_id : this.items.country_id
+        }
+        console.log(items)
+        this.Module_Location_Action_Province_Selectable(items).then(response => {
+          this.provinces = response;
+          this.Get_Cities();
+        });
+      }
+    },
+    Get_Cities(){
+      if (this.items.province_id){
+        let items= {
+          provinces : this.provinces,
+          province_id : this.items.province_id
+        }
+        this.Module_Location_Action_City_Selectable(items).then(response => {
+          this.cities = response;
+        });
+      }
+    },
+
 
     Get_Lead_Categories(){
       this.Module_Lead_Category_Action_Index({per_page:1000}).then(response => {
+        this.lead_categories=[];
         if (response.data.result.data){
           response.data.result.data.forEach(category => {
             this.lead_categories.push({label:category.name, value: category.id,color_code : category.color_code});
@@ -124,6 +151,8 @@ export default {
     },
     Get_Lead_Resources(){
       this.Module_Lead_Resource_Action_Index({per_page:1000}).then(response => {
+        this.lead_resources=[];
+
         if (response.data.result.data){
           response.data.result.data.forEach(resource => {
             this.lead_resources.push({label:resource.name, value: resource.id,color_code : resource.color_code});
@@ -135,6 +164,7 @@ export default {
     },
     Get_Lead_Statuses(){
       this.Module_Lead_Status_Action_Index({per_page:1000}).then(response => {
+        this.lead_statuses=[];
         if (response.data.result.data){
           response.data.result.data.forEach(status => {
             this.lead_statuses.push({label:status.name, value: status.id,color_code : status.color_code});
@@ -146,6 +176,7 @@ export default {
     },
     Get_Lead_Industries(){
       this.Module_Lead_Industry_Action_Index({per_page:1000}).then(response => {
+        this.lead_industries=[];
         if (response.data.result.data){
           response.data.result.data.forEach(industry => {
             this.lead_industries.push({label:industry.name, value: industry.id,color_code : industry.color_code});
@@ -157,6 +188,7 @@ export default {
     },
     Get_Lead_Types(){
       this.Module_Lead_Types_Action_Index({per_page:1000}).then(response => {
+        this.lead_types=[];
         if (response.data.result.data){
           response.data.result.data.forEach(type => {
             this.lead_types.push({label:type.name, value: type.id,color_code : type.color_code});
