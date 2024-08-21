@@ -183,7 +183,7 @@ export default {
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
       <q-btn :to="{name : 'lead_advsource_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-      <q-btn :to="{name : 'lead_advsource_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-trash" label="موارد حذف شده"></q-btn>
+      <q-btn :to="{name : 'lead_advsource_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
     </q-card-section>
     <q-card-section>
       <q-table
