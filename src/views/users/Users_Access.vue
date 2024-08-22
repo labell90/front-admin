@@ -88,6 +88,7 @@ export default {
       access_info:[],
       access_row_all:[],
       access_column_all:[],
+      access_full:false,
     }
   },
   methods:{
@@ -213,6 +214,18 @@ export default {
       })
 
 
+    },
+    Change_Full_Access(){
+      this.features.forEach(feature => {
+        this.access_info[feature.name].read = this.access_full;
+        this.access_info[feature.name].write = this.access_full;
+        this.access_info[feature.name].edit = this.access_full;
+        this.access_info[feature.name].delete = this.access_full;
+        this.access_info[feature.name].import = this.access_full;
+        this.access_info[feature.name].export = this.access_full;
+        this.access_info[feature.name].own = this.access_full;
+      })
+      this.Methods_Notify_Message_Success("انجام شد !")
     }
   }
 }
@@ -232,6 +245,17 @@ export default {
         <q-icon name="fas fa-shield-halved" size="35px" color="teal"></q-icon>
         لیست موارد دسترسی
       </div>
+      <div class="q-mt-md">
+        <q-checkbox
+            v-model="access_full"
+             @click="Change_Full_Access"
+            title="فعال سازی همه "
+            color="deep-orange-7"
+            class="text-deep-orange-8 font-weight-600"
+            label="فعال سازی همه دسترسی ها"
+            size="40px"
+        />
+      </div>
       <div class="q-mb-xl">
         <q-btn @click="Edit_Feature" class="float-right" color="teal-6"  glossy icon="fas fa-refresh" label="بروز رسانی دسترسی ها"></q-btn>
       </div>
@@ -248,6 +272,7 @@ export default {
             hide-pagination
             :pagination="{rowsPerPage:1000}"
         >
+
           <template v-slot:header="props">
             <q-tr :props="props">
               <q-th
@@ -269,7 +294,7 @@ export default {
           </template>
           <template v-slot:body-cell-name="props">
             <q-td :props="props">
-              <strong class="font-14">{{props.row.name}}</strong>
+              <strong class="font-14">{{props.row.name_fa}}</strong>
               <q-checkbox
                   v-model="access_row_all[props.row.name]"
                   @click="Change_All_Access(props.row.name)"
