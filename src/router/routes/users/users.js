@@ -3,6 +3,7 @@ import Users_Create from "@/views/users/Users_Create.vue";
 import Users_Edit from "@/views/users/Users_Edit.vue";
 import Users_Access from "@/views/users/Users_Access.vue";
 import Users_Trash from "@/views/users/Users_Trash.vue";
+import Users_Profile from "@/views/users/profile/Users_Profile_Index.vue";
 
 const route_users =[
     {
@@ -12,6 +13,15 @@ const route_users =[
         meta : {
             title : 'مدیران',
             subtitle : 'لیست همه مدیران'
+        },
+    },
+    {
+        path : "/users/profile/:id",
+        name : "users_profile",
+        component : Users_Profile,
+        meta : {
+            title : 'مدیران',
+            subtitle : 'پروفایل مدیران'
         },
     },
     {

@@ -13,6 +13,17 @@ export default {
             })
 
         },
+        Module_Lead_Status_Action_Trash_Index(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/statuses/trash?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_Lead_Status_Action_Show(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/statuses/'+item).then(response =>{
@@ -23,6 +34,17 @@ export default {
             })
 
         },
+        Module_Lead_Status_Action_Restore(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/statuses/trash/restore'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_Lead_Status_Action_Create(_,items){
             return new Promise((resolve, reject) => {
                 axios.post('users/leads/statuses',items).then(response =>{
@@ -53,6 +75,17 @@ export default {
             })
 
         },
+        Module_Lead_Status_Action_Restore_Delete(_,items){
+            return new Promise((resolve, reject) => {
+                axios.delete('users/leads/statuses/trash/delete/'+items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_Lead_Status_Action_Activation(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/statuses/change/activation/'+item).then(response =>{

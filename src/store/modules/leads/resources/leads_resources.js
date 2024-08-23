@@ -12,6 +12,17 @@ export default {
             })
 
         },
+        Module_Lead_Resource_Action_Trash_Index(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/resources/trash?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_Lead_Resource_Action_Show(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/resources/'+item).then(response =>{
@@ -22,6 +33,17 @@ export default {
             })
 
         },
+        Module_Lead_Resource_Action_Restore(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/resources/restore'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_Lead_Resource_Action_Create(_,items){
             return new Promise((resolve, reject) => {
                 axios.post('users/leads/resources',items).then(response =>{
@@ -52,6 +74,17 @@ export default {
             })
 
         },
+        Module_Lead_Resource_Action_Restore_Delete(_,items){
+            return new Promise((resolve, reject) => {
+                axios.delete('users/leads/resources/trash/delete/'+items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_Lead_Resource_Action_Activation(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/resources/change/activation/'+item).then(response =>{

@@ -12,6 +12,17 @@ export default {
             })
 
         },
+        Module_User_Action_Trash_Index(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/users/trash?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_User_Action_Show(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/users/'+item).then(response =>{
@@ -22,6 +33,17 @@ export default {
             })
 
         },
+        Module_User_Action_Restore(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/users/trash/restore/'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_User_Action_Create(_,items){
             return new Promise((resolve, reject) => {
                 axios.post('users/users',items).then(response =>{
@@ -52,6 +74,18 @@ export default {
             })
 
         },
+        Module_User_Action_Trash_Delete(_,items){
+            return new Promise((resolve, reject) => {
+                axios.delete('users/users/trash/delete/'+items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+
         Module_User_Action_Activation(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/users/change/activation/'+item).then(response =>{
