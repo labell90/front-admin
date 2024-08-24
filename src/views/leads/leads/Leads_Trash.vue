@@ -2,7 +2,7 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Leads_Index",
+  name: "Leads_Trash",
   mounted() {
     this.Items_Get();
   },
@@ -11,6 +11,7 @@ export default {
       items:[],
       items_loading:true,
       delete_loading:false,
+      restore_loading:false,
       activation_loading:false,
       items_selected:[],
       selected: [],
@@ -60,22 +61,8 @@ export default {
           sortable: true,
           field: row => row.code,
         },
-        {
-          name: 'is_active',
-          required: true,
-          label: 'وضعیت',
-          align: 'left',
-          sortable: true,
-          field: row => row.is_active,
-        },
-        {
-          name: 'created_by',
-          required: true,
-          label: 'ایجاد',
-          align: 'left',
-          sortable: true ,
-          field: row => row.created_by,
-        },
+
+
         {
           name: 'created_at',
           required: true,
@@ -84,14 +71,7 @@ export default {
           sortable: true ,
           field: row => row.created_at,
         },
-        {
-          name: 'updated_by',
-          required: true,
-          label: 'ویرایش',
-          align: 'left',
-          sortable: true ,
-          field: row => row.updated_by,
-        },
+
         {
           name: 'updated_at',
           required: true,
@@ -110,9 +90,9 @@ export default {
   },
   methods :{
     ...mapActions([
-      "Module_Lead_Action_Index",
-      "Module_Lead_Action_Delete",
-      "Module_Lead_Action_Activation",
+      "Module_Lead_Action_Trash_Index",
+      "Module_Lead_Action_Trash_Delete",
+      "Module_Lead_Action_Restore"
     ]),
 
     Items_Get(per_page,page){
@@ -122,7 +102,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_Lead_Action_Index({per_page:per_page,page:page}).then(res => {
+      this.Module_Lead_Action_Trash_Index({per_page:per_page,page:page}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -135,7 +115,7 @@ export default {
     },
     Item_Delete(id){
       this.delete_loading=true;
-      this.Module_Lead_Action_Delete(id).then(res => {
+      this.Module_Lead_Action_Trash_Delete(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -152,24 +132,26 @@ export default {
       })
 
     },
-    Item_Activation(id){
-      this.activation_loading=true;
-      this.Module_Lead_Action_Activation(id).then(res => {
+    Item_Restore(id){
+      this.delete_loading=true;
+      this.Module_Lead_Action_Restore(id).then(res => {
         this.items = this.items.filter(item => {
-          if (item.id === id){
-            item.is_active = !item.is_active;
-          }
-          return item;
+          return item.id !== id;
         })
-        this.activation_loading=false;
-      }).catch(error =>{
+        this.Methods_Notify_Delete();
+        this.delete_loading=false;
+      }).catch(error => {
         if (error.response.status === 409) {
           this.Methods_Notify_Generator( error.response.data.error,'red-8','fas fa-times')
+        }else {
+          this.Methods_Notify_Error_Server();
         }
-        this.activation_loading=false;
+        this.delete_loading=false;
+
       })
 
     },
+
 
     updateSelected(newSelection) {
       this.selected = newSelection;
@@ -231,11 +213,7 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'lead_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
-
-              <q-btn :to="{name:'lead_profile',params:{id:props.row.id}}" glossy class="q-ma-xs" color="green-8" icon="fas fa-user" size="9px" round title="مشاهده پروفایل"/>
-
-
+              <global_actions_restore_item @Set_Ok="Item_Restore(props.row.id)" :loading="restore_loading"></global_actions_restore_item>
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
           </q-td>

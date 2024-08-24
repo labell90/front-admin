@@ -35,7 +35,7 @@ export default {
         },
         Module_Lead_Advsource_Action_Restore(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/advsources/trash/restore'+item).then(response =>{
+                axios.get('users/leads/advsources/trash/restore/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

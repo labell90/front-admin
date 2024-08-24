@@ -81,7 +81,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_Role_Action_Index({per_page:per_page,page:page}).then(res => {
+      this.Module_Role_Action_Trash_Index({per_page:per_page,page:page}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -94,7 +94,7 @@ export default {
     },
     Item_Delete(id){
       this.delete_loading=true;
-      this.Module_Role_Action_Delete(id).then(res => {
+      this.Module_Role_Action_Trash_Delete(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -110,7 +110,7 @@ export default {
     },
     Item_Restore(id) {
       this.restore_loading = true;
-      this.Module_User_Action_Restore(id).then(res => {
+      this.Module_Role_Action_Restore(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -146,7 +146,6 @@ export default {
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
       <q-btn :to="{name : 'roles_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-      <q-btn :to="{name : 'roles_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
     </q-card-section>
     <q-card-section>
       <q-table
@@ -169,26 +168,16 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'roles_access',params:{id:props.row.id}}" glossy title="مدیریت دسترسی" class="q-ma-xs" color="green-8" icon="fas fa-shield-halved" size="9px" round  />
-              <q-btn :to="{name:'roles_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
-              <q-btn glossy class="q-ma-xs" color="deep-orange" icon="fas fa-list" size="9px" round  />
+
+
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
+              <global_actions_restore_item @Set_Ok="Item_Restore(props.row.id)" :loading="restore_loading"></global_actions_restore_item>
             </div>
-          </q-td>
-        </template>
-        <template v-slot:body-cell-created_by="props">
-          <q-td :props="props" >
-            <global_items_user :user="props.row.created_by" />
           </q-td>
         </template>
         <template v-slot:body-cell-created_at="props">
           <q-td :props="props" >
             <global_filter_date :date="props.row.created_at" />
-          </q-td>
-        </template>
-        <template v-slot:body-cell-updated_by="props">
-          <q-td :props="props" >
-            <global_items_user :user="props.row.updated_by" />
           </q-td>
         </template>
         <template v-slot:body-cell-updated_at="props">

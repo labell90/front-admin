@@ -36,7 +36,7 @@ export default {
         },
         Module_Lead_Utmsource_Action_Restore(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/utm/sources/trash/restore'+item).then(response =>{
+                axios.get('users/leads/utm/sources/trash/restore/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

@@ -2,112 +2,231 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Lead_Industries_Edit",
+  name: "Lead_Industries_Trash",
   mounted() {
-    this.Get_Item();
+    this.Items_Get();
   },
   data(){
     return {
-      loading:true,
-      edit_loading:false,
-      errors:[],
-      items:{
-        name:null,
-        color_code:null,
-        description:null,
-      }
+      items:[],
+      items_loading:true,
+      delete_loading:false,
+      restore_loading:false,
+      activation_loading:false,
+      items_selected:[],
+      selected: [],
+      pagination: {
+        page: 1,
+        rowsPerPage: 15,
+        rowsNumber: 15
+      },
+      columns : [
+        {
+          name: 'id',
+          required: true,
+          label: 'ID',
+          align: 'left',
+          sortable: true,
+          field: row => '# ' + row.id,
+        },
+        {
+          name: 'name',
+          required: true,
+          label: 'نام',
+          align: 'left',
+          sortable: true,
+          field: row => row.name,
+        },
+        {
+          name: 'color_code',
+          required: true,
+          label: 'رنگ',
+          align: 'left',
+          sortable: false,
+          field: row => row.color_code,
+        },
+
+
+        {
+          name: 'created_at',
+          required: true,
+          label: 'ت ایجاد',
+          align: 'left',
+          sortable: true ,
+          field: row => row.created_at,
+        },
+
+        {
+          name: 'updated_at',
+          required: true,
+          label: 'ت ویرایش',
+          align: 'left',
+          sortable: true ,
+          field: row => row.updated_at,
+        },
+        {
+          name: 'tools',
+          label: 'عملیات',
+          align: 'left',
+        }
+      ]
     }
   },
-  methods:{
+  methods : {
     ...mapActions([
-      "Module_Lead_Industry_Action_Edit",
-      "Module_Lead_Industry_Action_Show"
+      "Module_Lead_Industry_Action_Trash_Index",
+      "Module_Lead_Industry_Action_Trash_Delete",
+      "Module_Lead_Industry_Action_Restore",
     ]),
-    Get_Item(){
-      this.Module_Lead_Industry_Action_Show(this.$route.params.id).then(response => {
-        this.items = response.data.result;
-        this.loading=false;
-      }).catch(error =>{
+
+    Items_Get(per_page, page) {
+      if (!per_page) {
+        per_page = '';
+      }
+      if (!page) {
+        page = '';
+      }
+      this.Module_Lead_Industry_Action_Trash_Index({per_page: per_page, page: page}).then(res => {
+        this.items = res.data.result.data;
+        this.pagination.page = res.data.result.current_page;
+        this.pagination.rowsPerPage = res.data.result.per_page;
+        this.pagination.rowsNumber = res.data.result.total;
+        this.items_loading = false;
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+        this.items_loading = false;
+      })
+    },
+    Item_Delete(id) {
+      this.delete_loading = true;
+      this.Module_Lead_Industry_Action_Trash_Delete(id).then(res => {
+        this.items = this.items.filter(item => {
+          return item.id !== id;
+        })
+        this.Methods_Notify_Delete();
+        this.delete_loading = false;
+      }).catch(error => {
+        if (error.response.status === 409) {
+          this.Methods_Notify_Generator(error.response.data.error, 'red-8', 'fas fa-times')
+        } else {
+          this.Methods_Notify_Error_Server();
+        }
+        this.delete_loading = false;
 
       })
+
     },
-    Edit_Item(){
-      this.loading=true;
-      this.Module_Lead_Industry_Action_Edit(this.items).then(response => {
-        this.loading=false;
-        this.Methods_Notify_Update();
-        this.$router.push({name:'lead_industries_index'});
+    Item_Restore(id) {
+      this.delete_loading = true;
+      this.Module_Lead_Industry_Action_Restore(id).then(res => {
+        this.items = this.items.filter(item => {
+          return item.id !== id;
+        })
+        this.Methods_Notify_Delete();
+        this.delete_loading = false;
       }).catch(error => {
-        if (error.response.status === 422) {
-          this.Methods_Validation_Notify();
-          this.errors = error.response.data;
+        if (error.response.status === 409) {
+          this.Methods_Notify_Generator(error.response.data.error, 'red-8', 'fas fa-times')
+        } else {
+          this.Methods_Notify_Error_Server();
         }
-        this.loading=false;
+        this.delete_loading = false;
+
       })
+
     },
+
+
+    updateSelected(newSelection) {
+      this.selected = newSelection;
+      this.items_selected = newSelection.map(item => item.id);
+    },
+    Items_OnRequest(props) {
+      const {page, rowsPerPage, sortBy, descending} = props.pagination
+      this.Items_Get(rowsPerPage, page);
+
+    },
+
+
   }
 }
 </script>
 
 <template>
-
   <q-card>
-    <q-card-section v-if="loading">
-      <global_loading_shape size="90"></global_loading_shape>
+    <q-card-section>
+      <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
+      <q-btn :to="{name : 'lead_industries_create'}" class="float-right" color="teal-8" glossy icon="fas fa-plus-circle"
+             label="افزودن آیتم جدید"></q-btn>
+
     </q-card-section>
-    <template v-else>
+    <q-card-section>
+      <q-table
+          flat
+          bordered
+          :loading="items_loading"
+          :rows="items"
+          title="لیست آیتم ها"
+          title-class="text-teal-8 font-18 font-weight-500"
+          table-header-class="text-red-8"
+          :columns="columns"
+          separator="cell"
+          selection="multiple"
+          row-key="id"
+          :selected="selected"
+          @update:selected="updateSelected"
+          v-model:pagination="pagination"
+          @request="Items_OnRequest"
+      >
+        <template v-slot:body-cell-name="props">
+          <q-td :props="props">
+            <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
+          </q-td>
+        </template>
 
-      <q-card>
-        <q-card-section>
-          <strong class="text-grey-10">ویرایش صنعت سرنخ : <span class="text-red-8">{{ items.name }}</span></strong>
-          <q-btn :to="{name : 'lead_industries_index'}" class="float-right" color="yellow-9" text-color="black" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
-          <q-btn :to="{name : 'lead_industries_create'}" class="float-right q-mr-sm" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+        <template v-slot:body-cell-color_code="props">
+          <q-td :props="props" :style="'background-color:'+props.row.color_code ">
 
-        </q-card-section>
-        <q-card-section>
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-              <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="عنوان صنعت">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
-                </template>
-              </q-input>
+          </q-td>
+        </template>
+
+
+
+        <template v-slot:body-cell-tools="props">
+          <q-td :props="props">
+            <div class="text-center">
+              <global_actions_restore_item @Set_Ok="Item_Restore(props.row.id)" :loading="restore_loading"></global_actions_restore_item>
+              <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)"
+                                          :loading="delete_loading"></global_actions_delete_item>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-              <q-input
-                  :error="this.Methods_Validation_Check(errors,'color_code')" outlined v-model="items.color_code" label="رنگ صنعت"
-              >
-                <template v-slot:append>
-                  <q-icon name="fas fa-eye-dropper" class="cursor-pointer">
-                    <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                      <q-color v-model="items.color_code" />
-                    </q-popup-proxy>
-                  </q-icon>
-                </template>
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'color_code')" />
-                </template>
-              </q-input>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-created_by="props">
+          <q-td :props="props">
+            <global_items_user :user="props.row.created_by"/>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-created_at="props">
+          <q-td :props="props">
+            <global_filter_date :date="props.row.created_at"/>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-updated_by="props">
+          <q-td :props="props">
+            <global_items_user :user="props.row.updated_by"/>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-updated_at="props">
+          <q-td :props="props">
 
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-              <q-input  :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="items.description" type="textarea" label="توضیحات">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'description')" />
-                </template>
-              </q-input>
-            </div>
-            <div class="col-12 q-pa-xs">
-              <q-btn color="teal-8" :loading="edit_loading" @click="Edit_Item" glossy icon="fas fa-edit" label="ویرایش آیتم"></q-btn>
-            </div>
-          </div>
-        </q-card-section>
-      </q-card>
+            <global_filter_date :date="props.row.updated_at"/>
 
+          </q-td>
+        </template>
+      </q-table>
+    </q-card-section>
 
-    </template>
   </q-card>
-
 </template>
 
 <style scoped>

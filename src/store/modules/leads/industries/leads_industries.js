@@ -13,6 +13,16 @@ export default {
             })
 
         },
+        Module_Lead_Industry_Action_Trash_Index(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/industries/trash?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
         Module_Lead_Industry_Action_Show(_,item){
 
             return new Promise((resolve, reject) => {
@@ -23,6 +33,16 @@ export default {
                     return reject(error);
                 })
 
+            })
+
+        },
+        Module_Lead_Industry_Action_Restore(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/industries/trash/restore/'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
             })
 
         },
@@ -55,6 +75,18 @@ export default {
             })
 
         },
+        Module_Lead_Industry_Action_Trash_Delete(_,items){
+            return new Promise((resolve, reject) => {
+                axios.delete('users/leads/industries/trash/delete/'+items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+
         Module_Lead_Industry_Action_Activation(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/industries/change/activation/'+item).then(response =>{

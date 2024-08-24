@@ -35,7 +35,7 @@ export default {
         },
         Module_Campaign_Action_Restore(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/campaigns/trash/restore'+item).then(response =>{
+                axios.get('users/campaigns/trash/restore/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

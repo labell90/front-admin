@@ -12,6 +12,7 @@ export default {
             })
 
         },
+
         Module_Lead_Category_Action_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/categories/trash?per_page='+items.per_page+'&page='+items.page).then(response =>{
@@ -35,7 +36,7 @@ export default {
         },
         Module_Lead_Category_Action_Restore(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/categories/restore'+item).then(response =>{
+                axios.get('users/leads/categories/trash/restore/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

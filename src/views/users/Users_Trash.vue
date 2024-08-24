@@ -48,7 +48,7 @@ export default {
         {
           name: 'email',
           required: true,
-          label: 'ایمل',
+          label: 'ایمیل',
           align: 'left',
           sortable: true,
           field: row => row.email,
