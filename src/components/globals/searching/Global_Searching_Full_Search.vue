@@ -15,8 +15,8 @@ export default {
   data(){
     return {
       conditions : [
-
       ],
+      condition_counter : 1,
       options:[],
       condition_options:[
         {
@@ -45,12 +45,17 @@ export default {
   methods : {
     Add_Condition(){
       this.conditions.push({
+        "id" : this.condition_counter,
         "field" : null,
         "condition" : null,
         "value" : null
       })
+      this.condition_counter ++;
     },
-    Remove_Condition(field){
+    Remove_Condition(id){
+      this.conditions = this.conditions.filter(item => {
+        return item.id!==id
+      });
 
     }
   }
@@ -63,7 +68,7 @@ export default {
 
   <div v-if="items">
     <div>
-      <q-btn @click="Add_Condition" color="indigo-7" class="font-12" icon="fas fa-plus" glossy label="افزودن شرط"></q-btn>
+      <q-btn @click="Add_Condition" color="dark" class="font-12" icon="fas fa-plus" glossy label="افزودن شرط"></q-btn>
     </div>
     <div class="q-mt-md">
 
@@ -72,13 +77,13 @@ export default {
           <q-select
               outlined
               dense
+              v-model="item.field"
               transition-show="flip-up"
               transition-hide="flip-down"
               label="انتخاب فیلد"
               :options="options"
               emit-value
               map-options
-              use-input
           >
 
             <template v-slot:option="scope">
@@ -94,6 +99,7 @@ export default {
         <div class="col-md-4 col-sm-12 col-xs-12 q-pa-sm">
           <q-select
               outlined
+              v-model="item.condition"
               dense
               transition-show="flip-up"
               transition-hide="flip-down"
@@ -101,7 +107,6 @@ export default {
               :options="condition_options"
               emit-value
               map-options
-              use-input
           >
 
             <template v-slot:option="scope">
@@ -116,11 +121,12 @@ export default {
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 q-pa-sm">
 
-          <q-input dense outlined  type="text" label="مقدار">
+          <q-input v-model="item.value" dense outlined  type="text" label="مقدار">
             <template v-slot:append>
-              <q-btn round dense glossy size="xs" color="red-8" icon="fas fa-times" />
+              <q-btn round dense glossy size="xs" color="red-8" @click="Remove_Condition(item.id)" icon="fas fa-times" />
             </template>
           </q-input>
+
         </div>
       </div>
 

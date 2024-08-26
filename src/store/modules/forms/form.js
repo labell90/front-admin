@@ -4,7 +4,7 @@ export default {
     actions:{
         Module_Form_Action_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/groups?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/forms?per_page='+items.per_page+'&page='+items.page).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -14,7 +14,7 @@ export default {
         },
         Module_Form_Action_Show(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/groups/'+item).then(response =>{
+                axios.get('users/forms/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -24,7 +24,7 @@ export default {
         },
         Module_Form_Action_Create(_,items){
             return new Promise((resolve, reject) => {
-                axios.post('users/groups',items).then(response =>{
+                axios.post('users/forms',items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -34,7 +34,7 @@ export default {
         },
         Module_Form_Action_Edit(_,items){
             return new Promise((resolve, reject) => {
-                axios.put('users/groups/'+items.id,items).then(response =>{
+                axios.put('users/forms/'+items.id,items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -44,7 +44,7 @@ export default {
         },
         Module_Form_Action_Delete(_,items){
             return new Promise((resolve, reject) => {
-                axios.delete('users/groups/'+items).then(response =>{
+                axios.delete('users/forms/'+items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -54,7 +54,7 @@ export default {
         },
         Module_Form_Action_Activation(_,item){
             return new Promise((resolve, reject) => {
-                axios.get('users/groups/change/activation/'+item).then(response =>{
+                axios.get('users/forms/change/activation/'+item).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

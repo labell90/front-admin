@@ -81,7 +81,6 @@ export default {
       <global_loading_shape size="90"></global_loading_shape>
     </q-card-section>
     <template v-else>
-      {{items}}
       <q-card>
         <q-card-section>
           <strong class="text-grey-10">ویرایش گروه کاربران : <span class="text-red-8">{{ items.name }}</span></strong>

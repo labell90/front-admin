@@ -5,3 +5,4 @@ pwd;
 git pull origin master
 npm run build
 cp .htaccess.example dist/.htaccess
+
