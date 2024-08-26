@@ -37,6 +37,7 @@ import Medias_Breadcrumb_Item from "@/views/medias/components/Medias_Breadcrumb_
 import Global_Filter_Date from "@/components/globals/filters/Global_Filter_Date.vue";
 import Global_Items_User from "@/components/globals/items/Global_Items_User.vue";
 import Global_Actions_Restore_Item from "@/components/globals/actions/Global_Actions_Restore_Item.vue";
+import Global_Searching_Full_Search from "@/components/globals/searching/Global_Searching_Full_Search.vue";
 
 
 
@@ -57,6 +58,7 @@ app.component('global_actions_activation_item',Global_Actions_Activation_Item)
 app.component('global_medias_breadcrumb',Medias_Breadcrumb_Item)
 app.component('global_filter_date',Global_Filter_Date)
 app.component('global_items_user',Global_Items_User)
+app.component("global_searching_full_search",Global_Searching_Full_Search)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

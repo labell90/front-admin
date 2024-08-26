@@ -118,6 +118,18 @@ export default {
 
         },
 
+        Module_User_Action_Searchable(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/users/searchable').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+
 
 
 
