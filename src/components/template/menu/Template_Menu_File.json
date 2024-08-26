@@ -509,12 +509,7 @@
 
         ]
       },
-      {
-        "title" : true,
-        "fa" : "کمپین ها و رویداد ها",
-        "en" : "Campaigns and Events",
-        "level" : 0.5
-      },
+
       {
         "fa" : "کمپین ها",
         "en" : "Campaigns",
@@ -540,6 +535,7 @@
             "route_path" : "/",
             "route_name" : "campaigns_index",
             "feature_type" : "read",
+            "level"      : 1,
             "subs" : [
 
             ]

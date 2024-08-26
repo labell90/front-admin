@@ -4,7 +4,7 @@ export default {
     actions:{
         Module_Campaign_Action_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/campaigns?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/campaigns?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

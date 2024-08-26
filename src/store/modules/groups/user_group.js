@@ -4,7 +4,7 @@ export default {
     actions:{
         Module_Group_Action_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/groups?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/groups?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -14,7 +14,7 @@ export default {
         },
         Module_Group_Action_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/groups/trash?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/groups/trash?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

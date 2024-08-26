@@ -4,7 +4,7 @@ export default {
     actions:{
         Module_Lead_Resource_Action_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/resources?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/leads/resources?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -14,7 +14,7 @@ export default {
         },
         Module_Lead_Resource_Action_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/resources/trash?per_page='+items.per_page+'&page='+items.page).then(response =>{
+                axios.get('users/leads/resources/trash?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
