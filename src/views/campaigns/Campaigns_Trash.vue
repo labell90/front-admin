@@ -174,11 +174,9 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
+      <strong class="text-grey-10">جستجو و فیلتر پیشرفته</strong>
       <q-btn :to="{name : 'campaigns_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
       <q-btn :to="{name : 'campaigns_index'}" class="float-right q-mr-sm" color="yellow-9" text-color="dark" icon="fas fa-backward" glossy label="بازگشت"></q-btn>
-
-
     </q-card-section>
     <q-card-section>
       <q-table
@@ -209,7 +207,6 @@ export default {
         </template>
         <template v-slot:body-cell-color_code="props">
           <q-td :props="props" :style="'background-color:'+props.row.color_code ">
-
           </q-td>
         </template>
 
