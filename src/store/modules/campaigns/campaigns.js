@@ -95,6 +95,16 @@ export default {
             })
 
         },
+        Module_Campaign_Action_Searchable(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/campaigns/searchable').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        }
 
 
 

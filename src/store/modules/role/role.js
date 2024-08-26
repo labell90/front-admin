@@ -108,6 +108,16 @@ export default {
             })
 
         },
+        Module_Role_Action_Searchable(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/roles/searchable').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        }
 
 
 

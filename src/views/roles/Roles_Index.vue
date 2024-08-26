@@ -5,10 +5,12 @@ export default {
   name: "Roles_Index",
   mounted() {
     this.Items_Get();
+    this.Searchable_Get();
   },
   data(){
       return {
         items:[],
+        searchable:[],
         items_loading:true,
         delete_loading:false,
         items_selected:[],
@@ -87,6 +89,7 @@ export default {
     ...mapActions([
         "Module_Role_Action_Index",
         "Module_Role_Action_Delete",
+      "Module_Role_Action_Searchable"
     ]),
     Items_Get(per_page,page){
       if (!per_page){
@@ -104,6 +107,12 @@ export default {
       }).catch(error => {
         this.Methods_Notify_Error_Server();
         this.items_loading=false;
+      })
+    },
+    Searchable_Get(){
+      this.Module_Role_Action_Searchable().then(res => {
+        this.searchable = res.data.result
+        console.log(this.searchable)
       })
     },
     Item_Delete(id){
@@ -139,10 +148,18 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
+
       <q-btn :to="{name : 'roles_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
       <q-btn :to="{name : 'roles_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
+      <q-separator class="q-mt-xl"/>
+      <div class="q-mt-md">
+        <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
+        <div class="q-mt-sm">
+          <global_searching_full_search v-if="searchable.length" :items="searchable" ></global_searching_full_search>
+        </div>
+      </div>
     </q-card-section>
+
     <q-card-section>
       <q-table
           flat
