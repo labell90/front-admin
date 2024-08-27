@@ -95,6 +95,16 @@ export default {
             })
 
         },
+        Module_Lead_Advsource_Action_Searchable(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/advsources/searchable').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        }
 
 
 

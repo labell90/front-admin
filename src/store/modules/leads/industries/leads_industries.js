@@ -97,6 +97,18 @@ export default {
             })
 
         },
+        Module_Lead_Industry_Action_Searchable(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/industries/searchable').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+
 
     }
 

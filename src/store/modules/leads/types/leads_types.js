@@ -101,6 +101,16 @@ export default {
             })
 
         },
+        Module_Lead_Types_Action_Searchable(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/types/searchable').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
 
     }
 

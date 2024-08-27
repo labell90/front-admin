@@ -95,6 +95,16 @@ export default {
             })
 
         },
+        Module_Lead_Resource_Action_Searchable(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/resources/searchable').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        }
 
 
 

@@ -5,10 +5,12 @@ export default {
   name: "Leads_Resources_Index",
   mounted() {
     this.Items_Get();
+    this.Searchable_Get();
   },
   data(){
     return {
       items:[],
+      searchable:[],
       items_loading:true,
       delete_loading:false,
       activation_loading:false,
@@ -97,6 +99,7 @@ export default {
       "Module_Lead_Resource_Action_Index",
       "Module_Lead_Resource_Action_Delete",
       "Module_Lead_Resource_Action_Activation",
+      "Module_Lead_Resource_Action_Searchable"
 
 
     ]),
@@ -137,6 +140,12 @@ export default {
       })
 
     },
+    Searchable_Get(){
+      this.Module_Lead_Resource_Action_Searchable().then(res => {
+        this.searchable = res.data.result
+        console.log(this.searchable)
+      })
+    },
     Item_Activation(id){
       this.activation_loading=true;
       this.Module_Lead_Resource_Action_Activation(id).then(res => {
@@ -174,9 +183,15 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
       <q-btn :to="{name : 'lead_resources_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
       <q-btn :to="{name : 'lead_resources_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
+      <q-separator class="q-mt-xl"/>
+      <div class="q-mt-md">
+        <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
+        <div class="q-mt-sm">
+          <global_searching_full_search v-if="searchable.length" :items="searchable" ></global_searching_full_search>
+        </div>
+      </div>
     </q-card-section>
     <q-card-section>
       <q-table

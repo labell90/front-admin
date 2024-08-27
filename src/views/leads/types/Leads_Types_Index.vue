@@ -5,10 +5,13 @@ export default {
   name: "Leads_Types_Index",
   mounted() {
     this.Items_Get();
+    this.Searchable_Get();
   },
   data(){
     return {
       items:[],
+      searchable:[],
+      search_params:null,
       items_loading:true,
       delete_loading:false,
       activation_loading:false,
@@ -97,17 +100,18 @@ export default {
       "Module_Lead_Types_Action_Index",
       "Module_Lead_Types_Action_Delete",
       "Module_Lead_Types_Action_Activation",
+      "Module_Lead_Types_Action_Searchable"
 
 
     ]),
-    Items_Get(per_page,page){
+    Items_Get(per_page,page,params){
       if (!per_page){
         per_page = '';
       }
       if (!page){
         page = '';
       }
-      this.Module_Lead_Types_Action_Index({per_page:per_page,page:page}).then(res => {
+      this.Module_Lead_Types_Action_Index({per_page:per_page,page:page,params:params}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -116,6 +120,11 @@ export default {
       }).catch(error => {
         this.Methods_Notify_Error_Server();
         this.items_loading=false;
+      })
+    },
+    Searchable_Get(){
+      this.Module_Lead_Types_Action_Searchable().then(res => {
+        this.searchable = res.data.result
       })
     },
     Item_Delete(id){
@@ -162,8 +171,12 @@ export default {
     },
     Items_OnRequest(props){
       const { page, rowsPerPage, sortBy, descending } = props.pagination
-      this.Items_Get(rowsPerPage,page);
+      this.Items_Get(rowsPerPage,page,{search : this.search_params});
     },
+    Items_Search(data){
+      this.search_params = data;
+      this.Items_Get(null,null,{search : this.search_params})
+    }
 
 
   }
@@ -175,9 +188,16 @@ export default {
 
   <q-card>
     <q-card-section>
-      <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
       <q-btn :to="{name : 'lead_types_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
       <q-btn :to="{name : 'lead_types_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
+      <q-separator class="q-mt-xl"/>
+      <div class="q-mt-md">
+        <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
+        <div class="q-mt-sm">
+          <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>
+        </div>
+      </div>
+
     </q-card-section>
     <q-card-section>
       <q-table

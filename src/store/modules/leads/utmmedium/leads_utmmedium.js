@@ -96,6 +96,16 @@ export default {
             })
 
         },
+        Module_Lead_Utmmedium_Action_Searchable(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/utm/mediums/searchable').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
 
 
 
