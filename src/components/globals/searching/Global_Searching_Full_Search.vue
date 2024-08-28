@@ -56,7 +56,7 @@ export default {
     },
     Remove_Condition(id){
       this.conditions = this.conditions.filter(item => {
-        return item.id!==id
+        return item.id!==id 
       });
 
     },
@@ -162,7 +162,7 @@ export default {
                 v-model="item.value"
                 transition-show="flip-up"
                 transition-hide="flip-down"
-                label="انتخاب فیلد"
+                label="انتخاب مقدار"
                 :options="Convert_Options(item.field).items"
                 emit-value
                 map-options

@@ -11,6 +11,11 @@ export default {
     return {
       items:[],
       searchable:[],
+      query_params:{
+        sort_by : 'id',
+        sort_type : 'desc',
+        search :{}
+      },
       items_loading:true,
       delete_loading:false,
       activation_loading:false,
@@ -117,7 +122,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_Lead_Advsource_Action_Index({per_page:per_page,page:page}).then(res => {
+      this.Module_Lead_Advsource_Action_Index({per_page:per_page,page:page,params:this.query_params}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -181,6 +186,16 @@ export default {
       this.Items_Get(rowsPerPage,page);
 
     },
+    Items_Search(data){
+      this.query_params.search = data;
+      this.Items_Get()
+    },
+    Items_Sorting(data){
+      this.query_params.sort_type = data.sort_type;
+      this.query_params.sort_by = data.sort_by;
+      this.Items_Get()
+
+    }
 
 
   }
@@ -197,6 +212,10 @@ export default {
         <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
         <div class="q-mt-sm">
           <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>
+        </div>
+        <q-separator class="q-mt-sm q-mb-sm"/>
+        <div>
+          <global_searching_sorting @DoSorting="(data) => Items_Sorting(data)" ></global_searching_sorting>
         </div>
       </div>
     </q-card-section>
