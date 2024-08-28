@@ -97,7 +97,7 @@ export default {
 
   <div v-if="items">
     <div>
-      <q-btn @click="Add_Condition" color="dark" class="font-13" icon="fas fa-plus" glossy label="افزودن شرط"></q-btn>
+      <q-btn @click="Add_Condition" color="dark" class="font-13" icon="fas fa-plus fa-beat" glossy label="افزودن شرط"></q-btn>
     </div>
     <div class="q-mt-md">
 

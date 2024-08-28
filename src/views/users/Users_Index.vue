@@ -1,10 +1,15 @@
 <script>
 import {mapActions} from "vuex";
+import Global_Item_User_Group from "@/components/globals/items/Global_Item_User_Group.vue";
 
 export default {
   name: "Users_Index",
+  components:{
+    'user_group' : Global_Item_User_Group,
+  },
   mounted() {
     this.Items_Get();
+    this.Group_Get();
     this.Searchable_Get();
   },
   data(){
@@ -19,6 +24,7 @@ export default {
       items_loading:true,
       delete_loading:false,
       activation_loading:false,
+      groups:[],
       items_selected:[],
       selected: [],
       pagination: {
@@ -48,7 +54,7 @@ export default {
           required: true,
           label: 'موبایل',
           align: 'left',
-          sortable: true,
+          sortable: false,
           field: row => row.phone,
         },
         {
@@ -56,8 +62,16 @@ export default {
           required: true,
           label: 'ایمل',
           align: 'left',
-          sortable: true,
+          sortable: false,
           field: row => row.email,
+        },
+        {
+          name: 'group',
+          required: true,
+          label: 'گروه',
+          align: 'left',
+          sortable: false,
+          field: row => row.group,
         },
         {
           name: 'is_active',
@@ -102,6 +116,7 @@ export default {
     ...mapActions([
       "Module_User_Action_Index",
       "Module_User_Action_Delete",
+      "Module_Group_Action_Index",
       "Module_User_Action_Activation",
       "Module_User_Action_Searchable"
     ]),
@@ -121,6 +136,11 @@ export default {
       }).catch(error => {
         this.Methods_Notify_Error_Server();
         this.items_loading=false;
+      })
+    },
+    Group_Get(){
+      this.Module_Group_Action_Index({per_page : 100000}).then(res => {
+        this.groups = res.data.result.data;
       })
     },
     Searchable_Get(){
@@ -202,9 +222,15 @@ export default {
          <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>
        </div>
         <q-separator class="q-mt-sm q-mb-sm"/>
-        <div>
-          <global_searching_sorting @DoSorting="(data) => Items_Sorting(data)" ></global_searching_sorting>
-        </div>
+<!--        <div>-->
+<!--          <global_searching_sorting @DoSorting="(data) => Items_Sorting(data)" ></global_searching_sorting>-->
+<!--        </div>-->
+        <q-banner dense class="bg-indigo rounded-borders">
+          <q-icon name="fas fa-info-circle fa-spin" color="white" size="30px"/>
+          <span class="text-white q-ml-sm">
+            برای مشاهده و ویرایش گروه کاربر ، روی دکمه مورد نظر در قسمت گروه جدول کلیک کنید
+          </span>
+        </q-banner>
       </div>
     </q-card-section>
     <q-card-section>
@@ -253,6 +279,11 @@ export default {
               {{ props.row.city }}
 
             </span>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-group="props">
+          <q-td :props="props">
+            <user_group :user="props.row" :groups="groups"></user_group>
           </q-td>
         </template>
         <template v-slot:body-cell-tools="props">
