@@ -6,6 +6,7 @@ export default {
   mounted() {
     this.Get_Locations();
     this.Get_Item();
+    this.Get_Roles();
 
   },
   data(){
@@ -17,6 +18,7 @@ export default {
         country_id:null,
         province_id:null,
         city_id:null,
+        role_id:null,
         name:null,
         phone:null,
         email:null,
@@ -31,18 +33,18 @@ export default {
       countries:[],
       provinces:[],
       cities:[],
+      roles:[],
     }
   },
   methods:{
     ...mapActions([
       "Module_User_Action_Show",
       "Module_User_Action_Edit",
-
-
       "Module_Location_Action_Index",
       "Module_Location_Action_Country_Selectable",
       "Module_Location_Action_Province_Selectable",
-      "Module_Location_Action_City_Selectable"
+      "Module_Location_Action_City_Selectable",
+        "Module_Role_Action_Index"
     ]),
     Get_Item(){
       this.Module_User_Action_Show(this.$route.params.id).then(response => {
@@ -77,13 +79,22 @@ export default {
 
     },
     Get_Countries(){
-
       this.Module_Location_Action_Country_Selectable(this.locations).then(response => {
         this.countries = response;
       }).catch(error =>{
-
       })
 
+    },
+    Get_Roles(){
+      this.Module_Role_Action_Index({per_page : 1000}).then(res => {
+        this.roles = []
+        res.data.result.data.forEach(role => {
+          this.roles.push({
+            label : role.name,
+            value : role.id
+          })
+        })
+      })
     },
     Filter_Countries_Select (val, update, abort) {
       update(() => {
@@ -115,6 +126,17 @@ export default {
           })
         }else {
           // this.Computed_Get_Cities();
+        }
+      })
+    },
+    Filter_Roles_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.roles =  this.roles.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Roles();
         }
       })
     },
@@ -311,6 +333,40 @@ export default {
               </template>
             </q-input>
           </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+            <q-select
+                outlined
+                transition-show="flip-up"
+                transition-hide="flip-down"
+                v-model="items.role_id"
+                label="انتخاب نقش"
+                :options="roles"
+                @filter="Filter_Roles_Select"
+                emit-value
+                map-options
+                use-input
+            >
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-red">
+                    گزینه ای یافت نشد
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:option="scope">
+                <q-item v-bind="scope.itemProps">
+                  <q-item-section>
+                    <q-item-label>{{ scope.opt.label }}</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:error>
+                <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'role_id')" />
+              </template>
+            </q-select>
+
+          </div>
+
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
             <q-input  :error="this.Methods_Validation_Check(errors,'tel')" outlined v-model="items.tel"  type="text" label="تلفن ثابت">
               <template v-slot:error>

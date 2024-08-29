@@ -117,6 +117,17 @@ export default {
             })
 
         },
+        Module_User_Action_Group_Update(_,items){
+            return new Promise((resolve, reject) => {
+                axios.post('users/users/group/'+items.id,items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
 
         Module_User_Action_Searchable(){
             return new Promise((resolve, reject) => {

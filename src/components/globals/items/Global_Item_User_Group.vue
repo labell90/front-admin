@@ -1,4 +1,6 @@
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "Global_Item_User_Group",
   props : ['user','groups'],
@@ -13,6 +15,7 @@ export default {
   data(){
     return{
       dialog_edit:false,
+      loading:false,
       group_option:[],
       admin_options:[
         {
@@ -33,6 +36,9 @@ export default {
     }
   },
   methods : {
+    ...mapActions([
+        "Module_User_Action_Group_Update"
+    ]),
     Group_Option_Generate(){
       if (this.groups.length){
         this.group_option=[];
@@ -56,6 +62,25 @@ export default {
         }
       })
     },
+    Edit_Group(){
+      this.loading = true;
+      let items = {
+        id : this.user.id,
+        group_id : this.items.id,
+        is_admin : this.items.is_admin,
+        description : this.items.description
+      }
+      this.Module_User_Action_Group_Update(items).then(res => {
+        this.$emit("Done")
+        this.loading=false;
+        this.dialog_edit=false;
+        this.Methods_Notify_Update();
+      }).catch(error => {
+        this.loading=false;
+        return this.Methods_Notify_Error_Server();
+      })
+
+    }
 
   }
 }
@@ -148,7 +173,7 @@ export default {
       </q-card-section>
       <q-card-actions align="right" class="bg-white q-mb-sm">
         <q-btn glossy label="بستن" color="red-8" v-close-popup icon="fas fa-times"/>
-        <q-btn glossy label="ویرایش اطلاعات" color="teal-7" icon="fas fa-check" />
+        <q-btn @click="Edit_Group" :loading="loading" glossy label="ویرایش اطلاعات" color="teal-7" icon="fas fa-check" />
       </q-card-actions>
     </q-card>
   </q-dialog>

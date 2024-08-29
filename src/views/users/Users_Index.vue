@@ -66,6 +66,14 @@ export default {
           field: row => row.email,
         },
         {
+          name: 'role',
+          required: true,
+          label: 'نقس',
+          align: 'left',
+          sortable: false,
+          field: row => row.role,
+        },
+        {
           name: 'group',
           required: true,
           label: 'گروه',
@@ -281,9 +289,15 @@ export default {
             </span>
           </q-td>
         </template>
+        <template v-slot:body-cell-role="props">
+          <q-td :props="props">
+            <q-chip class="font-12" v-if="props.row.role" text-color="white" color="deep-orange-7" :label="props.row.role.name"></q-chip>
+            <q-chip class="font-12" v-else text-color="white" color="grey-7" label="بدون نقش"></q-chip>
+          </q-td>
+        </template>
         <template v-slot:body-cell-group="props">
           <q-td :props="props">
-            <user_group :user="props.row" :groups="groups"></user_group>
+            <user_group :user="props.row" :groups="groups" @Done="Items_Get"></user_group>
           </q-td>
         </template>
         <template v-slot:body-cell-tools="props">

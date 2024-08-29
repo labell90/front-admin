@@ -12,6 +12,16 @@ export default {
             })
 
         },
+        Module_Feature_Action_Index_All(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/features/all').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
     }
 
 

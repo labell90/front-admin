@@ -25,7 +25,7 @@ export default {
           label: 'عنوان',
           align: 'left',
           sortable: false,
-          field: row => row.name,
+          field: row => row.name_fa,
         },
         {
           name: 'code',

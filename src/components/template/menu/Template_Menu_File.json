@@ -71,6 +71,17 @@
     "en" : "Roles and Accesses"
   },
   {
+    "fa" : "مدریت ویژگی ها",
+    "en" : "Features",
+    "icon" : "fas fa-shield-halved",
+    "route_path" : "/features",
+    "route_name" : "features_index",
+    "level"      : 0,
+    "subs" : [
+
+    ]
+  },
+  {
     "fa" : "نقش های کاربر",
     "en" : "Roles",
     "icon" : "fas fa-users-viewfinder",
