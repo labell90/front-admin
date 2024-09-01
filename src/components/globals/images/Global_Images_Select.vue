@@ -11,8 +11,6 @@ export default {
 </template>
 
 <style scoped>
-.image-size{
-  //width: 40px!important;
-}
+
 
 </style>

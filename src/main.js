@@ -39,6 +39,8 @@ import Global_Items_User from "@/components/globals/items/Global_Items_User.vue"
 import Global_Actions_Restore_Item from "@/components/globals/actions/Global_Actions_Restore_Item.vue";
 import Global_Searching_Full_Search from "@/components/globals/searching/Global_Searching_Full_Search.vue";
 import Global_Searching_Sorting from "@/components/globals/searching/Global_Searching_Sorting.vue";
+import Global_Images_Animation_No_Data from "@/components/globals/images/Global_Images_Animation_No_Data.vue";
+import Global_Chips_Bool_Status from "@/components/globals/chips/Global_Chips_Bool_Status.vue";
 
 
 
@@ -53,6 +55,7 @@ app.component('global_validations_errors',Global_Validations_Errors)
 app.component('global_menu_item',Template_Menu_Components_Sub_Menu)
 app.component('global_loading_shape',Global_Loading_Shape)
 app.component('global_images_select',Global_Images_Select)
+app.component('global_images_animation_no_data',Global_Images_Animation_No_Data)
 app.component('global_actions_delete_item',Global_Actions_Delete_Item)
 app.component('global_actions_restore_item',Global_Actions_Restore_Item)
 app.component('global_actions_activation_item',Global_Actions_Activation_Item)
@@ -61,6 +64,7 @@ app.component('global_filter_date',Global_Filter_Date)
 app.component('global_items_user',Global_Items_User)
 app.component("global_searching_full_search",Global_Searching_Full_Search)
 app.component("global_searching_sorting",Global_Searching_Sorting)
+app.component("global_chips_bool_status",Global_Chips_Bool_Status)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
