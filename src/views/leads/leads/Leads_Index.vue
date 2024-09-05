@@ -6,6 +6,8 @@ export default {
   mounted() {
     this.Items_Get();
     this.Searchable_Get();
+    this.Columns_Generate();
+
   },
   data(){
     return {
@@ -39,7 +41,7 @@ export default {
         },
         {
           name: 'name',
-          required: true,
+          value: 'name',
           label: 'نام',
           align: 'left',
           format: val => `${val}`,
@@ -48,7 +50,7 @@ export default {
         },
         {
           name: 'phone',
-          required: true,
+          value: 'phone',
           label: 'شماره موبایل',
           align: 'left',
           sortable: false,
@@ -56,7 +58,7 @@ export default {
         },
         {
           name: 'company',
-          required: true,
+          value: 'company',
           label: 'نام شرکت',
           align: 'left',
           sortable: true,
@@ -64,7 +66,7 @@ export default {
         },
         {
           name: 'code',
-          required: true,
+          value: 'code',
           label: 'کد',
           align: 'left',
           sortable: true,
@@ -72,7 +74,7 @@ export default {
         },
         {
           name: 'is_active',
-          required: true,
+          value: 'is_active',
           label: 'وضعیت',
           align: 'left',
           sortable: true,
@@ -80,7 +82,7 @@ export default {
         },
         {
           name: 'created_by',
-          required: true,
+          value: 'created_by',
           label: 'ایجاد',
           align: 'left',
           sortable: true ,
@@ -88,7 +90,7 @@ export default {
         },
         {
           name: 'created_at',
-          required: true,
+          value: 'created_at',
           label: 'ت ایجاد',
           align: 'left',
           sortable: true ,
@@ -96,7 +98,7 @@ export default {
         },
         {
           name: 'updated_by',
-          required: true,
+          value: 'updated_by',
           label: 'ویرایش',
           align: 'left',
           sortable: true ,
@@ -104,7 +106,7 @@ export default {
         },
         {
           name: 'updated_at',
-          required: true,
+          value: 'updated_at',
           label: 'ت ویرایش',
           align: 'left',
           sortable: true ,
@@ -112,10 +114,13 @@ export default {
         },
         {
           name: 'tools',
+          value: 'tools',
           label: 'عملیات',
           align: 'left',
         }
-      ]
+      ],
+      visible_columns:[],
+
     }
   },
   methods :{
@@ -213,6 +218,13 @@ export default {
       this.query_params.search = data;
       this.Items_Get()
     },
+    Columns_Generate(){
+      this.columns.forEach(item => {
+        if (item.value){
+          this.visible_columns.push(item.value)
+        }
+      })
+    }
 
   }
 }
@@ -234,6 +246,33 @@ export default {
 
     </q-card-section>
     <q-card-section>
+      <div class="q-mb-sm">
+        <q-select
+            outlined
+            transition-show="flip-up"
+            transition-hide="flip-down"
+            v-model="visible_columns"
+            label="موارد قابل مشاهده"
+            :options="columns"
+            emit-value
+            map-options
+            multiple
+            behavior="dialog"
+            use-chips
+        >
+          <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+            <q-item v-bind="itemProps">
+              <q-item-section>
+                <q-item-label v-html="opt.label" />
+              </q-item-section>
+              <q-item-section side>
+                <q-toggle :model-value="selected" @update:model-value="toggleOption(opt)" />
+              </q-item-section>
+            </q-item>
+          </template>
+
+        </q-select>
+      </div>
       <q-table
           flat
           bordered
@@ -243,6 +282,7 @@ export default {
           title-class="text-teal-8 font-18 font-weight-500"
           table-header-class="text-red-8"
           :columns="columns"
+          :visible-columns="visible_columns"
           separator="cell"
           selection="multiple"
           row-key="id"

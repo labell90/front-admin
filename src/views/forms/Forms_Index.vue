@@ -5,6 +5,7 @@ export default {
   name: "Forms_Index",
   mounted() {
     this.Items_Get();
+    this.Columns_Generate();
   },
   data(){
     return {
@@ -16,6 +17,8 @@ export default {
       selected: [],
       dialog_details: [],
       pagination: {
+        sortBy : 'id',
+        descending:true,
         page: 1,
         rowsPerPage: 15,
         rowsNumber: 15
@@ -31,7 +34,7 @@ export default {
         },
         {
           name: 'name',
-          required: true,
+          value: 'name',
           label: 'عنوان',
           align: 'left',
           sortable: true,
@@ -39,7 +42,7 @@ export default {
         },
         {
           name: 'title',
-          required: true,
+          value: 'title',
           label: 'تیتر',
           align: 'left',
           sortable: true,
@@ -47,7 +50,7 @@ export default {
         },
         {
           name: 'type',
-          required: true,
+          value: 'type',
           label: 'نوع فرم',
           align: 'left',
           sortable: true,
@@ -55,7 +58,7 @@ export default {
         },
         {
           name: 'uses_count',
-          required: true,
+          value: 'uses_count',
           label: 'نعداد استفاده',
           align: 'left',
           sortable: true,
@@ -63,10 +66,12 @@ export default {
         },
         {
           name: 'tools',
+          value: 'tools',
           label: 'عملیات',
           align: 'left',
         }
-      ]
+      ],
+      visible_columns:[]
     }
   },
   methods :{
@@ -133,9 +138,29 @@ export default {
     },
     Items_OnRequest(props){
       const { page, rowsPerPage, sortBy, descending } = props.pagination
+      let sort_type;
+      this.pagination.sortBy = sortBy
+      if (page === this.pagination.page && rowsPerPage === this.pagination.rowsPerPage){
+        this.pagination.descending = !this.pagination.descending
+      }
+      if (this.pagination.descending){
+        sort_type = "desc"
+      }else {
+        sort_type = "asc"
+      }
+      this.query_params.sort_by = sortBy;
+      this.query_params.sort_type = sort_type;
       this.Items_Get(rowsPerPage,page);
 
     },
+    Columns_Generate(){
+      this.columns.forEach(item => {
+        if (item.value){
+          this.visible_columns.push(item.value)
+        }
+      })
+    }
+
 
 
   }
@@ -151,6 +176,34 @@ export default {
       <q-btn :to="{name : 'forms_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
     </q-card-section>
     <q-card-section>
+      <div class="q-mb-sm">
+        <q-select
+            outlined
+            transition-show="flip-up"
+            transition-hide="flip-down"
+            v-model="visible_columns"
+            label="موارد قابل مشاهده"
+            :options="columns"
+            emit-value
+            map-options
+            multiple
+            behavior="dialog"
+            use-chips
+        >
+          <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+            <q-item v-bind="itemProps">
+              <q-item-section>
+                <q-item-label v-html="opt.label" />
+              </q-item-section>
+              <q-item-section side>
+                <q-toggle :model-value="selected" @update:model-value="toggleOption(opt)" />
+              </q-item-section>
+            </q-item>
+          </template>
+
+        </q-select>
+      </div>
+
       <q-table
           flat
           bordered
@@ -160,6 +213,7 @@ export default {
           title-class="text-teal-8 font-18 font-weight-500"
           table-header-class="text-red-8"
           :columns="columns"
+          :visible-columns="visible_columns"
           separator="cell"
           selection="multiple"
           row-key="id"

@@ -6,6 +6,8 @@ export default {
   mounted() {
     this.Items_Get();
     this.Searchable_Get();
+    this.Columns_Generate();
+
   },
   data(){
     return {
@@ -22,6 +24,8 @@ export default {
       items_selected:[],
       selected: [],
       pagination: {
+        sortBy : 'id',
+        descending:true,
         page: 1,
         rowsPerPage: 15,
         rowsNumber: 15
@@ -37,7 +41,7 @@ export default {
         },
         {
           name: 'name',
-          required: true,
+          value: 'name',
           label: 'نام',
           align: 'left',
           sortable: true,
@@ -45,7 +49,7 @@ export default {
         },
         {
           name: 'color_code',
-          required: true,
+          value: 'color_code',
           label: 'رنگ',
           align: 'left',
           sortable: false,
@@ -53,7 +57,7 @@ export default {
         },
         {
           name: 'code',
-          required: true,
+          value: 'code',
           label: 'کد',
           align: 'left',
           sortable: true,
@@ -61,7 +65,7 @@ export default {
         },
         {
           name: 'is_active',
-          required: true,
+          value: 'is_active',
           label: 'وضعیت',
           align: 'left',
           sortable: true,
@@ -69,7 +73,7 @@ export default {
         },
         {
           name: 'created_by',
-          required: true,
+          value: 'created_by',
           label: 'ایجاد',
           align: 'left',
           sortable: true ,
@@ -77,7 +81,7 @@ export default {
         },
         {
           name: 'created_at',
-          required: true,
+          value: 'created_at',
           label: 'ت ایجاد',
           align: 'left',
           sortable: true ,
@@ -85,7 +89,7 @@ export default {
         },
         {
           name: 'updated_by',
-          required: true,
+          value: 'updated_by',
           label: 'ویرایش',
           align: 'left',
           sortable: true ,
@@ -93,7 +97,7 @@ export default {
         },
         {
           name: 'updated_at',
-          required: true,
+          value: 'updated_at',
           label: 'ت ویرایش',
           align: 'left',
           sortable: true ,
@@ -101,10 +105,13 @@ export default {
         },
         {
           name: 'tools',
+          value: 'tools',
           label: 'عملیات',
           align: 'left',
         }
-      ]
+      ],
+      visible_columns:[],
+
     }
   },
   methods :{
@@ -176,24 +183,37 @@ export default {
       })
 
     },
-
     updateSelected(newSelection) {
       this.selected = newSelection;
       this.items_selected = newSelection.map(item => item.id);
     },
     Items_OnRequest(props){
       const { page, rowsPerPage, sortBy, descending } = props.pagination
-      this.Items_Get(rowsPerPage,page,{search : this.search_params});
+      let sort_type;
+      this.pagination.sortBy = sortBy
+      if (page === this.pagination.page && rowsPerPage === this.pagination.rowsPerPage){
+        this.pagination.descending = !this.pagination.descending
+      }
+      if (this.pagination.descending){
+        sort_type = "desc"
+      }else {
+        sort_type = "asc"
+      }
+      this.query_params.sort_by = sortBy;
+      this.query_params.sort_type = sort_type;
+      this.Items_Get(rowsPerPage,page);
+
     },
     Items_Search(data){
       this.query_params.search = data;
       this.Items_Get()
     },
-    Items_Sorting(data){
-      this.query_params.sort_type = data.sort_type;
-      this.query_params.sort_by = data.sort_by;
-      this.Items_Get()
-
+    Columns_Generate(){
+      this.columns.forEach(item => {
+        if (item.value){
+          this.visible_columns.push(item.value)
+        }
+      })
     }
 
 
@@ -214,13 +234,37 @@ export default {
         <div class="q-mt-sm">
           <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>
         </div>
-        <q-separator class="q-mt-sm q-mb-sm"/>
-        <div>
-          <global_searching_sorting @DoSorting="(data) => Items_Sorting(data)" ></global_searching_sorting>
-        </div>
       </div>
     </q-card-section>
     <q-card-section>
+      <div class="q-mb-sm">
+        <q-select
+            outlined
+            transition-show="flip-up"
+            transition-hide="flip-down"
+            v-model="visible_columns"
+            label="موارد قابل مشاهده"
+            :options="columns"
+            emit-value
+            map-options
+            multiple
+            behavior="dialog"
+            use-chips
+        >
+          <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+            <q-item v-bind="itemProps">
+              <q-item-section>
+                <q-item-label v-html="opt.label" />
+              </q-item-section>
+              <q-item-section side>
+                <q-toggle :model-value="selected" @update:model-value="toggleOption(opt)" />
+              </q-item-section>
+            </q-item>
+          </template>
+
+        </q-select>
+      </div>
+
       <q-table
           flat
           bordered
@@ -230,6 +274,7 @@ export default {
           title-class="text-teal-8 font-18 font-weight-500"
           table-header-class="text-red-8"
           :columns="columns"
+          :visible-columns="visible_columns"
           separator="cell"
           selection="multiple"
           row-key="id"
