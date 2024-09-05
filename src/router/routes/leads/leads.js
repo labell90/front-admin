@@ -4,6 +4,7 @@ import Leads_Create from "@/views/leads/leads/Leads_Create.vue";
 import Leads_Edit from "@/views/leads/leads/Leads_Edit.vue";
 import Leads_Profile_Index from "@/views/leads/leads/profile/Leads_Profile_Index.vue";
 import Leads_Trash from "@/views/leads/leads/Leads_Trash.vue";
+import Lead_Fields from "@/views/leads/leads/Lead_Fields.vue";
 
 const route_leads=[
     {
@@ -22,6 +23,15 @@ const route_leads=[
         meta : {
             title : 'تنظیمات سرنخ ها',
             subtitle : 'ایجاد سرنخ'
+        },
+    },
+    {
+        path : "/leads/fields",
+        name : "lead_fields",
+        component : Lead_Fields,
+        meta : {
+            title : 'تنظیمات سرنخ ها',
+            subtitle : 'فیلد های اضافه '
         },
     },
     {

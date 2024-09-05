@@ -12,6 +12,16 @@ export default {
             })
 
         },
+        Module_Form_Action_All(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/forms/all').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
         Module_Form_Action_Show(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/forms/'+item).then(response =>{

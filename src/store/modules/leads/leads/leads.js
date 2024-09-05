@@ -110,7 +110,54 @@ export default {
                 })
             })
 
-        }
+        },
+
+        Module_Lead_Action_Add_Field(_,items){
+            return new Promise((resolve, reject) => {
+                axios.post('users/leads/leads/forms',items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
+        Module_Lead_Action_Get_Field(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/leads/forms').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
+        Module_Lead_Action_Activation_Field(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/leads/forms/change/activation/'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
+        Module_Lead_Action_Required_Field(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/leads/forms/change/required/'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
+        Module_Lead_Action_Delete_Field(_,item){
+            return new Promise((resolve, reject) => {
+                axios.delete('users/leads/leads/forms/'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
+
 
     }
 

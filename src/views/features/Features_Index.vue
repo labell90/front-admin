@@ -294,7 +294,7 @@ export default {
 
 <template>
   <q-card>
-    <q-banner dense class="bg-teal-7 rounded-borders">
+    <q-banner dense class="bg-pink-7 rounded-borders">
       <q-icon name="fas fa-info-circle fa-spin" color="white" size="30px"/>
       <span class="text-white q-ml-sm font-weight-600">
             برای مشاهده و ویرایش دسترسی های متصل به نقش ها و کاربران میتوانید روی دکمه مورد نظر در جدول کلیک کنید

@@ -211,7 +211,7 @@
               {
                 "fa" : "ایجاد سرنخ",
                 "en" : "New lead",
-                "route_path" : "/",
+                "route_path" : "/leads/create",
                 "route_name" : "lead_create",
                 "feature_type" : "create",
                 "level"      : 1.5,
@@ -223,9 +223,21 @@
               {
                 "fa" : "لیست سرنخ ها",
                 "en" : "Leads",
-                "route_path" : "/",
+                "route_path" : "/leads",
                 "route_name" : "lead_index",
                 "feature_type" : "read",
+                "level"      : 1.5,
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "فیلد های اضافه",
+                "en" : "Extra fields",
+                "route_path" : "/leads/fields",
+                "route_name" : "lead_fields",
+                "feature_type" : "root",
                 "level"      : 1.5,
 
                 "subs" : [

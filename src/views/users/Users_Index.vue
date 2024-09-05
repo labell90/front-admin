@@ -28,6 +28,8 @@ export default {
       items_selected:[],
       selected: [],
       pagination: {
+        sortBy : 'id',
+        descending:true,
         page: 1,
         rowsPerPage: 15,
         rowsNumber: 15
@@ -199,20 +201,25 @@ export default {
     },
     Items_OnRequest(props){
       const { page, rowsPerPage, sortBy, descending } = props.pagination
-      this.Items_Get(rowsPerPage,page,{search : this.search_params});
+      let sort_type;
+      this.pagination.sortBy = sortBy
+      if (page === this.pagination.page && rowsPerPage === this.pagination.rowsPerPage){
+        this.pagination.descending = !this.pagination.descending
+      }
+      if (this.pagination.descending){
+        sort_type = "desc"
+      }else {
+        sort_type = "asc"
+      }
+      this.query_params.sort_by = sortBy;
+      this.query_params.sort_type = sort_type;
+      this.Items_Get(rowsPerPage,page);
+
     },
     Items_Search(data){
       this.query_params.search = data;
       this.Items_Get()
     },
-    Items_Sorting(data){
-      this.query_params.sort_type = data.sort_type;
-      this.query_params.sort_by = data.sort_by;
-      this.Items_Get()
-
-    }
-
-
   }
 
 }
@@ -221,7 +228,7 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <q-btn :to="{name : 'users_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+      <q-btn :to="{name : 'users_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
       <q-btn :to="{name : 'users_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
       <q-separator class="q-mt-xl"/>
       <div class="q-mt-md">

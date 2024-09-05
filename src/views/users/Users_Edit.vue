@@ -182,7 +182,7 @@ export default {
       <q-card-section>
         <strong class="text-grey-10">ویرایش اطلاعات مدیر</strong>
         <q-btn :to="{name : 'users_index'}" class="float-right" color="yellow-9" text-color="dark" icon="fas fa-backward" glossy label="بازگشت"></q-btn>
-        <q-btn :to="{name : 'users_create'}" class="float-right q-mr-sm" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+        <q-btn :to="{name : 'users_create'}" class="float-right q-mr-sm" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
 
         <div class="row q-mt-md">
           <img src="assets/images/icons/user-default.png" width="45"  alt="user_profile"/>

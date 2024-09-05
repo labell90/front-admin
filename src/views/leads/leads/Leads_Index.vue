@@ -22,6 +22,8 @@ export default {
       items_selected:[],
       selected: [],
       pagination: {
+        sortBy : 'id',
+        descending:true,
         page: 1,
         rowsPerPage: 15,
         rowsNumber: 15
@@ -33,13 +35,14 @@ export default {
           label: 'ID',
           align: 'left',
           sortable: true,
-          field: row => '# ' + row.id,
+          field: row =>row.id,
         },
         {
           name: 'name',
           required: true,
           label: 'نام',
           align: 'left',
+          format: val => `${val}`,
           sortable: true,
           field: row => row.name,
         },
@@ -191,6 +194,18 @@ export default {
     },
     Items_OnRequest(props){
       const { page, rowsPerPage, sortBy, descending } = props.pagination
+      let sort_type;
+      this.pagination.sortBy = sortBy
+      if (page === this.pagination.page && rowsPerPage === this.pagination.rowsPerPage){
+        this.pagination.descending = !this.pagination.descending
+      }
+      if (this.pagination.descending){
+        sort_type = "desc"
+      }else {
+        sort_type = "asc"
+      }
+      this.query_params.sort_by = sortBy;
+      this.query_params.sort_type = sort_type;
       this.Items_Get(rowsPerPage,page);
 
     },
@@ -198,33 +213,22 @@ export default {
       this.query_params.search = data;
       this.Items_Get()
     },
-    Items_Sorting(data){
-      this.query_params.sort_type = data.sort_type;
-      this.query_params.sort_by = data.sort_by;
-      this.Items_Get()
-
-    }
-
-
 
   }
 }
 </script>
 
 <template>
+
   <q-card>
     <q-card-section>
-      <q-btn :to="{name : 'lead_create'}" class="float-right" color="teal-8"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+      <q-btn :to="{name : 'lead_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
       <q-btn :to="{name : 'lead_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
       <q-separator class="q-mt-xl"/>
       <div class="q-mt-md">
         <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
         <div class="q-mt-sm">
           <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>
-        </div>
-        <q-separator class="q-mt-sm q-mb-sm"/>
-        <div>
-          <global_searching_sorting @DoSorting="(data) => Items_Sorting(data)" ></global_searching_sorting>
         </div>
       </div>
 
@@ -246,7 +250,18 @@ export default {
           @update:selected="updateSelected"
           v-model:pagination="pagination"
           @request="Items_OnRequest"
+          binary-state-sort
+
+
       >
+        <template v-slot:top="props">
+          <q-btn
+              flat dense
+              :icon="props.inFullscreen ? 'fas fa-minimize text-pink-7' : 'fas fa-maximize text-pink-7'"
+              @click="props.toggleFullscreen"
+              class="font-12 "
+          />
+        </template>
         <template v-slot:body-cell-name="props">
           <q-td :props="props">
             <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
@@ -277,6 +292,7 @@ export default {
             </div>
           </q-td>
         </template>
+
         <template v-slot:body-cell-created_by="props">
           <q-td :props="props" >
             <global_items_user :user="props.row.created_by" />
