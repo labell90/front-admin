@@ -5,6 +5,7 @@ import Leads_Edit from "@/views/leads/leads/Leads_Edit.vue";
 import Leads_Profile_Index from "@/views/leads/leads/profile/Leads_Profile_Index.vue";
 import Leads_Trash from "@/views/leads/leads/Leads_Trash.vue";
 import Lead_Fields from "@/views/leads/leads/Lead_Fields.vue";
+import Leads_Profile_Notes from "@/views/leads/leads/profile/Leads_Profile_Notes.vue";
 
 const route_leads=[
     {
@@ -60,7 +61,43 @@ const route_leads=[
             title : 'تنظیمات سرنخ ها',
             subtitle : 'پروفایل سرنخ'
         },
-    }
+    },
+    {
+        path : "/leads/profile/:id/notes",
+        name : "lead_profile_notes",
+        component : Leads_Profile_Index,
+        meta : {
+            title : 'پروفایل سرنخ',
+            subtitle : 'یادداشت ها'
+        },
+    },
+    {
+        path : "/leads/profile/:id/histories",
+        name : "lead_profile_histories",
+        component : Leads_Profile_Index,
+        meta : {
+            title : 'پروفایل سرنخ',
+            subtitle : 'تاریخچه'
+        },
+    },
+    {
+        path : "/leads/profile/:id/texts",
+        name : "lead_profile_texts",
+        component : Leads_Profile_Index,
+        meta : {
+            title : 'پروفایل سرنخ',
+            subtitle : 'پیامک ها'
+        },
+    },
+    {
+        path : "/leads/profile/:id/documents",
+        name : "lead_profile_documents",
+        component : Leads_Profile_Index,
+        meta : {
+            title : 'پروفایل سرنخ',
+            subtitle : 'اسناد و مدارک'
+        },
+    },
 
 ]
 

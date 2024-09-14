@@ -11,7 +11,7 @@ export default {
       <div class="text-subtitle1 font-weight-600 font-17">
         {{this.$route.meta.title}}
       </div>
-      <div class="text-subtitle2 text-grey-8">
+      <div class="text-subtitle2 text-grey-7">
         {{this.$route.meta.subtitle}}
 
       </div>

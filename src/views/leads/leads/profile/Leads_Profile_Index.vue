@@ -1,11 +1,18 @@
 <script>
 import {mapActions} from "vuex";
+import Leads_Profile_Histories from "@/views/leads/leads/profile/Leads_Profile_Histories.vue";
+import Leads_Profile_Notes from "@/views/leads/leads/profile/Leads_Profile_Notes.vue";
+import Leads_Profile_Documents from "@/views/leads/leads/profile/Leads_Profile_Documents.vue";
 
 export default {
   name: "Leads_Profile_Index",
+  components :{
+    'lead_histories' : Leads_Profile_Histories,
+    'lead_notes' : Leads_Profile_Notes,
+    'lead_documents' : Leads_Profile_Documents,
+  },
   mounted() {
     this.Get_Lead();
-
   },
   data(){
     return{
@@ -33,230 +40,175 @@ export default {
   <global_loading_shape v-if="loading" />
   <template v-else>
   <div class="q-mb-xl">
-    <q-btn :to="{name : 'lead_index'}" class="float-right" color="yellow-9" text-color="black" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
+    <q-btn :to="{name : 'lead_index'}" class="float-right" color="grey-7" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
     <q-btn :to="{name : 'lead_edit',params:{id:lead.id}}" class="float-right q-mr-sm" color="blue-8" glossy icon="fas fa-edit" label="ویرایش اطلاعات"></q-btn>
 
   </div>
-    <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 q-px-xs q-mb-sm">
-        <q-card class="">
-          <q-card-section>
-            <div class="q-mb-xs">
-              <strong class="text-red">اطلاعات شخصی</strong>
+    <q-card class="q-mt-md rounded-borders" dark bordered >
+
+      <q-card-section>
+        <div class="row">
+          <div class="col-lg-1 col-md-2 col-sm-4 col-xs-6 q-pa-xs">
+            <img width="100" src="/src/assets/images/icons/lead.png" alt="lead">
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 q-pa-xs">
+            <div>
+              <strong class="font-16">{{lead.name ?? "---"}}</strong>
             </div>
-            <q-separator/>
-            <div class="q-mt-sm">
-              <div class="text-center">
-                <q-avatar size="100px">
-                  <img src="/src/assets/images/icons/lead.png" alt="">
-                </q-avatar>
+            <div class="q-mt-md">
+              <strong class="font-16">{{lead.phone ?? "---"}}</strong>
+            </div>
+            <div class="q-mt-md">
+              <strong class="font-16">{{lead.email ?? "---"}}</strong>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 q-pa-xs">
+            <div>
+              <span class="text-pink-4 font-14 font-weight-500">شرکت : </span>
+              <strong class="font-15">{{lead.company ?? "---"}}</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">تلفن : </span>
+              <strong class="font-15">{{lead.phone ?? "---"}}</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">فکس : </span>
+              <strong class="font-15">{{lead.fax ?? "---"}}</strong>
+            </div>
+
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 q-pa-xs">
+            <div>
+              <span class="text-pink-4 font-14 font-weight-500">برند : </span>
+              <strong class="font-15">{{lead.brand ?? "---"}}</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">استان : </span>
+              <strong  class="font-15" v-if="lead.province">{{lead.province.name}}</strong>
+              <strong  class="font-15" v-else>---</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">شهر : </span>
+              <strong  class="font-15" v-if="lead.city">{{lead.city.name}}</strong>
+              <strong  class="font-15" v-else>---</strong>
+            </div>
+
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 q-pa-xs">
+            <div>
+              <span class="text-pink-4 font-14 font-weight-500">دسته بندی : </span>
+              <strong class="font-15" v-if="lead.lead_category">{{lead.lead_category.name}}</strong>
+              <strong class="font-15" v-else>---</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">منابع : </span>
+              <strong class="font-15" v-if="lead.lead_resource">{{lead.lead_resource.name}}</strong>
+              <strong class="font-15" v-else>---</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">وضعیت : </span>
+              <strong class="font-15" v-if="lead.lead_status">{{lead.lead_status.name}}</strong>
+              <strong class="font-15" v-else>---</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">Utm Source : </span>
+              <strong class="font-15" v-if="lead.lead_utm_source">{{lead.lead_utm_source.name}}</strong>
+              <strong class="font-15" v-else>---</strong>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 q-pa-xs">
+            <div>
+              <span class="text-pink-4 font-14 font-weight-500">منبع تبلیغ : </span>
+              <strong class="font-15" v-if="lead.lead_advsource">{{lead.lead_advsource.name}}</strong>
+              <strong class="font-15" v-else>---</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">نوع : </span>
+              <strong class="font-15" v-if="lead.lead_type">{{lead.lead_type.name}}</strong>
+              <strong class="font-15" v-else>---</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">صنعت : </span>
+              <strong class="font-15" v-if="lead.lead_industry">{{lead.lead_industry.name}}</strong>
+              <strong class="font-15" v-else>---</strong>
+            </div>
+            <div class="q-mt-md">
+              <span class="text-pink-4 font-14 font-weight-500">Utm Medium : </span>
+              <strong class="font-15" v-if="lead.lead_utm_medium">{{lead.lead_utm_medium.name}}</strong>
+              <strong class="font-15" v-else>---</strong>
+            </div>
+          </div>
+        </div>
+        <q-separator class="q-mt-md q-mb-md" color="grey-8"/>
+        <div class="row">
+
+        <div class="col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_histories'}">
+            <router-link :to="{name : 'lead_profile_histories',params : {id:lead.id}}">
+              <div class="q-pa-sm rounded-borders glossy-bg row">
+                <div class="col-md-3">
+                  <img src="assets/images/icons/history.png" width="60" alt="">
+                </div>
+                <div class="col-md-9">
+                  <div class="q-mt-lg">
+                    <strong class="text-teal-13 menu-title">تاریخچه سرنخ</strong>
+                  </div>
+                </div>
               </div>
-              <div class="q-mt-sm">
-
-               <div class="row info-box">
-                 <div class="col-6">
-                   <span class="text-grey-7">نام و نام خانوادگی :</span>
-                 </div>
-                 <div class="col-6">
-                   <strong>{{lead.name ?? "---"}}</strong>
-                 </div>
-               </div>
-               <div class="row info-box">
-                 <div class="col-6">
-                   <span class="text-grey-7">موبایل :</span>
-                 </div>
-                 <div class="col-6">
-                   <strong>{{lead.phone ?? "---"}}</strong>
-                 </div>
-               </div>
-               <div class="row info-box">
-                 <div class="col-6">
-                   <span class="text-grey-7">آدرس ایمیل :</span>
-                 </div>
-                 <div class="col-6">
-                   <strong>{{lead.email ?? "---"}}</strong>
-
-                 </div>
-               </div>
-               <div class="row info-box">
-                 <div class="col-6">
-                   <span class="text-grey-7">شرکت :</span>
-                 </div>
-                 <div class="col-6">
-                   <strong>{{lead.company ?? "---"}}</strong>
-                 </div>
-               </div>
-               <div class="row info-box">
-                 <div class="col-6">
-                   <span class="text-grey-7">تلفن :</span>
-                 </div>
-                 <div class="col-6">
-                   <strong>{{lead.tel ?? "---"}}</strong>
-                 </div>
-               </div>
-               <div class="row info-box">
-                 <div class="col-6">
-                   <span class="text-grey-7">فکس :</span>
-                 </div>
-                 <div class="col-6">
-                   <strong>{{lead.fax ?? "---"}}</strong>
-                 </div>
-               </div>
-               <div class="row info-box">
-                 <div class="col-6">
-                   <span class="text-grey-7">نام برند :</span>
-                 </div>
-                 <div class="col-6">
-                   <strong>{{lead.brand ?? "---"}}</strong>
-                 </div>
-               </div>
-               <div class="row info-box">
-                 <div class="col-12">
-                   <span class="text-grey-7">توضیحات :</span>
-                 </div>
-                 <div class="col-12 q-mt-sm">
-                   <strong>{{lead.description ?? "---"}}</strong>
-                 </div>
-               </div>
-
+            </router-link>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_notes'}">
+            <router-link :to="{name : 'lead_profile_notes',params : {id:lead.id}}">
+              <div class="q-pa-sm rounded-borders glossy-bg row">
+              <div class="col-md-3">
+                <img src="assets/images/icons/notes.png" width="60" alt="">
+              </div>
+              <div class="col-md-9">
+                <div class="q-mt-lg">
+                  <strong class="text-teal-13 menu-title">یادداشت ها</strong>
+                </div>
               </div>
             </div>
-          </q-card-section>
-        </q-card>
-      </div>
-
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 q-px-xs q-mb-sm ">
-        <q-card class="">
-          <q-card-section>
-            <div class="q-mb-xs">
-              <strong class="text-red">اطلاعات عمومی</strong>
+            </router-link>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_texts'}">
+            <router-link :to="{name : 'lead_profile_texts',params : {id:lead.id}}">
+              <div class="q-pa-sm rounded-borders glossy-bg row">
+              <div class="col-md-3">
+                <img src="assets/images/icons/sms.png" width="60" alt="">
+              </div>
+              <div class="col-md-9">
+                <div class="q-mt-lg">
+                  <strong class="text-teal-13 menu-title">پیامک ها</strong>
+                </div>
+              </div>
             </div>
-            <q-separator/>
-            <div class="q-mt-sm">
-
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">دسته بندی :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.lead_category">{{lead.lead_category.name}}</strong>
-                  <strong v-else>---</strong>
+            </router-link>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_documents'}">
+            <router-link :to="{name : 'lead_profile_documents',params : {id:lead.id}}">
+              <div class="q-pa-sm rounded-borders glossy-bg row">
+              <div class="col-md-3">
+                <img src="assets/images/icons/document.png" width="60" alt="">
+              </div>
+              <div class="col-md-9">
+                <div class="q-mt-lg">
+                  <strong class="text-teal-13 menu-title">اسناد و مدارک</strong>
                 </div>
               </div>
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">منابع :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.lead_resource">{{lead.lead_resource.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">وضعیت :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.lead_resource">{{lead.lead_status.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">منبع تبلیغ :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.lead_advsource">{{lead.lead_advsource.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">نوع :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.lead_type">{{lead.lead_type.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">Utm Medium :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.utmmedium">{{lead.utmmedium.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">Utm Source :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.leads_utmsource">{{lead.leads_utmsource.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">صنعت :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.lead_industry">{{lead.lead_industry.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
-
-
             </div>
-          </q-card-section>
-        </q-card>
+            </router-link>
+          </div>
 
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 q-px-xs q-mb-sm">
-        <q-card class="">
-          <q-card-section>
-            <div class="q-mb-xs">
-              <strong class="text-red">اطلاعات مکانی</strong>
-            </div>
-            <q-separator/>
-            <div class="q-mt-sm">
+        </div>
+      </q-card-section>
 
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">کشور :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.country">{{lead.country.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">استان :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.province">{{lead.province.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
-              <div class="row info-box">
-                <div class="col-6">
-                  <span class="text-grey-7">شهر :</span>
-                </div>
-                <div class="col-6">
-                  <strong v-if="lead.city">{{lead.city.name}}</strong>
-                  <strong v-else>---</strong>
-                </div>
-              </div>
+    </q-card>
 
+    <div class="q-mt-md">
+      <lead_histories v-if="this.$route.name === 'lead_profile_histories'" class="animation-fade-in"></lead_histories>
+      <lead_notes :lead="lead" v-if="this.$route.name === 'lead_profile_notes'" class="animation-fade-in"></lead_notes>
+      <lead_documents :lead="lead" v-if="this.$route.name === 'lead_profile_documents'" class="animation-fade-in"></lead_documents>
 
-
-            </div>
-          </q-card-section>
-        </q-card>
-
-      </div>
     </div>
 
   </template>
@@ -264,14 +216,15 @@ export default {
 </template>
 
 <style scoped>
-.avatar-size{
-  width: 120px;
+.glossy-bg{
+  background-color: rgba(255,255,255,0.09);
 }
-.info-box{
-  padding-top: 10px;
-  padding-bottom: 10px;
+.gray-filter{
+  filter: grayscale(100%);
 }
-
+.menu-title{
+  font-size: 17px;
+}
 
 
 </style>

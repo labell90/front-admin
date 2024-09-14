@@ -10,8 +10,17 @@ export default {
                     return reject(error);
                 })
             })
-
         },
+        Module_Role_Action_All(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/roles/all').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
+
         Module_Role_Action_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
                 axios.get('users/roles/trash?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{

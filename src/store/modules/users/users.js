@@ -127,6 +127,16 @@ export default {
             })
 
         },
+        Module_User_Action_Role_Update(_,items){
+            return new Promise((resolve, reject) => {
+                axios.post('users/users/role/'+items.user,{role_id : items.role_id}).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
 
 
         Module_User_Action_Searchable(){

@@ -110,6 +110,14 @@ app.config.globalProperties.$filters={
 
     date_jalali(value,format='jYYYY/jM/jD  H:m:s'){
         return moment(value).format(format);
+    },
+    file_size(value){
+        if (value === 0) return '0 Bytes';
+
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+        const i = Math.floor(Math.log(value) / Math.log(1024));
+
+        return parseFloat((value / Math.pow(1024, i)).toFixed(2)) + ' ' + sizes[i];
     }
 
 }

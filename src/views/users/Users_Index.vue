@@ -1,18 +1,20 @@
 <script>
 import {mapActions} from "vuex";
 import Global_Item_User_Group from "@/components/globals/items/Global_Item_User_Group.vue";
+import Global_Item_User_Role from "@/components/globals/items/Global_Item_User_Role.vue";
 
 export default {
   name: "Users_Index",
   components:{
     'user_group' : Global_Item_User_Group,
+    'user_role' : Global_Item_User_Role
   },
   mounted() {
     this.Items_Get();
     this.Group_Get();
     this.Searchable_Get();
     this.Columns_Generate();
-
+    this.Roles_Get();
   },
   data(){
     return {
@@ -27,6 +29,7 @@ export default {
       delete_loading:false,
       activation_loading:false,
       groups:[],
+      roles:[],
       items_selected:[],
       selected: [],
       pagination: {
@@ -132,7 +135,8 @@ export default {
       "Module_User_Action_Delete",
       "Module_Group_Action_Index",
       "Module_User_Action_Activation",
-      "Module_User_Action_Searchable"
+      "Module_User_Action_Searchable",
+      "Module_Role_Action_All"
     ]),
     Items_Get(per_page,page){
       if (!per_page){
@@ -229,6 +233,14 @@ export default {
         if (item.value){
           this.visible_columns.push(item.value)
         }
+      })
+    },
+    Roles_Get(){
+      this.Module_Role_Action_All().then(res => {
+        this.roles = res.data.result;
+        console.log(this.roles);
+      }).catch(error => {
+
       })
     }
   }
@@ -333,8 +345,7 @@ export default {
         </template>
         <template v-slot:body-cell-role="props">
           <q-td :props="props">
-            <q-chip class="font-12" v-if="props.row.role" text-color="white" color="deep-orange-7" :label="props.row.role.name"></q-chip>
-            <q-chip class="font-12" v-else text-color="white" color="grey-7" label="بدون نقش"></q-chip>
+            <user_role :user="props.row" :roles="roles" @Done="Items_Get"></user_role>
           </q-td>
         </template>
         <template v-slot:body-cell-group="props">

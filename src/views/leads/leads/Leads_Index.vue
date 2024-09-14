@@ -304,7 +304,9 @@ export default {
         </template>
         <template v-slot:body-cell-name="props">
           <q-td :props="props">
-            <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
+            <router-link :to=" {name:'lead_profile',params:{id:props.row.id}}" >
+              <div class="q-ml-sm q-mt-sm"><strong class="text-indigo-7">{{ props.row.name }}</strong></div>
+            </router-link>
           </q-td>
         </template>
 
