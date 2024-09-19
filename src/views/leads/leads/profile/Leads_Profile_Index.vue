@@ -223,7 +223,7 @@ export default {
   filter: grayscale(100%);
 }
 .menu-title{
-  font-size: 17px;
+  font-size: 15px;
 }
 
 

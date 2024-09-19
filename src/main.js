@@ -15,10 +15,10 @@ import quasarIconSet from 'quasar/icon-set/fontawesome-v6'
 import '@quasar/extras/fontawesome-v6/fontawesome-v6.css'
 // Import Quasar css
 import 'quasar/dist/quasar.css'
-
 import '/src/assets/css/fonts.css'
 import '/src/assets/css/animations.css'
 import '/src/assets/css/helper.css'
+import '/src/assets/css/responsive.css'
 import moment from "moment-jalaali";
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -42,6 +42,8 @@ import Global_Searching_Sorting from "@/components/globals/searching/Global_Sear
 import Global_Images_Animation_No_Data from "@/components/globals/images/Global_Images_Animation_No_Data.vue";
 import Global_Chips_Bool_Status from "@/components/globals/chips/Global_Chips_Bool_Status.vue";
 import Global_Items_Form_Type_Icon from "@/components/globals/items/Global_Items_Form_Type_Icon.vue";
+import Global_Filter_File_Type from "@/components/globals/filters/Global_Filter_File_Type.vue";
+import Global_Item_File_View_By_Type from "@/components/globals/items/Global_Item_File_View_By_Type.vue";
 
 
 
@@ -62,11 +64,13 @@ app.component('global_actions_restore_item',Global_Actions_Restore_Item)
 app.component('global_actions_activation_item',Global_Actions_Activation_Item)
 app.component('global_medias_breadcrumb',Medias_Breadcrumb_Item)
 app.component('global_filter_date',Global_Filter_Date)
+app.component('global_filter_file_type',Global_Filter_File_Type)
 app.component('global_items_user',Global_Items_User)
 app.component("global_searching_full_search",Global_Searching_Full_Search)
 app.component("global_searching_sorting",Global_Searching_Sorting)
 app.component("global_chips_bool_status",Global_Chips_Bool_Status)
 app.component("global_form_type_icon",Global_Items_Form_Type_Icon)
+app.component("global_items_file_view_by_type",Global_Item_File_View_By_Type)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

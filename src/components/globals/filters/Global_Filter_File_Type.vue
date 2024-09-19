@@ -1,34 +1,33 @@
 <script>
-//#TODO Show full and short date by click
 export default {
-  name: "Global_Filter_Date_Create",
-  props:['date'],
-  data(){
-    return{
-      show:true
+  name: "Global_Filter_File_Type",
+  props:['file'],
+  created() {
+    if (this.file){
+      this.type = this.file;
     }
   },
-  computed:{
-    ShowDate(){
-      if (this.show){
-        return this.$filters.date_jalali(this.date)
-      }else {
-        return this.$filters.date_jalali(this.date,"jYYYY/jM/jD")
-      }
+  data(){
+    return {
+      type : 'unknown',
     }
   }
 }
 </script>
 
 <template>
-  <q-chip @click="show=!show;ShowDate" v-if="date" dir="ltr" color="grey-10" text-color="white" size="sm" class="create cursor-pointer">
-    {{ShowDate}}
-  </q-chip>
-</template>
+  <template v-if="type">
+    <img v-if="type==='text'" src="assets/images/icons/text_file.png" :alt="type" width="36" >
+    <img v-if="type==='image'" src="assets/images/icons/image_file.png" :alt="type" width="36" >
+    <img v-if="type==='video'" src="assets/images/icons/video_file.png" :alt="type" width="36" >
+    <img v-if="type==='archive'" src="assets/images/icons/archive_file.png" :alt="type" width="36" >
+    <img v-if="type==='office'" src="assets/images/icons/office_file.png" :alt="type" width="36" >
+    <img v-if="type==='audio'" src="assets/images/icons/audio_file.png" :alt="type" width="36" >
+    <img v-if="type==='unknown'" src="assets/images/icons/unknown_file.png" :alt="type" width="36" >
+    <strong class="text-dark">{{type}}</strong>
 
+  </template>
+</template>
 <style scoped>
-.create{
-  font-size: 12px;
-  font-weight: 450;
-}
+
 </style>

@@ -86,10 +86,16 @@ export default {
         lead_id : this.lead.id
       }
       this.Module_Lead_Document_Action_Create(data).then(res => {
-        this.items.unshift(res.data.result);
+        this.loading_get = true;
+        this.items=[];
+        this.Item_Get(this.page)
         this.loading_add = false;
         this.dialog_add=false;
-        this.total_items ++;
+        this.add_items = {
+          title : null,
+          document : null,
+          description : null
+        };
         this.Methods_Notify_Create();
       }).catch(error => {
         if (error.response.status === 422) {
@@ -101,44 +107,15 @@ export default {
       })
 
     },
-    Item_Edit(item){
-      this.loading_edit = true;
-      let data = {
-        note : item.note,
-        id : item.id,
-        lead_id : this.lead.id
-      }
-      this.Module_Lead_Document_Action_Edit(data).then(res => {
-        this.loading_edit = false;
-        this.dialog_edit[item.id]= false;
-        this.Methods_Notify_Update();
-      }).catch(error => {
-        if (error.response.status === 422) {
-          this.Methods_Validation_Notify();
-          this.errors = error.response.data;
-        }
-        this.loading_edit=false;
-      })
-
+    Item_Edit(){
+      this.loading_get = true;
+      this.items=[];
+      this.Item_Get(this.page)
     },
-    Item_Delete(item){
-      this.loading_delete = true;
-      let data = {
-        id : item.id,
-        lead_id : this.lead.id
-      }
-      this.Module_Lead_Document_Action_Delete(data).then(res => {
-        this.items = this.items.filter(filter_item => {
-          return filter_item.id !== item.id;
-        })
-        this.loading_delete = false;
-        this.total_items --;
-        this.Methods_Notify_Delete();
-      }).catch(error => {
-        this.Methods_Notify_Error_Server();
-        this.loading_delete=false;
-      })
-
+    Item_Delete(id){
+      this.loading_get = true;
+      this.items=[];
+      this.Item_Get(this.page)
     }
 
   }
@@ -193,7 +170,7 @@ export default {
               </div>
             </q-card-section>
             <q-card-actions align="right">
-              <q-btn glossy color="pink-7" label="افرودن یادداشت"  @click="Item_Create" :loading="loading_add" />
+              <q-btn glossy color="pink-7" label="افرودن سند"  @click="Item_Create" :loading="loading_add" />
               <q-btn glossy color="dark" label="بستن" v-close-popup />
             </q-card-actions>
           </q-card>
@@ -205,7 +182,7 @@ export default {
         <global_images_animation_no_data v-if="items.length < 1"></global_images_animation_no_data>
         <template v-else>
           <div v-for="item in items">
-            <document_item :lead="lead" :document="item" class="q-mb-lg"></document_item>
+            <document_item @Updated="Item_Edit" @Deleted="Item_Delete(item.id)" :lead="lead" :document="item" class="q-mb-lg"></document_item>
           </div>
           <div class="q-mt-md q-mb-lg text-center">
             <q-btn @click="Item_Get_More" glossy color="pink-5" label="مشاهده موارد بیشتر " icon="fas fa-plus" icon-right="fas fa-plus" :disable="items.length >= total_items"></q-btn>

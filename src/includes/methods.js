@@ -2,6 +2,15 @@ import {QSpinnerGears, useQuasar} from 'quasar'
 import moment from "moment-jalaali";
 
 export default {
+    data(){
+        return {
+            VUE_APP_ASSET:null,
+        }
+    },
+    created() {
+        this.VUE_APP_ASSET = import.meta.env.VITE_API_ASSET_URL
+
+    },
 
     mounted() {
         const $q = useQuasar();
@@ -96,6 +105,46 @@ export default {
             }
 
         },
+
+        //Get File type by extension
+        Methods_Files_Get_Type(extension= null){
+            let text = ['txt','pdf','doc','docx','rtf','wps'];
+            let image = ['png','svg','jpg','jpeg'];
+            let video = ['mp4','mkv','avi','mov','flv','wmv','webm'];
+            let audio = ['mp3','wav','ogg','aac','flac'];
+            let archive = ['zip','rar','7zip','tar','gz','tar.gz','zipx','zz'];
+            let office = ['xlsx','xlsm','xltx','xltm','ppt','pot','pps','ppa','accda','accdb','accde','one','ecf','pub'];
+            if (text.includes(extension)){
+                return 'text';
+            }
+            if (image.includes(extension)){
+                return 'image';
+            }
+            if (video.includes(extension)){
+                return 'video';
+            }
+            if (audio.includes(extension)){
+                return 'audio';
+            }
+            if (archive.includes(extension)){
+                return 'archive';
+            }
+            if (office.includes(extension)){
+                return 'office';
+            }
+            return 'unknown'
+
+        },
+
+        //Get File extension by file path
+        Methods_Files_Get_Extension(url){
+            // Use URL constructor to handle edge cases
+
+            // Extract extension after the last '.' and return it
+            const extension = url.substring(url.lastIndexOf('.') + 1);
+
+            return extension ? extension.toLowerCase() : null;
+        }
 
 
     }

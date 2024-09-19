@@ -15,7 +15,11 @@ export default {
         },
         Module_Lead_Note_Action_Create(_,items){
             return new Promise((resolve, reject) => {
-                axios.post('users/leads/leads/'+ items.lead_id +'/notes',items).then(response =>{
+                let data = new FormData();
+                if (items.reply_id){data.append( 'reply_id', items.reply_id)}
+                if (items.note){data.append( 'note', items.note)}
+                if (items.file){data.append( 'file', items.file,items.file.name)}
+                axios.post('users/leads/leads/'+ items.lead_id +'/notes',data).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -24,7 +28,11 @@ export default {
         },
         Module_Lead_Note_Action_Edit(_,items){
             return new Promise((resolve, reject) => {
-                axios.put('users/leads/leads/'+ items.lead_id +'/notes/'+items.id,items).then(response =>{
+                let data = new FormData();
+                if (items.reply_id){data.append( 'reply_id', items.reply_id)}
+                if (items.note){data.append( 'note', items.note)}
+                if (items.file){data.append( 'file', items.file,items.file.name)}
+                axios.post('users/leads/leads/'+ items.lead_id +'/notes/'+items.id,data).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

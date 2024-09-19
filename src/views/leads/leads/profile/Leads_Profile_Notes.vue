@@ -20,6 +20,7 @@ export default {
       loading_more : false,
       add_items : {
         note : null,
+        file : null,
       },
       items:[],
       total_items:null,
@@ -30,6 +31,7 @@ export default {
         sort_type : 'desc',
         search :{}
       },
+      edit_file:null,
       errors:[],
 
     }
@@ -75,6 +77,7 @@ export default {
       this.loading_add=true;
       let data = {
         note : this.add_items.note,
+        file : this.add_items.file,
         lead_id : this.lead.id
       }
       this.Module_Lead_Note_Action_Create(data).then(res => {
@@ -88,7 +91,6 @@ export default {
           this.Methods_Validation_Notify();
           this.errors = error.response.data;
         }
-
         this.loading_add=false;
       })
 
@@ -98,17 +100,21 @@ export default {
       let data = {
         note : item.note,
         id : item.id,
-        lead_id : this.lead.id
+        lead_id : this.lead.id,
+        file : this.edit_file
       }
       this.Module_Lead_Note_Action_Edit(data).then(res => {
         this.loading_edit = false;
         this.dialog_edit[item.id]= false;
+        this.edit_file=null;
         this.Methods_Notify_Update();
+        location.reload();
       }).catch(error => {
         if (error.response.status === 422) {
           this.Methods_Validation_Notify();
           this.errors = error.response.data;
         }
+        this.edit_file=null
         this.loading_edit=false;
       })
 
@@ -165,6 +171,16 @@ export default {
                   </template>
                 </q-input>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                  <q-file :error="this.Methods_Validation_Check(errors,'file')" clearable counter outlined v-model="add_items.file" label="انتخاب فایل پیوست">
+                    <template v-slot:prepend>
+                      <q-icon name="fas fa-file" />
+                    </template>
+                    <template v-slot:error>
+                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'file')" />
+                    </template>
+                  </q-file>
+                </div>
               </div>
             </q-card-section>
             <q-card-actions align="right">
@@ -193,6 +209,13 @@ export default {
               </template>
               <div class="q-px-xs q-pa-sm" style="line-height: 25px">
                 {{item.note}}
+                <template v-if="item.file_url">
+                  <div class="q-mt-sm">
+                    <global_items_file_view_by_type :file="item" ></global_items_file_view_by_type>
+                  </div>
+                </template>
+
+
               </div>
 
               <template v-slot:stamp>
@@ -224,6 +247,22 @@ export default {
                           <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'note')" />
                         </template>
                       </q-input>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                      <q-banner class="bg-yellow-9 q-mb-sm rounded-borders">
+                        <q-icon name="fas fa-triangle-exclamation" size="30px"></q-icon>
+                        <strong class="q-ml-sm">
+                          فقط در صورت ویرایش فایل فعلی ، فایل جدید را انتخاب کنید
+                        </strong>
+                      </q-banner>
+                      <q-file :error="this.Methods_Validation_Check(errors,'file')" clearable counter outlined v-model="edit_file" label="انتخاب فایل پیوست">
+                        <template v-slot:prepend>
+                          <q-icon name="fas fa-file" />
+                        </template>
+                        <template v-slot:error>
+                          <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'file')" />
+                        </template>
+                      </q-file>
                     </div>
                   </div>
                 </q-card-section>

@@ -1,0 +1,40 @@
+.responsive-image-box{
+    width: 200px;
+}
+
+
+@media only screen and (max-width: 575.98px) {
+    /* سبک ها برای موبایل کوچک */
+    .responsive-image-box{
+        width: 150px;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+    /* سبک ها برای موبایل های بزرگ */
+    .responsive-image-box{
+        width: 360px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+    /* سبک ها برای تبلت ها */
+    .responsive-image-box{
+        width: 420px;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+    /* سبک ها برای لپ‌تاپ کوچک */
+    .responsive-image-box{
+        width: 460px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    /* سبک ها برای لپ‌تاپ های بزرگ و دسکتاپ */
+    .responsive-image-box{
+        width: 520px;
+    }
+}
+

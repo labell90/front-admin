@@ -29,7 +29,11 @@ export default {
         },
         Module_Lead_Document_Action_Edit(_,items){
             return new Promise((resolve, reject) => {
-                axios.put('users/leads/leads/'+ items.lead_id +'/documents/'+items.id,items).then(response =>{
+                let formData = new FormData();
+                if (items.title){formData.append('title', items.title);}
+                if (items.document){formData.append('document', items.document,items.document.name);}
+                if (items.description){formData.append('description', items.description);}
+                axios.post('users/leads/leads/'+ items.lead_id +'/documents/'+items.id,formData).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
