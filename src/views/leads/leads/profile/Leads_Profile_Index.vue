@@ -3,6 +3,7 @@ import {mapActions} from "vuex";
 import Leads_Profile_Histories from "@/views/leads/leads/profile/Leads_Profile_Histories.vue";
 import Leads_Profile_Notes from "@/views/leads/leads/profile/Leads_Profile_Notes.vue";
 import Leads_Profile_Documents from "@/views/leads/leads/profile/Leads_Profile_Documents.vue";
+import Leads_Profile_Texts from "@/views/leads/leads/profile/Leads_Profile_Texts.vue";
 
 export default {
   name: "Leads_Profile_Index",
@@ -10,6 +11,7 @@ export default {
     'lead_histories' : Leads_Profile_Histories,
     'lead_notes' : Leads_Profile_Notes,
     'lead_documents' : Leads_Profile_Documents,
+    'lead_texts' : Leads_Profile_Texts,
   },
   mounted() {
     this.Get_Lead();
@@ -208,6 +210,7 @@ export default {
       <lead_histories v-if="this.$route.name === 'lead_profile_histories'" class="animation-fade-in"></lead_histories>
       <lead_notes :lead="lead" v-if="this.$route.name === 'lead_profile_notes'" class="animation-fade-in"></lead_notes>
       <lead_documents :lead="lead" v-if="this.$route.name === 'lead_profile_documents'" class="animation-fade-in"></lead_documents>
+      <lead_texts :lead="lead" v-if="this.$route.name === 'lead_profile_texts'" class="animation-fade-in"></lead_texts>
 
     </div>
 

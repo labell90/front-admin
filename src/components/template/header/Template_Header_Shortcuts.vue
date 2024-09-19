@@ -29,15 +29,57 @@ export default {
         transition-hide="flip-left"
          style="width: 360px">
       <q-card-section>
-        <div class="row text-center">
-          <div class="col-md-4 col-sm-6 col-xs-6">
-            <q-btn color="primary" flat icon="fas fa-envelope-open-text" round size="lg" title="صندوق ورودی"></q-btn>
+        <strong class="text-red">دسترسی سریع</strong>
+        <div class="row text-center q-mt-sm">
+          <div class="col-md-2 col-sm-3 col-xs-4">
+            <q-btn color="primary" flat icon="fas fa-envelope-open-text" round size="17px">
+              <q-tooltip
+                  transition-show="rotate"
+                  transition-hide="rotate"
+              >
+                <strong>صندوق ورودی</strong>
+              </q-tooltip>
+            </q-btn>
           </div>
-          <div class="col-md-4 col-sm-6 col-xs-6">
-            <q-btn color="orange-8" flat icon="fas fa-paper-plane" round size="lg" title="ارسالی ها"></q-btn>
+          <div class="col-md-2 col-sm-3 col-xs-4">
+            <q-btn color="grey-9" flat icon="fas fa-paper-plane" round size="17px">
+              <q-tooltip
+                  transition-show="rotate"
+                  transition-hide="rotate"
+              >
+                <strong>ارسالی ها</strong>
+              </q-tooltip>
+            </q-btn>
           </div>
-          <div class="col-md-4 col-sm-6 col-xs-6">
-            <q-btn color="green-8" flat icon="fas fa-list-check" round size="lg" title="کار ها"></q-btn>
+          <div class="col-md-2 col-sm-3 col-xs-4">
+            <q-btn color="green-8" flat icon="fas fa-list-check" round size="17px">
+              <q-tooltip
+                  transition-show="rotate"
+                  transition-hide="rotate"
+              >
+                <strong>وظایف</strong>
+              </q-tooltip>
+            </q-btn>
+          </div>
+          <div class="col-md-2 col-sm-3 col-xs-4">
+            <q-btn :to="{name : 'users_index'}" color="orange-9" flat icon="fas fa-user-tie" round size="17px">
+              <q-tooltip
+                  transition-show="rotate"
+                  transition-hide="rotate"
+              >
+                <strong>مدیران</strong>
+              </q-tooltip>
+            </q-btn>
+          </div>
+          <div class="col-md-2 col-sm-3 col-xs-4">
+            <q-btn :to="{name : 'lead_index'}" color="pink-8" flat icon="fas fa-address-card" round size="17px">
+              <q-tooltip
+                  transition-show="rotate"
+                  transition-hide="rotate"
+              >
+                <strong>سرنخ ها</strong>
+              </q-tooltip>
+            </q-btn>
           </div>
 
         </div>

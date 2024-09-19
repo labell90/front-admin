@@ -9,7 +9,7 @@ export default {
   <q-card bordered class="shadow-10">
     <q-card-section>
      <div>
-       <strong class="text-teal-7"></strong>
+
      </div>
 
     </q-card-section>
