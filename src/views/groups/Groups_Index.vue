@@ -52,7 +52,7 @@ export default {
           value: 'parent',
           label: 'زیر مجموعه',
           align: 'left',
-          sortable: true,
+          sortable: false,
         },
         {
           name: 'color_code',
