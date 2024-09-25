@@ -313,6 +313,33 @@ export default {
           v-model:pagination="pagination"
           @request="Items_OnRequest"
       >
+        <template v-slot:header-cell-name="props">
+          <q-th :props="props">
+            <div>
+              {{ props.col.label }}
+
+              <q-btn icon="fas fa-search" round color="primary" glossy size="xs" class="float-right">
+
+                <q-popup-proxy>
+                  <q-banner>
+                    <template v-slot:avatar>
+                      <q-icon name="signal_wifi_off" color="primary" />
+                    </template>
+                    You have lost connection to the internet. This app is offline.
+                  </q-banner>
+                </q-popup-proxy>
+              </q-btn>
+
+
+
+            </div>
+
+
+          </q-th>
+        </template>
+
+
+
         <template v-slot:body-cell-name="props">
           <q-td :props="props">
 <!--            #TODO create image viewer and show user image-->

@@ -564,6 +564,72 @@
             ]
           }
         ]
+      },
+
+      {
+        "fa" : "وضعیت کمپین ها",
+        "en" : "Campaign_Statuses",
+        "icon" : "fas fa-tents",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد وضعیت کمپین",
+            "en" : "New campaign_statuses",
+            "route_path" : "/",
+            "route_name" : "campaign_statuses_create",
+            "feature_type" : "create",
+            "level"      : 1,
+            "subs" : [
+            ]
+          },
+          {
+            "fa" : "لیست وضعیت کمپین ها",
+            "en" : "campaign_statuses",
+            "route_path" : "/",
+            "route_name" : "campaign_statuses_index",
+            "feature_type" : "read",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          }
+        ]
+      },
+
+      {
+        "fa" : "نوع کمپین ها",
+        "en" : "Campaign_Types",
+        "icon" : "fas fa-tents",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد نوع کمپین",
+            "en" : "New campaign_types",
+            "route_path" : "/",
+            "route_name" : "campaign_types_create",
+            "feature_type" : "create",
+            "level"      : 1,
+            "subs" : [
+            ]
+          },
+          {
+            "fa" : "لیست نوع کمپین ها",
+            "en" : "campaign_types",
+            "route_path" : "/",
+            "route_name" : "campaign_types_index",
+            "feature_type" : "read",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          }
+        ]
       }
     ]
   },

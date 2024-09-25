@@ -26,6 +26,8 @@ import leads from "@/store/modules/leads/leads/leads.js";
 import features from "@/store/modules/features/features.js";
 import user_group from "@/store/modules/groups/user_group.js";
 import form from "@/store/modules/forms/form.js";
+import campaigns_statuses from "@/store/modules/campaigns_statuses/campaign_statuses.js"
+import campaign_types from "@/store/modules/campaings_types/campaign_types.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -62,7 +64,9 @@ const store = createStore({
         leads_advsource,
         features,
         user_group,
-        form
+        form,
+        campaigns_statuses,
+        campaign_types
     }
 
 

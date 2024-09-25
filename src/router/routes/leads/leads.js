@@ -6,6 +6,7 @@ import Leads_Profile_Index from "@/views/leads/leads/profile/Leads_Profile_Index
 import Leads_Trash from "@/views/leads/leads/Leads_Trash.vue";
 import Lead_Fields from "@/views/leads/leads/Lead_Fields.vue";
 import Leads_Profile_Notes from "@/views/leads/leads/profile/Leads_Profile_Notes.vue";
+import Leads_Info from "@/views/leads/leads/Leads_Info.vue";
 
 const route_leads=[
     {
@@ -98,6 +99,15 @@ const route_leads=[
             subtitle : 'اسناد و مدارک'
         },
     },
+    {
+        path: "/leads/info/:id",
+        name: "lead_info",
+        component: Leads_Info,
+        meta: {
+            title: 'تنظیمات سرنخ ها',
+            subtitle: 'اطلاعات کامل سرنخ'
+        },
+    }
 
 
 ]

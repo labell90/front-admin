@@ -44,6 +44,7 @@ export default {
   <div class="q-mb-xl">
     <q-btn :to="{name : 'lead_index'}" class="float-right" color="grey-7" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
     <q-btn :to="{name : 'lead_edit',params:{id:lead.id}}" class="float-right q-mr-sm" color="blue-8" glossy icon="fas fa-edit" label="ویرایش اطلاعات"></q-btn>
+    <q-btn :to="{name : 'lead_info',params:{id:lead.id}}" class="float-right q-mr-sm" color="pink-7" glossy icon="fas fa-list" label="اطلاعات کامل"></q-btn>
 
   </div>
     <q-card class="q-mt-md rounded-borders" dark bordered >

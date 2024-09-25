@@ -2,7 +2,7 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Leads_Index",
+  name: "Campaigns_Statuses_Index",
   mounted() {
     this.Items_Get();
     this.Searchable_Get();
@@ -30,56 +30,41 @@ export default {
         rowsPerPage: 15,
         rowsNumber: 15
       },
-      columns : [-
+      columns : [
         {
           name: 'id',
           required: true,
           label: 'ID',
           align: 'left',
           sortable: true,
-          field: row =>row.id,
+          field: row => '# ' + row.id,
         },
         {
           name: 'name',
           value: 'name',
           label: 'نام',
           align: 'left',
-          format: val => `${val}`,
           sortable: true,
           field: row => row.name,
         },
         {
-          name: 'phone',
-          value: 'phone',
-          label: 'شماره موبایل',
+          name: 'color_code',
+          value: 'color_code',
+          label: 'رنگ',
           align: 'left',
           sortable: false,
-          field: row => row.phone,
+          field: row => row.color_code,
         },
+
         {
-          name: 'company',
-          value: 'company',
-          label: 'نام شرکت',
+          name: 'description',
+          value: 'description',
+          label: 'توضیحات',
           align: 'left',
           sortable: true,
-          field: row => row.company,
+          field: row => row.description,
         },
-        {
-          name: 'code',
-          value: 'code',
-          label: 'کد',
-          align: 'left',
-          sortable: true,
-          field: row => row.code,
-        },
-        {
-          name: 'is_active',
-          value: 'is_active',
-          label: 'وضعیت',
-          align: 'left',
-          sortable: true,
-          field: row => row.is_active,
-        },
+
         {
           name: 'created_by',
           value: 'created_by',
@@ -120,17 +105,17 @@ export default {
         }
       ],
       visible_columns:[],
-
     }
   },
   methods :{
     ...mapActions([
-      "Module_Lead_Action_Index",
-      "Module_Lead_Action_Delete",
-      "Module_Lead_Action_Activation",
-      "Module_Lead_Action_Searchable"
-    ]),
+      "Module_Campaign_Statuses_Action_Index",
+      "Module_Campaign_Statuses_Action_Delete",
+      "Module_Campaign_Statuses_Action_Activation",
+      "Module_Campaign_Statuses_Action_Searchable"
 
+
+    ]),
     Items_Get(per_page,page){
       if (!per_page){
         per_page = '';
@@ -138,7 +123,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_Lead_Action_Index({per_page:per_page,page:page,params:this.query_params}).then(res => {
+      this.Module_Campaign_Statuses_Action_Index({per_page:per_page,page:page,params:this.query_params}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -150,14 +135,14 @@ export default {
       })
     },
     Searchable_Get(){
-      this.Module_Lead_Action_Searchable().then(res => {
+      this.Module_Campaign_Statuses_Action_Searchable().then(res => {
         this.searchable = res.data.result
         console.log(this.searchable)
       })
     },
     Item_Delete(id){
       this.delete_loading=true;
-      this.Module_Lead_Action_Delete(id).then(res => {
+      this.Module_Campaign_Statuses_Action_Delete(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -176,7 +161,7 @@ export default {
     },
     Item_Activation(id){
       this.activation_loading=true;
-      this.Module_Lead_Action_Activation(id).then(res => {
+      this.Module_Campaign_Statuses_Action_Activation(id).then(res => {
         this.items = this.items.filter(item => {
           if (item.id === id){
             item.is_active = !item.is_active;
@@ -192,7 +177,6 @@ export default {
       })
 
     },
-
     updateSelected(newSelection) {
       this.selected = newSelection;
       this.items_selected = newSelection.map(item => item.id);
@@ -214,6 +198,7 @@ export default {
       this.Items_Get(rowsPerPage,page);
 
     },
+
     Items_Search(data){
       this.query_params.search = data;
       this.Items_Get()
@@ -226,16 +211,18 @@ export default {
       })
     }
 
+
+
   }
 }
 </script>
 
 <template>
-
   <q-card>
     <q-card-section>
-      <q-btn :to="{name : 'lead_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-      <q-btn :to="{name : 'lead_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
+      <q-btn :to="{name : 'campaign_statuses_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+      <q-btn :to="{name : 'campaign_statuses_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
+
       <q-separator class="q-mt-xl"/>
       <div class="q-mt-md">
         <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
@@ -243,7 +230,6 @@ export default {
           <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>
         </div>
       </div>
-
     </q-card-section>
     <q-card-section>
       <div class="q-mb-sm">
@@ -273,6 +259,7 @@ export default {
 
         </q-select>
       </div>
+
       <q-table
           flat
           bordered
@@ -290,51 +277,34 @@ export default {
           @update:selected="updateSelected"
           v-model:pagination="pagination"
           @request="Items_OnRequest"
-          binary-state-sort
-
-
       >
-        <template v-slot:top="props">
-          <q-btn
-              flat dense
-              :icon="props.inFullscreen ? 'fas fa-minimize text-pink-7' : 'fas fa-maximize text-pink-7'"
-              @click="props.toggleFullscreen"
-              class="font-12 "
-          />
-        </template>
         <template v-slot:body-cell-name="props">
+
           <q-td :props="props">
-            <router-link :to=" {name:'lead_profile',params:{id:props.row.id}}" >
-              <div class="q-ml-sm q-mt-sm"><strong class="text-indigo-7">{{ props.row.name }}</strong></div>
-            </router-link>
+            <div class="row q-pt-xs q-pb-xs" >
+              <q-icon name="fas fa-tents" size="35px" color="teal-7"/>
+              <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
+            </div>
           </q-td>
         </template>
-
         <template v-slot:body-cell-color_code="props">
           <q-td :props="props" :style="'background-color:'+props.row.color_code ">
 
           </q-td>
         </template>
-
         <template v-slot:body-cell-is_active="props">
           <q-td :props="props">
             <global_actions_activation_item @Set_Ok="Item_Activation(props.row.id)" :status="props.row.is_active"></global_actions_activation_item>
           </q-td>
         </template>
-
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'lead_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
-
-              <q-btn :to="{name:'lead_profile',params:{id:props.row.id}}" glossy class="q-ma-xs" color="green-8" icon="fas fa-user" size="9px" round title="مشاهده پروفایل"/>
-
-
+              <q-btn :to="{name:'campaign_statuses_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
           </q-td>
         </template>
-
         <template v-slot:body-cell-created_by="props">
           <q-td :props="props" >
             <global_items_user :user="props.row.created_by" />
