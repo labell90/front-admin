@@ -144,6 +144,15 @@ export default {
             const extension = url.substring(url.lastIndexOf('.') + 1);
 
             return extension ? extension.toLowerCase() : null;
+        },
+
+        //Get today date with format
+        Methods_Date_Today(format = "jYYYY-jMM-jDD"){
+            return moment().format(format)
+        },
+
+        Methods_Date_Jalali_To_Gregorian(date){
+            return moment(date).format("YYYY-MM-DD")
         }
 
 

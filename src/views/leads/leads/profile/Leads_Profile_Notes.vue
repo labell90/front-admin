@@ -4,9 +4,6 @@ import Leads_Profile_Notes_Item from "@/views/leads/leads/profile/components/Lea
 
 export default {
   name: "Leads_Profile_Notes",
-  components:{
-    'leads_note_item' : Leads_Profile_Notes_Item,
-  },
   props:['lead'],
   mounted() {
     this.query_params.lead_id = this.lead.id;
@@ -16,10 +13,7 @@ export default {
   data(){
     return {
       dialog_add : false,
-      dialog_edit :[],
       loading_add : false,
-      loading_delete : false,
-      loading_edit : false,
       loading_get : true,
       loading_more : false,
       add_items : {
@@ -35,10 +29,7 @@ export default {
         sort_type : 'desc',
         search :{}
       },
-      edit_file:null,
       errors:[],
-
-
     }
   },
   methods : {
@@ -126,23 +117,10 @@ export default {
 
     },
     Item_Delete(item){
-      this.loading_delete = true;
-      let data = {
-        id : item.id,
-        lead_id : this.lead.id
-      }
-      this.Module_Lead_Note_Action_Delete(data).then(res => {
-        this.items = this.items.filter(filter_item => {
-          return filter_item.id !== item.id;
-        })
-        this.loading_delete = false;
-        this.total_items --;
-        this.Methods_Notify_Delete();
-      }).catch(error => {
-        this.Methods_Notify_Error_Server();
-        this.loading_delete=false;
+      this.items = this.items.filter(filter_item => {
+        return filter_item.id !== item.id;
       })
-
+      this.total_items --;
     }
 
   }
@@ -202,7 +180,7 @@ export default {
         <global_images_animation_no_data v-if="items.length < 1"></global_images_animation_no_data>
         <template v-else>
           <div v-for="item in items" class="q-mt-md q-mb-xl">
-            <leads_note_item :lead="lead" :item="item"></leads_note_item>
+            <global_leads_note_item @Delete_Item="(item ) => Item_Delete(item)" :lead="lead" :item="item"></global_leads_note_item>
           </div>
           <div class="q-mt-md q-mb-lg text-center">
             <q-btn @click="Item_Get_More" glossy color="pink-5" label="مشاهده موارد بیشتر " icon="fas fa-plus" icon-right="fas fa-plus" :disable="items.length >= total_items"></q-btn>

@@ -3,9 +3,8 @@ import Leads_Index from "@/views/leads/leads/Leads_Index.vue";
 import Leads_Create from "@/views/leads/leads/Leads_Create.vue";
 import Leads_Edit from "@/views/leads/leads/Leads_Edit.vue";
 import Leads_Profile_Index from "@/views/leads/leads/profile/Leads_Profile_Index.vue";
-import Leads_Trash from "@/views/leads/leads/Leads_Trash.vue";
 import Lead_Fields from "@/views/leads/leads/Lead_Fields.vue";
-import Leads_Profile_Notes from "@/views/leads/leads/profile/Leads_Profile_Notes.vue";
+import Leads_Trash from "@/views/leads/leads/Leads_Trash.vue";
 import Leads_Info from "@/views/leads/leads/Leads_Info.vue";
 
 const route_leads=[
@@ -107,7 +106,27 @@ const route_leads=[
             title: 'تنظیمات سرنخ ها',
             subtitle: 'اطلاعات کامل سرنخ'
         },
-    }
+    },
+
+    {
+        path : "/leads/profile/:id/campaigns",
+        name : "lead_profile_campaigns",
+        component : Leads_Profile_Index,
+        meta : {
+            title : 'پروفایل سرنخ',
+            subtitle : 'کمپین ها'
+        },
+    },
+
+    {
+        path : "/leads/profile/:id/emails",
+        name : "lead_profile_emails",
+        component : Leads_Profile_Index,
+        meta : {
+            title : 'پروفایل سرنخ',
+            subtitle : 'ایمیل ها'
+        },
+    },
 
 
 ]

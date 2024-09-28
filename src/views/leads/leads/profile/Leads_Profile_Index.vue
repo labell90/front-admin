@@ -4,6 +4,7 @@ import Leads_Profile_Histories from "@/views/leads/leads/profile/Leads_Profile_H
 import Leads_Profile_Notes from "@/views/leads/leads/profile/Leads_Profile_Notes.vue";
 import Leads_Profile_Documents from "@/views/leads/leads/profile/Leads_Profile_Documents.vue";
 import Leads_Profile_Texts from "@/views/leads/leads/profile/Leads_Profile_Texts.vue";
+import Leads_Profile_Campaigns from "@/views/leads/leads/profile/Leads_Profile_Campaigns.vue";
 
 export default {
   name: "Leads_Profile_Index",
@@ -12,6 +13,7 @@ export default {
     'lead_notes' : Leads_Profile_Notes,
     'lead_documents' : Leads_Profile_Documents,
     'lead_texts' : Leads_Profile_Texts,
+    'lead_campaigns' : Leads_Profile_Campaigns,
   },
   mounted() {
     this.Get_Lead();
@@ -143,75 +145,109 @@ export default {
           </div>
         </div>
         <q-separator class="q-mt-md q-mb-md" color="grey-8"/>
-        <div class="row">
+          <div class="row">
 
-        <div class="col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_histories'}">
-            <router-link :to="{name : 'lead_profile_histories',params : {id:lead.id}}">
-              <div class="q-pa-sm rounded-borders glossy-bg row">
-                <div class="col-md-3">
-                  <img src="assets/images/icons/history.png" width="60" alt="">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_notes' && this.$route.name !== 'lead_profile'}">
+              <router-link :to="{name : 'lead_profile_notes',params : {id:lead.id}}">
+                <div class="q-pa-sm rounded-borders glossy-bg row">
+                  <div class="col-lx-4 col-lg-5 col-md-6">
+                    <img src="assets/images/icons/notes.png" width="60" alt="">
+                  </div>
+                  <div class="col-lx-8 col-lg-7 col-md-6">
+                    <div class="q-mt-lg">
+                      <strong class="text-teal-13 menu-title">یادداشت ها</strong>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-md-9">
+              </router-link>
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_histories'}">
+              <router-link :to="{name : 'lead_profile_histories',params : {id:lead.id}}">
+                <div class="q-pa-sm rounded-borders glossy-bg row">
+                  <div class="col-xl-4 col-lg-5 col-md-6">
+                    <img src="assets/images/icons/history.png" width="60" alt="">
+                  </div>
+                  <div class="col-xl-8 col-lg-7 col-md-6">
+                    <div class="q-mt-lg">
+                      <strong class="text-teal-13 menu-title">تاریخچه سرنخ</strong>
+                    </div>
+                  </div>
+                </div>
+              </router-link>
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_texts'}">
+              <router-link :to="{name : 'lead_profile_texts',params : {id:lead.id}}">
+                <div class="q-pa-sm rounded-borders glossy-bg row">
+                <div class="col-xl-4 col-lg-5 col-md-6">
+                  <img src="assets/images/icons/sms.png" width="60" alt="">
+                </div>
+                <div class="col-lx-8 col-lg-7 col-md-6">
                   <div class="q-mt-lg">
-                    <strong class="text-teal-13 menu-title">تاریخچه سرنخ</strong>
+                    <strong class="text-teal-13 menu-title">پیامک ها</strong>
                   </div>
                 </div>
               </div>
-            </router-link>
-          </div>
-          <div class="col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_notes'}">
-            <router-link :to="{name : 'lead_profile_notes',params : {id:lead.id}}">
-              <div class="q-pa-sm rounded-borders glossy-bg row">
-              <div class="col-md-3">
-                <img src="assets/images/icons/notes.png" width="60" alt="">
-              </div>
-              <div class="col-md-9">
-                <div class="q-mt-lg">
-                  <strong class="text-teal-13 menu-title">یادداشت ها</strong>
-                </div>
-              </div>
+              </router-link>
             </div>
-            </router-link>
-          </div>
-          <div class="col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_texts'}">
-            <router-link :to="{name : 'lead_profile_texts',params : {id:lead.id}}">
-              <div class="q-pa-sm rounded-borders glossy-bg row">
-              <div class="col-md-3">
-                <img src="assets/images/icons/sms.png" width="60" alt="">
-              </div>
-              <div class="col-md-9">
-                <div class="q-mt-lg">
-                  <strong class="text-teal-13 menu-title">پیامک ها</strong>
-                </div>
-              </div>
-            </div>
-            </router-link>
-          </div>
-          <div class="col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_documents'}">
-            <router-link :to="{name : 'lead_profile_documents',params : {id:lead.id}}">
-              <div class="q-pa-sm rounded-borders glossy-bg row">
-              <div class="col-md-3">
-                <img src="assets/images/icons/document.png" width="60" alt="">
-              </div>
-              <div class="col-md-9">
-                <div class="q-mt-lg">
-                  <strong class="text-teal-13 menu-title">اسناد و مدارک</strong>
-                </div>
-              </div>
-            </div>
-            </router-link>
-          </div>
 
-        </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_emails'}">
+              <router-link :to="{name : 'lead_profile_texts',params : {id:lead.id}}">
+                <div class="q-pa-sm rounded-borders glossy-bg row">
+                <div class="col-xl-4 col-lg-5 col-md-6">
+                  <img src="assets/images/icons/email.png" width="60" alt="">
+                </div>
+                <div class="col-lx-8 col-lg-7 col-md-6">
+                  <div class="q-mt-lg">
+                    <strong class="text-teal-13 menu-title">ایمیل ها</strong>
+                  </div>
+                </div>
+              </div>
+              </router-link>
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_documents'}">
+              <router-link :to="{name : 'lead_profile_documents',params : {id:lead.id}}">
+                <div class="q-pa-sm rounded-borders glossy-bg row">
+                <div class="col-xl-4 col-lg-5 col-md-6">
+                  <img src="assets/images/icons/document.png" width="60" alt="">
+                </div>
+                <div class="col-lx-8 col-lg-7 col-md-6">
+                  <div class="q-mt-lg">
+                    <strong class="text-teal-13 menu-title">اسناد و مدارک</strong>
+                  </div>
+                </div>
+              </div>
+              </router-link>
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_campaigns'}">
+              <router-link :to="{name : 'lead_profile_campaigns',params : {id:lead.id}}">
+                <div class="q-pa-sm rounded-borders glossy-bg row">
+                <div class="col-lx-4 col-lg-5 col-md-6">
+                  <img src="assets/images/icons/campaigns.png" width="60" alt="">
+                </div>
+                <div class="col-lx-8 col-lg-7 col-md-6">
+                  <div class="q-mt-lg">
+                    <strong class="text-teal-13 menu-title">کمپین ها</strong>
+                  </div>
+                </div>
+              </div>
+              </router-link>
+            </div>
+
+          </div>
       </q-card-section>
 
     </q-card>
 
     <div class="q-mt-md">
+      <lead_notes :lead="lead" v-if="this.$route.name === 'lead_profile_notes' || this.$route.name === 'lead_profile'" class="animation-fade-in"></lead_notes>
       <lead_histories v-if="this.$route.name === 'lead_profile_histories'" class="animation-fade-in"></lead_histories>
-      <lead_notes :lead="lead" v-if="this.$route.name === 'lead_profile_notes'" class="animation-fade-in"></lead_notes>
       <lead_documents :lead="lead" v-if="this.$route.name === 'lead_profile_documents'" class="animation-fade-in"></lead_documents>
       <lead_texts :lead="lead" v-if="this.$route.name === 'lead_profile_texts'" class="animation-fade-in"></lead_texts>
+      <lead_campaigns :lead="lead" v-if="this.$route.name === 'lead_profile_campaigns'" class="animation-fade-in"></lead_campaigns>
 
     </div>
 
@@ -227,7 +263,7 @@ export default {
   filter: grayscale(100%);
 }
 .menu-title{
-  font-size: 15px;
+  font-size: 14px;
 }
 
 

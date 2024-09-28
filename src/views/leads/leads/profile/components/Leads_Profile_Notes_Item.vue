@@ -1,4 +1,6 @@
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "Leads_Profile_Notes_Item",
   props:['lead','item'],
@@ -6,20 +8,99 @@ export default {
     return{
       dialog_edit : false,
       dialog_reply : false,
+      loading_edit : false,
+      loading_reply : false,
       reply_items : {
         note : null,
         file : null,
       },
+      edit_file:null,
       errors:[],
 
     }
+  },
+  methods :{
+    ...mapActions([
+        "Module_Lead_Note_Action_Delete",
+        "Module_Lead_Note_Action_Edit",
+        "Module_Lead_Note_Action_Create",
+    ]),
+    Item_Delete(item){
+      this.loading_delete = true;
+      let data = {
+        id : item.id,
+        lead_id : this.lead.id
+      }
+      this.Module_Lead_Note_Action_Delete(data).then(res => {
+        this.loading_delete = false;
+        this.$emit('Delete_Item',item)
+        this.Methods_Notify_Delete();
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+        this.loading_delete=false;
+      })
+
+    },
+    Item_Edit(item){
+      this.loading_edit = true;
+      let data = {
+        note : item.note,
+        id : item.id,
+        lead_id : this.lead.id,
+        file : this.edit_file
+      }
+      this.Module_Lead_Note_Action_Edit(data).then(res => {
+        this.loading_edit = false;
+        this.dialog_edit= false;
+        this.Methods_Notify_Update();
+        if (this.edit_file){
+          this.edit_file=null;
+          location.reload();
+        }
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.Methods_Validation_Notify();
+          this.errors = error.response.data;
+        }
+        this.edit_file=null
+        this.loading_edit=false;
+      })
+
+    },
+    Item_Reply(){
+      this.loading_reply=true;
+      let data = {
+        note : this.reply_items.note,
+        reply_id : this.item.id,
+        file : this.reply_items.file,
+        lead_id : this.lead.id
+      }
+      this.Module_Lead_Note_Action_Create(data).then(res => {
+        this.loading_reply = false;
+        this.reply_items = {
+          note : null,
+          file : null,
+        }
+        this.dialog_reply=false;
+        this.Methods_Notify_Create();
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.Methods_Validation_Notify();
+          this.errors = error.response.data;
+        }
+        this.loading_reply=false;
+      })
+
+    },
+
+
+
   }
 
 }
 </script>
 
 <template>
-
   <q-chat-message
       bg-color="grey-3"
   >
@@ -40,15 +121,25 @@ export default {
       </template>
 
     </div>
-
     <template v-slot:stamp >
+
       <div class="text-right q-mt-sm">
                   <span class="float-left">
                     <global_filter_date :date="item.updated_at"></global_filter_date>
                   </span>
         <q-btn @click="dialog_edit = true" glossy title="ویرایش" color="blue-8" icon="fas fa-pen" size="9px" round />
-        <global_actions_delete_item @Set_Ok=""></global_actions_delete_item>
+        <global_actions_delete_item @Set_Ok="Item_Delete(item)"></global_actions_delete_item>
         <q-btn @click="dialog_reply = true" glossy title="پاسخ به این یادداشت" color="green-8" icon="fas fa-reply" size="9px" round />
+
+        <template v-if="item.replies.length > 0">
+          <div v-for="reply in item.replies">
+            <q-separator class=" q-mb-sm q-mt-md"/>
+            <global_leads_note_item :lead="lead" :item="reply"></global_leads_note_item>
+
+          </div>
+        </template>
+
+
       </div>
 
     </template>
@@ -131,7 +222,7 @@ export default {
 
       </q-card-section>
       <q-card-actions align="right">
-        <q-btn glossy color="green-7" label="ارسال پاسخ"  @click="Item_Edit(item)" :loading="loading_edit" />
+        <q-btn glossy color="green-7" label="ارسال پاسخ"  @click="Item_Reply" :loading="loading_reply" />
         <q-btn glossy color="dark" label="بستن" v-close-popup />
       </q-card-actions>
     </q-card>
