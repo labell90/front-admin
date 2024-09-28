@@ -25,7 +25,7 @@ export default {
       this.Module_Campaign_Statuses_Action_Create(this.items).then(response => {
         this.loading=false;
         this.Methods_Notify_Create();
-        this.$router.push({name:'campaigns_statuses_index'});
+        this.$router.push({name:'campaign_statuses_index'});
       }).catch(error => {
         if (error.response.status === 422) {
           this.Methods_Validation_Notify();

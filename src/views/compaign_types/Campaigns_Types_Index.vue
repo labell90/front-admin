@@ -282,7 +282,7 @@ export default {
 
           <q-td :props="props">
             <div class="row q-pt-xs q-pb-xs" >
-              <q-icon name="fas fa-tents" size="35px" color="teal-7"/>
+
               <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
             </div>
           </q-td>
