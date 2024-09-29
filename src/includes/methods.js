@@ -57,6 +57,10 @@ export default {
             this.Methods_Notify_Generator(message,'green-7','fa fa-check ');
         },
 
+        Methods_Notify_Message_Error(message){
+            this.Methods_Notify_Generator(message,'red-7','fa fa-times ');
+        },
+
         //Default notification message
         Methods_Notify_Update(){
             this.Methods_Notify_Generator('اطلاعات باموفقیت بروزرسانی شد','green-7','fa fa-check ');
@@ -152,7 +156,11 @@ export default {
         },
 
         Methods_Date_Jalali_To_Gregorian(date){
-            return moment(date).format("YYYY-MM-DD")
+            return moment(date, 'jYYYY/jM/jD').format('YYYY-M-D')
+        },
+
+        Methods_Date_Gregorian_To_Jalali(date){
+            return moment(date, 'YYYY-M-D').format('jYYYY-jMM-jDD')
         }
 
 

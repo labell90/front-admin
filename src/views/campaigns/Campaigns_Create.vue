@@ -66,6 +66,7 @@ export default {
       if (this.jalali_desired_end_date){
         this.items.desired_end_date = this.Methods_Date_Jalali_To_Gregorian(this.jalali_desired_end_date)
       }
+
       this.Module_Campaign_Action_Create(this.items).then(response => {
         this.loading=false;
         this.Methods_Notify_Create();
@@ -152,6 +153,7 @@ export default {
     </q-card-section>
     <q-card-section>
       <div class="row">
+
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
           <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="عنوان کمپین">
             <template v-slot:error>
@@ -253,7 +255,7 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'market_width')" outlined v-model="items.market_width"  type="text" label="وسعت جامعه هدف">
+          <q-input  :error="this.Methods_Validation_Check(errors,'market_width')" outlined v-model="items.market_width"  type="number" label="وسعت جامعه هدف">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'market_width')" />
             </template>
@@ -317,7 +319,7 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'sent_number')" outlined v-model="items.sent_number"  type="text" label="تعداد ارسالی">
+          <q-input  :error="this.Methods_Validation_Check(errors,'sent_number')" outlined v-model="items.sent_number"  type="number" label="تعداد ارسالی">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'sent_number')" />
             </template>
@@ -325,7 +327,7 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'desired_cost')" outlined v-model="items.desired_cost"  type="text" label="بهای قابل انتظار">
+          <q-input  :error="this.Methods_Validation_Check(errors,'desired_cost')" outlined v-model="items.desired_cost"  type="number" label="بهای قابل انتظار">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'desired_cost')" />
             </template>
@@ -333,7 +335,7 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'real_cost')" outlined v-model="items.real_cost"  type="text" label="بهای واقعی">
+          <q-input  :error="this.Methods_Validation_Check(errors,'real_cost')" outlined v-model="items.real_cost"  type="number" label="بهای واقعی">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'real_cost')" />
             </template>
@@ -349,7 +351,7 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'desired_income')" outlined v-model="items.desired_income"  type="text" label="درآمد قابل انتظار">
+          <q-input  :error="this.Methods_Validation_Check(errors,'desired_income')" outlined v-model="items.desired_income"  type="number" label="درآمد قابل انتظار">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'desired_income')" />
             </template>
@@ -357,7 +359,7 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'desired_sales')" outlined v-model="items.desired_sales"  type="text" label="تعداد فروش قابل انتظار">
+          <q-input  :error="this.Methods_Validation_Check(errors,'desired_sales')" outlined v-model="items.desired_sales"  type="number" label="تعداد فروش قابل انتظار">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'desired_sales')" />
             </template>
@@ -365,7 +367,7 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'real_sales')" outlined v-model="items.real_sales"  type="text" label="تعداد فروش واقعی">
+          <q-input  :error="this.Methods_Validation_Check(errors,'real_sales')" outlined v-model="items.real_sales"  type="number" label="تعداد فروش واقعی">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'real_sales')" />
             </template>
@@ -373,7 +375,7 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'desired_receive')" outlined v-model="items.desired_receive"  type="text" label="مقدار دریافتی قابل انتظار">
+          <q-input  :error="this.Methods_Validation_Check(errors,'desired_receive')" outlined v-model="items.desired_receive"  type="number" label="مقدار دریافتی قابل انتظار">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'desired_receive')" />
             </template>
@@ -381,13 +383,12 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'real_receive')" outlined v-model="items.real_receive"  type="text" label="مقدار دریافتی واقعی">
+          <q-input  :error="this.Methods_Validation_Check(errors,'real_receive')" outlined v-model="items.real_receive"  type="number" label="مقدار دریافتی واقعی">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'real_receive')" />
             </template>
           </q-input>
         </div>
-
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
           <q-input  :error="this.Methods_Validation_Check(errors,'desired_investment_rate')" outlined v-model="items.desired_investment_rate"  type="text" label="نرخ بازگشت قابل انتظار">
@@ -423,7 +424,6 @@ export default {
 
         </div>
 
-
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
           <q-input  :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="items.description" type="textarea" label="توضیحات">
             <template v-slot:error>
@@ -431,6 +431,7 @@ export default {
             </template>
           </q-input>
         </div>
+
         <div class="col-12 q-pa-xs">
           <q-btn color="pink-7" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
         </div>
