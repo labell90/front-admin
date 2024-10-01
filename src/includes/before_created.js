@@ -11,7 +11,7 @@ export default {
     },
     mounted() {
         // if (!window.axios.defaults.headers.common['Authorization'] ){
-            window.axios.defaults.headers.common['Authorization'] ="Bearer "+ this.Modules_Authenticate_Getter_Token
+            window.axios.defaults.headers.common['Authorization'] = "Bearer "+ this.Modules_Authenticate_Getter_Token
 
         // }
 
