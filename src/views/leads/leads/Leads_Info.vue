@@ -339,42 +339,124 @@ export default {
 
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-sm">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.name">
+            <template v-slot:append>
+              <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+            </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
               <span class="text-pink-4 font-14 font-weight-500">نام و نام خانوادگی : </span>
+
                   <strong class="font-16">{{items.name ?? "---"}}</strong>
 
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.phone">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
               <span class="text-pink-4 font-14 font-weight-500">شماره موبایل :</span>
               <strong class="font-16">{{items.phone ?? "---"}}</strong>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.email">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
               <span class="text-pink-4 font-14 font-weight-500"> آدرس ایمیل :</span>
               <strong class="font-16">{{items.email ?? "---"}}</strong>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.company">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
               <span class="text-pink-4 font-14 font-weight-500"> نام شرکت  :</span>
               <strong class="font-16">{{items.company ?? "---"}}</strong>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.company_position">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
               <span class="text-pink-4 font-14 font-weight-500"> سمت در شرکت   :</span>
               <strong class="font-16">{{items.company_position ?? "---"}}</strong>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.tel">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
               <span class="text-pink-4 font-14 font-weight-500"> تلفن ثابت   :</span>
               <strong class="font-16">{{items.tel ?? "---"}}</strong>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.fax">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
               <span class="text-pink-4 font-14 font-weight-500">  فکس   :</span>
               <strong class="font-16">{{items.fax ?? "---"}}</strong>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.brand">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
               <span class="text-pink-4 font-14 font-weight-500">  نام برند   :</span>
               <strong class="font-16">{{items.brand ?? "---"}}</strong>
             </div>
 
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.description">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
               <span class="text-pink-4 font-14 font-weight-500"> توضیحات  :</span>
               <strong class="font-16">{{items.description ?? "---"}}</strong>
             </div>
@@ -388,283 +470,155 @@ export default {
               <q-separator/>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy>
+                  <template v-slot:append>
+                    <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                  </template>
+
+                </q-popup-proxy>
+              </q-btn>
+
                 <span class="text-pink-4 font-14 font-weight-500">دسته بندی : </span>
                 <strong class="font-15" v-if="items.lead_category">{{items.lead_category.name}}</strong>
                 <strong class="font-15" v-else>---</strong>
-              </div>
+
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs0 q-mt-md">
               <div>
                 <span class="text-pink-4 font-14 font-weight-500">انتخاب منبع  : </span>
-                <strong class="font-15" v-if="items.lead_category">{{items.lead_category.name}}</strong>
+                <strong class="font-15" v-if="items.lead_resources">{{items.lead_resources.name}}</strong>
                 <strong class="font-15" v-else>---</strong>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-select
-                  outlined
-                  transition-show="flip-up"
-                  transition-hide="flip-down"
-                  v-model="items.lead_industry_id"
-                  label="انتخاب منبع"
-                  :options="lead_industries"
-                  @filter="Filter_Lead_Industries_Select"
-                  emit-value
-                  map-options
-                  use-input
-                  :error="this.Methods_Validation_Check(errors,'lead_industry_id')"
-
-              >
-                <template v-slot:no-option>
-                  <q-item>
-                    <q-item-section class="text-red">
-                      گزینه ای یافت نشد
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section avatar>
-                      <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>{{ scope.opt.label }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_industry_id')" />
-                </template>
-              </q-select>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <div>
+                <span class="text-pink-4 font-14 font-weight-500">انتخاب صنعت  : </span>
+                <strong class="font-15" v-if="items.lead_industries">{{items.lead_industries.name}}</strong>
+                <strong class="font-15" v-else>---</strong>
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-select
-                  outlined
-                  transition-show="flip-up"
-                  transition-hide="flip-down"
-                  v-model="items.lead_status_id"
-                  label="انتخاب وضعیت"
-                  :options="lead_statuses"
-                  @filter="Filter_Lead_Statuses_Select"
-                  emit-value
-                  map-options
-                  use-input
-                  :error="this.Methods_Validation_Check(errors,'lead_status_id')"
-
-              >
-                <template v-slot:no-option>
-                  <q-item>
-                    <q-item-section class="text-red">
-                      گزینه ای یافت نشد
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section avatar>
-                      <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>{{ scope.opt.label }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_status_id')" />
-                </template>
-              </q-select>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <div>
+                <span class="text-pink-4 font-14 font-weight-500">انتخاب وضعیت  : </span>
+                <strong class="font-15" v-if="items.lead_statuses">{{items.lead_statuses.name}}</strong>
+                <strong class="font-15" v-else>---</strong>
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-select
-                  outlined
-                  transition-show="flip-up"
-                  transition-hide="flip-down"
-                  v-model="items.lead_type_id"
-                  label="انتخاب نوع"
-                  :options="lead_types"
-                  @filter="Filter_Lead_Types_Select"
-                  emit-value
-                  map-options
-                  use-input
-                  :error="this.Methods_Validation_Check(errors,'lead_type_id')"
 
-              >
-                <template v-slot:no-option>
-                  <q-item>
-                    <q-item-section class="text-red">
-                      گزینه ای یافت نشد
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section avatar>
-                      <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>{{ scope.opt.label }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_type_id')" />
-                </template>
-              </q-select>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <div>
+                <span class="text-pink-4 font-14 font-weight-500">انتخاب نوع  : </span>
+                <strong class="font-15" v-if="items.lead_types">{{items.lead_types.name}}</strong>
+                <strong class="font-15" v-else>---</strong>
+              </div>
             </div>
+
 
 
             <div class="col-12 q-mb-md q-mt-lg">
               <q-icon name="fas fa-location" size="30px" color="teal-8"/>
               <strong class="q-ml-sm">اطلاعات مکانی</strong>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-select
-                  outlined
-                  transition-show="flip-up"
-                  transition-hide="flip-down"
-                  v-model="items.country_id"
-                  label="انتخاب کشور"
-                  :options="countries"
-                  @filter="Filter_Countries_Select"
-                  @change="Computed_Get_Province"
-                  emit-value
-                  map-options
-                  use-input
-                  :error="this.Methods_Validation_Check(errors,'country_id')"
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <div>
+                <span class="text-pink-4 font-14 font-weight-500">انتخاب کشور  : </span>
+                <strong class="font-15" v-if="items.countries">{{items.countries.name}}</strong>
+                <strong class="font-15" v-else>---</strong>
+              </div>
+            </div>
 
-              >
-                <template v-slot:no-option>
-                  <q-item>
-                    <q-item-section class="text-red">
-                      گزینه ای یافت نشد
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section avatar>
-                      <global_images_select :image="scope.opt.image" />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>{{ scope.opt.label }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'country_id')" />
-                </template>
-              </q-select>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <div>
+                <span class="text-pink-4 font-14 font-weight-500">انتخاب استان  : </span>
+                <strong class="font-15" v-if="items.provinces">{{items.provinces.name}}</strong>
+                <strong class="font-15" v-else>---</strong>
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-select
-                  outlined
-                  transition-show="flip-up"
-                  transition-hide="flip-down"
-                  v-model="items.province_id"
-                  label="انتخاب استان"
-                  :options="provinces"
-                  @filter="Filter_Provinces_Select"
-                  @change="Computed_Get_Cities"
-                  emit-value
-                  map-options
-                  use-input
-              >
-                <template v-slot:no-option>
-                  <q-item>
-                    <q-item-section class="text-red">
-                      گزینه ای یافت نشد
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section>
-                      <q-item-label>{{ scope.opt.label }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'province_id')" />
-                </template>
-              </q-select>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <div>
+                <span class="text-pink-4 font-14 font-weight-500">انتخاب شهر  : </span>
+                <strong class="font-15" v-if="items.cities">{{items.cities.name}}</strong>
+                <strong class="font-15" v-else>---</strong>
+              </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-select
-                  outlined
-                  transition-show="flip-up"
-                  transition-hide="flip-down"
-                  v-model="items.city_id"
-                  label="انتخاب شهر"
-                  :options="cities"
-                  @filter="Filter_Cities_Select"
-                  emit-value
-                  map-options
-                  use-input
-              >
-                <template v-slot:no-option>
-                  <q-item>
-                    <q-item-section class="text-red">
-                      گزینه ای یافت نشد
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:option="scope">
-                  <q-item v-bind="scope.itemProps">
-                    <q-item-section>
-                      <q-item-label>{{ scope.opt.label }}</q-item-label>
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'city_id')" />
-                </template>
-              </q-select>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.postal_code">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
+              <span class="text-pink-4 font-14 font-weight-500">  کد پستی   :</span>
+              <strong class="font-16">{{items.postal_code ?? "---"}}</strong>
+            </div>
 
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.address">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
+              <span class="text-pink-4 font-14 font-weight-500"> آدرس   :</span>
+              <strong class="font-16">{{items.address ?? "---"}}</strong>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-input  :error="this.Methods_Validation_Check(errors,'postal_code')" outlined v-model="items.postal_code"  type="text" label="کد پستی">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'postal_code')" />
-                </template>
-              </q-input>
-            </div>
-            <div class="col-12 q-pa-xs">
-              <q-input rows="3" :error="this.Methods_Validation_Check(errors,'address')" outlined v-model="items.address"  type="textarea" label="آدرس">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'address')" />
-                </template>
-              </q-input>
-            </div>
+
             <div class="col-12 q-mb-md q-mt-lg">
-              <q-icon name="fas fa-location" size="30px" color="teal-8"/>
+              <q-icon name="fa-brands fa-instagram" size="30px" color="teal-8"/>
               <strong class="q-ml-sm">اطلاعات شبکه های اجتماعی</strong>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-input  :error="this.Methods_Validation_Check(errors,'website')" outlined v-model="items.website"  type="text" label="وبسایت">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'website')" />
-                </template>
-              </q-input>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.website">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
+              <span class="text-pink-4 font-14 font-weight-500"> وبسایت   :</span>
+              <strong class="font-16">{{items.website ?? "---"}}</strong>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-input  :error="this.Methods_Validation_Check(errors,'instagram')" outlined v-model="items.instagram"  type="text" label="آدرس اینستاگرام">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'instagram')" />
-                </template>
-              </q-input>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.instagram">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
+              <span class="text-pink-4 font-14 font-weight-500"> آدرس اینستاگرام   :</span>
+              <strong class="font-16">{{items.instagram ?? "---"}}</strong>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-              <q-input  :error="this.Methods_Validation_Check(errors,'telegram')" outlined v-model="items.telegram"  type="text" label="آدرس تلگرام">
-                <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'telegram')" />
-                </template>
-              </q-input>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs q-mt-md">
+              <q-btn size="xs" glossy round icon="fas fa-edit" color="primary" class="q-mr-sm">
+                <q-popup-proxy >
+                  <q-input outlined dense v-model="items.telegram">
+                    <template v-slot:append>
+                      <q-btn outline size="xs" color="green-7" icon="fas fa-check" round></q-btn>
+                    </template>
+                  </q-input>
+                </q-popup-proxy>
+              </q-btn>
+              <span class="text-pink-4 font-14 font-weight-500"> آدرس تلگرام   :</span>
+              <strong class="font-16">{{items.telegram ?? "---"}}</strong>
             </div>
-            <div class="col-12 q-pa-xs">
+
+            <div class="col-12 q-pa-xs q-mt-md">
               <q-btn color="teal-8" :loading="edit_loading" @click="Edit_Item" glossy icon="fas fa-plus-circle" label="ویرایش آیتم"></q-btn>
             </div>
+
 
           </div>
 
@@ -675,7 +629,7 @@ export default {
     </template>
   </q-card>
 
-</template>000000000
+</template>
 
 <style scoped>
 
