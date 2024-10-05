@@ -46,6 +46,7 @@ import Global_Items_Form_Type_Icon from "@/components/globals/items/Global_Items
 import Global_Filter_File_Type from "@/components/globals/filters/Global_Filter_File_Type.vue";
 import Global_Item_File_View_By_Type from "@/components/globals/items/Global_Item_File_View_By_Type.vue";
 import Leads_Profile_Notes_Item from "@/views/leads/leads/profile/components/Leads_Profile_Notes_Item.vue";
+import Global_Images_Animation_Info from "@/components/globals/images/Global_Images_Animation_Info.vue";
 
 
 
@@ -61,6 +62,7 @@ app.component('global_menu_item',Template_Menu_Components_Sub_Menu)
 app.component('global_loading_shape',Global_Loading_Shape)
 app.component('global_images_select',Global_Images_Select)
 app.component('global_images_animation_no_data',Global_Images_Animation_No_Data)
+app.component('global_images_animation_info',Global_Images_Animation_Info)
 app.component('global_actions_delete_item',Global_Actions_Delete_Item)
 app.component('global_actions_restore_item',Global_Actions_Restore_Item)
 app.component('global_actions_activation_item',Global_Actions_Activation_Item)

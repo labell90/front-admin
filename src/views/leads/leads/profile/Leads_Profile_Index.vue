@@ -5,6 +5,7 @@ import Leads_Profile_Notes from "@/views/leads/leads/profile/Leads_Profile_Notes
 import Leads_Profile_Documents from "@/views/leads/leads/profile/Leads_Profile_Documents.vue";
 import Leads_Profile_Texts from "@/views/leads/leads/profile/Leads_Profile_Texts.vue";
 import Leads_Profile_Campaigns from "@/views/leads/leads/profile/Leads_Profile_Campaigns.vue";
+import Leads_Profile_Emails from "@/views/leads/leads/profile/Leads_Profile_Emails.vue";
 
 export default {
   name: "Leads_Profile_Index",
@@ -14,6 +15,7 @@ export default {
     'lead_documents' : Leads_Profile_Documents,
     'lead_texts' : Leads_Profile_Texts,
     'lead_campaigns' : Leads_Profile_Campaigns,
+    'lead_emails' : Leads_Profile_Emails
   },
   mounted() {
     this.Get_Lead();
@@ -193,7 +195,7 @@ export default {
             </div>
 
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_emails'}">
-              <router-link :to="{name : 'lead_profile_texts',params : {id:lead.id}}">
+              <router-link :to="{name : 'lead_profile_emails',params : {id:lead.id}}">
                 <div class="q-pa-sm rounded-borders glossy-bg row">
                 <div class="col-xl-4 col-lg-5 col-md-6">
                   <img src="assets/images/icons/email.png" width="60" alt="">
@@ -248,6 +250,7 @@ export default {
       <lead_documents :lead="lead" v-if="this.$route.name === 'lead_profile_documents'" class="animation-fade-in"></lead_documents>
       <lead_texts :lead="lead" v-if="this.$route.name === 'lead_profile_texts'" class="animation-fade-in"></lead_texts>
       <lead_campaigns :lead="lead" v-if="this.$route.name === 'lead_profile_campaigns'" class="animation-fade-in"></lead_campaigns>
+      <lead_emails :lead="lead" v-if="this.$route.name === 'lead_profile_emails'" class="animation-fade-in"></lead_emails>
 
     </div>
 
