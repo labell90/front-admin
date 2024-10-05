@@ -48,14 +48,6 @@ export default {
           field: row => row.name,
         },
         {
-          name: 'color_code',
-          value: 'color_code',
-          label: 'رنگ',
-          align: 'left',
-          sortable: false,
-          field: row => row.color_code,
-        },
-        {
           name: 'code',
           value: 'code',
           label: 'کد',
@@ -64,17 +56,27 @@ export default {
           field: row => row.code,
         },
         {
-          name: 'description',
-          value: 'description',
-          label: 'توضیحات',
+          name: 'type',
+          value: 'type',
+          label: 'نوع',
           align: 'left',
-          sortable: true,
-          field: row => row.description,
+          sortable: false,
         },
+        {
+          name: 'status',
+          value: 'status',
+          label: 'وضعیت',
+          align: 'left',
+          sortable: false,
+
+        },
+
+
+
         {
           name: 'is_active',
           value: 'is_active',
-          label: 'وضعیت',
+          label: 'وضعیت فعال بودن',
           align: 'left',
           sortable: true,
           field: row => row.is_active,
@@ -293,19 +295,32 @@ export default {
           @request="Items_OnRequest"
       >
         <template v-slot:body-cell-name="props">
-
           <q-td :props="props">
             <div class="row q-pt-xs q-pb-xs" >
-              <q-icon name="fas fa-tents" size="35px" color="teal-7"/>
-              <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
+              <q-chip size="xs" :style="'background-color:'+props.row.color_code"></q-chip>
+              <router-link :to="{name:'campaigns_show',params:{id:props.row.id}}">
+              <div class="q-ml-sm q-mt-sm text-dark"><strong>{{ props.row.name }}</strong></div>
+              </router-link>
             </div>
           </q-td>
         </template>
-        <template v-slot:body-cell-color_code="props">
-          <q-td :props="props" :style="'background-color:'+props.row.color_code ">
 
+        <template v-slot:body-cell-type="props">
+          <q-td :props="props">
+            <template v-if="props.row.type">
+              {{props.row.type.name}}
+            </template>
           </q-td>
         </template>
+
+        <template v-slot:body-cell-status="props">
+          <q-td :props="props">
+            <template v-if="props.row.status">
+              {{props.row.status.name}}
+            </template>
+          </q-td>
+        </template>
+
         <template v-slot:body-cell-is_active="props">
           <q-td :props="props">
             <global_actions_activation_item @Set_Ok="Item_Activation(props.row.id)" :status="props.row.is_active"></global_actions_activation_item>
@@ -314,6 +329,8 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
+
+              <q-btn :to="{name:'campaigns_show',params:{id:props.row.id}}" glossy title="اطلاعات کامل" class="q-ma-xs" color="teal-8" icon="fas fa-list" size="9px" round  />
               <q-btn :to="{name:'campaigns_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
@@ -341,6 +358,7 @@ export default {
 
           </q-td>
         </template>
+
       </q-table>
     </q-card-section>
 

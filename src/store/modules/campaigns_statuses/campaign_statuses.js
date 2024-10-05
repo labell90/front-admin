@@ -10,8 +10,17 @@ export default {
                     return reject(error);
                 })
             })
-
         },
+        Module_Campaign_Statuses_Action_All(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/campaign_statuses/all').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
+
         Module_Campaign_Statuses_Action_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
                 axios.get('users/campaign_statuses/trash?per_page='+items.per_page+'&page='+items.page).then(response =>{

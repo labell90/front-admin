@@ -12,6 +12,18 @@ export default {
             })
 
         },
+
+        Module_Campaign_Action_All(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/campaigns/all').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_Campaign_Action_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
                 axios.get('users/campaigns/trash?per_page='+items.per_page+'&page='+items.page).then(response =>{

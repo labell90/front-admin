@@ -10,6 +10,7 @@ import { Quasar , Notify ,LoadingBar, Dialog} from 'quasar'
 import quasarLang from 'quasar/lang/fa-IR'
 import methods from "@/includes/methods.js";
 import '@/includes/axios.js';
+
 import quasarIconSet from 'quasar/icon-set/fontawesome-v6'
 // Import icon libraries
 import '@quasar/extras/fontawesome-v6/fontawesome-v6.css'
@@ -44,6 +45,7 @@ import Global_Chips_Bool_Status from "@/components/globals/chips/Global_Chips_Bo
 import Global_Items_Form_Type_Icon from "@/components/globals/items/Global_Items_Form_Type_Icon.vue";
 import Global_Filter_File_Type from "@/components/globals/filters/Global_Filter_File_Type.vue";
 import Global_Item_File_View_By_Type from "@/components/globals/items/Global_Item_File_View_By_Type.vue";
+import Leads_Profile_Notes_Item from "@/views/leads/leads/profile/components/Leads_Profile_Notes_Item.vue";
 
 
 
@@ -71,6 +73,7 @@ app.component("global_searching_sorting",Global_Searching_Sorting)
 app.component("global_chips_bool_status",Global_Chips_Bool_Status)
 app.component("global_form_type_icon",Global_Items_Form_Type_Icon)
 app.component("global_items_file_view_by_type",Global_Item_File_View_By_Type)
+app.component("global_leads_note_item",Leads_Profile_Notes_Item)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -105,6 +108,7 @@ app.use(Quasar, {
 })
 app.mixin(methods);
 app.mixin(before_created);
+window.moment = moment;
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
