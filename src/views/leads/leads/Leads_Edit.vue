@@ -723,7 +723,7 @@ export default {
               </q-input>
             </div>
             <div class="col-12 q-mb-md q-mt-lg">
-              <q-icon name="fas fa-location" size="30px" color="teal-8"/>
+              <q-icon name="fa-brands fa-instagram" size="30px" color="teal-8"/>
               <strong class="q-ml-sm">اطلاعات شبکه های اجتماعی</strong>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
