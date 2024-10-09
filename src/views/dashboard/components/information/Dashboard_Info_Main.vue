@@ -1,14 +1,8 @@
 <script>
 import {mapActions} from "vuex";
-import users_Index from "@/views/users/Users_Index.vue";
 
 export default {
   name: "Dashboard_Info_Main",
-  computed: {
-    users_Index() {
-      return users_Index
-    }
-  },
   mounted() {
 
     this.Get_Items();
@@ -58,7 +52,7 @@ export default {
     <div v-else class="row justify-center">
       <div class="col-xl-3 q-px-xs q-pa-xs">
         <q-card class="bg-indigo-8 glossy">
-          <router-link :to="{name : 'users_Index'}">
+          <router-link :to="{name : 'users_index'}">
             <q-card-section>
               <q-icon name="fas fa-users" color="white" size="xl"></q-icon>
               <strong class="q-ml-md font-15 text-grey-4">مدیران فعال</strong>
