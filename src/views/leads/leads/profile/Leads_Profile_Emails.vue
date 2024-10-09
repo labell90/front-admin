@@ -16,13 +16,14 @@ export default {
 
     this.query_params.lead_id = this.lead.id;
     this.Items_Get();
-    this.Searchable_Get()
+
   },
   data() {
     return {
       dialog_add: false,
       loading_add: false,
       items_loading: true,
+      dialog_show:[],
       editor_api:null,
       add_items: {
         subject: null,
@@ -59,29 +60,30 @@ export default {
           field: row => '# ' + row.id,
         },
         {
-          name: 'text',
-          value: 'text',
-          label: 'پیامک',
+          name: 'subject',
+          value: 'subject',
+          label: 'موضوع',
           align: 'left',
-          sortable: true,
-          field: row => row.text,
+          sortable: false,
+          field: row => row.subject,
+        },
+        {
+          name: 'from',
+          value: 'from',
+          label: 'از آدرس',
+          align: 'left',
+          sortable: false,
+          field: row => row.from,
         },
         {
           name: 'is_success',
           value: 'is_success',
           label: 'وضعیت ارسال',
           align: 'left',
-          sortable: false,
+          sortable: true,
           field: row => row.is_success,
         },
-        {
-          name: 'ip',
-          value: 'ip',
-          label: 'IP Address',
-          align: 'left',
-          sortable: false,
-          field: row => row.ip,
-        },
+
         {
           name: 'created_by',
           value: 'created_by',
@@ -98,15 +100,20 @@ export default {
           sortable: true ,
           field: row => row.created_at,
         },
+        {
+          name: 'tools',
+          value: 'tools',
+          label: 'عملیات',
+          align: 'left',
+        }
       ],
 
     }
   },
   methods:{
     ...mapActions([
-      "Module_Lead_Text_Action_Index",
-      "Module_Lead_Text_Action_Create",
-      "Module_Lead_Text_Action_Searchable"
+      "Module_Lead_Email_Action_Index",
+      "Module_Lead_Email_Action_Create",
     ]),
 
     Items_Get(per_page,page){
@@ -116,7 +123,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_Lead_Text_Action_Index({per_page:per_page,page:page,params:this.query_params}).then(res => {
+      this.Module_Lead_Email_Action_Index({per_page:per_page,page:page,params:this.query_params}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -131,10 +138,11 @@ export default {
     Item_Create(){
       this.loading_add=true;
       let data = {
-        text : this.add_items.text,
+        subject : this.add_items.subject,
+        content : this.add_items.content,
         lead_id : this.lead.id
       }
-      this.Module_Lead_Text_Action_Create(data).then(res => {
+      this.Module_Lead_Email_Action_Create(data).then(res => {
         this.items.unshift(res.data.result);
         this.loading_add = false;
         this.dialog_add=false;
@@ -148,11 +156,6 @@ export default {
         this.loading_add=false;
       })
 
-    },
-    Searchable_Get(){
-      this.Module_Lead_Text_Action_Searchable().then(res => {
-        this.searchable = res.data.result
-      })
     },
 
     updateSelected(newSelection) {
@@ -218,6 +221,10 @@ export default {
             <template v-else>
               <q-card-section>
                 <div class="q-mt-sm">
+                  <q-input disable outlined  type="text" :model-value="lead.email" label="ارسال به آدرس : ">
+                  </q-input>
+                </div>
+                <div class="q-mt-sm">
                   <q-input  :error="this.Methods_Validation_Check(errors,'subject')" outlined  type="text" v-model="add_items.subject" label="موضوع ( Subject )">
                     <template v-slot:error>
                       <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'subject')" />
@@ -250,6 +257,87 @@ export default {
 
       </div>
       <q-separator class="q-mt-md"/>
+      <q-table
+          class="q-mt-lg"
+          flat
+          bordered
+          :loading="items_loading"
+          :rows="items"
+          title-class="text-teal-8 font-18 font-weight-500"
+          table-header-class="text-red-8"
+          :columns="columns"
+          separator="cell"
+          selection="multiple"
+          row-key="id"
+          :selected="selected"
+          @update:selected="updateSelected"
+          v-model:pagination="pagination"
+          @request="Items_OnRequest"
+      >
+
+        <template v-slot:body-cell-subject="props">
+          <q-td :props="props" >
+            <span class="cursor-pointer">
+                          {{this.Methods_Text_Shorter(props.row.subject,30)}}
+              <q-tooltip transition-show="scale" transition-hide="scale" class="bg-primary font-12">
+                {{props.row.subject}}
+              </q-tooltip>
+            </span>
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-is_success="props">
+          <q-td :props="props" >
+            <q-btn v-if="props.row.is_success" color="green-7" glossy icon="fas fa-check" title="ارسال شده" round size="xs"></q-btn>
+            <q-btn v-else color="red-7" glossy icon="fas fa-times" title="ارسال شده" round size="xs"></q-btn>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-created_by="props">
+          <q-td :props="props" >
+            <global_items_user :user="props.row.created_by" />
+          </q-td>
+        </template>
+        <template v-slot:body-cell-created_at="props">
+          <q-td :props="props" >
+            <global_filter_date :date="props.row.created_at" />
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-tools="props">
+          <q-td :props="props" >
+            <q-btn @click="dialog_show[props.row.id] = true" color="primary" icon="fas fa-eye" label="مشاهده ایمیل" size="sm" class="font-11" rounded glossy></q-btn>
+          </q-td>
+          <q-dialog
+              v-model="dialog_show[props.row.id]"
+              position="top"
+              full-width
+          >
+            <q-card style="width: 700px; max-width: 80vw;">
+              <q-card-section>
+                <strong class="text-red font-15">موضوع : </strong>
+                <strong class="text-grey-9 font-15">
+                  {{ props.row.subject }}
+                </strong>
+              </q-card-section>
+              <q-separator></q-separator>
+              <q-card-section>
+                <span v-html="props.row.content"></span>
+              </q-card-section>
+              <q-card-actions align="right">
+                <q-btn glossy color="dark" label="بستن" v-close-popup />
+              </q-card-actions>
+            </q-card>
+          </q-dialog>
+
+
+
+
+        </template>
+
+      </q-table>
+
+
+
 
     </q-card-section>
   </q-card>
