@@ -127,7 +127,7 @@
         "fa" : "ایجاد گروه بندی",
         "en" : "New group",
         "route_path" : "/",
-        "route_name" : "groups_create",
+        "route_name" : "client_groups_create",
 
         "level"      : 1,
         "subs" : [
@@ -137,7 +137,7 @@
         "fa" : "لیست گروه بندی",
         "en" : "Groups",
         "route_path" : "/",
-        "route_name" : "groups_index",
+        "route_name" : "client_groups_index",
         "level"      : 1,
         "subs" : [
 
@@ -145,6 +145,37 @@
       }
     ]
   },
+  {
+    "fa" : "نمایندگان",
+    "en" : "Clients",
+    "icon" : "fas fa-users-line",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد نمایندگان",
+        "en" : "New client",
+        "route_path" : "/",
+        "route_name" : "client_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست نمایندگان",
+        "en" : "Clients",
+        "route_path" : "/",
+        "route_name" : "client_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
+
   {
     "fa" : "فرم ها",
     "en" : "ّForms",
@@ -590,6 +621,38 @@
             "en" : "campaign_statuses",
             "route_path" : "/",
             "route_name" : "campaign_statuses_index",
+            "feature_type" : "read",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          }
+        ]
+      },
+      {
+        "fa" : "گروه بندی نمایندگان",
+        "en" : "Client_Groups",
+        "icon" : "fas fa-tents",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد گروه بندی  ",
+            "en" : "New client_groups",
+            "route_path" : "/",
+            "route_name" : "client_groups_create",
+            "feature_type" : "create",
+            "level"      : 1,
+            "subs" : [
+            ]
+          },
+          {
+            "fa" : "لیست گروه بندی",
+            "en" : "client_groups",
+            "route_path" : "/",
+            "route_name" : "client_groups_index",
             "feature_type" : "read",
             "level"      : 1,
             "subs" : [

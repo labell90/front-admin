@@ -31,6 +31,8 @@ import form from "@/store/modules/forms/form.js";
 import campaigns_statuses from "@/store/modules/campaigns_statuses/campaign_statuses.js"
 import campaign_types from "@/store/modules/campaings_types/campaign_types.js";
 import dashboard from "@/store/modules/dashboard/dashboard.js";
+import client_groups from "@/store/modules/client_groups/client_groups.js";
+import client from "@/store/modules/client/client.js"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -72,7 +74,9 @@ const store = createStore({
         form,
         campaigns_statuses,
         campaign_types,
-        dashboard
+        dashboard,
+        client_groups,
+        client
     }
 
 
