@@ -6,6 +6,7 @@ import Leads_Profile_Documents from "@/views/leads/leads/profile/Leads_Profile_D
 import Leads_Profile_Texts from "@/views/leads/leads/profile/Leads_Profile_Texts.vue";
 import Leads_Profile_Campaigns from "@/views/leads/leads/profile/Leads_Profile_Campaigns.vue";
 import Leads_Profile_Emails from "@/views/leads/leads/profile/Leads_Profile_Emails.vue";
+import Leads_Profile_Contacts from "@/views/leads/leads/profile/Leads_Profile_Contacts.vue";
 
 export default {
   name: "Leads_Profile_Index",
@@ -15,7 +16,8 @@ export default {
     'lead_documents' : Leads_Profile_Documents,
     'lead_texts' : Leads_Profile_Texts,
     'lead_campaigns' : Leads_Profile_Campaigns,
-    'lead_emails' : Leads_Profile_Emails
+    'lead_emails' : Leads_Profile_Emails,
+    'lead_contacts' : Leads_Profile_Contacts,
   },
   mounted() {
     this.Get_Lead();
@@ -239,6 +241,21 @@ export default {
               </router-link>
             </div>
 
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 q-pa-sm" :class="{'gray-filter' : this.$route.name !== 'lead_profile_contacts'}">
+              <router-link :to="{name : 'lead_profile_contacts',params : {id:lead.id}}">
+                <div class="q-pa-sm rounded-borders glossy-bg row">
+                <div class="col-lx-4 col-lg-5 col-md-6">
+                  <img src="assets/images/icons/contacts.png" width="60" alt="">
+                </div>
+                <div class="col-lx-8 col-lg-7 col-md-6">
+                  <div class="q-mt-lg">
+                    <strong class="text-teal-13 menu-title"> مخاطبین</strong>
+                  </div>
+                </div>
+              </div>
+              </router-link>
+            </div>
+
           </div>
       </q-card-section>
 
@@ -246,11 +263,12 @@ export default {
 
     <div class="q-mt-md">
       <lead_notes :lead="lead" v-if="this.$route.name === 'lead_profile_notes' || this.$route.name === 'lead_profile'" class="animation-fade-in"></lead_notes>
-      <lead_histories v-if="this.$route.name === 'lead_profile_histories'" class="animation-fade-in"></lead_histories>
+      <lead_histories :lead="lead" v-if="this.$route.name === 'lead_profile_histories'" class="animation-fade-in"></lead_histories>
       <lead_documents :lead="lead" v-if="this.$route.name === 'lead_profile_documents'" class="animation-fade-in"></lead_documents>
       <lead_texts :lead="lead" v-if="this.$route.name === 'lead_profile_texts'" class="animation-fade-in"></lead_texts>
       <lead_campaigns :lead="lead" v-if="this.$route.name === 'lead_profile_campaigns'" class="animation-fade-in"></lead_campaigns>
       <lead_emails :lead="lead" v-if="this.$route.name === 'lead_profile_emails'" class="animation-fade-in"></lead_emails>
+      <lead_contacts :lead="lead" v-if="this.$route.name === 'lead_profile_contacts'" class="animation-fade-in"></lead_contacts>
 
     </div>
 

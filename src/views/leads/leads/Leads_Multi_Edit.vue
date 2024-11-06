@@ -2,7 +2,8 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Leads_Create",
+  name: "Leads_Multi_Edit",
+  props:['ids'],
   mounted() {
     this.Get_Location();
 
@@ -31,8 +32,6 @@ export default {
        lead_industry_id : null,
        lead_type_id : null,
        name : null,
-       phone : null,
-       email : null,
        company : null,
        tel : null,
        fax : null,
@@ -44,7 +43,6 @@ export default {
        company_position : null,
        address : null,
        description : null,
-       is_special : 0
      }
    }
   },
@@ -61,20 +59,10 @@ export default {
         "Module_Lead_Status_Action_Index",
         "Module_Lead_Action_Create",
     ]),
-    Create_Item(){
+    Edit_Items(){
 
       this.loading=true;
-      this.Module_Lead_Action_Create(this.items).then(response => {
-        this.loading=false;
-        this.Methods_Notify_Create();
-        this.$router.push({name:'lead_index'});
-      }).catch(error => {
-        if (error.response.status === 422) {
-          this.Methods_Validation_Notify();
-          this.errors = error.response.data;
-        }
-        this.loading=false;
-      })
+
 
     },
 
@@ -282,13 +270,7 @@ export default {
 </script>
 
 <template>
-
   <q-card>
-    <q-card-section>
-      <strong class="text-grey-10">افزودن سرنخ جدید</strong>
-      <q-btn :to="{name : 'lead_index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
-
-    </q-card-section>
     <q-card-section>
       <div class="row">
         <div class="col-12 q-mb-md">
@@ -300,20 +282,6 @@ export default {
           <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="نام و نام خانوادگی">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
-            </template>
-          </q-input>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'phone')" outlined v-model="items.phone"  type="text" label="شماره موبایل">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'phone')" />
-            </template>
-          </q-input>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'email')" outlined v-model="items.email"  type="text" label="آدرس ایمیل">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'email')" />
             </template>
           </q-input>
         </div>
@@ -703,7 +671,7 @@ export default {
           </q-input>
         </div>
         <div class="col-12 q-pa-xs">
-          <q-btn color="pink-7" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+          <q-btn color="blue-7" :loading="loading" @click="Edit_Items" glossy icon="fas fa-edit font-18" label="ویرایش گروهی"></q-btn>
         </div>
 
       </div>

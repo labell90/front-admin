@@ -1,8 +1,12 @@
 <script>
 import {mapActions} from "vuex";
+import Leads_Multi_Edit from "@/views/leads/leads/Leads_Multi_Edit.vue";
 
 export default {
   name: "Leads_Index",
+  components:{
+    'lead_multi_edit' : Leads_Multi_Edit,
+  },
   mounted() {
     this.Items_Get();
     this.Searchable_Get();
@@ -21,6 +25,8 @@ export default {
       items_loading:true,
       delete_loading:false,
       activation_loading:false,
+      actions_loading:false,
+      multi_edit_dialog:false,
       items_selected:[],
       selected: [],
       pagination: {
@@ -127,6 +133,7 @@ export default {
     ...mapActions([
       "Module_Lead_Action_Index",
       "Module_Lead_Action_Delete",
+      "Module_Lead_Action_Actions_Delete",
       "Module_Lead_Action_Activation",
       "Module_Lead_Action_Searchable"
     ]),
@@ -174,6 +181,26 @@ export default {
       })
 
     },
+
+    Item_Actions_Delete(){
+      this.actions_loading=true;
+      this.Module_Lead_Action_Actions_Delete({ids : this.items_selected}).then(res => {
+        this.items = this.items.filter(item => {
+          return !this.items_selected.includes(item.id);
+        })
+        this.Methods_Notify_Delete();
+        this.actions_loading=false;
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.Methods_Notify_Error_Internal();
+        }else {
+          this.Methods_Notify_Error_Server();
+        }
+        this.actions_loading=false;
+      })
+
+    },
+
     Item_Activation(id){
       this.activation_loading=true;
       this.Module_Lead_Action_Activation(id).then(res => {
@@ -233,6 +260,7 @@ export default {
 <template>
 
   <q-card>
+
     <q-card-section>
       <q-btn :to="{name : 'lead_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
       <q-btn :to="{name : 'lead_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
@@ -301,6 +329,28 @@ export default {
               @click="props.toggleFullscreen"
               class="font-12 "
           />
+
+          <global_actions_multi_actions @Edit_Ok="multi_edit_dialog=true" @Delete_Ok="Item_Actions_Delete" :action_loading="actions_loading" :items="items_selected" class="animation-fade-in" v-if="items_selected.length > 0" ></global_actions_multi_actions>
+
+          <q-dialog
+              v-model="multi_edit_dialog"
+              full-width
+              transition-show="slide-up"
+              transition-hide="slide-down"
+          >
+            <q-card>
+              <q-card-section>
+                <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+                <strong class="font-15">ویرایش گروهی سرنخ ها </strong>
+              </q-card-section>
+              <q-separator/>
+              <lead_multi_edit></lead_multi_edit>
+
+            </q-card>
+          </q-dialog>
+
+
+
         </template>
         <template v-slot:body-cell-name="props">
           <q-td :props="props">
@@ -328,7 +378,6 @@ export default {
               <q-btn :to="{name:'lead_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
 
               <q-btn :to="{name:'lead_profile',params:{id:props.row.id}}" glossy class="q-ma-xs" color="green-8" icon="fas fa-user" size="9px" round title="مشاهده پروفایل"/>
-
 
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>

@@ -11,8 +11,18 @@ export default {
                     return reject(error);
                 })
             })
-
         },
+
+        Module_Lead_Action_All(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/leads/all',{params : items}).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
+
         Module_Lead_Action_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/leads/trash?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{
@@ -37,6 +47,7 @@ export default {
             })
 
         },
+
         Module_Lead_Action_Restore(_,item){
 
             return new Promise((resolve, reject) => {
@@ -60,6 +71,7 @@ export default {
                 })
             })
         },
+
         Module_Lead_Action_Edit(_,items){
             return new Promise((resolve, reject) => {
                 axios.put('users/leads/leads/'+items.id,items).then(response =>{
@@ -70,6 +82,7 @@ export default {
             })
 
         },
+
         Module_Lead_Action_Delete(_,items){
             return new Promise((resolve, reject) => {
                 axios.delete('users/leads/leads/'+items).then(response =>{
@@ -80,6 +93,20 @@ export default {
             })
 
         },
+
+        Module_Lead_Action_Actions_Delete(_,items){
+            return new Promise((resolve, reject) => {
+                axios.post('users/leads/leads/actions/delete',items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+
+
         Module_Lead_Action_Trash_Delete(_,items){
             return new Promise((resolve, reject) => {
                 axios.delete('users/leads/leads/trash/delete/'+items).then(response =>{
@@ -101,6 +128,7 @@ export default {
             })
 
         },
+
         Module_Lead_Action_Searchable(){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/leads/searchable').then(response =>{
@@ -121,6 +149,7 @@ export default {
                 })
             })
         },
+
         Module_Lead_Action_Get_Field(){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/leads/forms').then(response =>{
@@ -130,6 +159,7 @@ export default {
                 })
             })
         },
+
         Module_Lead_Action_Activation_Field(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/leads/forms/change/activation/'+item).then(response =>{
@@ -139,6 +169,7 @@ export default {
                 })
             })
         },
+
         Module_Lead_Action_Required_Field(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/leads/leads/forms/change/required/'+item).then(response =>{
@@ -148,6 +179,7 @@ export default {
                 })
             })
         },
+
         Module_Lead_Action_Delete_Field(_,item){
             return new Promise((resolve, reject) => {
                 axios.delete('users/leads/leads/forms/'+item).then(response =>{

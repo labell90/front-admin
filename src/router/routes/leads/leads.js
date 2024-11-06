@@ -127,6 +127,15 @@ const route_leads=[
             subtitle : 'ایمیل ها'
         },
     },
+    {
+        path : "/leads/profile/:id/contacts",
+        name : "lead_profile_contacts",
+        component : Leads_Profile_Index,
+        meta : {
+            title : 'پروفایل سرنخ',
+            subtitle : 'مخاطبین'
+        },
+    },
 
 
 ]

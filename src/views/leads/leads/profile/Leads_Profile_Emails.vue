@@ -289,7 +289,7 @@ export default {
         <template v-slot:body-cell-is_success="props">
           <q-td :props="props" >
             <q-btn v-if="props.row.is_success" color="green-7" glossy icon="fas fa-check" title="ارسال شده" round size="xs"></q-btn>
-            <q-btn v-else color="red-7" glossy icon="fas fa-times" title="ارسال شده" round size="xs"></q-btn>
+            <q-btn v-else color="red-7" glossy icon="fas fa-times" title="ارسال نشده" round size="xs"></q-btn>
           </q-td>
         </template>
         <template v-slot:body-cell-created_by="props">

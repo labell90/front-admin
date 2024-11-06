@@ -23,7 +23,9 @@ import leads_notes from "@/store/modules/leads/notes/leads_notes.js";
 import leads_documents from "@/store/modules/leads/documents/leads_documents.js";
 import leads_texts from "@/store/modules/leads/texts/leads_texts.js";
 import leads_campaigns from "@/store/modules/leads/campaigns/leads_campaigns.js";
+import leads_contacts from "@/store/modules/leads/contacts/leads_contacts.js";
 import leads_emails from "@/store/modules/leads/emails/leads_emails.js";
+import leads_logs from "@/store/modules/leads/logs/leads_logs.js";
 import leads from "@/store/modules/leads/leads/leads.js";
 import features from "@/store/modules/features/features.js";
 import user_group from "@/store/modules/groups/user_group.js";
@@ -66,9 +68,11 @@ const store = createStore({
         leads_documents,
         leads_texts,
         leads_emails,
+        leads_logs,
         leads_campaigns,
         leads,
         leads_advsource,
+        leads_contacts,
         features,
         user_group,
         form,
