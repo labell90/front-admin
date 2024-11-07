@@ -21,6 +21,8 @@ export default {
      lead_statuses:[],
      lead_industries:[],
      lead_types:[],
+     lead_utm_medium:[],
+     lead_utm_source:[],
      items:{
        country_id : null,
        province_id : null,
@@ -30,6 +32,8 @@ export default {
        lead_status_id : null,
        lead_industry_id : null,
        lead_type_id : null,
+       lead_utm_medium_id : null,
+       lead_utm_source_id : null,
        name : null,
        phone : null,
        email : null,
@@ -59,6 +63,8 @@ export default {
         "Module_Lead_Resource_Action_Index",
         "Module_Lead_Types_Action_Index",
         "Module_Lead_Status_Action_Index",
+        "Module_Lead_Utmmedium_Action_Index",
+        "Module_Lead_Utmsource_Action_Index",
         "Module_Lead_Action_Create",
     ]),
     Create_Item(){
@@ -158,6 +164,30 @@ export default {
         this.Methods_Notify_Error_Server();
       })
     },
+    Get_Lead_Utm_Medium(){
+      this.Module_Lead_Utmmedium_Action_Index({per_page:1000}).then(response => {
+        if (response.data.result.data){
+          this.lead_utm_medium=[];
+          response.data.result.data.forEach(type => {
+            this.lead_utm_medium.push({label:type.name, value: type.id,color_code : type.color_code});
+          })
+        }
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+    Get_Lead_Utm_Source(){
+      this.Module_Lead_Utmsource_Action_Index({per_page:1000}).then(response => {
+        if (response.data.result.data){
+          this.lead_utm_source=[];
+          response.data.result.data.forEach(type => {
+            this.lead_utm_source.push({label:type.name, value: type.id,color_code : type.color_code});
+          })
+        }
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
 
 
     Filter_Countries_Select (val, update, abort) {
@@ -246,6 +276,28 @@ export default {
           })
         }else {
           this.Get_Lead_Types();
+        }
+      })
+    },
+    Filter_Lead_Utm_Medium_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.lead_utm_medium =  this.lead_utm_medium.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Lead_Utm_Medium();
+        }
+      })
+    },
+    Filter_Lead_Utm_Source_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.lead_utm_source =  this.lead_utm_source.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Lead_Utm_Source();
         }
       })
     },
@@ -523,6 +575,43 @@ export default {
               v-model="items.lead_type_id"
               label="انتخاب نوع"
               :options="lead_types"
+              @filter="Filter_Lead_Types_Select"
+              emit-value
+              map-options
+              use-input
+              :error="this.Methods_Validation_Check(errors,'lead_type_id')"
+
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_type_id')" />
+            </template>
+          </q-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.lead_utm_medium_id"
+              label="انتخاب UTM Medium"
+              :options="lead_utm_medium"
               @filter="Filter_Lead_Types_Select"
               emit-value
               map-options
