@@ -696,6 +696,61 @@
       }
     ]
   },
+  {
+    "fa" : "وظایف",
+    "en" : "Tasks",
+    "icon" : "fas fa-thumbtack",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "نوع وظایف",
+        "en" : "Task_Types",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1001",
+        "icon" : "fas fa-thumbtack font-20",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد نوع وظایف",
+            "en" : "New task_types",
+            "route_path" : "/",
+            "route_name" : "task_types_create",
+            "feature_type" : "create",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست نوع وظایف",
+            "en" : "task_types",
+            "route_path" : "/",
+            "route_name" : "task_types_index",
+            "feature_type" : "read",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          }
+        ]
+      },
+      {
+        "fa" : "مشتریان",
+        "en" : "Customers",
+        "route_path" : "/",
+        "icon" : "fas fa-user-group font-20",
+        "route_name" : "",
+        "level"      : 0.5,
+        "subs" : [
+
+        ]
+      }
+
+    ]
+  },
 
   {
     "title" : true,

@@ -34,7 +34,8 @@ import campaigns_statuses from "@/store/modules/campaigns_statuses/campaign_stat
 import campaign_types from "@/store/modules/campaings_types/campaign_types.js";
 import dashboard from "@/store/modules/dashboard/dashboard.js";
 import client_groups from "@/store/modules/client_groups/client_groups.js";
-import client from "@/store/modules/client/client.js"
+import client from "@/store/modules/client/client.js";
+import task_types from "@/store/modules/task_types/task_types.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -80,7 +81,8 @@ const store = createStore({
         campaign_types,
         dashboard,
         client_groups,
-        client
+        client,
+        task_types
     }
 
 

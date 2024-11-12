@@ -25,6 +25,7 @@ import route_campaigns_statuses from "@/router/routes/campaigns_statuses/campaig
 import route_campaigns_types from "@/router/routes/campaigns_types/campaigns_types.js";
 import route_client_groups from "@/router/routes/client_groups/client_groups.js";
 import route_client from "@/router/routes/client/client.js";
+import route_task_types from "@/router/routes/task_types/task_types.js";
 
 
 
