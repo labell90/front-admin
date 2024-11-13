@@ -27,6 +27,8 @@ import route_client_groups from "@/router/routes/client_groups/client_groups.js"
 import route_client from "@/router/routes/client/client.js";
 import route_task_types from "@/router/routes/task_types/task_types.js";
 import route_tags from "@/router/routes/tags/tags.js";
+import personal_tags from "@/router/routes/personal_tags/personal_tags.js"
+import route_personal_tags from "@/router/routes/personal_tags/personal_tags.js";
 
 
 
@@ -54,7 +56,8 @@ const routes = [
     ...route_campaigns_types,
     ...route_client_groups,
     ...route_client,
-    ...route_tags
+    ...route_tags,
+    ...route_personal_tags
 
 ]
 

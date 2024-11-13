@@ -738,16 +738,39 @@
         ]
       },
       {
-        "fa" : "مشتریان",
-        "en" : "Customers",
+        "fa" : "تگ شخصی",
+        "en" : "Personal Tags",
         "route_path" : "/",
-        "icon" : "fas fa-user-group font-20",
         "route_name" : "",
+        "feature" : "1001",
+        "icon" : "fas fa-user-tie font-20",
         "level"      : 0.5,
         "subs" : [
+          {
+            "fa" : "ایجاد تگ شخصی",
+            "en" : "New personal tag",
+            "route_path" : "/",
+            "route_name" : "personal_tags_create",
+            "feature_type" : "create",
+            "level"      : 1,
+            "subs" : [
 
+            ]
+          },
+          {
+            "fa" : "لیست تگ شخصی",
+            "en" : "Personal Tags",
+            "route_path" : "/",
+            "route_name" : "personal_tags_index",
+            "feature_type" : "read",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          }
         ]
       }
+
 
     ]
   },
@@ -791,18 +814,8 @@
             ]
           }
         ]
-      },
-      {
-        "fa" : "مشتریان",
-        "en" : "Customers",
-        "route_path" : "/",
-        "icon" : "fas fa-user-group font-20",
-        "route_name" : "",
-        "level"      : 0.5,
-        "subs" : [
-
-        ]
       }
+
 
     ]
   },

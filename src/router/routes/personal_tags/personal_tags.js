@@ -1,90 +1,41 @@
-import axios from "axios";
 
-export default {
-    actions:{
-        Module_tags_Index(_,items){
-            return new Promise((resolve, reject) => {
-                axios.get('users/tags?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
+import Personal_Tags_Create from "@/views/personal_tags/Personal_Tags_Create.vue";
+import Personal_Tags_Index from "@/views/personal_tags/Personal_Tags_Index.vue";
+import Personal_Tags_Edit from "@/views/personal_tags/Personal_Tags_Edit.vue";
+
+
+const route_personal_tags = [
+    {
+        path : "/tags/personal",
+        name : "personal_tags_index",
+        component : Personal_Tags_Index,
+        meta : {
+            title : 'تگ شخصی',
+            subtitle : 'لیست تگ شخصی '
         },
-        Module_tags_All(){
-            return new Promise((resolve, reject) => {
-                axios.get('users/tags/all').then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
+    },
+
+    {
+        path : "/tags/personal/create",
+        name : "personal_tags_create",
+        component : Personal_Tags_Create,
+        meta : {
+            title : 'تگ شخصی',
+            subtitle : 'ایجاد تگ شخصی'
         },
-
-
-        Module_tags_Show(_,item){
-            return new Promise((resolve, reject) => {
-                axios.get('users/tags/'+item).then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
-
+    },
+    {
+        path : "/tags/personal/edit/:id",
+        name : "personal_tags_edit",
+        component : Personal_Tags_Edit,
+        meta : {
+            title : 'تگ شخصی',
+            subtitle : 'ویرایش  تگ شخصی'
         },
-
-
-        Module_tags_Create(_,items){
-            return new Promise((resolve, reject) => {
-                axios.post('users/tags',items).then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
-
-        },
-        Module_tags_Edit(_,items){
-            return new Promise((resolve, reject) => {
-                axios.put('users/tags/'+items.id,items).then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
-
-        },
-        Module_tags_Delete(_,items){
-            return new Promise((resolve, reject) => {
-                axios.delete('users/tags/'+items).then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
-
-        },
+    },
 
 
 
-        Module_tags_Searchable(){
-            return new Promise((resolve, reject) => {
-                axios.get('users/tags/searchable').then(response =>{
-                    return resolve(response);
-                }).catch(error =>{
-                    return reject(error);
-                })
-            })
+]
 
-        }
-
-
-
-
-    }
-
-
-
-
-
-}
+export default route_personal_tags;
