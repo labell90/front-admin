@@ -36,6 +36,7 @@ import dashboard from "@/store/modules/dashboard/dashboard.js";
 import client_groups from "@/store/modules/client_groups/client_groups.js";
 import client from "@/store/modules/client/client.js";
 import task_types from "@/store/modules/task_types/task_types.js";
+import tags from "@/store/modules/tags/tags.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -82,7 +83,8 @@ const store = createStore({
         dashboard,
         client_groups,
         client,
-        task_types
+        task_types,
+        tags
     }
 
 
