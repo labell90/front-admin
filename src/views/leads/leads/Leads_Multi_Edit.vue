@@ -23,6 +23,7 @@ export default {
      lead_industries:[],
      lead_types:[],
      items:{
+       ids : null,
        country_id : null,
        province_id : null,
        city_id : null,
@@ -58,11 +59,22 @@ export default {
         "Module_Lead_Types_Action_Index",
         "Module_Lead_Status_Action_Index",
         "Module_Lead_Action_Create",
+        "Module_Lead_Action_Actions_Edit"
     ]),
     Edit_Items(){
-
       this.loading=true;
-
+      this.items.ids = this.ids
+      this.Module_Lead_Action_Actions_Edit(this.items).then(res => {
+        this.loading=false;
+        this.$emit('Updated');
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.Methods_Notify_Error_Internal();
+        }else {
+          this.Methods_Notify_Error_Server();
+        }
+        this.loading=false;
+      })
 
     },
 
@@ -98,6 +110,7 @@ export default {
         this.Methods_Notify_Error_Server();
       })
     },
+
     Get_Lead_Resources(){
       this.Module_Lead_Resource_Action_Index({per_page:1000}).then(response => {
         if (response.data.result.data){
@@ -146,7 +159,6 @@ export default {
         this.Methods_Notify_Error_Server();
       })
     },
-
 
     Filter_Countries_Select (val, update, abort) {
       update(() => {

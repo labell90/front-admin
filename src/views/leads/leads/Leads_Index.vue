@@ -201,6 +201,12 @@ export default {
 
     },
 
+    Item_Actions_Edit(){
+      this.multi_edit_dialog=false;
+      this.Methods_Notify_Update();
+      this.Items_Get(this.pagination.rowsPerPage,this.pagination.page)
+    },
+
     Item_Activation(id){
       this.activation_loading=true;
       this.Module_Lead_Action_Activation(id).then(res => {
@@ -344,7 +350,8 @@ export default {
                 <strong class="font-15">ویرایش گروهی سرنخ ها </strong>
               </q-card-section>
               <q-separator/>
-              <lead_multi_edit></lead_multi_edit>
+
+              <lead_multi_edit @Updated="Item_Actions_Edit" :ids="items_selected" ></lead_multi_edit>
 
             </q-card>
           </q-dialog>

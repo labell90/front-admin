@@ -105,6 +105,18 @@ export default {
 
         },
 
+        Module_Lead_Action_Actions_Edit(_,items){
+            return new Promise((resolve, reject) => {
+                //Create Form data
+                axios.post('users/leads/leads/actions/update',items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
 
 
         Module_Lead_Action_Trash_Delete(_,items){
