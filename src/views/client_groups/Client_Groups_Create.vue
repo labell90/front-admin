@@ -13,7 +13,7 @@ export default {
         name:null,
         color_code:'#ba2d8d',
         code:null,
-        discount:null,
+        discount_percent:0,
       }
     }
   },
@@ -43,7 +43,7 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">افزودن گروه بندی جدید</strong>
-      <q-btn :to="{name : 'Client_Groups_Index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
+      <q-btn :to="{name : 'client_groups_index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
 
     </q-card-section>
     <q-card-section>

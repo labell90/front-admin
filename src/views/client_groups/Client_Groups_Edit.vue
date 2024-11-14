@@ -78,7 +78,7 @@ export default {
               </q-input>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-              <q-input  :error="this.Methods_Validation_Check(errors,'discount_percent')" outlined v-model="items.discount_percent"  type="text" label="درصد تخفیف گروه بندی">
+              <q-input  :error="this.Methods_Validation_Check(errors,'discount_percent')" outlined v-model="items.discount_percent"  type="number" label="درصد تخفیف گروه بندی">
                 <template v-slot:error>
                   <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'discount_percent')" />
                 </template>
