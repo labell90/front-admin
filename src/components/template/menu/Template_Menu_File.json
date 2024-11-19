@@ -175,6 +175,36 @@
       }
     ]
   },
+  {
+    "fa" : "مشتریان",
+    "en" : "Customer",
+    "icon" : "fas fa-users-line",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد مشتریان",
+        "en" : "New customer",
+        "route_path" : "/",
+        "route_name" : "customer_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست مشتریان",
+        "en" : "Customer",
+        "route_path" : "/",
+        "route_name" : "customer_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
 
   {
     "fa" : "فرم ها",
