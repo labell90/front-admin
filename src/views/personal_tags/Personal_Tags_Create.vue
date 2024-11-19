@@ -3,7 +3,6 @@ import {mapActions} from "vuex";
 
 export default {
   name: "Personal_Tags_Create",
-  //#TODO add image from media
   data(){
     return {
       loading:false,
@@ -12,7 +11,6 @@ export default {
         name:null,
         color_code:'#ba2d8d',
         code:null,
-
       }
     }
   },

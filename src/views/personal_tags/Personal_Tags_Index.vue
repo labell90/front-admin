@@ -5,7 +5,6 @@ export default {
   name: "Personal_Tags_Index",
   mounted() {
     this.Items_Get();
-    this.Searchable_Get();
     this.Columns_Generate();
 
   },
@@ -133,9 +132,9 @@ export default {
     },
     Item_Delete(id){
       this.delete_loading=true;
-      this.Module_tags_Delete(id).then(res => {
+      this.Module_personal_tags_Delete(id).then(res => {
         this.items = this.items.filter(item => {
-          return item.id !== id;
+          return item.id !== id; 
         })
         this.Methods_Notify_Delete();
         this.delete_loading=false;

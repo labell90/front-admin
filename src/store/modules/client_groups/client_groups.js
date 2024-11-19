@@ -12,6 +12,17 @@ export default {
             })
 
         },
+
+        Module_Client_Groups_All(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/client_groups/all').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
         Module_Client_Groups_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
                 axios.get('users/client_groups/trash?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{

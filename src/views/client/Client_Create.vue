@@ -4,9 +4,9 @@ import Client_Index from "@/views/client/Client_Index.vue";
 
 export default {
   name: "Client_Create",
-  created() {
+  mounted() {
     this.Get_Locations();
-
+    this.Get_Client_Group();
 
   },
   //#TODO add image from media
@@ -15,6 +15,7 @@ export default {
       loading:false,
       errors:[],
       items:{
+        client_group_id:null,
         name:null,
         email:null,
         phone:null,
@@ -22,6 +23,7 @@ export default {
         province_id:null,
         city_id:null,
         password : null,
+        password_confirmation : null,
         bio : null,
         national_code:null,
         postal_code : null,
@@ -39,21 +41,22 @@ export default {
       provinces:[],
       cities:[],
       locations:[],
+      client_groups:[]
     }
   },
   methods:{
     ...mapActions([
-      "Module_Client_Create",
-      "Module_Location_Action_Country_Selectable",
-      "Module_Location_Action_Province_Selectable",
-      "Module_Location_Action_City_Selectable",
-        "Module_Location_Action_Index"
+        "Module_Client_Create",
+        "Module_Location_Action_Country_Selectable",
+        "Module_Location_Action_Province_Selectable",
+        "Module_Location_Action_City_Selectable",
+        "Module_Location_Action_Index",
+        "Module_Client_Groups_All"
     ]),
     Get_Locations(){
       this.Module_Location_Action_Index().then(response => {
         this.locations = response.data.result;
         this.Get_Countries();
-
       }).catch(error =>{
 
       })
@@ -65,6 +68,24 @@ export default {
       }).catch(error =>{
       })
 
+    },
+    Get_Client_Group(){
+      this.Module_Client_Groups_All().then(res => {
+        if (res.data.result){
+          this.client_groups=[];
+          res.data.result.forEach(item => {
+            this.client_groups.push({
+              label : item.name,
+              value : item.id,
+              color_code : item.color_code
+            })
+          })
+        }
+
+
+      }).catch(error => {
+        return this.Methods_Notify_Error_Server();
+      })
     },
     Filter_Countries_Select (val, update, abort) {
       update(() => {
@@ -99,6 +120,17 @@ export default {
         }
       })
     },
+    Filter_Client_Group_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.client_groups =  this.client_groups.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          // this.Computed_Get_Cities();
+        }
+      })
+    },
     Create_Item(){
       this.loading=true;
       this.Module_Client_Create(this.items).then(response => {
@@ -113,6 +145,7 @@ export default {
         this.loading=false;
       })
     },
+
   },
   computed : {
     Computed_Get_Province(){
@@ -147,110 +180,105 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <strong class="text-grey-10">افزودن نماینده</strong>
+      <strong>افزودن نماینده جدید</strong>
       <q-btn :to="{name : 'client_index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
-
     </q-card-section>
     <q-card-section>
+
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="نام نماینده">
+        <div class="col-12 q-mb-md q-pa-sm">
+          <q-icon name="fas fa-user" size="30px" color="teal-8"/>
+          <strong class="q-ml-sm text-grey-8">اطلاعات شخصی نماینده</strong>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="نام و نام خانوادگی">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'email')" outlined v-model="items.email"  type="text" label="ایمیل نماینده">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'email')" />
-            </template>
-          </q-input>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'phone')" outlined v-model="items.phone"  type="number"  label="شماره تماس نماینده">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'phone')" outlined v-model="items.phone"  type="number"  label="شماره موبایل">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'phone')" />
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'password')" outlined v-model="items.password"  type="password"  label="رمز عبور">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'password')" />
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-mb-md">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.client_group_id"
+              label="انتخاب گروه بندی"
+              :options="client_groups"
+              @filter="Filter_Client_Group_Select"
+              emit-value
+              map-options
+              use-input
+              clearable
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
             </template>
-          </q-input>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'password')" outlined v-model="items.password"  type="password"  label="تکرار رمز عبور">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'password')" />
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
             </template>
-          </q-input>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-          <q-input :error="this.Methods_Validation_Check(errors,'bio')" outlined v-model="items.bio"  type="textarea" rows="4" label="بیو">
             <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'bio')" />
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'client_group_id')" />
             </template>
-          </q-input>
+          </q-select>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
           <q-input  :error="this.Methods_Validation_Check(errors,'national_code')" outlined v-model="items.national_code"  type="number" label="کد ملی">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'national_code')" />
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'postal_code')" outlined v-model="items.postal_code"  type="number" label="کد پستی">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'email')" outlined v-model="items.email"  type="text" label="ایمیل">
             <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'postal_code')" />
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'email')" />
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-          <q-input :error="this.Methods_Validation_Check(errors,'address')" outlined v-model="items.address"  type="textarea" rows="4" label="آدرس">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'password')" outlined v-model="items.password"  type="password"  label="رمز عبور">
             <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'address')" />
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'password')" />
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'tel')" outlined v-model="items.tel"  type="number" label="شماره تلفن ثابت">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'password_confirmation')" outlined v-model="items.password_confirmation"  type="password"  label="تکرار رمز عبور">
             <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'tel')" />
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'password_confirmation')" />
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'fax')" outlined v-model="items.fax"  type="text" label="فکس">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-pa-xs">
+          <q-input :error="this.Methods_Validation_Check(errors,'bio')" outlined v-model="items.bio"  type="textarea" rows="4" label="بیو (توضیحاتی در مورد نماینده)">
             <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'fax')" />
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'bio')" />
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'company')" outlined v-model="items.company"  type="text" label="شرکت">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'company')" />
-            </template>
-          </q-input>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'company_tel')" outlined v-model="items.company_tel"  type="text" label="تلفن شرکت">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'company_tel')" />
-            </template>
-          </q-input>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
-          <q-input :error="this.Methods_Validation_Check(errors,'company_address')" outlined v-model="items.company_address"  type="textarea" rows="4" label="آدرس شرکت">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'company_address')" />
-            </template>
-          </q-input>
+
+        <div class="col-12 q-mb-md ">
+          <q-icon name="fas fa-location" size="30px" color="teal-8"/>
+          <strong class="q-ml-sm text-grey-8">اطلاعات مکانی</strong>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
@@ -356,12 +384,82 @@ export default {
           </q-select>
 
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'postal_code')" outlined v-model="items.postal_code"  type="number" label="کد پستی">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'postal_code')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
+          <q-input :error="this.Methods_Validation_Check(errors,'address')" outlined v-model="items.address"  type="textarea" rows="4" label="آدرس">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'address')" />
+            </template>
+          </q-input>
+        </div>
+
+        <div class="col-12 q-mb-md">
+          <q-icon name="fas fa-list" size="30px" color="teal-8"/>
+          <strong class="q-ml-sm text-grey-8">اطلاعات اضافه</strong>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'tel')" outlined v-model="items.tel"  type="number" label="شماره تلفن ثابت">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'tel')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'fax')" outlined v-model="items.fax"  type="text" label="فکس">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'fax')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'company')" outlined v-model="items.company"  type="text" label="عنوان شرکت">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'company')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'company_tel')" outlined v-model="items.company_tel"  type="text" label="تلفن شرکت">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'company_tel')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-input  :error="this.Methods_Validation_Check(errors,'company_website')" outlined v-model="items.company_website"  type="text" label="وبسایت شرکت">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'company_website')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
+          <q-input :error="this.Methods_Validation_Check(errors,'company_address')" outlined v-model="items.company_address"  type="textarea" rows="4" label="آدرس شرکت">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'company_address')" />
+            </template>
+          </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
+          <q-input :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="items.description"  type="textarea" rows="4" label="توضیحات">
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'description')" />
+            </template>
+          </q-input>
+        </div>
 
 
         <div class="col-12 q-pa-xs">
           <q-btn color="pink-7" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
         </div>
       </div>
+
     </q-card-section>
   </q-card>
 

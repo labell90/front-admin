@@ -4,8 +4,8 @@ import {mapActions} from "vuex";
 export default {
   name: "Groups_Edit",
   mounted() {
-    this.Get_Item();
     this.Get_Groups()
+    this.Get_Item();
 
   },
   data(){
@@ -165,7 +165,7 @@ export default {
               </q-input>
             </div>
             <div class="col-12 q-pa-xs">
-              <q-btn color="teal-8" :loading="edit_loading" @click="Edit_Item" glossy icon="fas fa-edit" label="ویرایش آیتم"></q-btn>
+              <q-btn color="blue-8" :loading="edit_loading" @click="Edit_Item" glossy icon="fas fa-edit" label="ویرایش آیتم"></q-btn>
             </div>
           </div>
         </q-card-section>

@@ -47,18 +47,14 @@ export default {
           sortable: true,
           field: row => row.name,
         },
-
-
         {
-          name: 'email',
-          value: 'email',
-          label: 'ایمیل',
+          name: 'client_group',
+          value: 'client_group',
+          label: 'گروه کاربری',
           align: 'left',
-          sortable: true,
-          field: row => row.email,
+          sortable: false,
+          field: row => row.client_group,
         },
-
-
         {
           name: 'phone',
           value: 'phone',
@@ -67,9 +63,22 @@ export default {
           sortable: true,
           field: row => row.phone,
         },
-
-
-
+        {
+          name: 'code',
+          value: 'code',
+          label: 'کد‌',
+          align: 'left',
+          sortable: false,
+          field: row => row.code,
+        },
+        {
+          name: 'is_active',
+          value: 'is_active',
+          label: 'وضعیت',
+          align: 'left',
+          sortable: true,
+          field: row => row.code,
+        },
         {
           name: 'created_by',
           value: 'created_by',
@@ -315,24 +324,32 @@ export default {
           @request="Items_OnRequest"
       >
         <template v-slot:body-cell-name="props">
-
           <q-td :props="props">
             <div class="row q-pt-xs q-pb-xs" >
+              <img src="assets/images/icons/client-user.png" width="35"  alt="user_profile"/>
               <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
             </div>
           </q-td>
         </template>
 
-
-
-        <template v-slot:body-cell-tools="props">
+        <template v-slot:body-cell-client_group="props">
           <q-td :props="props">
-            <div class="text-center">
-              <q-btn :to="{name:'client_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
-              <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
+            <div class="row q-pt-xs q-pb-xs" >
+              <template  v-if="props.row.client_group">
+
+                <strong :style="'color:'+props.row.client_group.color_code">{{props.row.client_group.name}}</strong>
+
+              </template>
             </div>
           </q-td>
         </template>
+
+        <template v-slot:body-cell-is_active="props">
+          <q-td :props="props">
+            <global_actions_activation_item @Set_Ok="Item_Activation(props.row.id)" :status="props.row.is_active"></global_actions_activation_item>
+          </q-td>
+        </template>
+
         <template v-slot:body-cell-created_by="props">
           <q-td :props="props" >
             <global_items_user :user="props.row.created_by" />
@@ -350,11 +367,19 @@ export default {
         </template>
         <template v-slot:body-cell-updated_at="props">
           <q-td :props="props" >
-
             <global_filter_date :date="props.row.updated_at" />
-
           </q-td>
         </template>
+
+        <template v-slot:body-cell-tools="props">
+          <q-td :props="props">
+            <div class="text-center">
+              <q-btn :to="{name:'client_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
+              <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
+            </div>
+          </q-td>
+        </template>
+
       </q-table>
     </q-card-section>
 

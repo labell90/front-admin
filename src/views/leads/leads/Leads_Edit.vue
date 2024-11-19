@@ -117,7 +117,6 @@ export default {
           locations : this.location,
           country_id : this.items.country_id
         }
-        console.log(items)
         this.Module_Location_Action_Province_Selectable(items).then(response => {
           this.provinces = response;
           this.Get_Cities();
@@ -296,7 +295,6 @@ export default {
             locations : this.location,
             country_id : this.items.country_id
           }
-          console.log(items)
           this.Module_Location_Action_Province_Selectable(items).then(response => {
             this.provinces = response;
           });
