@@ -4,9 +4,8 @@ import {mapActions} from "vuex";
 export default {
   name: "Customer_Edit",
   created() {
-
-    this.Get_Item();
     this.Get_Locations();
+    this.Get_Item();
 
   },
   data(){
@@ -21,7 +20,6 @@ export default {
         country_id:null,
         province_id:null,
         city_id:null,
-        password : null,
         bio : null,
         national_code:null,
         postal_code : null,
@@ -65,7 +63,7 @@ export default {
       this.Module_Customer_Edit(this.items).then(response => {
         this.edit_loading=false;
         this.Methods_Notify_Update();
-        this.$router.push({name:'client_index'});
+        this.$router.push({name:'customer_index'});
       }).catch(error => {
         if (error.response.status === 422) {
           this.Methods_Validation_Notify();
@@ -109,13 +107,11 @@ export default {
           provinces : this.provinces,
           province_id : this.items.province_id
         }
-
         this.Module_Location_Action_City_Selectable(items).then(response => {
           this.cities = response;
         });
       }
     },
-
 
     Filter_Countries_Select (val, update, abort) {
       update(() => {
@@ -257,6 +253,7 @@ export default {
                 emit-value
                 map-options
                 use-input
+                :error="this.Methods_Validation_Check(errors,'country_id')"
             >
               <template v-slot:no-option>
                 <q-item>
@@ -294,6 +291,7 @@ export default {
                 emit-value
                 map-options
                 use-input
+                :error="this.Methods_Validation_Check(errors,'province_id')"
             >
               <template v-slot:no-option>
                 <q-item>
@@ -326,6 +324,7 @@ export default {
                 emit-value
                 map-options
                 use-input
+                :error="this.Methods_Validation_Check(errors,'city_id')"
             >
               <template v-slot:no-option>
                 <q-item>

@@ -107,7 +107,7 @@ export default {
       this.Module_Customer_Create(this.items).then(response => {
         this.loading=false;
         this.Methods_Notify_Create();
-        this.$router.push({name:'client_index'});
+        this.$router.push({name:'customer_index'});
       }).catch(error => {
         if (error.response.status === 422) {
           this.Methods_Validation_Notify();
@@ -229,6 +229,7 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'country_id')"
           >
             <template v-slot:no-option>
               <q-item>
@@ -266,6 +267,7 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'province_id')"
           >
             <template v-slot:no-option>
               <q-item>
@@ -298,6 +300,8 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'province_id')"
+
           >
             <template v-slot:no-option>
               <q-item>
