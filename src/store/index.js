@@ -38,6 +38,7 @@ import client from "@/store/modules/client/client.js";
 import task_types from "@/store/modules/task_types/task_types.js";
 import tags from "@/store/modules/tags/tags.js";
 import personal_tags from "@/store/modules/peronal_tags/personal_tags.js";
+import customer from "@/store/modules/customer/customer.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -86,7 +87,8 @@ const store = createStore({
         client,
         task_types,
         tags,
-        personal_tags
+        personal_tags,
+        customer
     }
 
 
