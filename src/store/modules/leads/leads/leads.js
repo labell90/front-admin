@@ -118,7 +118,6 @@ export default {
         },
 
 
-
         Module_Lead_Action_Trash_Delete(_,items){
             return new Promise((resolve, reject) => {
                 axios.delete('users/leads/leads/trash/delete/'+items).then(response =>{
@@ -201,6 +200,29 @@ export default {
                 })
             })
         },
+
+        Module_Lead_Action_Convert_Client(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/leads/convert/client/'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+        Module_Lead_Action_Convert_Customer(_,item){
+            return new Promise((resolve, reject) => {
+                axios.get('users/leads/leads/convert/customer/'+item).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
 
 
     }

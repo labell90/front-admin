@@ -1,6 +1,8 @@
 <script>
 import {mapActions} from "vuex";
 import Leads_Multi_Edit from "@/views/leads/leads/Leads_Multi_Edit.vue";
+import { useQuasar} from 'quasar'
+
 
 export default {
   name: "Leads_Index",
@@ -15,6 +17,7 @@ export default {
   },
   data(){
     return {
+      $q: useQuasar(),
       items:[],
       searchable:[],
       query_params:{
@@ -26,7 +29,9 @@ export default {
       delete_loading:false,
       activation_loading:false,
       actions_loading:false,
+      convert_loading:false,
       multi_edit_dialog:false,
+      convert_dialog:[],
       items_selected:[],
       selected: [],
       pagination: {
@@ -131,11 +136,13 @@ export default {
   },
   methods :{
     ...mapActions([
-      "Module_Lead_Action_Index",
-      "Module_Lead_Action_Delete",
-      "Module_Lead_Action_Actions_Delete",
-      "Module_Lead_Action_Activation",
-      "Module_Lead_Action_Searchable"
+        "Module_Lead_Action_Index",
+        "Module_Lead_Action_Delete",
+        "Module_Lead_Action_Actions_Delete",
+        "Module_Lead_Action_Activation",
+        "Module_Lead_Action_Searchable",
+        "Module_Lead_Action_Convert_Client",
+        "Module_Lead_Action_Convert_Customer"
     ]),
 
     Items_Get(per_page,page){
@@ -162,6 +169,7 @@ export default {
         console.log(this.searchable)
       })
     },
+
     Item_Delete(id){
       this.delete_loading=true;
       this.Module_Lead_Action_Delete(id).then(res => {
@@ -181,6 +189,71 @@ export default {
       })
 
     },
+
+    Convert_Client(id) {
+      this.$q.dialog({
+        title: 'آیا اطمینان دارید',
+        message: 'این سرنخ به نماینده تبدیل شود ؟',
+        ok: {
+          glossy: true,
+          color : "green-7"
+        },
+        cancel: {
+          glossy: true,
+          color: 'negative'
+        },
+        persistent: true
+      }).onOk(() => {
+        this.convert_loading=true;
+        this.Module_Lead_Action_Convert_Client(id).then(res => {
+          this.Methods_Notify_Message_Success("سرنخ باموفقیت به نماینده تبدیل شد")
+          this.convert_loading=false;
+        }).catch(error => {
+          if (error.response.status === 409) {
+            this.Methods_Notify_Message_Error(error.response.data.error)
+          }
+          this.convert_loading=false;
+
+        })
+      }).onCancel(() => {
+
+      }).onDismiss(() => {
+
+      })
+    },
+
+    Convert_Customer(id) {
+      this.$q.dialog({
+        title: 'آیا اطمینان دارید',
+        message: 'این سرنخ به مشتری تبدیل شود ؟',
+        ok: {
+          glossy: true,
+          color : "green-7"
+        },
+        cancel: {
+          glossy: true,
+          color: 'negative'
+        },
+        persistent: true
+      }).onOk(() => {
+        this.convert_loading=true;
+        this.Module_Lead_Action_Convert_Customer(id).then(res => {
+          this.Methods_Notify_Message_Success("سرنخ باموفقیت به مشتری تبدیل شد")
+          this.convert_loading=false;
+        }).catch(error => {
+          if (error.response.status === 409) {
+            this.Methods_Notify_Message_Error(error.response.data.error)
+          }
+          this.convert_loading=false;
+
+        })
+      }).onCancel(() => {
+
+      }).onDismiss(() => {
+
+      })
+    },
+
 
     Item_Actions_Delete(){
       this.actions_loading=true;
@@ -383,12 +456,60 @@ export default {
           <q-td :props="props">
             <div class="text-center">
               <q-btn :to="{name:'lead_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
-
               <q-btn :to="{name:'lead_profile',params:{id:props.row.id}}" glossy class="q-ma-xs" color="green-8" icon="fas fa-user" size="9px" round title="مشاهده پروفایل"/>
-
+              <q-btn @click="convert_dialog[props.row.id] = true" glossy class="q-ma-xs" color="purple-9" icon="fas fa-rotate" size="9px" round title="تبدیل سرنخ"/>
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
           </q-td>
+          <q-dialog
+              v-model="convert_dialog[props.row.id]"
+              position="top"
+          >
+            <q-card style="width: 960px; max-width: 80vw;">
+              <q-card-section>
+                <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+                <strong class="font-15">تبدیل سرنخ : <strong class="text-red">{{props.row.name}}</strong> </strong>
+              </q-card-section>
+              <q-separator/>
+              <q-card-section>
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 q-pa-sm">
+                    <div class="q-pa-xs rounded-borders glossy-bg row cursor-pointer" @click="Convert_Client(props.row.id)">
+                      <div class="col-lx-4 col-lg-5 col-md-6">
+                        <img src="assets/images/icons/client-convert.png" width="65" alt="">
+                      </div>
+                      <div class="col-lx-8 col-lg-7 col-md-6">
+                        <div class="q-mt-lg">
+                          <strong class="">تبدیل به نماینده </strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 q-pa-sm">
+                    <div class="q-pa-xs rounded-borders glossy-bg row cursor-pointer" @click="Convert_Customer(props.row.id)">
+                      <div class="col-lx-4 col-lg-5 col-md-6">
+                        <img src="assets/images/icons/customer-convert.png" width="65" alt="">
+                      </div>
+                      <div class="col-lx-8 col-lg-7 col-md-6">
+                        <div class="q-mt-lg">
+                          <strong class="">تبدیل به مشتری </strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+
+
+              </q-card-section>
+
+
+            </q-card>
+          </q-dialog>
+
         </template>
 
         <template v-slot:body-cell-created_by="props">
@@ -421,5 +542,12 @@ export default {
 </template>
 
 <style scoped>
+.glossy-bg{
+  background-color: rgba(11,10,10,0.14) !important;
 
+}
+.glossy-bg:hover{
+  background-color: rgba(11,10,10,0.24) !important;
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px rgba(0,0,0,.14),0 1px 18px rgba(0,0,0,.12)
+}
 </style>
