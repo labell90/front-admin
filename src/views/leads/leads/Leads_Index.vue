@@ -2,12 +2,14 @@
 import {mapActions} from "vuex";
 import Leads_Multi_Edit from "@/views/leads/leads/Leads_Multi_Edit.vue";
 import { useQuasar} from 'quasar'
+import Leads_Settings_Merge from "@/views/leads/leads/settings/Leads_Settings_Merge.vue";
 
 
 export default {
   name: "Leads_Index",
   components:{
     'lead_multi_edit' : Leads_Multi_Edit,
+    'leads_settings_merge' : Leads_Settings_Merge,
   },
   mounted() {
     this.Items_Get();
@@ -31,9 +33,12 @@ export default {
       actions_loading:false,
       convert_loading:false,
       multi_edit_dialog:false,
+      setting_dialog:false,
+      active_setting : null,
       convert_dialog:[],
       items_selected:[],
       selected: [],
+
       pagination: {
         sortBy : 'id',
         descending:true,
@@ -341,8 +346,42 @@ export default {
   <q-card>
 
     <q-card-section>
-      <q-btn :to="{name : 'lead_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-      <q-btn :to="{name : 'lead_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
+
+      <global_actions_header_buttons :create="true" :archive="true" route="lead"></global_actions_header_buttons>
+      <q-btn @click="setting_dialog=true" class="float-right q-mr-sm" color="green-8"  glossy icon="fas fa-screwdriver-wrench" size="11px" round>
+        <q-tooltip  transition-show="scale" transition-hide="scale" class="bg-blue-grey-9 font-12">
+          تنظیمات سرنخ ها
+        </q-tooltip>
+      </q-btn>
+      <q-dialog
+          v-model="setting_dialog"
+          position="top"
+      >
+        <q-card style="width: 960px; max-width: 80vw;">
+          <q-card-section>
+            <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+            <strong class="font-15"> تنظیمات سرنخ ها</strong>
+          </q-card-section>
+          <q-separator/>
+          <q-card-section>
+            <q-btn @click="active_setting = 'merge'" :color="active_setting === 'merge' ? 'deep-orange-7' : 'blue-grey-7'"   glossy label="ادغام سرنخ ها" icon="mdi-set-merge mdi-48px q-mr-md" class="font-14"></q-btn>
+          </q-card-section>
+          <q-separator></q-separator>
+          <q-card-section>
+            <template v-if="active_setting">
+              <leads_settings_merge v-if="active_setting === 'merge'" class="animation-fade-in"></leads_settings_merge>
+            </template>
+            <template v-else>
+              <div class="text-center q-mt-md q-mb-md">
+                <q-icon name="fas fa-hand-pointer font-34 text-teal-8 fa-beat"></q-icon>
+                <strong class="q-ml-sm text-grey-9">لطفا یکی از گزینه ها را انتخاب کنید</strong>
+              </div>
+            </template>
+
+          </q-card-section>
+        </q-card>
+      </q-dialog>
+
       <q-separator class="q-mt-xl"/>
       <div class="q-mt-md">
         <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
@@ -398,7 +437,6 @@ export default {
           v-model:pagination="pagination"
           @request="Items_OnRequest"
           binary-state-sort
-
 
       >
         <template v-slot:top="props">
@@ -499,14 +537,7 @@ export default {
                   </div>
 
                 </div>
-
-
-
-
-
               </q-card-section>
-
-
             </q-card>
           </q-dialog>
 

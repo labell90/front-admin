@@ -9,11 +9,14 @@ import store from './store/index.js'
 import { Quasar , Notify ,LoadingBar, Dialog} from 'quasar'
 import quasarLang from 'quasar/lang/fa-IR'
 import methods from "@/includes/methods.js";
+
 import '@/includes/axios.js';
 
-import quasarIconSet from 'quasar/icon-set/fontawesome-v6'
+import quasarIconSet from 'quasar/icon-set/mdi-v7'
 // Import icon libraries
 import '@quasar/extras/fontawesome-v6/fontawesome-v6.css'
+import '@quasar/extras/material-icons/material-icons.css'
+import '@quasar/extras/mdi-v7/mdi-v7.css'
 // Import Quasar css
 import 'quasar/dist/quasar.css'
 import '/src/assets/css/fonts.css'
@@ -49,6 +52,7 @@ import Leads_Profile_Notes_Item from "@/views/leads/leads/profile/components/Lea
 import Global_Images_Animation_Info from "@/components/globals/images/Global_Images_Animation_Info.vue";
 import Global_Items_Lead from "@/components/globals/items/Global_Items_Lead.vue";
 import Global_Actions_Multi_Actions from "@/components/globals/actions/Global_Actions_Multi_Actions.vue";
+import Global_Actions_Header_Buttons from "@/components/globals/actions/Global_Actions_Header_Buttons.vue";
 
 
 
@@ -69,6 +73,7 @@ app.component('global_actions_delete_item',Global_Actions_Delete_Item)
 app.component('global_actions_restore_item',Global_Actions_Restore_Item)
 app.component('global_actions_activation_item',Global_Actions_Activation_Item)
 app.component('global_actions_multi_actions',Global_Actions_Multi_Actions)
+app.component('global_actions_header_buttons',Global_Actions_Header_Buttons)
 app.component('global_medias_breadcrumb',Medias_Breadcrumb_Item)
 app.component('global_filter_date',Global_Filter_Date)
 app.component('global_filter_file_type',Global_Filter_File_Type)
