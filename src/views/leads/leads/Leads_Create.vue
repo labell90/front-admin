@@ -17,6 +17,7 @@ export default {
      provinces:[],
      cities:[],
      lead_categories:[],
+     lead_advsources:[],
      lead_resources:[],
      lead_statuses:[],
      lead_industries:[],
@@ -28,6 +29,7 @@ export default {
        province_id : null,
        city_id : null,
        lead_category_id : null,
+       lead_advsources_id : null,
        lead_resource_id : null,
        lead_status_id : null,
        lead_industry_id : null,
@@ -65,6 +67,7 @@ export default {
         "Module_Lead_Status_Action_Index",
         "Module_Lead_Utmmedium_Action_Index",
         "Module_Lead_Utmsource_Action_Index",
+        "Module_Lead_Advsource_Action_Index",
         "Module_Lead_Action_Create",
     ]),
     Create_Item(){
@@ -110,6 +113,18 @@ export default {
           this.lead_categories=[];
           response.data.result.data.forEach(category => {
             this.lead_categories.push({label:category.name, value: category.id,color_code : category.color_code});
+          })
+        }
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+    Get_Lead_Advsources(){
+      this.Module_Lead_Advsource_Action_Index({per_page:1000}).then(response => {
+        if (response.data.result.data){
+          this.lead_advsources=[];
+          response.data.result.data.forEach(advsource => {
+            this.lead_advsources.push({label:advsource.name, value: advsource.id,color_code : advsource.color_code});
           })
         }
       }).catch(error => {
@@ -232,6 +247,17 @@ export default {
           })
         }else {
           this.Get_Lead_Categories();
+        }
+      })
+    },
+    Filter_Lead_Advsources_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.lead_advsources =  this.lead_advsources.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Lead_Advsources();
         }
       })
     },
@@ -500,7 +526,7 @@ export default {
               transition-show="flip-up"
               transition-hide="flip-down"
               v-model="items.lead_industry_id"
-              label="انتخاب منبع"
+              label="انتخاب صنعت"
               :options="lead_industries"
               @filter="Filter_Lead_Industries_Select"
               emit-value
@@ -612,11 +638,11 @@ export default {
               v-model="items.lead_utm_medium_id"
               label="انتخاب UTM Medium"
               :options="lead_utm_medium"
-              @filter="Filter_Lead_Types_Select"
+              @filter="Filter_Lead_Utm_Medium_Select"
               emit-value
               map-options
               use-input
-              :error="this.Methods_Validation_Check(errors,'lead_type_id')"
+              :error="this.Methods_Validation_Check(errors,'lead_utm_medium_id')"
 
           >
             <template v-slot:no-option>
@@ -637,10 +663,83 @@ export default {
               </q-item>
             </template>
             <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_type_id')" />
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_utm_medium_id')" />
             </template>
           </q-select>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.lead_utm_source_id"
+              label="انتخاب UTM Source"
+              :options="lead_utm_source"
+              @filter="Filter_Lead_Utm_Source_Select"
+              emit-value
+              map-options
+              use-input
+              :error="this.Methods_Validation_Check(errors,'lead_utm_source_id')"
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_utm_source_id')" />
+            </template>
+          </q-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.lead_advsources_id"
+              label="انتخاب منبع تبلیغ"
+              :options="lead_advsources"
+              @filter="Filter_Lead_Advsources_Select"
+              emit-value
+              map-options
+              use-input
+              :error="this.Methods_Validation_Check(errors,'lead_advsources_id')"
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_advsources_id')" />
+            </template>
+          </q-select>
+        </div>
+
 
         <div class="col-12 q-mb-md q-mt-lg">
           <q-icon name="fas fa-location" size="30px" color="teal-8"/>
@@ -660,8 +759,6 @@ export default {
               map-options
               use-input
               :error="this.Methods_Validation_Check(errors,'country_id')"
-
-
           >
             <template v-slot:no-option>
               <q-item>

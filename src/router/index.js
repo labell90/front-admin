@@ -31,8 +31,6 @@ import route_personal_tags from "@/router/routes/personal_tags/personal_tags.js"
 import route_customer from "@/router/routes/customer/customer.js";
 
 
-
-
 const routes = [
     ...route_main,
     ...route_setting_profile,
@@ -60,7 +58,6 @@ const routes = [
     ...route_personal_tags,
     ...route_customer,
     ...route_task_types
-
 
 ]
 

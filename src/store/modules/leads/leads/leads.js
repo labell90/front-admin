@@ -82,6 +82,16 @@ export default {
             })
 
         },
+        Module_Lead_Action_Single_Edit(_,items){
+            return new Promise((resolve, reject) => {
+                axios.put('users/leads/leads/single-update/'+items.id,items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
 
         Module_Lead_Action_Delete(_,items){
             return new Promise((resolve, reject) => {
@@ -117,6 +127,18 @@ export default {
 
         },
 
+        Module_Lead_Action_Actions_Merge(_,items){
+            return new Promise((resolve, reject) => {
+                //Create Form data
+                axios.post('users/leads/leads/actions/merge',items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
 
         Module_Lead_Action_Trash_Delete(_,items){
             return new Promise((resolve, reject) => {
@@ -128,6 +150,7 @@ export default {
             })
 
         },
+
 
         Module_Lead_Action_Activation(_,item){
             return new Promise((resolve, reject) => {

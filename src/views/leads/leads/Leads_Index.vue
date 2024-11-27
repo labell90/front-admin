@@ -304,10 +304,16 @@ export default {
 
     },
 
+    Merge_Leads(){
+      this.active_setting=null;
+      this.Methods_Notify_Message_Success("سرنخ های مورد نظر باموفقیت ادغام شدند !")
+    },
+
     updateSelected(newSelection) {
       this.selected = newSelection;
       this.items_selected = newSelection.map(item => item.id);
     },
+
     Items_OnRequest(props){
       const { page, rowsPerPage, sortBy, descending } = props.pagination
       let sort_type;
@@ -325,10 +331,12 @@ export default {
       this.Items_Get(rowsPerPage,page);
 
     },
+
     Items_Search(data){
       this.query_params.search = data;
       this.Items_Get()
     },
+
     Columns_Generate(){
       this.columns.forEach(item => {
         if (item.value){
@@ -369,7 +377,9 @@ export default {
           <q-separator></q-separator>
           <q-card-section>
             <template v-if="active_setting">
-              <leads_settings_merge v-if="active_setting === 'merge'" class="animation-fade-in"></leads_settings_merge>
+
+              <leads_settings_merge @Merge_Leads="Merge_Leads" v-if="active_setting === 'merge'" class="animation-fade-in"></leads_settings_merge>
+
             </template>
             <template v-else>
               <div class="text-center q-mt-md q-mb-md">
