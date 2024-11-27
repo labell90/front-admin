@@ -28,6 +28,9 @@ import route_client from "@/router/routes/client/client.js";
 import route_task_types from "@/router/routes/task_types/task_types.js";
 import route_tags from "@/router/routes/tags/tags.js";
 import route_personal_tags from "@/router/routes/personal_tags/personal_tags.js";
+import route_task_statuses from "@/router/routes/task_statuses/task_statuses.js";
+
+
 import route_customer from "@/router/routes/customer/customer.js";
 
 

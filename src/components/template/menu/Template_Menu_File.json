@@ -844,6 +844,39 @@
             ]
           }
         ]
+      },
+      {
+        "fa" : "وضعیت وظایف",
+        "en" : "Task_Statuses",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1001",
+        "icon" : "fas fa-thumbtack font-20",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد وضعیت وظایف",
+            "en" : "New Task_Statuses",
+            "route_path" : "/",
+            "route_name" : "task_statuses_create",
+            "feature_type" : "create",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست وضعیت وظایف",
+            "en" : "Task_statuses",
+            "route_path" : "/",
+            "route_name" : "task_statuses_index",
+            "feature_type" : "read",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          }
+        ]
       }
 
 
