@@ -194,11 +194,8 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <q-btn :to="{name : 'tags_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-
-
-      <q-separator class="q-mt-xl"/>
-      <div class="q-mt-md">
+      <global_actions_header_buttons :create="true"  route="tags"></global_actions_header_buttons>
+      <q-separator class="q-mt-xl"/>      <div class="q-mt-md">
         <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
         <div class="q-mt-sm">
           <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>

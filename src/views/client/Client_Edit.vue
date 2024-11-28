@@ -220,8 +220,8 @@ export default {
     <template v-else>
       <q-card-section>
         <strong class="text-grey-10">ویرایش اطلاعات نماینده </strong>
-        <q-btn :to="{name : 'client_index'}" class="float-right" color="yellow-9" text-color="dark" icon="fas fa-backward" glossy label="بازگشت"></q-btn>
-        <q-btn :to="{name : 'client_create'}" class="float-right q-mr-sm" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+        <global_actions_header_buttons :create="true"  route="client"></global_actions_header_buttons>
+        <q-separator class="q-mt-xl"/>
         <div class="row q-mt-sm">
           <img src="assets/images/icons/client-user.png" width="45"  alt="client_profile"/>
           <div class="q-ml-sm q-mt-sm"><strong>{{items.name}}</strong></div>

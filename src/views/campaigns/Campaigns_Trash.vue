@@ -175,8 +175,8 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشرفته</strong>
-      <q-btn :to="{name : 'campaigns_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-      <q-btn :to="{name : 'campaigns_index'}" class="float-right q-mr-sm" color="yellow-9" text-color="dark" icon="fas fa-backward" glossy label="بازگشت"></q-btn>
+      <global_actions_header_buttons :create="true" route="campaigns"></global_actions_header_buttons>
+      <q-separator class="q-mt-xl"/>
     </q-card-section>
     <q-card-section>
       <q-table

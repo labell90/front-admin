@@ -41,7 +41,8 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">افزودن دسته بندی سرنخ جدید</strong>
-      <q-btn :to="{name : 'lead_categories_index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
+      <global_actions_header_buttons :index="true"  route="lead_categories"></global_actions_header_buttons>
+      <q-separator class="q-mt-xl"/>
 
     </q-card-section>
     <q-card-section>

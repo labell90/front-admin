@@ -356,6 +356,7 @@ export default {
     <q-card-section>
 
       <global_actions_header_buttons :create="true" :archive="true" route="lead"></global_actions_header_buttons>
+
       <q-btn @click="setting_dialog=true" class="float-right q-mr-sm" color="green-8"  glossy icon="fas fa-screwdriver-wrench" size="11px" round>
         <q-tooltip  transition-show="scale" transition-hide="scale" class="bg-blue-grey-9 font-12">
           تنظیمات سرنخ ها

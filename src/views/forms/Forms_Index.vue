@@ -173,7 +173,8 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
-      <q-btn :to="{name : 'forms_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+      <global_actions_header_buttons :create="true"  route="forms"></global_actions_header_buttons>
+      <q-separator class="q-mt-xl"/>
     </q-card-section>
     <q-card-section>
       <div class="q-mb-sm">

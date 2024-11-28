@@ -220,8 +220,8 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <q-btn :to="{name : 'campaign_types_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-      <q-btn :to="{name : 'campaign_types_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
+      <global_actions_header_buttons :create="true" :archive="true" route="campaign_types"></global_actions_header_buttons>
+      <q-separator class="q-mt-xl"/>
 
       <q-separator class="q-mt-xl"/>
       <div class="q-mt-md">

@@ -41,8 +41,8 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10"> افزودن وضعیت وظیفه جدید</strong>
-      <q-btn :to="{name : 'task_statuses_index'}" class="float-right" color="blue-8"  glossy icon="fas fa-list" label="لیست موارد"></q-btn>
-
+      <global_actions_header_buttons :index="true"  route="task_statuses"></global_actions_header_buttons>
+      <q-separator class="q-mt-xl"/>
     </q-card-section>
     <q-card-section>
       <div class="row">
