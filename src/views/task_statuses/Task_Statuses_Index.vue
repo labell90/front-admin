@@ -2,11 +2,10 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Personal_Tags_Index",
+  name: "Task_Statuses_Index",
   mounted() {
     this.Items_Get();
     this.Columns_Generate();
-
   },
   data(){
     return {
@@ -54,8 +53,6 @@ export default {
           sortable: false,
           field: row => row.color_code,
         },
-
-
         {
           name: 'created_by',
           value: 'created_by',
@@ -96,13 +93,14 @@ export default {
         }
       ],
       visible_columns:[],
+
     }
   },
   methods :{
     ...mapActions([
-      "Module_personal_tags_Index",
-      "Module_personal_tags_Delete",
-      "Module_personal_tags_Searchable"
+      "Module_Task_Statuses_Index",
+      "Module_Task_Statuses_Delete",
+
 
 
     ]),
@@ -113,7 +111,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_personal_tags_Index({per_page:per_page,page:page,params:this.query_params}).then(res => {
+      this.Module_Task_Statuses_Index({per_page:per_page,page:page,params:this.query_params}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -124,15 +122,9 @@ export default {
         this.items_loading=false;
       })
     },
-    Searchable_Get(){
-      this.Module_personal_tags_Searchable().then(res => {
-        this.searchable = res.data.result
-        console.log(this.searchable)
-      })
-    },
     Item_Delete(id){
       this.delete_loading=true;
-      this.Module_personal_tags_Delete(id).then(res => {
+      this.Module_Task_Statuses_Delete(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -149,6 +141,7 @@ export default {
       })
 
     },
+
 
     updateSelected(newSelection) {
       this.selected = newSelection;
@@ -171,7 +164,6 @@ export default {
       this.Items_Get(rowsPerPage,page);
 
     },
-
     Items_Search(data){
       this.query_params.search = data;
       this.Items_Get()
@@ -184,8 +176,6 @@ export default {
       })
     }
 
-
-
   }
 }
 </script>
@@ -193,16 +183,10 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <q-btn :to="{name : 'personal_tags_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-
-
+      <q-btn :to="{name : 'task_statuses_create'}" class="float-right" color="pink-7"  glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+      <q-btn :to="{name : 'task_statuses_trash'}" class="float-right q-mr-sm" color="red-8"  glossy icon="fas fa-archive" label="موارد آرشیو شده"></q-btn>
       <q-separator class="q-mt-xl"/>
-      <div class="q-mt-md">
-        <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
-        <div class="q-mt-sm">
-          <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>
-        </div>
-      </div>
+
     </q-card-section>
     <q-card-section>
       <div class="q-mb-sm">
@@ -252,11 +236,8 @@ export default {
           @request="Items_OnRequest"
       >
         <template v-slot:body-cell-name="props">
-
           <q-td :props="props">
-            <div class="row q-pt-xs q-pb-xs" >
-              <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
-            </div>
+            <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
           </q-td>
         </template>
         <template v-slot:body-cell-color_code="props">
@@ -267,7 +248,7 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <q-btn :to="{name:'personal_tags_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
+              <q-btn :to="{name:'lead_resources_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
           </q-td>
@@ -298,6 +279,7 @@ export default {
     </q-card-section>
 
   </q-card>
+
 
 </template>
 
