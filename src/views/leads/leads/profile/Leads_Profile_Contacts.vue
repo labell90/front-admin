@@ -17,7 +17,9 @@ export default {
       loading_delete : [],
       loading_edit : [],
       add_items: {
-        to_id: [],
+        name:null,
+        phone:null,
+        tel:null,
         description:null
       },
       items: [],
@@ -45,20 +47,28 @@ export default {
 
       columns : [
         {
-          name: 'id',
-          required: true,
-          label: 'ID',
+          name: 'name',
+          value: 'name',
+          label: 'نام',
           align: 'left',
           sortable: true,
-          field: row => '# ' + row.id,
+          field: row => row.name,
         },
         {
-          name: 'to',
-          value: 'to',
-          label: 'سرنخ',
+          name: 'phone',
+          value: 'phone',
+          label: 'موبایل',
           align: 'left',
           sortable: true,
-          field: row => row.to,
+          field: row => row.phone,
+        },
+        {
+          name: 'tel',
+          value: 'tel',
+          label: 'تلفن ثابت',
+          align: 'left',
+          sortable: true,
+          field: row => row.tel,
         },
         {
           name: 'description',
@@ -125,24 +135,21 @@ export default {
       })
     },
     Item_Create(){
-
-
       this.loading_add=true;
       let data = {
-        to_id : this.add_items.to_id,
+        name : this.add_items.name,
+        phone : this.add_items.phone,
+        tel : this.add_items.tel,
         description : this.add_items.description,
         lead_id : this.lead.id
       }
       this.Module_Lead_Contact_Action_Create(data).then(res => {
         // this.items.unshift(res.data.result);
         console.log(res.data)
-
         this.loading_add = false;
         // this.dialog_add=false;
         this.Items_Get(this.pagination.rowsPerPage,this.pagination.page)
         this.dialog_add=false;
-        this.add_items.to_id=[];
-        this.add_items.description=null;
         this.Methods_Notify_Create();
       }).catch(error => {
         if (error.response.status === 422) {
@@ -163,7 +170,6 @@ export default {
         this.total_items --;
       }).catch(error => {
          this.Methods_Notify_Error_Server();
-
       })
 
 
@@ -173,6 +179,9 @@ export default {
       this.loading_edit[item.id] = true;
       let data = {
         lead_id : this.lead.id,
+        name : item.name,
+        phone : item.phone,
+        tel : item.tel,
         description : item.description,
         id : item.id
       }
@@ -213,27 +222,6 @@ export default {
       })
     },
 
-    SearchingLeads (val, update, abort) {
-
-
-      if (val.trim().length >= 3){
-        setTimeout(() => {
-          update(() => {
-            this.Module_Lead_Action_All({name : val}).then(res =>{
-              this.leads=[];
-              res.data.result.forEach(item => {
-                this.leads.push({
-                  label : item.name,
-                  value : item.id,
-                })
-              })
-            }).catch(error => {
-
-            })
-          })
-        }, 1000)
-      }
-    },
 
   },
 
@@ -247,7 +235,11 @@ export default {
     <q-card-section>
       <div>
         <strong class="text-teal-8 font-16">لیست مخاطب های سرنخ</strong>
-        <q-btn @click="dialog_add=true" class="float-right" color="pink-7"  glossy icon="fas fa-notes-medical" label="افزودن مخاطب جدبد"></q-btn>
+        <q-btn @click="dialog_add=true" class="float-right" color="indigo-8"  glossy icon="fas fa-plus" size="11px" round>
+          <q-tooltip  transition-show="scale" transition-hide="scale" class="bg-blue-grey-9 font-12">
+            افزودن مخاطب جدید
+          </q-tooltip>
+        </q-btn>
         <div class="q-mt-xs">
           <strong class="text-red font-15">{{total_items}}</strong>
           <span class="q-ml-sm text-grey-7">ثبت شده</span>
@@ -263,55 +255,31 @@ export default {
             <q-separator></q-separator>
             <q-card-section>
               <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs q-mt-sm">
-
-                  <q-select
-                      outlined
-                      transition-show="flip-up"
-                      transition-hide="flip-down"
-                      v-model="add_items.to_id"
-                      label="انتخاب سرنخ"
-                      :options="leads"
-                      @filter="SearchingLeads"
-                      hint="برای انتخاب سرنخ لطفا حداقل 3 کاراکتر از اسم را وارد کنید"
-                      emit-value
-                      map-options
-                      use-input
-                      multiple
-                      use-chips
-                      :error="this.Methods_Validation_Check(errors,'to_id')"
-                  >
-                    <template v-slot:no-option>
-                      <q-item>
-                        <q-item-section class="text-red">
-                          گزینه ای یافت نشد
-                        </q-item-section>
-                      </q-item>
-                    </template>
-                    <template v-slot:option="scope">
-                      <q-item v-bind="scope.itemProps">
-                        <q-item-section avatar>
-<!--                          #TODO active lead image-->
-                          <q-avatar >
-                            <img src="assets/images/icons/lead.png" alt="">
-                          </q-avatar>
-                        </q-item-section>
-                        <q-item-section>
-                          <q-item-label>{{ scope.opt.label }}</q-item-label>
-                        </q-item-section>
-                      </q-item>
-                    </template>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                  <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined  v-model="add_items.name" label="نام کامل">
                     <template v-slot:error>
-                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'to_id')" />
+                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
                     </template>
-                  </q-select>
-
-
+                  </q-input>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs q-mt-sm">
-                  <q-input  :error="this.Methods_Validation_Check(errors,'text')" outlined  type="textarea" v-model="add_items.description" label="توضیحات" rows="4">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                  <q-input  :error="this.Methods_Validation_Check(errors,'phone')" outlined  v-model="add_items.phone" label="شماره موبایل">
                     <template v-slot:error>
-                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'text')" />
+                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'phone')" />
+                    </template>
+                  </q-input>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                  <q-input  :error="this.Methods_Validation_Check(errors,'tel')" outlined  v-model="add_items.tel" label="شماره تلفن ثابت">
+                    <template v-slot:error>
+                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'tel')" />
+                    </template>
+                  </q-input>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                  <q-input  :error="this.Methods_Validation_Check(errors,'description')" outlined  type="textarea" v-model="add_items.description" label="توضیحات" rows="4">
+                    <template v-slot:error>
+                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'description')" />
                     </template>
                   </q-input>
                 </div>
@@ -325,12 +293,7 @@ export default {
         </q-dialog>
       </div>
       <q-separator class="q-mt-md"/>
-      <div class="q-mt-md">
-        <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
-        <div class="q-mt-sm">
-          <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>
-        </div>
-      </div>
+     
       <q-table
           class="q-mt-lg"
           flat
@@ -348,6 +311,16 @@ export default {
           v-model:pagination="pagination"
           @request="Items_OnRequest"
       >
+
+
+        <template v-slot:body-cell-name="props">
+          <q-td :props="props" >
+            <q-icon name="mdi-account-box" size="35px" color="blue-8"></q-icon>
+            <strong>
+              {{props.row.name}}
+            </strong>
+          </q-td>
+        </template>
         <template v-slot:body-cell-to="props">
           <q-td :props="props" >
             <global_items_lead :lead="props.row.to"></global_items_lead>
@@ -377,19 +350,41 @@ export default {
             >
               <q-card style="width: 700px; max-width: 80vw;">
                 <q-card-section>
-                  <strong class="text-grey-9 font-14">ویرایش اطلاعات مخاطب : <strong class="text-red">{{props.row.to.name}}</strong></strong>
+                  <strong class="text-grey-9 font-14">ویرایش اطلاعات مخاطب : <strong class="text-red">{{props.row.name}}</strong></strong>
                 </q-card-section>
                 <q-separator></q-separator>
                 <q-card-section>
                   <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs q-mt-sm">
-                      <q-input  :error="this.Methods_Validation_Check(errors,'text')" outlined  type="textarea" v-model="props.row.description" label="توضیحات" rows="4">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                      <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined  v-model="props.row.name" label="نام کامل">
                         <template v-slot:error>
-                          <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'text')" />
+                          <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
+                        </template>
+                      </q-input>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                      <q-input  :error="this.Methods_Validation_Check(errors,'phone')" outlined  v-model="props.row.phone" label="شماره موبایل">
+                        <template v-slot:error>
+                          <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'phone')" />
+                        </template>
+                      </q-input>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                      <q-input  :error="this.Methods_Validation_Check(errors,'tel')" outlined  v-model="props.row.tel" label="شماره تلفن ثابت">
+                        <template v-slot:error>
+                          <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'tel')" />
+                        </template>
+                      </q-input>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                      <q-input  :error="this.Methods_Validation_Check(errors,'description')" outlined  type="textarea" v-model="props.row.description" label="توضیحات" rows="4">
+                        <template v-slot:error>
+                          <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'description')" />
                         </template>
                       </q-input>
                     </div>
                   </div>
+
                 </q-card-section>
                 <q-card-actions align="right">
                   <q-btn glossy color="blue-7" label="ویرایش اطلاعات "  @click="Item_Edit(props.row)" :loading="loading_add" />
