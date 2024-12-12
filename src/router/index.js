@@ -29,6 +29,8 @@ import route_task_types from "@/router/routes/task_types/task_types.js";
 import route_tags from "@/router/routes/tags/tags.js";
 import route_personal_tags from "@/router/routes/personal_tags/personal_tags.js";
 import route_task_statuses from "@/router/routes/task_statuses/task_statuses.js";
+import route_product_groups from "@/router/routes/product_groups/product_groups.js";
+import route_product_types from "@/router/routes/product_types/product_types.js";
 
 
 import route_customer from "@/router/routes/customer/customer.js";
@@ -60,7 +62,10 @@ const routes = [
     ...route_tags,
     ...route_personal_tags,
     ...route_customer,
-    ...route_task_types
+    ...route_task_types,
+    ...route_task_statuses,
+    ...route_product_groups,
+    ...route_product_types
 
 ]
 

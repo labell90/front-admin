@@ -199,7 +199,7 @@ export default {
         <div class="q-mt-sm">
           <global_searching_full_search @Search="(data) => Items_Search(data)" v-if="searchable.length" :items="searchable" ></global_searching_full_search>
         </div>
-      </div>
+
     </q-card-section>
     <q-card-section>
       <div class="q-mb-sm">

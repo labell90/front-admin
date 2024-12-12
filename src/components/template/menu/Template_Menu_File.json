@@ -882,6 +882,84 @@
 
     ]
   },
+  {
+    "fa" : "محصولات",
+    "en" : "Products",
+    "icon" : "fas fa-thumbtack",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "گروه بندی محصولات",
+        "en" : "Product Groups",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1001",
+        "icon" : "fas fa-thumbtack font-20",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد گروه بندی محصولات",
+            "en" : "New Product Groups",
+            "route_path" : "/",
+            "route_name" : "product_groups_create",
+            "feature_type" : "create",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست گروه بندی محصولات",
+            "en" : "Product Groups",
+            "route_path" : "/",
+            "route_name" : "product_groups_index",
+            "feature_type" : "read",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          }
+        ]
+      },
+      {
+        "fa" : " نوع محصولات",
+        "en" : "Product Types",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1001",
+        "icon" : "fas fa-thumbtack font-20",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد نوع محصولات  ",
+            "en" : "New Product Types",
+            "route_path" : "/",
+            "route_name" : "product_types_create",
+            "feature_type" : "create",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست انواع محصول",
+            "en" : "Product Types",
+            "route_path" : "/",
+            "route_name" : "product_types_index",
+            "feature_type" : "read",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          }
+        ]
+      }
+
+
+    ]
+  },
 
   {
     "title" : true,
