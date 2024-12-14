@@ -2,7 +2,7 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Product_Groups_Trash",
+  name: "Units_Trash",
   mounted() {
     this.Items_Get();
   },
@@ -38,12 +38,12 @@ export default {
           field: row => row.name,
         },
         {
-          name: 'color_code',
+          name: 'symbol',
           required: true,
-          label: 'رنگ',
+          label: 'یکا',
           align: 'left',
           sortable: false,
-          field: row => row.color_code,
+          field: row => row.symbol,
         },
 
 
@@ -74,9 +74,9 @@ export default {
   },
   methods :{
     ...mapActions([
-      "Module_Product_Groups_Trash_Index",
-      "Module_Product_Groups_Restore_Delete",
-      "Module_Product_Groups_Restore",
+      "Module_Units_Trash_Index",
+      "Module_Units_Restore_Delete",
+      "Module_Units_Restore",
 
 
     ]),
@@ -87,7 +87,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_Product_Groups_Trash_Index({per_page:per_page,page:page}).then(res => {
+      this.Module_Units_Trash_Index({per_page:per_page,page:page}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -100,7 +100,7 @@ export default {
     },
     Item_Delete(id){
       this.delete_loading=true;
-      this.Module_Product_Groups_Restore_Delete(id).then(res => {
+      this.Module_Units_Restore_Delete(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -119,7 +119,7 @@ export default {
     },
     Item_Restore(id){
       this.delete_loading=true;
-      this.Module_Product_Groups_Restore(id).then(res => {
+      this.Module_Units_Restore(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -157,7 +157,7 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
-      <global_actions_header_buttons :create="true" route="product_groups"></global_actions_header_buttons>
+      <global_actions_header_buttons :create="true" route="units"></global_actions_header_buttons>
       <q-separator class="q-mt-xl"/>
 
 
@@ -186,11 +186,7 @@ export default {
             <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
           </q-td>
         </template>
-        <template v-slot:body-cell-color_code="props">
-          <q-td :props="props" :style="'background-color:'+props.row.color_code ">
 
-          </q-td>
-        </template>
 
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">

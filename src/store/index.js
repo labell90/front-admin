@@ -41,6 +41,8 @@ import personal_tags from "@/store/modules/peronal_tags/personal_tags.js";
 import customer from "@/store/modules/customer/customer.js";
 import product_groups from "@/store/modules/product_groups/product_groups.js";
 import product_types from "@/store/modules/product_types/product_types.js";
+import products from "@/store/modules/products/products.js";
+import units from "@/store/modules/units/units.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -92,7 +94,9 @@ const store = createStore({
         personal_tags,
         customer,
         product_groups,
-        product_types
+        product_types,
+        products,
+        units
     }
 
 

@@ -807,7 +807,7 @@
   {
     "fa" : "وظایف",
     "en" : "Tasks",
-    "icon" : "fas fa-thumbtack",
+    "icon" : "fas fa-list-check",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -818,7 +818,7 @@
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1001",
-        "icon" : "fas fa-thumbtack font-20",
+        "icon" : "fas fa-list-check font-20",
         "level"      : 0.5,
         "subs" : [
           {
@@ -851,7 +851,7 @@
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1001",
-        "icon" : "fas fa-thumbtack font-20",
+        "icon" : "fas fa-list-check font-20",
         "level"      : 0.5,
         "subs" : [
           {
@@ -885,7 +885,7 @@
   {
     "fa" : "محصولات",
     "en" : "Products",
-    "icon" : "fas fa-thumbtack",
+    "icon" : "fa-brands fa-product-hunt",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -896,7 +896,7 @@
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1001",
-        "icon" : "fas fa-thumbtack font-20",
+        "icon" : "fa-brands fa-product-hunt font-20",
         "level"      : 0.5,
         "subs" : [
           {
@@ -929,7 +929,7 @@
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1001",
-        "icon" : "fas fa-thumbtack font-20",
+        "icon" : "fa-brands fa-product-hunt font-20",
         "level"      : 0.5,
         "subs" : [
           {
@@ -955,9 +955,72 @@
             ]
           }
         ]
+      },
+      {
+        "fa" : " محصولات",
+        "en" : "Products",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1001",
+        "icon" : "fa-brands fa-product-hunt font-20",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد محصول  ",
+            "en" : "Products",
+            "route_path" : "/",
+            "route_name" : "products_create",
+            "feature_type" : "create",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست محصول",
+            "en" : "Products",
+            "route_path" : "/",
+            "route_name" : "products_index",
+            "feature_type" : "read",
+            "level"      : 1,
+            "subs" : [
+
+            ]
+          }
+        ]
       }
 
 
+    ]
+  },
+  {
+    "fa" : "یکاهای اندازه گیری",
+    "en" : "Units",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد یکا",
+        "en" : "New Units",
+        "route_path" : "/",
+        "route_name" : "units_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست یکا ها",
+        "en" : "Units",
+        "route_path" : "/",
+        "route_name" : "units_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
     ]
   },
 
