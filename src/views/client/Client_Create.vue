@@ -255,20 +255,7 @@ export default {
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
-          <q-input  :error="this.Methods_Validation_Check(errors,'password')" outlined v-model="items.password"  type="password"  label="رمز عبور">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'password')" />
-            </template>
-          </q-input>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
-          <q-input  :error="this.Methods_Validation_Check(errors,'password_confirmation')" outlined v-model="items.password_confirmation"  type="password"  label="تکرار رمز عبور">
-            <template v-slot:error>
-              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'password_confirmation')" />
-            </template>
-          </q-input>
-        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-pa-xs">
           <q-input :error="this.Methods_Validation_Check(errors,'bio')" outlined v-model="items.bio"  type="textarea" rows="4" label="بیو (توضیحاتی در مورد نماینده)">
             <template v-slot:error>
