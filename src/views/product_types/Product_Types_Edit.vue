@@ -68,7 +68,7 @@ export default {
         <q-card-section>
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-              <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="نام گروه بندی  ">
+              <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="نام نوع ">
                 <template v-slot:error>
                   <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
                 </template>
@@ -76,7 +76,7 @@ export default {
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
               <q-input
-                  :error="this.Methods_Validation_Check(errors,'color_code')" outlined v-model="items.color_code" label="رنگ گروه بندی "
+                  :error="this.Methods_Validation_Check(errors,'color_code')" outlined v-model="items.color_code" label="رنگ نوع"
               >
                 <template v-slot:append>
                   <q-icon name="fas fa-eye-dropper" class="cursor-pointer">
