@@ -3,13 +3,19 @@ import {mapActions} from "vuex";
 import Leads_Multi_Edit from "@/views/leads/leads/Leads_Multi_Edit.vue";
 import { useQuasar} from 'quasar'
 import Leads_Settings_Merge from "@/views/leads/leads/settings/Leads_Settings_Merge.vue";
+import Editor from "@tinymce/tinymce-vue";
 
 
 export default {
   name: "Leads_Index",
   components:{
+    Editor,
     'lead_multi_edit' : Leads_Multi_Edit,
     'leads_settings_merge' : Leads_Settings_Merge,
+  },
+  created() {
+    this.editor_api =  import.meta.env.VITE_API_TINY_MCE
+
   },
   mounted() {
     this.Items_Get();
@@ -33,11 +39,23 @@ export default {
       actions_loading:false,
       convert_loading:false,
       multi_edit_dialog:false,
+      multi_sms_dialog:false,
+      multi_email_dialog:false,
       setting_dialog:false,
       active_setting : null,
+      data_sms : {
+        text : null,
+      },
+      multi_sms_loading : false,
+      data_email : {
+        subject : null,
+        content : null
+      },
+      multi_email_loading : false,
       convert_dialog:[],
       items_selected:[],
       selected: [],
+      editor_api:null,
 
       pagination: {
         sortBy : 'id',
@@ -144,6 +162,8 @@ export default {
         "Module_Lead_Action_Index",
         "Module_Lead_Action_Delete",
         "Module_Lead_Action_Actions_Delete",
+        "Module_Lead_Action_Actions_Text",
+        "Module_Lead_Action_Actions_Email",
         "Module_Lead_Action_Activation",
         "Module_Lead_Action_Searchable",
         "Module_Lead_Action_Convert_Client",
@@ -283,6 +303,50 @@ export default {
       this.multi_edit_dialog=false;
       this.Methods_Notify_Update();
       this.Items_Get(this.pagination.rowsPerPage,this.pagination.page)
+    },
+
+    Item_Actions_Text(){
+      this.multi_sms_loading = true;
+      let data = {
+        ids : this.items_selected,
+        text : this.data_sms.text
+      }
+      this.Module_Lead_Action_Actions_Text(data).then(res => {
+        this.Methods_Notify_Message_Success('پیامک ها باموفقیت ارسال شد');
+        this.multi_sms_loading=false;
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.Methods_Validation_Notify();
+          this.errors = error.response.data;
+        }else {
+          this.Methods_Notify_Error_Server();
+        }
+        this.multi_sms_loading=false;
+      })
+
+
+    },
+
+    Item_Actions_Email(){
+      this.multi_email_loading = true;
+      let data = {
+        ids : this.items_selected,
+        subject : this.data_email.subject,
+        content : this.data_email.content
+      }
+      this.Module_Lead_Action_Actions_Email(data).then(res => {
+        this.Methods_Notify_Message_Success('ایمیل ها باموفقیت ارسال شد');
+        this.multi_email_loading=false;
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.Methods_Validation_Notify();
+          this.errors = error.response.data;
+        }else {
+          this.Methods_Notify_Error_Server();
+        }
+        this.multi_email_loading=false;
+      })
+
     },
 
     Item_Activation(id){
@@ -451,6 +515,7 @@ export default {
 
       >
         <template v-slot:top="props">
+
           <q-btn
               flat dense
               :icon="props.inFullscreen ? 'fas fa-minimize text-pink-7' : 'fas fa-maximize text-pink-7'"
@@ -458,7 +523,7 @@ export default {
               class="font-12 "
           />
 
-          <global_actions_multi_actions @Edit_Ok="multi_edit_dialog=true" @Delete_Ok="Item_Actions_Delete" :action_loading="actions_loading" :items="items_selected" class="animation-fade-in" v-if="items_selected.length > 0" ></global_actions_multi_actions>
+          <global_actions_multi_actions @Email_Ok="multi_email_dialog=true" @SMS_Ok="multi_sms_dialog=true" @Edit_Ok="multi_edit_dialog=true" @Delete_Ok="Item_Actions_Delete" :action_loading="actions_loading" :items="items_selected" class="animation-fade-in" v-if="items_selected.length > 0" ></global_actions_multi_actions>
 
           <q-dialog
               v-model="multi_edit_dialog"
@@ -477,6 +542,88 @@ export default {
 
             </q-card>
           </q-dialog>
+
+          <q-dialog
+              v-model="multi_email_dialog"
+              full-width
+              transition-show="slide-up"
+              transition-hide="slide-down"
+              position="top"
+          >
+            <q-card>
+              <q-card-section>
+                <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+                <strong class="font-15">ارسال ایمیل گروهی به سرنخ ها </strong>
+              </q-card-section>
+              <q-separator/>
+              <q-card-section>
+                <div class="q-mt-sm">
+                  <q-input  :error="this.Methods_Validation_Check(errors,'subject')" outlined  type="text" v-model="data_email.subject" label="موضوع ( Subject )">
+                    <template v-slot:error>
+                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'subject')" />
+                    </template>
+                  </q-input>
+                </div>
+                <div class="q-mt-md">
+                  <Editor
+                      v-model="data_email.content"
+                      :api-key="editor_api"
+
+                      :init="{
+                            language:'fa',
+                            language_url : '/src/assets/helpers/tinymce/langs/fa.js',
+                            toolbar_mode: 'sliding',
+                            plugins: 'anchor autolink charmap codesample emoticons link lists searchreplace table visualblocks wordcount',
+                            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+                          }"
+                  />
+                </div>
+              </q-card-section>
+              <q-card-actions align="right">
+                <q-btn @click="Item_Actions_Email" :loading="multi_email_loading" glossy color="pink-7" label="ارسال ایمیل "   />
+                <q-btn v-close-popup glossy color="dark" label="بستن"  />
+              </q-card-actions>
+
+
+            </q-card>
+          </q-dialog>
+
+          <q-dialog
+              v-model="multi_sms_dialog"
+              position="top"
+          >
+            <q-card style="width: 700px; max-width: 80vw;">
+              <q-card-section>
+                <strong class="text-grey-9 font-16">ارسال پیامک گروهی </strong>
+              </q-card-section>
+              <q-separator></q-separator>
+              <q-card-section>
+                <q-banner class="bg-yellow-9 text-dark rounded-borders">
+                  <strong class="font-16">
+                    <q-icon name="fas fa-triangle-exclamation fa-beat" size="24px"></q-icon>
+                    توجه :
+                  </strong>
+                  <strong>
+                    متصل بودن VPN میتواند در روند ارسال پیامک اختلال ایجاد کند !
+                  </strong>
+                </q-banner>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs q-mt-sm">
+                    <q-input v-model="data_sms.text" :error="this.Methods_Validation_Check(errors,'text')" outlined  type="textarea" label="متن پیامک" rows="4">
+                      <template v-slot:error>
+                        <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'text')" />
+                      </template>
+                    </q-input>
+                  </div>
+                </div>
+              </q-card-section>
+              <q-card-actions align="right">
+                <q-btn @click="Item_Actions_Text" :loading="multi_sms_loading" glossy color="pink-7" label="ارسال پیامک گروهی "  />
+                <q-btn glossy color="dark" label="بستن" v-close-popup />
+              </q-card-actions>
+            </q-card>
+          </q-dialog>
+
 
 
 
@@ -591,5 +738,8 @@ export default {
 .glossy-bg:hover{
   background-color: rgba(11,10,10,0.24) !important;
   box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px rgba(0,0,0,.14),0 1px 18px rgba(0,0,0,.12)
+}
+.tox .tox-silver-sink .tox-tinymce-aux{
+  z-index: 999999!important;
 }
 </style>

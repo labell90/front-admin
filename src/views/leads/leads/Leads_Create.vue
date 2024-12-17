@@ -5,6 +5,7 @@ export default {
   name: "Leads_Create",
   mounted() {
     this.Get_Location();
+    this.Get_Extra_Fields();
 
 
   },
@@ -51,7 +52,8 @@ export default {
        address : null,
        description : null,
        is_special : 0
-     }
+     },
+     extra_fields:[],
    }
   },
   methods:{
@@ -69,6 +71,7 @@ export default {
         "Module_Lead_Utmsource_Action_Index",
         "Module_Lead_Advsource_Action_Index",
         "Module_Lead_Action_Create",
+        "Module_Lead_Action_Get_Field"
     ]),
     Create_Item(){
 
@@ -105,6 +108,13 @@ export default {
           this.Methods_Notify_Error_Internal();
         })
       }
+    },
+
+    Get_Extra_Fields(){
+      this.Module_Lead_Action_Get_Field().then(res => {
+        this.extra_fields = res.data.result;
+        console.log(this.extra_fields);
+      })
     },
 
     Get_Lead_Categories(){
@@ -888,6 +898,12 @@ export default {
             </template>
           </q-input>
         </div>
+        <div class="col-12 q-mb-md q-mt-lg">
+          <q-icon name="fas fa-list" size="30px" color="teal-8"/>
+          <strong class="q-ml-sm">اطلاعات تکمیلی</strong>
+        </div>
+        <global_items_extra_fields v-if="extra_fields" :row_classes="'col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm'" :forms="extra_fields" ></global_items_extra_fields>
+
         <div class="col-12 q-pa-xs">
           <q-btn color="pink-7" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
         </div>

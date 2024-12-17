@@ -55,6 +55,16 @@ export default {
           <span class="q-ml-sm text-white">حذف انتخاب شده ها</span>
         </q-item>
         <q-separator></q-separator>
+        <q-item :disable="action_loading" clickable class="q-pt-md" @click="this.$emit('SMS_Ok')">
+          <q-icon name="fas fa-message" color="green" class="font-20"></q-icon>
+          <span class="q-ml-sm text-white">ارسال پیامک</span>
+        </q-item>
+        <q-separator></q-separator>
+        <q-item :disable="action_loading" clickable class="q-pt-md" @click="this.$emit('Email_Ok')">
+          <q-icon name="fas fa-envelope" color="yellow-9" class="font-20"></q-icon>
+          <span class="q-ml-sm text-white">ارسال ایمیل</span>
+        </q-item>
+
       </q-list>
     </q-menu>
   </q-btn>
