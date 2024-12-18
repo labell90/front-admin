@@ -35,6 +35,7 @@ import route_products from "@/router/routes/products/products.js";
 import route_customer from "@/router/routes/customer/customer.js";
 import units from "@/router/routes/units/units.js";
 import route_units from "@/router/routes/units/units.js";
+import route_options from "@/router/routes/options/options.js"
 
 
 const routes = [
@@ -68,7 +69,8 @@ const routes = [
     ...route_product_groups,
     ...route_product_types,
     ...route_products,
-    ...route_units
+    ...route_units,
+    ...route_options
 
 ]
 

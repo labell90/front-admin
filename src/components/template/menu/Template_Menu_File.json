@@ -1023,6 +1023,36 @@
       }
     ]
   },
+  {
+    "fa" : "ویژگی ها",
+    "en" : "Options",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد ویژگی ",
+        "en" : "New Options",
+        "route_path" : "/",
+        "route_name" : "options_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست ویژگی ها ",
+        "en" : "Options",
+        "route_path" : "/",
+        "route_name" : "options_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
 
   {
     "title" : true,
