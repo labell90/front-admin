@@ -37,6 +37,7 @@ import units from "@/router/routes/units/units.js";
 import route_units from "@/router/routes/units/units.js";
 import route_options from "@/router/routes/options/options.js";
 import route_stores from "@/router/routes/stores/stores.js";
+import route_options from "@/router/routes/options/options.js"
 
 
 const routes = [
@@ -73,6 +74,8 @@ const routes = [
     ...route_units,
     ...route_options,
     ...route_stores,
+    ...route_units,
+    ...route_options
 
 ]
 

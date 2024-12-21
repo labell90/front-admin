@@ -1,4 +1,3 @@
-
 import Options_Create from "@/views/options/Options_Create.vue";
 import Options_Index from "@/views/options/Options_Index.vue";
 import Options_Edit from "@/views/options/Options_Edit.vue";

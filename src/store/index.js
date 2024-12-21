@@ -45,6 +45,7 @@ import products from "@/store/modules/products/products.js";
 import units from "@/store/modules/units/units.js";
 import options from "@/store/modules/options/options.js";
 import stores from "@/store/modules/stores/stores.js"
+import options from "@/store/modules/options/options.js"
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

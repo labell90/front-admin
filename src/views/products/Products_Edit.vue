@@ -5,6 +5,8 @@ export default {
   name: "Products_Edit",
   mounted() {
     this.Get_Item();
+    this.Get_Product_Groups();
+    this.Get_Product_Types();
   },
   data(){
     return {
@@ -17,13 +19,17 @@ export default {
         description:null,
         product_group_id:null,
         product_type_id:null
-      }
+      },
+      product_types:[],
+      product_groups:[],
     }
   },
   methods:{
     ...mapActions([
-      "Module_Product_Edit",
-      "Module_Product_Show"
+        "Module_Product_Edit",
+        "Module_Product_Show",
+        "Module_Product_Groups_All",
+        "Module_Product_Types_All"
     ]),
     Get_Item(){
       this.Module_Product_Show(this.$route.params.id).then(response => {
@@ -31,6 +37,64 @@ export default {
         this.loading=false;
       }).catch(error =>{
 
+      })
+    },
+    Get_Product_Groups(){
+      this.Module_Product_Groups_All().then(res => {
+        if (res.data.result){
+          this.product_groups=[];
+          res.data.result.forEach(item => {
+            this.product_groups.push({
+              label : item.name,
+              value : item.id,
+              color_code : item.color_code
+            })
+          })
+        }
+
+
+      }).catch(error => {
+        return this.Methods_Notify_Error_Server();
+      })
+    },
+    Get_Product_Types(){
+      this.Module_Product_Types_All().then(res => {
+        if (res.data.result){
+          this.product_types=[];
+          res.data.result.forEach(item => {
+            this.product_types.push({
+              label : item.name,
+              value : item.id,
+              color_code : item.color_code
+            })
+          })
+        }
+
+
+      }).catch(error => {
+        return this.Methods_Notify_Error_Server();
+      })
+    },
+    Filter_Product_Groups_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.product_groups =  this.product_groups.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Product_Groups();
+        }
+      })
+    },
+    Filter_Product_Types_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.product_types =  this.product_types.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Product_Types();
+        }
       })
     },
     Edit_Item(){
@@ -96,9 +160,9 @@ export default {
                   transition-show="flip-up"
                   transition-hide="flip-down"
                   v-model="items.product_group_id"
-                  label="انتخاب از گروه بندی محصولات  "
-                  :options="cv"
-                  @filter=""
+                  label="انتخاب گروه بندی محصولات"
+                  :options="product_groups"
+                  @filter="Filter_Product_Groups_Select"
                   emit-value
                   map-options
                   use-input
@@ -123,19 +187,19 @@ export default {
                   </q-item>
                 </template>
                 <template v-slot:error>
-                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_category_id')" />
+                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'product_group_id')" />
                 </template>
               </q-select>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
               <q-select
                   outlined
                   transition-show="flip-up"
                   transition-hide="flip-down"
                   v-model="items.product_type_id"
-                  label="انتخاب از نوع محصول "
-                  :options="vh"
-                  @filter=""
+                  label="انتخاب نوع محصول "
+                  :options="product_types"
+                  @filter="Filter_Product_Types_Select"
                   emit-value
                   map-options
                   use-input

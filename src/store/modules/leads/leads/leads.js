@@ -139,6 +139,30 @@ export default {
 
         },
 
+        Module_Lead_Action_Actions_Text(_,items){
+            return new Promise((resolve, reject) => {
+                //Create Form data
+                axios.post('users/leads/leads/actions/text',items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+        Module_Lead_Action_Actions_Email(_,items){
+            return new Promise((resolve, reject) => {
+                //Create Form data
+                axios.post('users/leads/leads/actions/email',items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
 
         Module_Lead_Action_Trash_Delete(_,items){
             return new Promise((resolve, reject) => {
