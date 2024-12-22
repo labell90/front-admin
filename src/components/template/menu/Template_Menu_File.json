@@ -1053,6 +1053,36 @@
       }
     ]
   },
+  {
+    "fa" : "نوع انبار ها",
+    "en" : "Stores_Types",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد نوع انبار ",
+        "en" : "New Stores_Types",
+        "route_path" : "/",
+        "route_name" : "stores_types_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست نوع انبار ",
+        "en" : "Stores_Types",
+        "route_path" : "/",
+        "route_name" : "stores_types_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
 
   {
     "title" : true,
