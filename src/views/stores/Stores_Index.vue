@@ -111,6 +111,7 @@ export default {
     ...mapActions([
       "Module_Stores_Index",
       "Module_Stores_Delete",
+        "Module_Stores_Searchable"
 
 
 
@@ -161,6 +162,12 @@ export default {
     updateSelected(newSelection) {
       this.selected = newSelection;
       this.items_selected = newSelection.map(item => item.id);
+    },
+    Searchable_Get(){
+      this.Module_Stores_Searchable().then(res => {
+        this.searchable = res.data.result
+        console.log(this.searchable)
+      })
     },
     Items_OnRequest(props){
       const { page, rowsPerPage, sortBy, descending } = props.pagination
