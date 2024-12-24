@@ -13,16 +13,18 @@ export default {
     'lead_multi_edit' : Leads_Multi_Edit,
     'leads_settings_merge' : Leads_Settings_Merge,
   },
+
   created() {
     this.editor_api =  import.meta.env.VITE_API_TINY_MCE
-
   },
+
   mounted() {
     this.Items_Get();
     this.Searchable_Get();
     this.Columns_Generate();
 
   },
+
   data(){
     return {
       $q: useQuasar(),
@@ -41,6 +43,7 @@ export default {
       multi_edit_dialog:false,
       multi_sms_dialog:false,
       multi_email_dialog:false,
+      multi_note_dialog:false,
       setting_dialog:false,
       active_setting : null,
       data_sms : {
@@ -51,7 +54,12 @@ export default {
         subject : null,
         content : null
       },
+      data_note : {
+        note : null,
+        file : null
+      },
       multi_email_loading : false,
+      multi_note_loading : false,
       convert_dialog:[],
       items_selected:[],
       selected: [],
@@ -157,6 +165,7 @@ export default {
 
     }
   },
+
   methods :{
     ...mapActions([
         "Module_Lead_Action_Index",
@@ -164,6 +173,7 @@ export default {
         "Module_Lead_Action_Actions_Delete",
         "Module_Lead_Action_Actions_Text",
         "Module_Lead_Action_Actions_Email",
+        "Module_Lead_Action_Actions_Note",
         "Module_Lead_Action_Activation",
         "Module_Lead_Action_Searchable",
         "Module_Lead_Action_Convert_Client",
@@ -188,6 +198,7 @@ export default {
         this.items_loading=false;
       })
     },
+
     Searchable_Get(){
       this.Module_Lead_Action_Searchable().then(res => {
         this.searchable = res.data.result
@@ -279,7 +290,6 @@ export default {
       })
     },
 
-
     Item_Actions_Delete(){
       this.actions_loading=true;
       this.Module_Lead_Action_Actions_Delete({ids : this.items_selected}).then(res => {
@@ -345,6 +355,30 @@ export default {
           this.Methods_Notify_Error_Server();
         }
         this.multi_email_loading=false;
+      })
+
+    },
+
+    Item_Actions_Note(){
+      this.multi_note_loading = true;
+      let data = {
+        ids : this.items_selected,
+        note : this.data_note.note,
+        file : this.data_note.file
+      }
+      this.Module_Lead_Action_Actions_Note(data).then(res => {
+        console.log(res.data)
+
+        this.Methods_Notify_Message_Success('یادداشت باموفقیت ثبت شد');
+        this.multi_note_loading=false;
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.Methods_Validation_Notify();
+          this.errors = error.response.data;
+        }else {
+          this.Methods_Notify_Error_Server();
+        }
+        this.multi_note_loading=false;
       })
 
     },
@@ -523,7 +557,7 @@ export default {
               class="font-12 "
           />
 
-          <global_actions_multi_actions @Email_Ok="multi_email_dialog=true" @SMS_Ok="multi_sms_dialog=true" @Edit_Ok="multi_edit_dialog=true" @Delete_Ok="Item_Actions_Delete" :action_loading="actions_loading" :items="items_selected" class="animation-fade-in" v-if="items_selected.length > 0" ></global_actions_multi_actions>
+          <global_actions_multi_actions @Note_Ok="multi_note_dialog=true" @Email_Ok="multi_email_dialog=true" @SMS_Ok="multi_sms_dialog=true" @Edit_Ok="multi_edit_dialog=true" @Delete_Ok="Item_Actions_Delete" :action_loading="actions_loading" :items="items_selected" class="animation-fade-in" v-if="items_selected.length > 0" ></global_actions_multi_actions>
 
           <q-dialog
               v-model="multi_edit_dialog"
@@ -619,6 +653,43 @@ export default {
               </q-card-section>
               <q-card-actions align="right">
                 <q-btn @click="Item_Actions_Text" :loading="multi_sms_loading" glossy color="pink-7" label="ارسال پیامک گروهی "  />
+                <q-btn glossy color="dark" label="بستن" v-close-popup />
+              </q-card-actions>
+            </q-card>
+          </q-dialog>
+
+          <q-dialog
+              v-model="multi_note_dialog"
+              position="top"
+          >
+            <q-card style="width: 700px; max-width: 80vw;">
+              <q-card-section>
+                <strong class="text-grey-9 font-16">ثبت گروهی یادداشت </strong>
+              </q-card-section>
+              <q-separator></q-separator>
+              <q-card-section>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                    <q-input  :error="this.Methods_Validation_Check(errors,'note')" outlined  type="textarea" v-model="data_note.note" label="متن یادداشت">
+                      <template v-slot:error>
+                        <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'note')" />
+                      </template>
+                    </q-input>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                    <q-file :error="this.Methods_Validation_Check(errors,'file')" clearable counter outlined v-model="data_note.file" label="انتخاب فایل پیوست">
+                      <template v-slot:prepend>
+                        <q-icon name="fas fa-file" />
+                      </template>
+                      <template v-slot:error>
+                        <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'file')" />
+                      </template>
+                    </q-file>
+                  </div>
+                </div>
+              </q-card-section>
+              <q-card-actions align="right">
+                <q-btn @click="Item_Actions_Note" :loading="multi_note_loading" glossy color="pink-7" label="ثبت یادداشت گروهی "  />
                 <q-btn glossy color="dark" label="بستن" v-close-popup />
               </q-card-actions>
             </q-card>
@@ -731,9 +802,9 @@ export default {
 </template>
 
 <style scoped>
+
 .glossy-bg{
   background-color: rgba(11,10,10,0.14) !important;
-
 }
 .glossy-bg:hover{
   background-color: rgba(11,10,10,0.24) !important;
@@ -742,4 +813,5 @@ export default {
 .tox .tox-silver-sink .tox-tinymce-aux{
   z-index: 999999!important;
 }
+
 </style>

@@ -48,6 +48,34 @@ export default {
 
         },
 
+        Module_Lead_Action_Tags_Index(_,item){
+
+            return new Promise((resolve, reject) => {
+
+                axios.get('users/leads/leads/'+item+'/tags').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+
+            })
+
+        },
+
+        Module_Lead_Action_Tags_Update(_,items){
+
+            return new Promise((resolve, reject) => {
+
+                axios.post('users/leads/leads/'+items.id+'/tags',items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+
+            })
+
+        },
+
         Module_Lead_Action_Restore(_,item){
 
             return new Promise((resolve, reject) => {
@@ -155,6 +183,22 @@ export default {
             return new Promise((resolve, reject) => {
                 //Create Form data
                 axios.post('users/leads/leads/actions/email',items).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+        Module_Lead_Action_Actions_Note(_,items){
+            return new Promise((resolve, reject) => {
+                //Create Form data
+                let data = new FormData();
+                if (items.note){data.append( 'note', items.note)}
+                if (items.ids){data.append( 'ids', items.ids)}
+                if (items.file){data.append( 'file', items.file,items.file.name)}
+                axios.post('users/leads/leads/actions/note',data).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

@@ -7,10 +7,13 @@ import Leads_Profile_Texts from "@/views/leads/leads/profile/Leads_Profile_Texts
 import Leads_Profile_Campaigns from "@/views/leads/leads/profile/Leads_Profile_Campaigns.vue";
 import Leads_Profile_Emails from "@/views/leads/leads/profile/Leads_Profile_Emails.vue";
 import Leads_Profile_Contacts from "@/views/leads/leads/profile/Leads_Profile_Contacts.vue";
+import leads_settings_merge from "@/views/leads/leads/settings/Leads_Settings_Merge.vue";
+import Leads_Profile_Tags from "@/views/leads/leads/profile/components/Leads_Profile_Tags.vue";
 
 export default {
   name: "Leads_Profile_Index",
   components :{
+    leads_settings_merge,
     'lead_histories' : Leads_Profile_Histories,
     'lead_notes' : Leads_Profile_Notes,
     'lead_documents' : Leads_Profile_Documents,
@@ -18,6 +21,7 @@ export default {
     'lead_campaigns' : Leads_Profile_Campaigns,
     'lead_emails' : Leads_Profile_Emails,
     'lead_contacts' : Leads_Profile_Contacts,
+    'leads_tags' : Leads_Profile_Tags,
   },
   mounted() {
     this.Get_Lead();
@@ -25,7 +29,9 @@ export default {
   data(){
     return{
       loading:true,
-      lead:null
+      lead:null,
+      tags_dialog:false,
+
     }
   },
   methods:{
@@ -47,12 +53,57 @@ export default {
 <template>
   <global_loading_shape v-if="loading" />
   <template v-else>
-  <div class="q-mb-xl">
-    <q-btn :to="{name : 'lead_index'}" class="float-right" color="grey-7" glossy icon="fas fa-arrow-left" label="بازگشت"></q-btn>
-    <q-btn :to="{name : 'lead_edit',params:{id:lead.id}}" class="float-right q-mr-sm" color="blue-8" glossy icon="fas fa-edit" label="ویرایش اطلاعات"></q-btn>
-    <q-btn :to="{name : 'lead_info',params:{id:lead.id}}" class="float-right q-mr-sm" color="pink-7" glossy icon="fas fa-list" label="اطلاعات کامل"></q-btn>
+  <div class=" text-right q-pa-xs">
+
+    <q-btn class="q-mr-xs" :to="{name : 'lead_info',params:{id:lead.id}}" color="pink-8" glossy icon="fas fa-info" size="11px" round>
+      <q-tooltip  transition-show="scale" transition-hide="scale" class="bg-blue-grey-9 font-12">
+        اطلاعات کامل
+      </q-tooltip>
+    </q-btn>
+
+    <q-btn @click="tags_dialog=true" class="q-mr-xs" color="green-8" glossy icon="fas fa-tag" size="11px" round>
+      <q-tooltip  transition-show="scale" transition-hide="scale" class="bg-blue-grey-9 font-12">
+        تگ ها (برچسب ها)
+      </q-tooltip>
+    </q-btn>
+
+    <q-btn class="q-mr-xs" :to="{name : 'lead_edit',params:{id:lead.id}}" color="blue-8" glossy icon="fas fa-edit" size="11px" round>
+      <q-tooltip  transition-show="scale" transition-hide="scale" class="bg-blue-grey-9 font-12">
+        ویرایش اطلاعات
+      </q-tooltip>
+    </q-btn>
+
+    <q-btn :to="{name : 'lead_index'}" color="grey-8"  glossy icon="fas fa-arrow-left" size="11px" round>
+      <q-tooltip  transition-show="scale" transition-hide="scale" class="bg-blue-grey-9 font-12">
+        بازگشت
+      </q-tooltip>
+    </q-btn>
+
+
+    <q-dialog
+        v-model="tags_dialog"
+        position="top"
+    >
+      <q-card style="width: 960px; max-width: 80vw;">
+        <q-card-section>
+          <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+          <strong class="font-15">ویرایش تگ های سرنخ</strong>
+        </q-card-section>
+        <q-separator/>
+        <q-card-section>
+          <leads_tags @Tags_Updated="tags_dialog=false" :lead="lead"></leads_tags>
+        </q-card-section>
+
+
+      </q-card>
+    </q-dialog>
+
+
+
+
 
   </div>
+
     <q-card class="q-mt-md rounded-borders" dark bordered >
 
       <q-card-section>
@@ -69,6 +120,14 @@ export default {
             </div>
             <div class="q-mt-md">
               <strong class="font-16">{{lead.email ?? "---"}}</strong>
+            </div>
+            <div class="q-mt-md">
+              <q-chip v-if="!lead.tags.length" size="sm" class="font-11" label="# بدون تگ" color="deep-orange-8" text-color="white"></q-chip>
+              <template v-else>
+                <div class="q-gutter-xs">
+                  <global_items_tag_single v-for="tag in lead.tags" :item="tag.tag"></global_items_tag_single>
+                </div>
+              </template>
             </div>
           </div>
           <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 q-pa-xs">
