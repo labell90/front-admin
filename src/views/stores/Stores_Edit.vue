@@ -253,7 +253,7 @@ export default {
     <template v-else>
       <q-card-section>
         <strong class="text-grey-10">ویرایش انبار : <strong class="text-red-8">{{items.name}}</strong></strong>
-        <global_actions_header_buttons :create="true"  route="stores"></global_actions_header_buttons>
+        <global_actions_header_buttons :create="true" :index="true"  route="stores"></global_actions_header_buttons>
         <q-separator class="q-mt-xl"/>
 
       </q-card-section>

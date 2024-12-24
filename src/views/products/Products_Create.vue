@@ -3,6 +3,10 @@ import {mapActions} from "vuex";
 
 export default {
   name: "Products_Create",
+  mounted() {
+    this.Get_Product_Groups();
+    this.Get_Product_Types();
+  },
   data(){
     return {
       loading:false,
