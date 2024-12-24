@@ -43,13 +43,14 @@ export default {
   },
   methods:{
     ...mapActions([
-      "Module_Stores_Create",
-      "Module_Location_Action_Country_Selectable",
-      "Module_Location_Action_Province_Selectable",
-      "Module_Location_Action_City_Selectable",
-      "Module_Location_Action_Index",
-      "Module_Stores_Types_All",
-      "Module_Client_Search"
+        "Module_Stores_Create",
+        "Module_Location_Action_Country_Selectable",
+        "Module_Location_Action_Province_Selectable",
+        "Module_Location_Action_City_Selectable",
+        "Module_Location_Action_Index",
+        "Module_Stores_Types_All",
+        "Module_Client_Search",
+        "Module_Customer_Search"
 
     ]),
     Get_Locations(){
@@ -81,18 +82,24 @@ export default {
     },
     Get_Clients_Search(params){
       this.Module_Client_Search(params).then(res => {
+        this.clients=[];
           res.data.result.forEach(item => {
             this.clients.push({label: item.name, value: item.id,is_active:item.is_active,phone: item.phone});
           });
       }).catch(error => {
         this.Methods_Notify_Error_Server();
       })
-
-
-
     },
-
-
+    Get_Customers_Search(params){
+      this.Module_Customer_Search(params).then(res => {
+        this.customers=[];
+          res.data.result.forEach(item => {
+            this.customers.push({label: item.name, value: item.id,is_active:item.is_active,phone: item.phone});
+          });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
 
     Filter_Countries_Select (val, update, abort) {
       update(() => {
@@ -141,10 +148,24 @@ export default {
     Filter_Client_Select (val, update, abort) {
       update(() => {
         if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Clients_Search({name:val})
 
+          }, 600);
         }
       })
     },
+    Filter_Customer_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Customers_Search({name:val})
+
+          }, 600);
+        }
+      })
+    },
+
     Create_Item(){
       this.loading=true;
       this.Module_Stores_Create(this.items).then(response => {
@@ -405,11 +426,14 @@ export default {
               transition-hide="flip-down"
               v-model="items.client_id"
               label="انتخاب نماینده"
-              :options="h"
-              @filter="rd"
+              :options="clients"
+              @filter="Filter_Client_Select"
               emit-value
               map-options
+              placeholder="برای جستجو حداقل سه حرف وارد کنید"
               use-input
+              clearable
+              use-chips
               :error="this.Methods_Validation_Check(errors,'client_id')"
 
           >
@@ -423,7 +447,11 @@ export default {
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
                 <q-item-section>
-                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                  <q-item-label>
+                    <q-icon v-if="scope.opt.is_active" name="fas fa-check-circle" size="xs" color="green-8" class="q-mr-xs" title="وضعیت فعال"></q-icon>
+                    <q-icon v-else name="fas fa-times-circle" size="xs" color="red-8" class="q-mr-xs" title="وضعیت غیرفعال"></q-icon>
+                    {{ scope.opt.label }}
+                  </q-item-label>
                 </q-item-section>
               </q-item>
             </template>
@@ -440,11 +468,14 @@ export default {
               transition-hide="flip-down"
               v-model="items.customer_id"
               label="انتخاب مشتری"
-              :options="h"
-              @filter="rd"
+              :options="customers"
+              @filter="Filter_Customer_Select"
               emit-value
               map-options
+              use-chips
+              clearable
               use-input
+              placeholder="برای جستجو حداقل سه حرف وارد کنید"
               :error="this.Methods_Validation_Check(errors,'customer_id')"
 
           >
@@ -458,7 +489,11 @@ export default {
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
                 <q-item-section>
-                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                  <q-item-label>
+                    <q-icon v-if="scope.opt.is_active" name="fas fa-check-circle" size="xs" color="green-8" class="q-mr-xs" title="وضعیت فعال"></q-icon>
+                    <q-icon v-else name="fas fa-times-circle" size="xs" color="red-8" class="q-mr-xs" title="وضعیت غیرفعال"></q-icon>
+                    {{ scope.opt.label }}
+                  </q-item-label>
                 </q-item-section>
               </q-item>
             </template>
