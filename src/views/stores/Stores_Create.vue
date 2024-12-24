@@ -6,6 +6,7 @@ export default {
   name: "Stores_Create",
   mounted() {
     this.Get_Locations();
+    this.Get_Store_types();
 
 
   },
@@ -33,6 +34,10 @@ export default {
       provinces:[],
       cities:[],
       locations:[],
+      store_types:[],
+      clients:[],
+      customers:[],
+
 
     }
   },
@@ -43,6 +48,8 @@ export default {
       "Module_Location_Action_Province_Selectable",
       "Module_Location_Action_City_Selectable",
       "Module_Location_Action_Index",
+      "Module_Stores_Types_All",
+      "Module_Client_Search"
 
     ]),
     Get_Locations(){
@@ -61,6 +68,31 @@ export default {
       })
 
     },
+    Get_Store_types(){
+      this.Module_Stores_Types_All().then(res => {
+        this.store_types=[];
+        res.data.result.forEach(item => {
+          this.store_types.push({label: item.name, value: item.id,color_code : item.color_code});
+        })
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+
+      })
+    },
+    Get_Clients_Search(params){
+      this.Module_Client_Search(params).then(res => {
+          res.data.result.forEach(item => {
+            this.clients.push({label: item.name, value: item.id,is_active:item.is_active,phone: item.phone});
+          });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+
+
+
+    },
+
+
 
     Filter_Countries_Select (val, update, abort) {
       update(() => {
@@ -92,6 +124,24 @@ export default {
           })
         }else {
           // this.Computed_Get_Cities();
+        }
+      })
+    },
+    Filter_Store_Types_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.store_types =  this.store_types.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Store_types();
+        }
+      })
+    },
+    Filter_Client_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+
         }
       })
     },
@@ -175,7 +225,7 @@ export default {
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
           <q-input
-              :error="this.Methods_Validation_Check(errors,'color_code')" outlined v-model="items.color_code" label="رنگ تگ "
+              :error="this.Methods_Validation_Check(errors,'color_code')" outlined v-model="items.color_code" label="رنگ"
           >
             <template v-slot:append>
               <q-icon name="fas fa-eye-dropper" class="cursor-pointer">
@@ -204,9 +254,8 @@ export default {
               transition-hide="flip-down"
               v-model="items.store_type_id"
               label="انتخاب نوع انبار"
-              :options="l"
-              @filter="k"
-              @change=""
+              :options="store_types"
+              @filter="Filter_Store_Types_Select"
               emit-value
               map-options
               use-input
@@ -222,18 +271,16 @@ export default {
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
                 <q-item-section avatar>
-                  <global_images_select :image="scope.opt.image" />
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
                 </q-item-section>
                 <q-item-section>
                   <q-item-label>{{ scope.opt.label }}</q-item-label>
                 </q-item-section>
               </q-item>
-            </template>
-            <template v-slot:error>
+            </template>            <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'store_type_id')" />
             </template>
           </q-select>
-
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-pa-xs">
           <q-input :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="items.description"  type="textarea" rows="4" label=" توضیحات">
