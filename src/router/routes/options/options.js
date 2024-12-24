@@ -1,4 +1,3 @@
-
 import Options_Create from "@/views/options/Options_Create.vue";
 import Options_Index from "@/views/options/Options_Index.vue";
 import Options_Edit from "@/views/options/Options_Edit.vue";
@@ -11,8 +10,8 @@ const route_options = [
         name : "options_index",
         component : Options_Index,
         meta : {
-            title : 'ویژگی ها ',
-            subtitle : 'لیست ویژگی ها '
+            title : '  ویژگی های محصول',
+            subtitle : 'لیست ویؤگی ها '
         },
     },
 
@@ -21,7 +20,7 @@ const route_options = [
         name : "options_trash",
         component : Options_Trash,
         meta : {
-            title : 'ویژگی ها',
+            title : 'ویژگی های محصول',
             subtitle : 'موارد حذف شده ویژگی ها '
         },
     },
@@ -31,8 +30,8 @@ const route_options = [
         name : "options_create",
         component :Options_Create,
         meta : {
-            title : 'ویژگی ها',
-            subtitle : 'ایجاد ویژگی ها '
+            title : 'ویژگی های محصول',
+            subtitle : 'ایجاد ویژگی ها'
         },
     },
     {
@@ -40,7 +39,7 @@ const route_options = [
         name : "options_edit",
         component : Options_Edit,
         meta : {
-            title : 'ویژگی ها',
+            title : 'ویژگی های محصول',
             subtitle : 'ویرایش ویژگی ها'
         },
     },

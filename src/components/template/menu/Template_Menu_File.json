@@ -1024,6 +1024,67 @@
     ]
   },
   {
+    "fa" : "ویژگی های محصول",
+    "en" : "Options",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد ویژگی محصول",
+        "en" : "New Options",
+        "route_path" : "/",
+        "route_name" : "options_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست ویژگی محصول",
+        "en" : "Options",
+        "route_path" : "/",
+        "route_name" : "options_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
+  {
+    "fa" : "انبار ها",
+    "en" : "Stores",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد انبار ",
+        "en" : "New Stores",
+        "route_path" : "/",
+        "route_name" : "stores_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست انبار ها  ",
+        "en" : "Stores",
+        "route_path" : "/",
+        "route_name" : "stores_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
+
+  {
     "fa" : "ویژگی ها",
     "en" : "Options",
     "icon" : "fa-solid fa-ruler",
