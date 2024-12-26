@@ -1144,6 +1144,36 @@
       }
     ]
   },
+  {
+    "fa" : "انبار پیش فرض",
+    "en" : "Default_Stores",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد انبار پیش فرض ",
+        "en" : "New Default_Stores",
+        "route_path" : "/",
+        "route_name" : "default_stores_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست انبار پیش فرض ",
+        "en" : "Default_Stores",
+        "route_path" : "/",
+        "route_name" : "default_stores_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
 
   {
     "title" : true,

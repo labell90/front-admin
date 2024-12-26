@@ -7,6 +7,7 @@ export default {
     this.Get_Item();
     this.Get_Locations();
     this.Get_Store_types();
+    this.Get_default_stores();
 
   },
   data(){
@@ -22,6 +23,7 @@ export default {
         province_id:null,
         customer_id:null,
         store_type_id:null,
+        default_store_id:null,
         city_id:null,
         client_id : null,
         sender_phone : null,
@@ -36,6 +38,7 @@ export default {
       store_types:[],
       clients:[],
       customers:[],
+      default_stores:[]
     }
   },
   methods:{
@@ -48,7 +51,8 @@ export default {
       "Module_Location_Action_Index",
       "Module_Stores_Types_All",
       "Module_Client_Search",
-      "Module_Customer_Search"
+      "Module_Customer_Search",
+      "Module_Default_Stores_All",
 
 
     ]),
@@ -202,6 +206,28 @@ export default {
             this.Get_Clients_Search({name:val})
 
           }, 600);
+        }
+      })
+    },
+    Get_default_stores(){
+      this.Module_Default_Stores_All().then(res => {
+        this.default_stores=[];
+        res.data.result.forEach(item =>{
+          this.default_stores.push({label:item.name,value:item.id,symbol:item.symbol});
+        })
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+
+      })
+    },
+    Filter_default_stores_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.default_stores =  this.default_stores.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_default_stores();
         }
       })
     },
@@ -536,6 +562,32 @@ export default {
               </template>
             </q-select>
 
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+            <q-select
+                outlined
+                transition-show="flip-up"
+                transition-hide="flip-down"
+                v-model="items.default_store_id"
+                label="انتخاب انبار پیش فرض"
+                :options="default_stores"
+                @filter="Filter_default_stores_Select"
+                emit-value
+                map-options
+                use-input
+                :error="this.Methods_Validation_Check(errors,'default_store_id')"
+            >
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-red">
+                    گزینه ای یافت نشد
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'default_store_id')" />
+            </template>
+            </q-select>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
             <q-input :error="this.Methods_Validation_Check(errors,'address')" outlined v-model="items.address"  type="textarea" rows="4" label="آدرس">

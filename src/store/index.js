@@ -46,6 +46,7 @@ import units from "@/store/modules/units/units.js";
 import stores from "@/store/modules/stores/stores.js"
 import options from "@/store/modules/options/options.js"
 import stores_types from "@/store/modules/stores_types/stores_types.js";
+import default_stores from "@/store/modules/default_stores/default_stores.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -102,7 +103,8 @@ const store = createStore({
         units,
         options,
         stores_types,
-        stores
+        stores,
+        default_stores
     }
 
 
