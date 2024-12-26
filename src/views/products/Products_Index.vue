@@ -273,6 +273,7 @@ export default {
             <span v-if="props.row.product_group" class="text-grey-8">{{props.row.product_group.name}}</span>
           </q-td>
         </template>
+
         <template v-slot:body-cell-product_type="props">
           <q-td :props="props">
             <span v-if="props.row.product_type" class="text-grey-8">{{props.row.product_type.name}}</span>
@@ -282,12 +283,11 @@ export default {
         <template v-slot:body-cell-prices="props">
           <q-td :props="props">
             <q-btn @click="prices_dialog[props.row.id] = true;" class="font-11" color="teal-8" glossy size="sm" label="مشاهده" rounded ></q-btn>
-
             <q-dialog
                 v-model="prices_dialog[props.row.id]"
                 position="top"
             >
-              <q-card style="width: 960px; max-width: 80vw;">
+              <q-card style="width:100%; max-width: 80vw;">
                 <q-card-section>
                   <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
                   <strong class="font-15">مشاهده و ویرایش قیمت محصول : <strong class="text-red-8">{{ props.row.name }}</strong></strong>
@@ -298,9 +298,6 @@ export default {
                 </q-card-section>
               </q-card>
             </q-dialog>
-
-
-
           </q-td>
         </template>
 
@@ -312,21 +309,25 @@ export default {
             </div>
           </q-td>
         </template>
+
         <template v-slot:body-cell-created_by="props">
           <q-td :props="props" >
             <global_items_user :user="props.row.created_by" />
           </q-td>
         </template>
+
         <template v-slot:body-cell-created_at="props">
           <q-td :props="props" >
             <global_filter_date :date="props.row.created_at" />
           </q-td>
         </template>
+
         <template v-slot:body-cell-updated_by="props">
           <q-td :props="props" >
             <global_items_user :user="props.row.updated_by" />
           </q-td>
         </template>
+
         <template v-slot:body-cell-updated_at="props">
           <q-td :props="props" >
 
@@ -334,6 +335,7 @@ export default {
 
           </q-td>
         </template>
+
       </q-table>
     </q-card-section>
 

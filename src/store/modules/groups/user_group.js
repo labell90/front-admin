@@ -12,6 +12,18 @@ export default {
             })
 
         },
+
+        Module_Group_Action_All(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/groups/all').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_Group_Action_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
                 axios.get('users/groups/trash?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{
