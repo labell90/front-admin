@@ -1174,6 +1174,36 @@
       }
     ]
   },
+  {
+    "fa" : "گروه بندی مدیران",
+    "en" : "Groups",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد گروه بندی مدیران ",
+        "en" : "New Groups",
+        "route_path" : "/",
+        "route_name" : "groups_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست گروه بندی مدیران ",
+        "en" : "groups_index",
+        "route_path" : "/",
+        "route_name" : "groups_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
 
   {
     "title" : true,

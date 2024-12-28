@@ -165,7 +165,7 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
-      <global_actions_header_buttons :create="true"  route="lead_utmsource"></global_actions_header_buttons>
+      <global_actions_header_buttons :create="true" :index="true"  route="lead_utmsource"></global_actions_header_buttons>
       <q-separator class="q-mt-xl"/>
 
     </q-card-section>

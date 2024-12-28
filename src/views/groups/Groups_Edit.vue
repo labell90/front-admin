@@ -4,8 +4,9 @@ import {mapActions} from "vuex";
 export default {
   name: "Groups_Edit",
   mounted() {
-    this.Get_Groups()
     this.Get_Item();
+    this.Get_Groups()
+
 
   },
   data(){
