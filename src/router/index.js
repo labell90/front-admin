@@ -33,11 +33,11 @@ import route_product_groups from "@/router/routes/product_groups/product_groups.
 import route_product_types from "@/router/routes/product_types/product_types.js";
 import route_products from "@/router/routes/products/products.js";
 import route_customer from "@/router/routes/customer/customer.js";
-import units from "@/router/routes/units/units.js";
 import route_units from "@/router/routes/units/units.js";
-import route_options from "@/router/routes/options/options.js";
 import route_stores from "@/router/routes/stores/stores.js";
 import route_options from "@/router/routes/options/options.js"
+import route_stores_types from "@/router/routes/stores_types/stores_types.js";
+import route_default_stores from "@/router/routes/default_stores/default_stores.js";
 
 
 const routes = [
@@ -74,8 +74,8 @@ const routes = [
     ...route_units,
     ...route_options,
     ...route_stores,
-    ...route_units,
-    ...route_options
+    ...route_stores_types,
+    ...route_default_stores
 
 ]
 

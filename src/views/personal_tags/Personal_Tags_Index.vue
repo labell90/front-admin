@@ -193,7 +193,8 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <global_actions_header_buttons :create="true"  route="personal_tags"></global_actions_header_buttons>
+      <global_actions_header_buttons :create="true"  :archive="true" route="personal_tags"></global_actions_header_buttons>
+
       <q-separator class="q-mt-xl"/>
         <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
         <div class="q-mt-sm">

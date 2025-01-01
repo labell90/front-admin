@@ -1,8 +1,14 @@
 <script>
 import {mapActions} from "vuex";
+import Products_Prices from "@/views/products/components/Products_Prices.vue";
+import leads_tags from "@/views/leads/leads/profile/components/Leads_Profile_Tags.vue";
 
 export default {
   name: "Products_Index",
+  components: {
+    leads_tags,
+    'product_prices' : Products_Prices,
+  },
   mounted() {
     this.Items_Get();
     this.Columns_Generate();
@@ -46,12 +52,36 @@ export default {
           field: row => row.name,
         },
         {
+          name: 'product_group',
+          value: 'product_group',
+          label: 'گروه',
+          align: 'left',
+          sortable: false,
+          field: row => row.product_group,
+        },
+        {
+          name: 'product_type',
+          value: 'product_type',
+          label: 'نوع',
+          align: 'left',
+          sortable: false,
+          field: row => row.product_type,
+        },
+        {
           name: 'base_store_code',
           value: 'base_store_code',
           label: 'کد پایه انبار',
           align: 'left',
           sortable: false,
           field: row => row.base_store_code,
+        },
+        {
+          name: 'prices',
+          value: 'prices',
+          label: 'قیمت ها',
+          align: 'left',
+          sortable: false,
+          field: row => row,
         },
         {
           name: 'created_by',
@@ -93,6 +123,7 @@ export default {
         }
       ],
       visible_columns:[],
+      prices_dialog:[],
 
     }
   },
@@ -236,6 +267,40 @@ export default {
             <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
           </q-td>
         </template>
+
+        <template v-slot:body-cell-product_group="props">
+          <q-td :props="props">
+            <span v-if="props.row.product_group" class="text-grey-8">{{props.row.product_group.name}}</span>
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-product_type="props">
+          <q-td :props="props">
+            <span v-if="props.row.product_type" class="text-grey-8">{{props.row.product_type.name}}</span>
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-prices="props">
+          <q-td :props="props">
+            <q-btn @click="prices_dialog[props.row.id] = true;" class="font-11" color="teal-8" glossy size="sm" label="مشاهده" rounded ></q-btn>
+            <q-dialog
+                v-model="prices_dialog[props.row.id]"
+                position="top"
+            >
+              <q-card style="width:100%; max-width: 80vw;">
+                <q-card-section>
+                  <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+                  <strong class="font-15">مشاهده و ویرایش قیمت محصول : <strong class="text-red-8">{{ props.row.name }}</strong></strong>
+                </q-card-section>
+                <q-separator/>
+                <q-card-section>
+                  <product_prices :product="props.row"></product_prices>
+                </q-card-section>
+              </q-card>
+            </q-dialog>
+          </q-td>
+        </template>
+
         <template v-slot:body-cell-tools="props">
             <q-td :props="props">
               <div class="text-center">
@@ -244,21 +309,25 @@ export default {
             </div>
           </q-td>
         </template>
+
         <template v-slot:body-cell-created_by="props">
           <q-td :props="props" >
             <global_items_user :user="props.row.created_by" />
           </q-td>
         </template>
+
         <template v-slot:body-cell-created_at="props">
           <q-td :props="props" >
             <global_filter_date :date="props.row.created_at" />
           </q-td>
         </template>
+
         <template v-slot:body-cell-updated_by="props">
           <q-td :props="props" >
             <global_items_user :user="props.row.updated_by" />
           </q-td>
         </template>
+
         <template v-slot:body-cell-updated_at="props">
           <q-td :props="props" >
 
@@ -266,6 +335,7 @@ export default {
 
           </q-td>
         </template>
+
       </q-table>
     </q-card-section>
 

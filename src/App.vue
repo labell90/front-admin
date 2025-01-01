@@ -4,6 +4,8 @@ import Template_Header_Notifications from "@/components/template/header/Template
 import Template_Header_Shortcuts from "@/components/template/header/Template_Header_Shortcuts.vue";
 import Template_Menu_Main from "@/components/template/menu/Template_Menu_Main.vue";
 import Template_Title from "@/components/template/Template_Title.vue";
+import Template_Header_Tags from "@/components/template/header/Template_Header_Tags.vue";
+
 
 export default {
 
@@ -11,6 +13,7 @@ export default {
     'template_header_user' : Template_Header_User,
     'template_header_notification' : Template_Header_Notifications,
     'template_header_shortcuts' : Template_Header_Shortcuts,
+    'template_header_tags' : Template_Header_Tags,
     'template_menu_main' : Template_Menu_Main,
     'template_title' : Template_Title,
   },
@@ -46,6 +49,7 @@ export default {
         </q-toolbar-title>
 <!--        <q-btn dense flat round icon="fas fa-list" @click="toggleRightDrawer" />-->
           <template_header_shortcuts v-if="this.$route.name !== 'auth_login'"  ></template_header_shortcuts>
+          <template_header_tags v-if="this.$route.name !== 'auth_login'"  ></template_header_tags>
           <template_header_notification  class="q-ml-xs" v-if="this.$route.name !== 'auth_login'"  ></template_header_notification>
           <template_header_user class="q-ml-md" v-if="this.$route.name !== 'auth_login'"></template_header_user>
       </q-toolbar>

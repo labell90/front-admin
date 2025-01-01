@@ -5,24 +5,30 @@ export default {
   props:['date'],
   data(){
     return{
-      show:true
+      show:false,
+      final_date : null
     }
   },
-  computed:{
-    ShowDate(){
+  mounted() {
+    this.final_date = this.$filters.date_jalali(this.date,"jYYYY/jM/jD");
+  },
+  methods:{
+    Change(){
+      this.show = !this.show;
       if (this.show){
-        return this.$filters.date_jalali(this.date)
+        this.final_date = this.$filters.date_jalali(this.date);
       }else {
-        return this.$filters.date_jalali(this.date,"jYYYY/jM/jD")
+        this.final_date = this.$filters.date_jalali(this.date,"jYYYY/jM/jD")
       }
     }
-  }
+  },
 }
 </script>
 
 <template>
-  <q-chip @click="show=!show;ShowDate" v-if="date" dir="ltr" color="grey-10" text-color="white" size="sm" class="create cursor-pointer">
-    {{ShowDate}}
+  <q-chip v-if="final_date" dir="ltr" color="grey-10" text-color="white" size="sm" class="create cursor-pointer">
+    <span @click="Change">{{final_date}}</span>
+
   </q-chip>
 </template>
 

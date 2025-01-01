@@ -21,6 +21,8 @@ export default {
         country_id:null,
         province_id:null,
         city_id:null,
+        client_id:null,
+        lead_id:null,
         password : null,
         password_confirmation : null,
         bio : null,
@@ -40,6 +42,8 @@ export default {
       provinces:[],
       cities:[],
       locations:[],
+      clients:[],
+      leads:[]
 
     }
   },
@@ -50,6 +54,8 @@ export default {
       "Module_Location_Action_Province_Selectable",
       "Module_Location_Action_City_Selectable",
       "Module_Location_Action_Index",
+      "Module_Client_Search",
+      "Module_Lead_Action_All"
 
     ]),
     Get_Locations(){
@@ -67,6 +73,46 @@ export default {
       }).catch(error =>{
       })
 
+    },
+    Get_Clients_Search(params){
+      this.Module_Client_Search(params).then(res => {
+        this.clients=[];
+        res.data.result.forEach(item => {
+          this.clients.push({label: item.name, value: item.id,is_active:item.is_active,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+    Filter_Client_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Clients_Search({name:val})
+
+          }, 600);
+        }
+      })
+    },
+    Get_Leads_Search(params){
+      this.Module_Lead_Action_All(params).then(res => {
+        this.leads=[];
+        res.data.result.forEach(item => {
+          this.leads.push({label: item.name, value: item.id,is_active:item.is_active,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+    Filter_Lead_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Leads_Search({name:val})
+
+          }, 600);
+        }
+      })
     },
 
     Filter_Countries_Select (val, update, abort) {
@@ -204,6 +250,89 @@ export default {
             </template>
           </q-input>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.client_id"
+              label="انتخاب نماینده"
+              :options="clients"
+              @filter="Filter_Client_Select"
+              emit-value
+              map-options
+              placeholder="برای جستجو حداقل سه حرف وارد کنید"
+              use-input
+              clearable
+              use-chips
+              :error="this.Methods_Validation_Check(errors,'client_id')"
+
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section>
+                  <q-item-label>
+                    <q-icon v-if="scope.opt.is_active" name="fas fa-check-circle" size="xs" color="green-8" class="q-mr-xs" title="وضعیت فعال"></q-icon>
+                    <q-icon v-else name="fas fa-times-circle" size="xs" color="red-8" class="q-mr-xs" title="وضعیت غیرفعال"></q-icon>
+                    {{ scope.opt.label }}
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'client_id')" />
+            </template>
+          </q-select>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.lead_id"
+              label="انتخاب سرنخ مرتبط"
+              :options="leads"
+              @filter="Filter_Lead_Select"
+              emit-value
+              map-options
+              placeholder="برای جستجو حداقل سه حرف وارد کنید"
+              use-input
+              clearable
+              :error="this.Methods_Validation_Check(errors,'lead_id')"
+
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section>
+                  <q-item-label>
+                    <q-icon v-if="scope.opt.is_active" name="fas fa-check-circle" size="xs" color="green-8" class="q-mr-xs" title="وضعیت فعال"></q-icon>
+                    <q-icon v-else name="fas fa-times-circle" size="xs" color="red-8" class="q-mr-xs" title="وضعیت غیرفعال"></q-icon>
+                    {{ scope.opt.label }}
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_id')" />
+            </template>
+          </q-select>
+
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-pa-xs">
           <q-input :error="this.Methods_Validation_Check(errors,'bio')" outlined v-model="items.bio"  type="textarea" rows="4" label="بیو (توضیحاتی در مورد مشتری)">
             <template v-slot:error>
@@ -324,6 +453,7 @@ export default {
           </q-select>
 
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
           <q-input  :error="this.Methods_Validation_Check(errors,'postal_code')" outlined v-model="items.postal_code"  type="number" label="کد پستی">
             <template v-slot:error>

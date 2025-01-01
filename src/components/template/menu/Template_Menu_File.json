@@ -1114,6 +1114,96 @@
       }
     ]
   },
+  {
+    "fa" : "نوع انبار ها",
+    "en" : "Stores_Types",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد نوع انبار ",
+        "en" : "New Stores_Types",
+        "route_path" : "/",
+        "route_name" : "stores_types_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست نوع انبار ",
+        "en" : "Stores_Types",
+        "route_path" : "/",
+        "route_name" : "stores_types_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
+  {
+    "fa" : "انبار پیش فرض",
+    "en" : "Default_Stores",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد انبار پیش فرض ",
+        "en" : "New Default_Stores",
+        "route_path" : "/",
+        "route_name" : "default_stores_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست انبار پیش فرض ",
+        "en" : "Default_Stores",
+        "route_path" : "/",
+        "route_name" : "default_stores_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
+  {
+    "fa" : "گروه بندی مدیران",
+    "en" : "Groups",
+    "icon" : "fa-solid fa-ruler",
+    "route_path" : "/",
+    "route_name" : "",
+    "level"      : 0,
+    "subs" : [
+      {
+        "fa" : "ایجاد گروه بندی مدیران ",
+        "en" : "New Groups",
+        "route_path" : "/",
+        "route_name" : "groups_create",
+
+        "level"      : 1,
+        "subs" : [
+        ]
+      },
+      {
+        "fa" : "لیست گروه بندی مدیران ",
+        "en" : "groups_index",
+        "route_path" : "/",
+        "route_name" : "groups_index",
+        "level"      : 1,
+        "subs" : [
+
+        ]
+      }
+    ]
+  },
 
   {
     "title" : true,

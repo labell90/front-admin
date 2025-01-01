@@ -3,20 +3,26 @@ import {mapActions} from "vuex";
 
 export default {
   name: "Product_Groups_Create",
+  mounted() {
+    this.Get_Product_Groups();
+  },
   data(){
     return {
       loading:false,
       errors:[],
       items:{
         name:null,
+        parent_id:null,
         color_code:'#ba2d8d',
         description:null,
-      }
+      },
+      product_groups:[],
     }
   },
   methods:{
     ...mapActions([
-      "Module_Product_Groups_Create"
+        "Module_Product_Groups_Create",
+        "Module_Product_Groups_All"
     ]),
     Create_Item(){
       this.loading=true;
@@ -30,6 +36,25 @@ export default {
           this.errors = error.response.data;
         }
         this.loading=false;
+      })
+    },
+    Get_Product_Groups(){
+      this.Module_Product_Groups_All().then(res => {
+        this.product_groups=[];
+        res.data.result.forEach(item => {
+          this.product_groups.push({label:item.name, value:item.id,color_code:item.color_code});
+        })
+      })
+    },
+    Filter_Product_Groups_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.product_groups =  this.product_groups.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Product_Groups();
+        }
       })
     },
   }
@@ -59,6 +84,45 @@ export default {
             </template>
           </q-input>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.parent_id"
+              label="انتخاب والد (زیرمجموعه)"
+              :options="product_groups"
+              @filter="Filter_Product_Groups_Select"
+              emit-value
+              map-options
+              use-input
+              :error="this.Methods_Validation_Check(errors,'parent_id')"
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section avatar>
+                  <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'parent_id')" />
+            </template>
+          </q-select>
+
+        </div>
+
+
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
           <q-input
               :error="this.Methods_Validation_Check(errors,'color_code')" outlined v-model="items.color_code" label="رنگ گروه بندی "

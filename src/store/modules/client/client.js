@@ -12,6 +12,18 @@ export default {
             })
 
         },
+
+        Module_Client_Search(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/clients/search',{params : items}).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
         Module_Client_Trash_Index(_,items){
             return new Promise((resolve, reject) => {
                 axios.get('users/clients/trash?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{

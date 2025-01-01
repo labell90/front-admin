@@ -64,6 +64,11 @@ export default {
           <q-icon name="fas fa-envelope" color="yellow-9" class="font-20"></q-icon>
           <span class="q-ml-sm text-white">ارسال ایمیل</span>
         </q-item>
+        <q-separator></q-separator>
+        <q-item :disable="action_loading" clickable class="q-pt-md" @click="this.$emit('Note_Ok')">
+          <q-icon name="fas fa-comment" color="blue-grey-1" class="font-20"></q-icon>
+          <span class="q-ml-sm text-white">ثبت یادداشت</span>
+        </q-item>
 
       </q-list>
     </q-menu>

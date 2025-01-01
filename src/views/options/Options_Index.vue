@@ -46,6 +46,14 @@ export default {
           field: row => row.name,
         },
         {
+          name: 'unit',
+          value: 'unit',
+          label: 'یکا',
+          align: 'left',
+          sortable: false,
+          field: row => row.unit,
+        },
+        {
           name: 'default',
           value: 'default',
           label: 'پیش فرض',
@@ -240,11 +248,14 @@ export default {
             <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
           </q-td>
         </template>
-        <template v-slot:body-cell-color_code="props">
-          <q-td :props="props" :style="'background-color:'+props.row.color_code ">
-
+        <template v-slot:body-cell-unit="props">
+          <q-td :props="props">
+            <q-chip v-if="props.row.unit" size="xs" class="font-12 glossy" text-color="white" color="blue-9">
+              {{props.row.unit.symbol}}
+            </q-chip>
           </q-td>
         </template>
+
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">

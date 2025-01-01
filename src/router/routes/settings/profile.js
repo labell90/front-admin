@@ -41,9 +41,6 @@ const route_setting_profile =[
                     subtitle : 'حساب کاربری - امنیت'
                 },
             },
-
-
-
         ]
     }
 

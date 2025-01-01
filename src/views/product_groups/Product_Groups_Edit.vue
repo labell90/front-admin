@@ -5,6 +5,8 @@ export default {
   name: "Product_Groups_Edit",
   mounted() {
     this.Get_Item();
+    this.Get_Product_Groups();
+
   },
   data(){
     return {
@@ -13,15 +15,20 @@ export default {
       errors:[],
       items:{
         name:null,
+        parent_id:null,
         color_code:null,
         description:null,
-      }
+      },
+      product_groups:[],
+
     }
   },
   methods:{
     ...mapActions([
       "Module_Product_Groups_Edit",
-      "Module_Product_Groups_Show"
+      "Module_Product_Groups_Show",
+      "Module_Product_Groups_All"
+
     ]),
     Get_Item(){
       this.Module_Product_Groups_Show(this.$route.params.id).then(response => {
@@ -45,6 +52,27 @@ export default {
         this.loading=false;
       })
     },
+    Get_Product_Groups(){
+      this.Module_Product_Groups_All().then(res => {
+        this.product_groups=[];
+        res.data.result.forEach(item => {
+          if (item.id !== this.items.id){
+            this.product_groups.push({label:item.name, value:item.id,color_code:item.color_code});
+          }
+        })
+      })
+    },
+    Filter_Product_Groups_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.product_groups =  this.product_groups.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Product_Groups();
+        }
+      })
+    },
   }
 }
 </script>
@@ -59,7 +87,7 @@ export default {
 
       <q-card>
         <q-card-section>
-          <global_actions_header_buttons :create="true"  route="product_groups"></global_actions_header_buttons>
+          <global_actions_header_buttons :create="true" :index="true"  route="product_groups"></global_actions_header_buttons>
           <q-separator class="q-mt-xl"/>
           <strong class="text-grey-10">ویرایش گروه بندی محصولات : <span class="text-red-8">{{ items.name }}</span></strong>
 
@@ -74,6 +102,46 @@ export default {
                 </template>
               </q-input>
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+              <q-select
+                  outlined
+                  transition-show="flip-up"
+                  transition-hide="flip-down"
+                  v-model="items.parent_id"
+                  label="انتخاب والد (زیرمجموعه)"
+                  :options="product_groups"
+                  @filter="Filter_Product_Groups_Select"
+                  emit-value
+                  map-options
+                  use-input
+                  :error="this.Methods_Validation_Check(errors,'parent_id')"
+              >
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-red">
+                      گزینه ای یافت نشد
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-slot:option="scope">
+                  <q-item v-bind="scope.itemProps">
+                    <q-item-section avatar>
+                      <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>{{ scope.opt.label }}</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-slot:error>
+                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'parent_id')" />
+                </template>
+              </q-select>
+
+            </div>
+
+
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
               <q-input
                   :error="this.Methods_Validation_Check(errors,'color_code')" outlined v-model="items.color_code" label="رنگ گروه بندی "

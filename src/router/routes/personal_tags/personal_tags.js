@@ -2,6 +2,8 @@
 import Personal_Tags_Create from "@/views/personal_tags/Personal_Tags_Create.vue";
 import Personal_Tags_Index from "@/views/personal_tags/Personal_Tags_Index.vue";
 import Personal_Tags_Edit from "@/views/personal_tags/Personal_Tags_Edit.vue";
+import Personal_Tags_Trash from "@/views/personal_tags/Personal_Tags_Trash.vue";
+
 
 
 const route_personal_tags = [
@@ -22,6 +24,16 @@ const route_personal_tags = [
         meta : {
             title : 'تگ شخصی',
             subtitle : 'ایجاد تگ شخصی'
+        },
+    },
+
+    {
+        path : "/tags/personal/trash",
+        name : "personal_tags_trash",
+        component : Personal_Tags_Trash,
+        meta : {
+            title : 'تگ شخصی',
+            subtitle : 'موارد حذف شده تگ شخصی '
         },
     },
     {

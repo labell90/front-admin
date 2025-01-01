@@ -2,6 +2,7 @@
 import Tags_Create from "@/views/tags/Tags_Create.vue";
 import Tags_Index from "@/views/tags/Tags_Index.vue";
 import Tags_Edit from "@/views/tags/Tags_Edit.vue";
+import Tags_Trash from "@/views/tags/Tags_Trash.vue";
 
 
 const route_tags = [
@@ -22,6 +23,16 @@ const route_tags = [
         meta : {
             title : 'تگ ها',
             subtitle : 'ایجاد تگ'
+        },
+    },
+
+    {
+        path : "/tags/trash",
+        name : "tags_trash",
+        component : Tags_Trash,
+        meta : {
+            title : 'تگ ها',
+            subtitle : 'موارد حذف شده تگ ها '
         },
     },
     {

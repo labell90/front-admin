@@ -175,7 +175,7 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشرفته</strong>
-      <global_actions_header_buttons :create="true" route="campaigns"></global_actions_header_buttons>
+      <global_actions_header_buttons :create="true" :index="true" route="campaigns"></global_actions_header_buttons>
       <q-separator class="q-mt-xl"/>
     </q-card-section>
     <q-card-section>

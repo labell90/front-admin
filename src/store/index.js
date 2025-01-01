@@ -43,9 +43,11 @@ import product_groups from "@/store/modules/product_groups/product_groups.js";
 import product_types from "@/store/modules/product_types/product_types.js";
 import products from "@/store/modules/products/products.js";
 import units from "@/store/modules/units/units.js";
-import options from "@/store/modules/options/options.js";
 import stores from "@/store/modules/stores/stores.js"
 import options from "@/store/modules/options/options.js"
+import stores_types from "@/store/modules/stores_types/stores_types.js";
+import products_prices from "@/store/modules/products/products_prices.js";
+import default_stores from "@/store/modules/default_stores/default_stores.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -101,7 +103,10 @@ const store = createStore({
         products,
         units,
         options,
-        stores
+        stores_types,
+        stores,
+        products_prices,
+        default_stores
     }
 
 

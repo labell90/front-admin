@@ -54,6 +54,9 @@ import Global_Items_Lead from "@/components/globals/items/Global_Items_Lead.vue"
 import Global_Actions_Multi_Actions from "@/components/globals/actions/Global_Actions_Multi_Actions.vue";
 import Global_Actions_Header_Buttons from "@/components/globals/actions/Global_Actions_Header_Buttons.vue";
 import Global_Item_Extra_Fields from "@/components/globals/items/Global_Item_Extra_Fields.vue";
+import Global_Items_Tag_Single from "@/components/globals/items/Global_Items_Tag_Single.vue";
+import Global_Filter_Date_Start from "@/components/globals/filters/Global_Filter_Date_Start.vue";
+import Global_Filter_Date_End from "@/components/globals/filters/Global_Filter_Date_End.vue";
 
 
 
@@ -77,9 +80,12 @@ app.component('global_actions_multi_actions',Global_Actions_Multi_Actions)
 app.component('global_actions_header_buttons',Global_Actions_Header_Buttons)
 app.component('global_medias_breadcrumb',Medias_Breadcrumb_Item)
 app.component('global_filter_date',Global_Filter_Date)
+app.component('global_filter_date_start',Global_Filter_Date_Start)
+app.component('global_filter_date_end',Global_Filter_Date_End)
 app.component('global_filter_file_type',Global_Filter_File_Type)
 app.component('global_items_user',Global_Items_User)
 app.component('global_items_lead',Global_Items_Lead)
+app.component('global_items_tag_single',Global_Items_Tag_Single)
 app.component('global_items_extra_fields',Global_Item_Extra_Fields)
 app.component("global_searching_full_search",Global_Searching_Full_Search)
 app.component("global_searching_sorting",Global_Searching_Sorting)
@@ -139,7 +145,12 @@ app.config.globalProperties.$filters={
         const i = Math.floor(Math.log(value) / Math.log(1024));
 
         return parseFloat((value / Math.pow(1024, i)).toFixed(2)) + ' ' + sizes[i];
-    }
+    },
+    number_format(value){
+        if (value){
+            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    },
 
 }
 

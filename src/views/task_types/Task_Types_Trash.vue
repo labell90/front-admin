@@ -156,6 +156,8 @@ export default {
 <template>
   <q-card>
     <q-card-section>
+      <global_actions_header_buttons :index="true" :create="true"  route="task_types"></global_actions_header_buttons>
+      <q-separator class="q-mt-xl"/>
       <q-table
           flat
           bordered
