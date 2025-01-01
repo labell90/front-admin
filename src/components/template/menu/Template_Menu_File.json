@@ -11,234 +11,6 @@
     ]
   },
   {
-    "fa" : "کابران",
-    "en" : "Users",
-    "icon" : "fas fa-users",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "مدیران",
-        "en" : "Managers",
-        "route_path" : "/",
-        "route_name" : "",
-        "feature" : "1001",
-        "icon" : "fas fa-user-tie font-20",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد مدیر",
-            "en" : "New manager",
-            "route_path" : "/",
-            "route_name" : "users_create",
-            "feature_type" : "create",
-            "level"      : 1,
-            "subs" : [
-
-            ]
-          },
-          {
-            "fa" : "لیست مدیران",
-            "en" : "Managers",
-            "route_path" : "/",
-            "route_name" : "users_index",
-            "feature_type" : "read",
-            "level"      : 1,
-            "subs" : [
-
-            ]
-          }
-        ]
-      },
-      {
-        "fa" : "مشتریان",
-        "en" : "Customers",
-        "route_path" : "/",
-        "icon" : "fas fa-user-group font-20",
-        "route_name" : "",
-        "level"      : 0.5,
-        "subs" : [
-
-        ]
-      }
-
-    ]
-  },
-  {
-    "title" : true,
-    "fa" : "سطوح دسترسی و نقش ها",
-    "en" : "Roles and Accesses"
-  },
-  {
-    "fa" : "مدریت ویژگی ها",
-    "en" : "Features",
-    "icon" : "fas fa-shield-halved",
-    "route_path" : "/features",
-    "route_name" : "features_index",
-    "level"      : 0,
-    "subs" : [
-
-    ]
-  },
-  {
-    "fa" : "نقش های کاربر",
-    "en" : "Roles",
-    "icon" : "fas fa-users-viewfinder",
-    "route_path" : "/",
-    "route_name" : "",
-    "feature" : "1004",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد نقش",
-        "en" : "New role",
-        "route_path" : "/",
-        "route_name" : "roles_create",
-        "feature_type" : "create",
-
-        "level"      : 1,
-        "subs" : [
-        ]
-      },
-      {
-        "fa" : "لیست نقش ها",
-        "en" : "ًRoles",
-        "route_path" : "/",
-        "route_name" : "roles_index",
-        "feature_type" : "read",
-
-        "level"      : 1,
-        "subs" : [
-
-        ]
-      }
-    ]
-  },
-  {
-    "fa" : "گروه بندی کاربر",
-    "en" : "Group",
-    "icon" : "fas fa-users-line",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد گروه بندی",
-        "en" : "New group",
-        "route_path" : "/",
-        "route_name" : "client_groups_create",
-
-        "level"      : 1,
-        "subs" : [
-        ]
-      },
-      {
-        "fa" : "لیست گروه بندی",
-        "en" : "Groups",
-        "route_path" : "/",
-        "route_name" : "client_groups_index",
-        "level"      : 1,
-        "subs" : [
-
-        ]
-      }
-    ]
-  },
-  {
-    "fa" : "نمایندگان",
-    "en" : "Clients",
-    "icon" : "fas fa-users-line",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد نمایندگان",
-        "en" : "New client",
-        "route_path" : "/",
-        "route_name" : "client_create",
-
-        "level"      : 1,
-        "subs" : [
-        ]
-      },
-      {
-        "fa" : "لیست نمایندگان",
-        "en" : "Clients",
-        "route_path" : "/",
-        "route_name" : "client_index",
-        "level"      : 1,
-        "subs" : [
-
-        ]
-      }
-    ]
-  },
-  {
-    "fa" : "مشتریان",
-    "en" : "Customer",
-    "icon" : "fas fa-users-line",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد مشتریان",
-        "en" : "New customer",
-        "route_path" : "/",
-        "route_name" : "customer_create",
-
-        "level"      : 1,
-        "subs" : [
-        ]
-      },
-      {
-        "fa" : "لیست مشتریان",
-        "en" : "Customer",
-        "route_path" : "/",
-        "route_name" : "customer_index",
-        "level"      : 1,
-        "subs" : [
-
-        ]
-      }
-    ]
-  },
-
-  {
-    "fa" : "فرم ها",
-    "en" : "ّForms",
-    "icon" : "fas fa-rectangle-list",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد فرم",
-        "en" : "New form",
-        "route_path" : "/",
-        "route_name" : "forms_create",
-
-        "level"      : 1,
-        "subs" : [
-        ]
-      },
-      {
-        "fa" : "لیست فرم ها",
-        "en" : "ّForms",
-        "route_path" : "/",
-        "route_name" : "forms_index",
-        "level"      : 1,
-        "subs" : [
-
-        ]
-      }
-    ]
-  },
-
-
-  {
     "fa" : "CRM",
     "en" : "CRM",
     "icon" : "fas fa-window-restore",
@@ -246,23 +18,90 @@
     "route_name" : "",
     "level"      : 0,
     "subs" : [
+
       {
-        "title" : true,
-        "fa" : "سرنخ ها و وابستگی ها",
-        "en" : "Lead Dependencies",
-        "level" : 0.5
+        "fa" : "بازاریابی",
+        "en" : "Marketing",
+        "icon" : "fas fa-tents",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "ایجاد سرنخ",
+            "en" : "New lead",
+            "route_path" : "/leads/create",
+            "route_name" : "lead_create",
+            "feature_type" : "create",
+            "level"      : 1.5,
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست سرنخ ها",
+            "en" : "Leads",
+            "route_path" : "/leads",
+            "route_name" : "lead_index",
+            "feature_type" : "read",
+            "level"      : 1.5,
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "فیلد های سفارشی",
+            "en" : "Extra fields",
+            "route_path" : "/leads/fields",
+            "route_name" : "lead_fields",
+            "feature_type" : "root",
+            "level"      : 1.5,
+
+            "subs" : [
+
+            ]
+          }
+
+        ]
+
+      },
+
+      {
+        "fa" : "فروش",
+        "en" : "Campaign_Statuses",
+        "icon" : "fas fa-tents",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "حساب کاربری",
+            "en" : "Profile",
+            "route_path" : "/",
+            "route_name" : "setting_profile",
+            "level"      : 1,
+
+            "subs" : [
+            ]
+          }
+
+        ]
       },
       {
-        "fa" : "تنظیمات سرنخ",
-        "en" : "Lead Settings",
+        "fa" : "کمپین ها ",
+        "en" : "Campaigns",
         "icon" : "fas fa-clipboard-user",
         "route_path" : "/",
         "route_name" : "",
         "level"      : 0.5,
         "subs" : [
           {
-            "fa" : "سرنخ ها",
-            "en" : "Leads",
+            "fa" : "مدیریت کمپین ها",
+            "en" : "Campaign Management",
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1006",
@@ -270,46 +109,139 @@
             "level"      : 1,
             "subs" : [
               {
-                "fa" : "ایجاد سرنخ",
-                "en" : "New lead",
-                "route_path" : "/leads/create",
-                "route_name" : "lead_create",
+                "fa" : "ایجاد کمپین",
+                "en" : "New campaign",
+                "route_path" : "/",
+                "route_name" : "campaigns_create",
                 "feature_type" : "create",
-                "level"      : 1.5,
+                "level"      : 1,
 
                 "subs" : [
 
                 ]
               },
               {
-                "fa" : "لیست سرنخ ها",
-                "en" : "Leads",
-                "route_path" : "/leads",
-                "route_name" : "lead_index",
+                "fa" : "لیست کمپین ها",
+                "en" : "Campaigns",
+                "route_path" : "/",
+                "route_name" : "campaigns_index",
                 "feature_type" : "read",
-                "level"      : 1.5,
+                "level"      : 1,
 
-                "subs" : [
 
-                ]
-              },
-              {
-                "fa" : "فیلد های اضافه",
-                "en" : "Extra fields",
-                "route_path" : "/leads/fields",
-                "route_name" : "lead_fields",
-                "feature_type" : "root",
-                "level"      : 1.5,
 
                 "subs" : [
 
                 ]
               }
 
+
             ]
           },
+          {
+            "fa" : "وضعیت کمپین ها",
+            "en" : "Campaign_Statuses",
+            "icon" : "fas fa-tents",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1015",
+            "level"      : 1,
+
+            "subs" : [
+              {
+                "fa" : "ایجاد وضعیت کمپین",
+                "en" : "New campaign_statuses",
+                "route_path" : "/",
+                "route_name" : "campaign_statuses_create",
+                "feature_type" : "create",
+                "level"      : 1,
 
 
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست وضعیت کمپین ها",
+                "en" : "campaign_statuses",
+                "route_path" : "/",
+                "route_name" : "campaign_statuses_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : "نوع کمپین ها",
+            "en" : "Campaign_Types",
+            "icon" : "fas fa-tents",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1015",
+            "level"      : 1,
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد نوع کمپین",
+                "en" : "New campaign_types",
+                "route_path" : "/",
+                "route_name" : "campaign_types_create",
+                "feature_type" : "create",
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست نوع کمپین ها",
+                "en" : "campaign_types",
+                "route_path" : "/",
+                "route_name" : "campaign_types_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          }
+
+
+
+
+
+
+        ]
+      },
+      {
+        "fa" : "تنظیمات",
+        "en" : "Setting",
+        "icon" : "fas fa-cog",
+        "route_path" : "/",
+        "route_name" : "",
+        "level"      : 0.5,
+        "subs" : [
           {
             "fa" : "دسته بندی ها",
             "en" : "Categories",
@@ -318,6 +250,7 @@
             "icon" : "fas fa-list font-20",
             "feature" : "1007",
             "level"      : 1,
+
             "subs" : [
               {
                 "fa" : "ایجاد دسته بندی",
@@ -326,6 +259,7 @@
                 "route_name" : "lead_categories_create",
                 "feature_type" : "create",
                 "level"      : 1.5,
+
 
                 "subs" : [
 
@@ -339,220 +273,15 @@
                 "feature_type" : "read",
                 "level"      : 1.5,
 
-                "subs" : [
 
-                ]
-              }
-            ]
-          },
-          {
-            "fa" : "منابع",
-            "en" : "Resources",
-            "route_path" : "/",
-            "route_name" : "",
-            "feature" : "1008",
-            "icon" : "fas fa-flag font-20",
-            "level"      : 1,
-            "subs" : [
-              {
-                "fa" : "ایجاد منبع",
-                "en" : "New source",
-                "route_path" : "/",
-                "route_name" : "lead_resources_create",
-                "feature_type" : "create",
-                "level"      : 1.5,
 
-                "subs" : [
-
-                ]
-              },
-              {
-                "fa" : "لیست منابع",
-                "en" : "Resources",
-                "route_path" : "/",
-                "route_name" : "lead_resources_index",
-                "feature_type" : "read",
-                "level"      : 1.5,
 
                 "subs" : [
 
                 ]
               }
-            ]
-          },
-          {
-            "fa" : "وضعیت ها",
-            "en" : "Statuses",
-            "route_path" : "/",
-            "route_name" : "",
-            "feature" : "1009",
-            "icon" : "fas fa-check-to-slot font-20",
-            "level"      : 1,
-            "subs" : [
-              {
-                "fa" : "ایجاد وضعیت",
-                "en" : "New Status",
-                "route_path" : "/",
-                "route_name" : "lead_statuses_create",
-                "feature_type" : "create",
-                "level"      : 1.5,
 
-                "subs" : [
 
-                ]
-              },
-              {
-                "fa" : "لیست وضعیت ها",
-                "en" : "Statuses",
-                "route_path" : "/",
-                "route_name" : "lead_statuses_index",
-                "feature_type" : "read",
-                "level"      : 1.5,
-
-                "subs" : [
-
-                ]
-              }
-            ]
-          },
-          {
-            "fa" : "منبع تبلیغ",
-            "en" : "Advsource",
-            "route_path" : "/",
-            "route_name" : "",
-            "feature" : "1012",
-            "icon" : "fas fa-bell font-20",
-            "level"      : 1,
-            "subs" : [
-              {
-                "fa" : "ایجاد منبع تبلیغ",
-                "en" : "New Advsource",
-                "route_path" : "/",
-                "route_name" : "lead_advsource_create",
-                "feature_type" : "create",
-                "level"      : 1.5,
-
-                "subs" : [
-
-                ]
-              },
-              {
-                "fa" : "لیست منبع تبلیغ",
-                "en" : "Advsource",
-                "route_path" : "/",
-                "route_name" : "lead_advsource_index",
-                "feature_type" : "read",
-                "level"      : 1.5,
-
-                "subs" : [
-
-                ]
-              }
-            ]
-          },
-          {
-            "fa" : "نوع",
-            "en" : "Types",
-            "route_path" : "/",
-            "route_name" : "",
-            "feature" : "1011",
-            "icon" : "fas fa-layer-group font-20",
-            "level"      : 1,
-            "subs" : [
-              {
-                "fa" : "ایجاد نوع",
-                "en" : "New Types",
-                "route_path" : "/",
-                "feature_type" : "create",
-                "route_name" : "lead_types_create",
-                "level"      : 1.5,
-
-                "subs" : [
-
-                ]
-              },
-              {
-                "fa" : "لیست نوع ها",
-                "en" : "Types",
-                "route_path" : "/",
-                "route_name" : "lead_types_index",
-                "feature_type" : "read",
-                "level"      : 1.5,
-
-                "subs" : [
-
-                ]
-              }
-            ]
-          },
-          {
-            "fa" : "Utmmedium",
-            "en" : "Utmmedium",
-            "route_path" : "/",
-            "route_name" : "",
-            "feature" : "1013",
-            "icon" : "fas fa-layer-group font-20",
-            "level"      : 1,
-            "subs" : [
-              {
-                "fa" : "ایجاد Utmmedium",
-                "en" : "New Utmmedium",
-                "route_path" : "/",
-                "route_name" : "lead_utmmedium_create",
-                "feature_type" : "create",
-                "level"      : 1.5,
-
-                "subs" : [
-
-                ]
-              },
-              {
-                "fa" : "لیست Utmmedium ها ",
-                "en" : "Utmmedium",
-                "route_path" : "/",
-                "route_name" : "lead_utmmedium_index",
-                "feature_type" : "read",
-                "level"      : 1.5,
-
-                "subs" : [
-
-                ]
-              }
-            ]
-          },
-          {
-            "fa" : "Utmsource",
-            "en" : "Utmsource",
-            "route_path" : "/",
-            "route_name" : "",
-            "feature" : "1014",
-            "icon" : "fas fa-layer-group font-20",
-            "level"      : 1,
-            "subs" : [
-              {
-                "fa" : "ایجاد Utmsource",
-                "en" : "New Utmsource",
-                "route_path" : "/",
-                "route_name" : "lead_utmsource_create",
-                "feature_type" : "create",
-                "level"      : 1.5,
-
-                "subs" : [
-
-                ]
-              },
-              {
-                "fa" : "لیست Utmsource ها ",
-                "en" : "Utmsource",
-                "route_path" : "/",
-                "route_name" : "lead_utmsource_index",
-                "feature_type" : "read",
-                "level"      : 1.5,
-
-                "subs" : [
-
-                ]
-              }
             ]
           },
           {
@@ -563,6 +292,8 @@
             "feature" : "1010",
             "icon" : "fas fa-industry font-20",
             "level"      : 1,
+
+
             "subs" : [
               {
                 "fa" : "ایجاد صنعت",
@@ -571,6 +302,9 @@
                 "route_name" : "lead_industries_create",
                 "feature_type" : "create",
                 "level"      : 1.5,
+
+
+
 
                 "subs" : [
 
@@ -584,300 +318,598 @@
                 "feature_type" : "read",
                 "level"      : 1.5,
 
+
+
+
+
+
                 "subs" : [
 
                 ]
               }
-            ]
-          }
 
-        ]
-      },
 
-      {
-        "fa" : "کمپین ها",
-        "en" : "Campaigns",
-        "icon" : "fas fa-tents",
-        "route_path" : "/",
-        "route_name" : "",
-        "feature" : "1015",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد کمپین",
-            "en" : "New campaign",
-            "route_path" : "/",
-            "route_name" : "campaigns_create",
-            "feature_type" : "create",
-            "level"      : 1,
-            "subs" : [
             ]
           },
           {
-            "fa" : "لیست کمپین ها",
-            "en" : "Campaigns",
+            "fa" : "وضعیت ها",
+            "en" : "Statuses",
             "route_path" : "/",
-            "route_name" : "campaigns_index",
-            "feature_type" : "read",
+            "route_name" : "",
+            "feature" : "1009",
+            "icon" : "fas fa-check-to-slot font-20",
             "level"      : 1,
-            "subs" : [
 
-            ]
-          }
-        ]
-      },
 
-      {
-        "fa" : "وضعیت کمپین ها",
-        "en" : "Campaign_Statuses",
-        "icon" : "fas fa-tents",
-        "route_path" : "/",
-        "route_name" : "",
-        "feature" : "1015",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد وضعیت کمپین",
-            "en" : "New campaign_statuses",
-            "route_path" : "/",
-            "route_name" : "campaign_statuses_create",
-            "feature_type" : "create",
-            "level"      : 1,
+
             "subs" : [
+              {
+                "fa" : "ایجاد وضعیت",
+                "en" : "New Status",
+                "route_path" : "/",
+                "route_name" : "lead_statuses_create",
+                "feature_type" : "create",
+                "level"      : 1.5,
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست وضعیت ها",
+                "en" : "Statuses",
+                "route_path" : "/",
+                "route_name" : "lead_statuses_index",
+                "feature_type" : "read",
+                "level"      : 1.5,
+
+
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
             ]
           },
           {
-            "fa" : "لیست وضعیت کمپین ها",
-            "en" : "campaign_statuses",
+            "fa" : "منبع تبلیغ",
+            "en" : "Advsource",
             "route_path" : "/",
-            "route_name" : "campaign_statuses_index",
-            "feature_type" : "read",
+            "route_name" : "",
+            "feature" : "1012",
+            "icon" : "fas fa-bell font-20",
             "level"      : 1,
-            "subs" : [
 
-            ]
-          }
-        ]
-      },
-      {
-        "fa" : "گروه بندی نمایندگان",
-        "en" : "Client_Groups",
-        "icon" : "fas fa-tents",
-        "route_path" : "/",
-        "route_name" : "",
-        "feature" : "1015",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد گروه بندی  ",
-            "en" : "New client_groups",
-            "route_path" : "/",
-            "route_name" : "client_groups_create",
-            "feature_type" : "create",
-            "level"      : 1,
+
             "subs" : [
+              {
+                "fa" : "ایجاد منبع تبلیغ",
+                "en" : "New Advsource",
+                "route_path" : "/",
+                "route_name" : "lead_advsource_create",
+                "feature_type" : "create",
+                "level"      : 1.5,
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست منبع تبلیغ",
+                "en" : "Advsource",
+                "route_path" : "/",
+                "route_name" : "lead_advsource_index",
+                "feature_type" : "read",
+                "level"      : 1.5,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
             ]
           },
           {
-            "fa" : "لیست گروه بندی",
-            "en" : "client_groups",
+            "fa" : "منبع سرنخ",
+            "en" : "Resources",
             "route_path" : "/",
-            "route_name" : "client_groups_index",
-            "feature_type" : "read",
+            "route_name" : "",
+            "feature" : "1008",
+            "icon" : "fas fa-flag font-20",
             "level"      : 1,
-            "subs" : [
 
-            ]
-          }
-        ]
-      },
-
-      {
-        "fa" : "نوع کمپین ها",
-        "en" : "Campaign_Types",
-        "icon" : "fas fa-tents",
-        "route_path" : "/",
-        "route_name" : "",
-        "feature" : "1015",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد نوع کمپین",
-            "en" : "New campaign_types",
-            "route_path" : "/",
-            "route_name" : "campaign_types_create",
-            "feature_type" : "create",
-            "level"      : 1,
             "subs" : [
+              {
+                "fa" : "ایجاد منبع سرنخ",
+                "en" : "New source",
+                "route_path" : "/",
+                "route_name" : "lead_resources_create",
+                "feature_type" : "create",
+                "level"      : 1.5,
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست منبع سرنخ",
+                "en" : "Resources",
+                "route_path" : "/",
+                "route_name" : "lead_resources_index",
+                "feature_type" : "read",
+                "level"      : 1.5,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
             ]
           },
           {
-            "fa" : "لیست نوع کمپین ها",
-            "en" : "campaign_types",
+            "fa" : "نوع",
+            "en" : "Types",
             "route_path" : "/",
-            "route_name" : "campaign_types_index",
-            "feature_type" : "read",
+            "route_name" : "",
+            "feature" : "1011",
+            "icon" : "fas fa-layer-group font-20",
+            "level"      : 1,
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد نوع",
+                "en" : "New Types",
+                "route_path" : "/",
+                "feature_type" : "create",
+                "route_name" : "lead_types_create",
+                "level"      : 1.5,
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست نوع ها",
+                "en" : "Types",
+                "route_path" : "/",
+                "route_name" : "lead_types_index",
+                "feature_type" : "read",
+                "level"      : 1.5,
+
+
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : "UTM ",
+            "en" : "Utms",
+            "icon" : "fas fa-clipboard-user",
+            "route_path" : "/",
+            "route_name" : "",
             "level"      : 1,
             "subs" : [
+              {
+                "fa" : "Utmmedium",
+                "en" : "Utmmedium",
+                "route_path" : "/",
+                "route_name" : "",
+                "feature" : "1013",
+                "icon" : "fas fa-layer-group font-20",
+                "level"      : 1.5,
+
+                "subs" : [
+                  {
+                    "fa" : "ایجاد Utmmedium",
+                    "en" : "New Utmmedium",
+                    "route_path" : "/",
+                    "route_name" : "lead_utmmedium_create",
+                    "feature_type" : "create",
+                    "level"      : 1.5,
+
+
+                    "subs" : [
+
+                    ]
+                  },
+                  {
+                    "fa" : "لیست Utmmedium ها ",
+                    "en" : "Utmmedium",
+                    "route_path" : "/",
+                    "route_name" : "lead_utmmedium_index",
+                    "feature_type" : "read",
+                    "level"      : 1.5,
+
+
+
+
+                    "subs" : [
+
+                    ]
+                  }
+
+
+                ]
+              },
+              {
+                "fa" : "Utmsource",
+                "en" : "Utmsource",
+                "route_path" : "/",
+                "route_name" : "",
+                "feature" : "1014",
+                "icon" : "fas fa-layer-group font-20",
+                "level"      : 1.5,
+
+
+                "subs" : [
+                  {
+                    "fa" : "ایجاد Utmsource",
+                    "en" : "New Utmsource",
+                    "route_path" : "/",
+                    "route_name" : "lead_utmsource_create",
+                    "feature_type" : "create",
+                    "level"      : 1.5,
+
+
+                    "subs" : [
+
+                    ]
+                  },
+                  {
+                    "fa" : "لیست Utmsource ها ",
+                    "en" : "Utmsource",
+                    "route_path" : "/",
+                    "route_name" : "lead_utmsource_index",
+                    "feature_type" : "read",
+                    "level"      : 1.5,
+
+
+
+
+
+                    "subs" : [
+
+                    ]
+                  }
+
+
+                ]
+              }
+
+
+
+
+
+
 
             ]
           }
         ]
       }
+
+
     ]
   },
   {
-    "fa" : "تگ ها",
+    "fa" : "کاربران",
     "en" : "Users",
-    "icon" : "fas fa-users",
+    "icon" : "fas fa-window-restore",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
+
     "subs" : [
+
       {
-        "fa" : "تگ ها",
-        "en" : "Tags",
+        "fa" : "مدیران",
+        "en" : "Groups management",
+        "icon" : "fas fa-cog",
         "route_path" : "/",
         "route_name" : "",
-        "feature" : "1001",
-        "icon" : "fas fa-user-tie font-20",
         "level"      : 0.5,
         "subs" : [
           {
-            "fa" : "ایجاد تگ",
-            "en" : "New tag",
+            "fa" : "گروه بندی مدیران",
+            "en" : "Groups",
+            "icon" : "fa-solid fa-ruler",
             "route_path" : "/",
-            "route_name" : "tags_create",
-            "feature_type" : "create",
+            "route_name" : "",
             "level"      : 1,
+
+
             "subs" : [
+              {
+                "fa" : "ایجاد گروه بندی مدیران ",
+                "en" : "New Groups",
+                "route_path" : "/",
+                "route_name" : "groups_create",
+
+                "level"      : 1.5,
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست گروه بندی مدیران ",
+                "en" : "groups_index",
+                "route_path" : "/",
+                "route_name" : "groups_index",
+                "level"      : 1.5,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
 
             ]
           },
           {
-            "fa" : "لیست تگ ها",
-            "en" : "Tags",
+            "fa" : "مدیران",
+            "en" : "Managers",
             "route_path" : "/",
-            "route_name" : "tags_index",
-            "feature_type" : "read",
+            "route_name" : "",
+            "feature" : "1010",
+            "icon" : "fas fa-industry font-20",
             "level"      : 1,
+
+
             "subs" : [
+              {
+                "fa" : "ایجاد مدیر",
+                "en" : "New Manager",
+                "route_path" : "/",
+                "route_name" : "users_create",
+                "feature_type" : "create",
+                "level"      : 1.5,
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست مدیر",
+                "en" : "Managers List",
+                "route_path" : "/",
+                "route_name" : "users_index",
+                "feature_type" : "read",
+                "level"      : 1.5,
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
 
             ]
           }
+
+
+
         ]
       },
       {
-        "fa" : "تگ شخصی",
-        "en" : "Personal Tags",
+        "fa" : "نمایندگان",
+        "en" : "Clients management",
+        "icon" : "fas fa-cog",
         "route_path" : "/",
         "route_name" : "",
-        "feature" : "1001",
-        "icon" : "fas fa-user-tie font-20",
         "level"      : 0.5,
         "subs" : [
           {
-            "fa" : "ایجاد تگ شخصی",
-            "en" : "New personal tag",
+            "fa" : "گروه بندی نمایندگان",
+            "en" : "Client Groups",
+            "icon" : "fa-solid fa-ruler",
             "route_path" : "/",
-            "route_name" : "personal_tags_create",
-            "feature_type" : "create",
+            "route_name" : "",
             "level"      : 1,
+
+
             "subs" : [
+              {
+                "fa" : "ایجاد گروه بندی نمایندگان  ",
+                "en" : "New client_groups",
+                "route_path" : "/",
+                "route_name" : "client_groups_create",
+                "feature_type" : "create",
+                "level"      : 1.5,
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست گروه بندی نمایندگان",
+                "en" : "client_groups",
+                "route_path" : "/",
+                "route_name" : "client_groups_index",
+                "feature_type" : "read",
+                "level"      : 1.5,
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
 
             ]
           },
           {
-            "fa" : "لیست تگ شخصی",
-            "en" : "Personal Tags",
+            "fa" : "نمایندگان",
+            "en" : "Clients",
+            "icon" : "fas fa-users-line",
             "route_path" : "/",
-            "route_name" : "personal_tags_index",
-            "feature_type" : "read",
+            "route_name" : "",
             "level"      : 1,
+
+
+
             "subs" : [
+              {
+                "fa" : "ایجاد نمایندگان",
+                "en" : "New client",
+                "route_path" : "/",
+                "route_name" : "client_create",
+
+                "level"      : 1.5,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست نمایندگان",
+                "en" : "Clients",
+                "route_path" : "/",
+                "route_name" : "client_index",
+                "level"      : 1.5,
+
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
 
             ]
           }
-        ]
-      }
 
 
-    ]
-  },
-  {
-    "fa" : "وظایف",
-    "en" : "Tasks",
-    "icon" : "fas fa-list-check",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "نوع وظایف",
-        "en" : "Task_Types",
-        "route_path" : "/",
-        "route_name" : "",
-        "feature" : "1001",
-        "icon" : "fas fa-list-check font-20",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد نوع وظایف",
-            "en" : "New task_types",
-            "route_path" : "/",
-            "route_name" : "task_types_create",
-            "feature_type" : "create",
-            "level"      : 1,
-            "subs" : [
 
-            ]
-          },
-          {
-            "fa" : "لیست نوع وظایف",
-            "en" : "task_types",
-            "route_path" : "/",
-            "route_name" : "task_types_index",
-            "feature_type" : "read",
-            "level"      : 1,
-            "subs" : [
 
-            ]
-          }
         ]
       },
       {
-        "fa" : "وضعیت وظایف",
-        "en" : "Task_Statuses",
+        "fa" : "مشتریان",
+        "en" : "Customer management",
+        "icon" : "fas fa-cog",
         "route_path" : "/",
         "route_name" : "",
-        "feature" : "1001",
-        "icon" : "fas fa-list-check font-20",
         "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد وضعیت وظایف",
-            "en" : "New Task_Statuses",
-            "route_path" : "/",
-            "route_name" : "task_statuses_create",
-            "feature_type" : "create",
-            "level"      : 1,
+
+
+
+
+
+
+
             "subs" : [
+              {
+                "fa" : "ایجاد مشتریان",
+                "en" : "New customer",
+                "route_path" : "/",
+                "route_name" : "customer_create",
+
+                "level"      : 1,
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست مشتریان",
+                "en" : "Customer",
+                "route_path" : "/",
+                "route_name" : "customer_index",
+                "level"      : 1,
+
+
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
 
             ]
-          },
-          {
-            "fa" : "لیست وضعیت وظایف",
-            "en" : "Task_statuses",
-            "route_path" : "/",
-            "route_name" : "task_statuses_index",
-            "feature_type" : "read",
-            "level"      : 1,
-            "subs" : [
 
-            ]
-          }
-        ]
+
+
+
+
+
       }
+
+
 
 
     ]
@@ -889,80 +921,16 @@
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
+
     "subs" : [
+
       {
-        "fa" : "گروه بندی محصولات",
-        "en" : "Product Groups",
+        "fa" : "مدیریت محصولات",
+        "en" : "Products Management",
+        "icon" : "fas fa-tents",
         "route_path" : "/",
         "route_name" : "",
-        "feature" : "1001",
-        "icon" : "fa-brands fa-product-hunt font-20",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد گروه بندی محصولات",
-            "en" : "New Product Groups",
-            "route_path" : "/",
-            "route_name" : "product_groups_create",
-            "feature_type" : "create",
-            "level"      : 1,
-            "subs" : [
-
-            ]
-          },
-          {
-            "fa" : "لیست گروه بندی محصولات",
-            "en" : "Product Groups",
-            "route_path" : "/",
-            "route_name" : "product_groups_index",
-            "feature_type" : "read",
-            "level"      : 1,
-            "subs" : [
-
-            ]
-          }
-        ]
-      },
-      {
-        "fa" : " نوع محصولات",
-        "en" : "Product Types",
-        "route_path" : "/",
-        "route_name" : "",
-        "feature" : "1001",
-        "icon" : "fa-brands fa-product-hunt font-20",
-        "level"      : 0.5,
-        "subs" : [
-          {
-            "fa" : "ایجاد نوع محصولات  ",
-            "en" : "New Product Types",
-            "route_path" : "/",
-            "route_name" : "product_types_create",
-            "feature_type" : "create",
-            "level"      : 1,
-            "subs" : [
-
-            ]
-          },
-          {
-            "fa" : "لیست انواع محصول",
-            "en" : "Product Types",
-            "route_path" : "/",
-            "route_name" : "product_types_index",
-            "feature_type" : "read",
-            "level"      : 1,
-            "subs" : [
-
-            ]
-          }
-        ]
-      },
-      {
-        "fa" : " محصولات",
-        "en" : "Products",
-        "route_path" : "/",
-        "route_name" : "",
-        "feature" : "1001",
-        "icon" : "fa-brands fa-product-hunt font-20",
+        "feature" : "1015",
         "level"      : 0.5,
         "subs" : [
           {
@@ -972,6 +940,8 @@
             "route_name" : "products_create",
             "feature_type" : "create",
             "level"      : 1,
+
+
             "subs" : [
 
             ]
@@ -983,74 +953,267 @@
             "route_name" : "products_index",
             "feature_type" : "read",
             "level"      : 1,
+
+
             "subs" : [
 
             ]
           }
+
+
         ]
-      }
 
-
-    ]
-  },
-  {
-    "fa" : "یکاهای اندازه گیری",
-    "en" : "Units",
-    "icon" : "fa-solid fa-ruler",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد یکا",
-        "en" : "New Units",
-        "route_path" : "/",
-        "route_name" : "units_create",
-
-        "level"      : 1,
-        "subs" : [
-        ]
       },
+
       {
-        "fa" : "لیست یکا ها",
-        "en" : "Units",
+        "fa" : "تنظیمات",
+        "en" : "Setting",
+        "icon" : "fas fa-cog",
         "route_path" : "/",
-        "route_name" : "units_index",
-        "level"      : 1,
+        "route_name" : "",
+        "level"      : 0.5,
+
+
         "subs" : [
+          {
+            "fa" : "یکاهای اندازه گیری",
+            "en" : "Units",
+            "icon" : "fa-solid fa-ruler",
+            "route_path" : "/",
+            "route_name" : "",
+            "level"      : 1,
+
+            "subs" : [
+              {
+                "fa" : "ایجاد یکا",
+                "en" : "New Units",
+                "route_path" : "/",
+                "route_name" : "units_create",
+
+                "level"      : 1,
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست یکا ها",
+                "en" : "Units",
+                "route_path" : "/",
+                "route_name" : "units_index",
+                "level"      : 1,
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : "ویژگی ها",
+            "en" : "Options",
+            "icon" : "fa-solid fa-ruler",
+            "route_path" : "/",
+            "route_name" : "",
+            "level"      : 1,
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد ویژگی ",
+                "en" : "New Options",
+                "route_path" : "/",
+                "route_name" : "options_create",
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست ویژگی ها ",
+                "en" : "Options",
+                "route_path" : "/",
+                "route_name" : "options_index",
+                "level"      : 1,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : "دسته بندی ها",
+            "en" : "Categories",
+            "route_path" : "/",
+            "route_name" : "",
+            "icon" : "fas fa-list font-20",
+            "feature" : "1007",
+            "level"      : 1,
+
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد دسته بندی",
+                "en" : "New category",
+                "route_path" : "/",
+                "route_name" : "lead_categories_create",
+                "feature_type" : "create",
+                "level"      : 1.5,
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست دسته بندی ها",
+                "en" : "Categories",
+                "route_path" : "/",
+                "route_name" : "lead_categories_index",
+                "feature_type" : "read",
+                "level"      : 1.5,
+
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : " نوع محصولات",
+            "en" : "Product Types",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1001",
+            "icon" : "fa-brands fa-product-hunt font-20",
+            "level"      : 1,
+
+
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد نوع محصولات  ",
+                "en" : "New Product Types",
+                "route_path" : "/",
+                "route_name" : "product_types_create",
+                "feature_type" : "create",
+                "level"      : 1,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست انواع محصول",
+                "en" : "Product Types",
+                "route_path" : "/",
+                "route_name" : "product_types_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : " کد گذاری محصولات",
+            "en" : "Product Codes",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1001",
+            "icon" : "fa-brands fa-product-hunt font-20",
+            "level"      : 1,
+
+
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد کد گذاری محصولات  ",
+                "en" : "New Product Codes",
+                "route_path" : "/",
+                "route_name" : "product_code_create",
+                "feature_type" : "create",
+                "level"      : 1,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست کد گذاری محصولات",
+                "en" : "Product Code List",
+                "route_path" : "/",
+                "route_name" : "product_code_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          }
+
+
+
+
+
 
         ]
       }
-    ]
-  },
-  {
-    "fa" : "ویژگی های محصول",
-    "en" : "Options",
-    "icon" : "fa-solid fa-ruler",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد ویژگی محصول",
-        "en" : "New Options",
-        "route_path" : "/",
-        "route_name" : "options_create",
 
-        "level"      : 1,
-        "subs" : [
-        ]
-      },
-      {
-        "fa" : "لیست ویژگی محصول",
-        "en" : "Options",
-        "route_path" : "/",
-        "route_name" : "options_index",
-        "level"      : 1,
-        "subs" : [
 
-        ]
-      }
+
     ]
   },
   {
@@ -1060,190 +1223,865 @@
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد انبار ",
-        "en" : "New Stores",
-        "route_path" : "/",
-        "route_name" : "stores_create",
 
-        "level"      : 1,
-        "subs" : [
-        ]
-      },
+    "subs" : [
+
       {
-        "fa" : "لیست انبار ها  ",
-        "en" : "Stores",
+        "fa" : "مدیریت انبار",
+        "en" : "Stores Management",
+        "icon" : "fas fa-tents",
         "route_path" : "/",
-        "route_name" : "stores_index",
-        "level"      : 1,
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
         "subs" : [
+          {
+            "fa" : "ایجاد انبار ",
+            "en" : "New Stores",
+            "route_path" : "/",
+            "route_name" : "stores_create",
+
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست انبار ها  ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "موجودی انبار ها  ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "عملیات انبار",
+            "en" : "Stores Management",
+            "icon" : "fas fa-tents",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1015",
+            "level"      : 0.5,
+            "subs" : [
+              {
+                "fa" : "رسید کالا ",
+                "en" : "New Stores",
+                "route_path" : "/",
+                "route_name" : "stores_create",
+
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "خروج کالا  ",
+                "en" : "Exit",
+                "route_path" : "/",
+                "route_name" : "exit_index",
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "انتقال  ",
+                "en" : "Move",
+                "route_path" : "/",
+                "route_name" : "move_index",
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+
+            ]
+
+          }
+        ]
+
+      },
+
+      {
+        "fa" : "تنظیمات انبار",
+        "en" : "Store Setting",
+        "icon" : "fas fa-cog",
+        "route_path" : "/",
+        "route_name" : "",
+        "level"      : 0.5,
+
+
+        "subs" : [
+          {
+            "fa" : "نوع انبار ها",
+            "en" : "Stores_Types",
+            "icon" : "fa-solid fa-ruler",
+            "route_path" : "/",
+            "route_name" : "",
+            "level"      : 0,
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد نوع انبار ",
+                "en" : "New Stores_Types",
+                "route_path" : "/",
+                "route_name" : "stores_types_create",
+
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست نوع انبار ",
+                "en" : "Stores_Types",
+                "route_path" : "/",
+                "route_name" : "stores_types_index",
+                "level"      : 1,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : "انبار پیش فرض",
+            "en" : "Default_Stores",
+            "icon" : "fa-solid fa-ruler",
+            "route_path" : "/",
+            "route_name" : "",
+            "level"      : 0,
+
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد انبار پیش فرض ",
+                "en" : "New Default_Stores",
+                "route_path" : "/",
+                "route_name" : "default_stores_create",
+
+                "level"      : 1,
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست انبار پیش فرض ",
+                "en" : "Default_Stores",
+                "route_path" : "/",
+                "route_name" : "default_stores_index",
+                "level"      : 1,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          }
+
+
+
+
+
+
 
         ]
       }
+
+
+
     ]
   },
-
   {
-    "fa" : "ویژگی ها",
-    "en" : "Options",
-    "icon" : "fa-solid fa-ruler",
+    "fa" : "وظایف",
+    "en" : "Tasks",
+    "icon" : "fas fa-list-check",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد ویژگی ",
-        "en" : "New Options",
-        "route_path" : "/",
-        "route_name" : "options_create",
 
-        "level"      : 1,
-        "subs" : [
-        ]
-      },
+
+    "subs" : [
+
       {
-        "fa" : "لیست ویژگی ها ",
-        "en" : "Options",
+        "fa" : "مدیریت وظایف",
+        "en" : "Tasks Management",
+        "icon" : "fas fa-tents",
         "route_path" : "/",
-        "route_name" : "options_index",
-        "level"      : 1,
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
         "subs" : [
+          {
+            "fa" : "وظایف من ",
+            "en" : "New Stores",
+            "route_path" : "/",
+            "route_name" : "stores_create",
+
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "وظایف تیم  ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "ایجاد وظیفه جدید ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "وظایف امروز ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "وظایف در حال انجام ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "وظایف انجام شده ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "وظایف در وضعیت های مختلف ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          }
+
+        ]
+
+      },
+
+      {
+        "fa" : "تنظیمات وظایف",
+        "en" : "Store Setting",
+        "icon" : "fas fa-cog",
+        "route_path" : "/",
+        "route_name" : "",
+        "level"      : 0.5,
+
+
+        "subs" : [
+          {
+            "fa" : "نوع وظایف",
+            "en" : "Task_Types",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1001",
+            "icon" : "fas fa-list-check font-20",
+            "level"      : 0.5,
+
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد نوع وظایف",
+                "en" : "New task_types",
+                "route_path" : "/",
+                "route_name" : "task_types_create",
+                "feature_type" : "create",
+                "level"      : 1,
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست نوع وظایف",
+                "en" : "task_types",
+                "route_path" : "/",
+                "route_name" : "task_types_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : "وضعیت وظایف",
+            "en" : "Task_Statuses",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1001",
+            "icon" : "fas fa-list-check font-20",
+            "level"      : 0.5,
+
+
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد وضعیت وظایف",
+                "en" : "New Task_Statuses",
+                "route_path" : "/",
+                "route_name" : "task_statuses_create",
+                "feature_type" : "create",
+                "level"      : 1,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست وضعیت وظایف",
+                "en" : "Task_statuses",
+                "route_path" : "/",
+                "route_name" : "task_statuses_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          }
+
+
+
+
+
+
 
         ]
       }
+
+
+
     ]
   },
   {
-    "fa" : "نوع انبار ها",
-    "en" : "Stores_Types",
-    "icon" : "fa-solid fa-ruler",
+    "fa" : "مدیریت فایل و گالری",
+    "en" : "Tasks",
+    "icon" : "fas fa-list-check",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد نوع انبار ",
-        "en" : "New Stores_Types",
-        "route_path" : "/",
-        "route_name" : "stores_types_create",
 
-        "level"      : 1,
+
+    "subs" : [
+
+      {
+        "fa" : "فایل ها",
+        "en" : "Tasks Management",
+        "icon" : "fas fa-tents",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
         "subs" : [
+          {
+            "fa" : "آپلود فایل ",
+            "en" : "New Stores",
+            "route_path" : "/",
+            "route_name" : "stores_create",
+
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست فایل ها  ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "دسته بندی فایل ها ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          }
+
+
         ]
+
+      },
+
+      {
+        "fa" : "گالری تصاویر",
+        "en" : "Tasks Management",
+        "icon" : "fas fa-tents",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
+        "subs" : [
+          {
+            "fa" : "آپلود تصویر جدید ",
+            "en" : "New Stores",
+            "route_path" : "/",
+            "route_name" : "stores_create",
+
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست تصاویر  ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "مدیریت آلبوم ها ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          }
+
+
+        ]
+
       },
       {
-        "fa" : "لیست نوع انبار ",
-        "en" : "Stores_Types",
+        "fa" : " تنظیمات",
+        "en" : "Tasks Management",
+        "icon" : "fas fa-tents",
         "route_path" : "/",
-        "route_name" : "stores_types_index",
-        "level"      : 1,
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
         "subs" : [
+          {
+            "fa" : "محدودیت اندازه فایل ",
+            "en" : "New Stores",
+            "route_path" : "/",
+            "route_name" : "stores_create",
+
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "نوع فایل های مجاز  ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "تنظیمات فشرده سازی ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          }
+
 
         ]
+
       }
     ]
   },
   {
-    "fa" : "انبار پیش فرض",
-    "en" : "Default_Stores",
-    "icon" : "fa-solid fa-ruler",
+    "fa" : "تنظیمات عمومی",
+    "en" : "Tasks",
+    "icon" : "fas fa-list-check",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد انبار پیش فرض ",
-        "en" : "New Default_Stores",
-        "route_path" : "/",
-        "route_name" : "default_stores_create",
 
-        "level"      : 1,
+
+    "subs" : [
+
+      {
+        "fa" : "مدیریت نقش ها و دسترسی ها",
+        "en" : "Tasks Management",
+        "icon" : "fas fa-tents",
+        "route_path" : "/",
+        "route_name" : "",
+        "feature" : "1015",
+        "level"      : 0.5,
         "subs" : [
+          {
+            "fa" : "افزودن ",
+            "en" : "New Stores",
+            "route_path" : "/",
+            "route_name" : "stores_create",
+
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست ",
+            "en" : "Stores",
+            "route_path" : "/",
+            "route_name" : "stores_index",
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          }
+
+
         ]
+
       },
       {
-        "fa" : "لیست انبار پیش فرض ",
-        "en" : "Default_Stores",
+        "fa" : "فرم ها",
+        "en" : "ّForms",
+        "icon" : "fas fa-rectangle-list",
         "route_path" : "/",
-        "route_name" : "default_stores_index",
-        "level"      : 1,
+        "route_name" : "",
+        "level"      : 0.5,
+
         "subs" : [
+          {
+            "fa" : "ایجاد فرم",
+            "en" : "New form",
+            "route_path" : "/",
+            "route_name" : "forms_create",
+
+            "level"      : 1,
+
+
+
+            "subs" : [
+
+            ]
+          },
+          {
+            "fa" : "لیست فرم ها",
+            "en" : "ّForms",
+            "route_path" : "/",
+            "route_name" : "forms_index",
+            "level"      : 1,
+
+
+
+
+            "subs" : [
+
+            ]
+          }
+
 
         ]
-      }
-    ]
-  },
-  {
-    "fa" : "گروه بندی مدیران",
-    "en" : "Groups",
-    "icon" : "fa-solid fa-ruler",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-    "subs" : [
-      {
-        "fa" : "ایجاد گروه بندی مدیران ",
-        "en" : "New Groups",
-        "route_path" : "/",
-        "route_name" : "groups_create",
 
-        "level"      : 1,
-        "subs" : [
-        ]
       },
+
       {
-        "fa" : "لیست گروه بندی مدیران ",
-        "en" : "groups_index",
+        "fa" : "مدیریت تگ ",
+        "en" : " Tags Management",
+        "icon" : "fas fa-cog",
         "route_path" : "/",
-        "route_name" : "groups_index",
-        "level"      : 1,
+        "route_name" : "",
+        "level"      : 0.5,
+
+
         "subs" : [
+          {
+            "fa" : "تگ عمومی",
+            "en" : "Tags",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1001",
+            "icon" : "fas fa-user-tie font-20",
+            "level"      : 0.5,
+
+
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد تگ عمومی",
+                "en" : "New tag",
+                "route_path" : "/",
+                "route_name" : "tags_create",
+                "feature_type" : "create",
+                "level"      : 1,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست تگ عمومی",
+                "en" : "Tags",
+                "route_path" : "/",
+                "route_name" : "tags_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : "تگ شخصی",
+            "en" : "Personal Tags",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1001",
+            "icon" : "fas fa-user-tie font-20",
+            "level"      : 0.5,
+
+
+
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد تگ شخصی",
+                "en" : "New personal tag",
+                "route_path" : "/",
+                "route_name" : "personal_tags_create",
+                "feature_type" : "create",
+                "level"      : 1,
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست تگ شخصی",
+                "en" : "Personal Tags",
+                "route_path" : "/",
+                "route_name" : "personal_tags_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          }
+
+
+
+
+
+
 
         ]
       }
-    ]
-  },
 
-  {
-    "title" : true,
-    "fa" : "رسانه ها و فایل ها",
-    "en" : "Media and Files"
-  },
-  {
-    "fa" : "مدیریت فایل ها",
-    "en" : "File manager",
-    "icon" : "fas fa-photo-film",
-    "route_path" : "/",
-    "route_name" : "medias_index",
-    "feature" : "1005",
-    "level"      : 0,
-    "subs" : [
 
-    ]
-  },
-
-  {
-    "fa" : "تنظیمات",
-    "en" : "Setting",
-    "icon" : "fas fa-cog",
-    "route_path" : "/",
-    "route_name" : "",
-    "level"      : 0,
-
-    "subs" : [
-      {
-        "fa" : "حساب کاربری",
-        "en" : "Profile",
-        "route_path" : "/",
-        "route_name" : "setting_profile",
-        "level"      : 1,
-        "subs" : [
-
-        ]
-      }
 
     ]
   }
-
 ]
