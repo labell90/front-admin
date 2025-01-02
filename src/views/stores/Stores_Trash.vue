@@ -248,6 +248,8 @@ export default {
       </q-table>
     </q-card-section>
 
+
+
   </q-card>
 
 </template>
