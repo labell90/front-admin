@@ -12,13 +12,35 @@ export default {
       loading:true,
       edit_loading:false,
       errors:[],
+      item_counter:1,
       items:{
         name:null,
         unit_id:null,
         default:null,
         description:null,
+        items : [],
       },
-      units:[]
+      units:[],
+      type_options : [
+        {
+          label : 'متنی',
+          value: 'text',
+          icon : "fas fa-file-lines"
+        },
+        {
+          label : 'عددی',
+          value: 'number',
+          icon : "fas fa-hashtag"
+
+        },
+        {
+          label : 'چند گزینه ای ',
+          value: 'select',
+          icon : "fas fa-table-list"
+
+        }
+      ]
+
     }
   },
   methods:{
@@ -27,8 +49,24 @@ export default {
       "Module_Options_Show",
       "Module_Units_All"
     ]),
+    Add_Attributes() {
+      this.items.items.push({id : this.item_counter,value:null})
+      this.item_counter++;
+    },
+    Remove_Attributes(id){
+      this.items.items = this.items.items.filter(item => item.id !== id)
+
+    },
     Get_Item(){
       this.Module_Options_Show(this.$route.params.id).then(response => {
+        if (this.items.attributes.length){
+          let options = [];
+          this.items.attributes.forEach(item => {
+            options.push({id:this.item_counter,value:item})
+            this.item_counter++;
+          })
+          this.items.items = options
+        }
         this.items = response.data.result;
         this.loading=false;
       }).catch(error =>{

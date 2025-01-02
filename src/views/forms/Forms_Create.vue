@@ -194,6 +194,7 @@ export default {
           </div>
           <q-separator/>
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
           <q-input :error="this.Methods_Validation_Check(errors,'placeholder')" outlined v-model="items.placeholder"  type="text" label="مثال فرم (placeholder)">
             <template v-slot:error>

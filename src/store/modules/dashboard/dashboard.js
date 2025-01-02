@@ -54,6 +54,17 @@ export default {
 
         },
 
+        Module_Dashboard_Leads_Status(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/dashboard/leads/statuses').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
 
 
     }
