@@ -19,6 +19,12 @@ export default {
       personal_tags_items:[],
       loading_tags:true,
       loading_tags_update:false,
+      add_dialog:false,
+      add:{
+        name : null,
+        color_code:'#ba2d8d',
+      },
+      add_loading:false,
 
 
 
@@ -30,7 +36,8 @@ export default {
         "Module_Lead_Action_Tags_Index",
         "Module_Lead_Action_Tags_Update",
         "Module_tags_All",
-        "Module_personal_tags_All"
+        "Module_personal_tags_All",
+        "Module_personal_tags_Create"
     ]),
     Get_Leads_Tags(){
       this.Module_Lead_Action_Tags_Index(this.lead.id).then(res=>{
@@ -50,6 +57,20 @@ export default {
         this.Methods_Notify_Error_Server();
       })
 
+    },
+    Create_Item(){
+      this.add_loading=true;
+      this.Module_personal_tags_Create(this.add).then(response => {
+        this.add_loading=false;
+        this.Methods_Notify_Create();
+        this.add_dialog=false
+      }).catch(error => {
+        if (error.response.status === 422) {
+          this.Methods_Validation_Notify();
+          this.errors = error.response.data;
+        }
+        this.add_loading=false;
+      })
     },
     Get_Tags(){
       this.Module_tags_All().then(res=>{
@@ -194,10 +215,61 @@ export default {
           </q-item>
         </template>
       </q-select>
+      <div class="q-mt-sm">
+        <q-btn size="sm" label="افزودن تگ شخصی" icon="fas fa-plus" color="blue-8" glossy push class="font-12" @click="add_dialog=true"></q-btn>
+        <q-dialog
+            v-model="add_dialog"
+            position="top"
+        >
+          <q-card style="width: 960px; max-width: 80vw;">
+            <q-card-section>
+              <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+              <strong class="font-15">افزودن تگ شخصی</strong>
+
+            </q-card-section>
+            <q-separator/>
+            <q-card-section>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                  <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="add.name"  type="text" label="عنوان تگ شخصی">
+                    <template v-slot:error>
+                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
+                    </template>
+                  </q-input>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+                  <q-input
+                      :error="this.Methods_Validation_Check(errors,'color_code')" outlined v-model="add.color_code" label="رنگ تگ شخصی "
+                  >
+                    <template v-slot:append>
+                      <q-icon name="fas fa-eye-dropper" class="cursor-pointer">
+                        <q-popup-proxy cover transition-show="scale" transition-hide="scale">
+                          <q-color v-model="add.color_code" />
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                    <template v-slot:error>
+                      <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'color_code')" />
+                    </template>
+                  </q-input>
+
+                </div>
+                <div class="col-12 q-pa-xs">
+                  <q-btn color="pink-7" :loading="add_loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
+                </div>
+              </div>
+            </q-card-section>
+
+
+          </q-card>
+        </q-dialog>
+      </div>
     </div>
 
     <div class="q-mt-lg text-right">
       <q-btn glossy @click="Tags_Update" :loading="loading_tags_update"  color="green-8" label="ویراش تگ ها"  icon="fas fa-check"  />
+
     </div>
   </template>
 
