@@ -3,6 +3,7 @@ import Client_Create from "@/views/client/Client_Create.vue";
 import Client_Index from "@/views/client/Client_Index.vue";
 import Client_Edit from "@/views/client/Client_Edit.vue";
 import Client_Trash from "@/views/client/Client_Trash.vue";
+import Client_Profile_Index from "@/views/client/profile/Client_Profile_Index.vue";
 
 const route_client = [
     {
@@ -30,6 +31,15 @@ const route_client = [
         meta : {
             title : 'نمایندگان',
             subtitle : 'ایجاد نمایندگان '
+        },
+    },
+    {
+        path : "/clients/profile/:id",
+        name : "client_profile_index",
+        component : Client_Profile_Index,
+        meta : {
+            title : 'پروفایل نماینده',
+            subtitle : 'پروفایل نماینده'
         },
     },
     {
