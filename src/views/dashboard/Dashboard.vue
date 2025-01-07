@@ -3,6 +3,7 @@ import Dashboard_Users_Onlines from "@/views/dashboard/components/users/Dashboar
 import Dashboard_Users_Latest from "@/views/dashboard/components/users/Dashboard_Users_Latest.vue";
 import Dashboard_Info_Main from "@/views/dashboard/components/information/Dashboard_Info_Main.vue";
 import Dashboard_Leads_Latest from "@/views/dashboard/components/leads/Dashboard_Leads_Latest.vue";
+import Dashboard_Leads_Status from "@/views/dashboard/components/leads/Dashboard_Leads_Status.vue";
 
 export default {
   name: "Dashboard",
@@ -11,6 +12,7 @@ export default {
     'users_latest' : Dashboard_Users_Latest,
     'information_main' : Dashboard_Info_Main,
     'leads_latest' : Dashboard_Leads_Latest,
+    'leads_status' : Dashboard_Leads_Status,
 
   }
 
@@ -31,6 +33,9 @@ export default {
     </div>
     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 q-px-sm q-pa-sm">
       <leads_latest></leads_latest>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-px-sm q-pa-sm">
+      <leads_status></leads_status>
     </div>
 
   </div>
