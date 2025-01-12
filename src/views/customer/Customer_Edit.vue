@@ -4,8 +4,8 @@ import {mapActions} from "vuex";
 export default {
   name: "Customer_Edit",
   created() {
-    this.Get_Locations();
     this.Get_Item();
+    this.Get_Locations();
 
   },
   data(){
@@ -17,6 +17,9 @@ export default {
         name:null,
         email:null,
         phone:null,
+        client_id:null,
+        lead_id:null,
+        user_id:null,
         country_id:null,
         province_id:null,
         city_id:null,
@@ -37,6 +40,9 @@ export default {
       provinces:[],
       cities:[],
       locations:[],
+      clients:[],
+      leads:[],
+      users:[],
     }
   },
   methods:{
@@ -47,12 +53,30 @@ export default {
       "Module_Location_Action_Province_Selectable",
       "Module_Location_Action_City_Selectable",
       "Module_Location_Action_Index",
+      "Module_Client_Search",
+      "Module_Users_Search",
+      "Module_Lead_Action_All"
 
 
     ]),
     Get_Item(){
       this.Module_Customer_Show(this.$route.params.id).then(response => {
         this.items = response.data.result;
+        //check lead and client and user exist
+        if (this.items.lead){
+          //push lead in leads
+          this.leads.push({label: this.items.lead.name, value: this.items.lead.id,is_active:this.items.lead.is_active,phone: this.items.lead.phone})
+        }
+        if (this.items.user){
+          //push lead in leads
+          this.users.push({label: this.items.user.name, value: this.items.user.id,phone: this.items.user.phone})
+        }
+        if (this.items.client){
+          //push lead in leads
+          this.clients.push({label: this.items.client.name, value: this.items.client.id,is_active:this.items.client.is_active,phone: this.items.client.phone})
+        }
+
+
         this.loading=false;
       }).catch(error =>{
         return this.Methods_Notify_Error_NotFound();
@@ -69,9 +93,72 @@ export default {
           this.Methods_Validation_Notify();
           this.errors = error.response.data;
         }
+        this.Methods_Notify_Error_Server();
         this.edit_loading=false;
       })
     },
+
+    Get_Clients_Search(params){
+      this.Module_Client_Search(params).then(res => {
+        this.clients=[];
+        res.data.result.forEach(item => {
+          this.clients.push({label: item.name, value: item.id,is_active:item.is_active,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+    Get_Users_Search(params){
+      this.Module_Users_Search(params).then(res => {
+        this.users=[];
+        res.data.result.forEach(item => {
+          this.users.push({label: item.name, value: item.id,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+    Filter_Client_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Clients_Search({name:val})
+
+          }, 600);
+        }
+      })
+    },
+    Filter_User_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Users_Search({name:val})
+
+          }, 600);
+        }
+      })
+    },
+    Get_Leads_Search(params){
+      this.Module_Lead_Action_All(params).then(res => {
+        this.leads=[];
+        res.data.result.forEach(item => {
+          this.leads.push({label: item.name, value: item.id,is_active:item.is_active,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+    Filter_Lead_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Leads_Search({name:val})
+
+          }, 600);
+        }
+      })
+    },
+
     Get_Locations(){
       this.Module_Location_Action_Index().then(response => {
         this.locations = response.data.result;
@@ -88,7 +175,6 @@ export default {
       }).catch(error =>{
       })
     },
-
     Get_Provinces(){
       if (this.items.country_id){
         let items = {
@@ -103,7 +189,7 @@ export default {
     },
     Get_Cities(){
       if (this.items.province_id){
-        let items= {
+        let items = {
           provinces : this.provinces,
           province_id : this.items.province_id
         }
@@ -168,7 +254,7 @@ export default {
           province_id : this.items.province_id
         }
         this.Module_Location_Action_City_Selectable(items).then(response => {
-          this.items.city_id = null;
+          // this.items.city_id = null;
           this.cities = response;
         });
       }
@@ -185,13 +271,8 @@ export default {
     </q-card-section>
     <template v-else>
       <q-card-section>
-        <strong class="text-grey-10">ویرایش اطلاعات مشتری </strong>
+        <strong class="text-grey-10">ویرایش اطلاعات مشتری : <strong class="text-red-7">{{items.name}}</strong> </strong>
         <global_actions_header_buttons :create="true"  route="customer"></global_actions_header_buttons>
-        <q-separator class="q-mt-xl"/>
-        <div class="row q-mt-sm">
-          <img src="assets/images/icons/client-user.png" width="45"  alt="client_profile"/>
-          <div class="q-ml-sm q-mt-sm"><strong>{{items.name}}</strong></div>
-        </div>
       </q-card-section>
       <q-card-section>
         <div class="row">
@@ -227,6 +308,130 @@ export default {
               </template>
             </q-input>
           </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+            <q-select
+                outlined
+                transition-show="flip-up"
+                transition-hide="flip-down"
+                v-model="items.client_id"
+                label="انتخاب نماینده"
+                :options="clients"
+                @filter="Filter_Client_Select"
+                emit-value
+                map-options
+                placeholder="برای جستجو حداقل سه حرف وارد کنید"
+                use-input
+                clearable
+                use-chips
+                :error="this.Methods_Validation_Check(errors,'client_id')"
+
+            >
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-red">
+                    گزینه ای یافت نشد
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:option="scope">
+                <q-item v-bind="scope.itemProps">
+                  <q-item-section>
+                    <q-item-label>
+                      <q-icon v-if="scope.opt.is_active" name="fas fa-check-circle" size="xs" color="green-8" class="q-mr-xs" title="وضعیت فعال"></q-icon>
+                      <q-icon v-else name="fas fa-times-circle" size="xs" color="red-8" class="q-mr-xs" title="وضعیت غیرفعال"></q-icon>
+                      {{ scope.opt.label }}
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:error>
+                <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'client_id')" />
+              </template>
+            </q-select>
+
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+            <q-select
+                outlined
+                transition-show="flip-up"
+                transition-hide="flip-down"
+                v-model="items.lead_id"
+                label="انتخاب سرنخ مرتبط"
+                :options="leads"
+                @filter="Filter_Lead_Select"
+                emit-value
+                map-options
+                placeholder="برای جستجو حداقل سه حرف وارد کنید"
+                use-input
+                clearable
+                :error="this.Methods_Validation_Check(errors,'lead_id')"
+
+            >
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-red">
+                    گزینه ای یافت نشد
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:option="scope">
+                <q-item v-bind="scope.itemProps">
+                  <q-item-section>
+                    <q-item-label>
+                      <q-icon v-if="scope.opt.is_active" name="fas fa-check-circle" size="xs" color="green-8" class="q-mr-xs" title="وضعیت فعال"></q-icon>
+                      <q-icon v-else name="fas fa-times-circle" size="xs" color="red-8" class="q-mr-xs" title="وضعیت غیرفعال"></q-icon>
+                      {{ scope.opt.label }}
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:error>
+                <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'lead_id')" />
+              </template>
+            </q-select>
+
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+            <q-select
+                outlined
+                transition-show="flip-up"
+                transition-hide="flip-down"
+                v-model="items.user_id"
+                label="انتخاب کاربر (مدیر) مرتبط"
+                :options="users"
+                @filter="Filter_User_Select"
+                emit-value
+                map-options
+                placeholder="برای جستجو حداقل سه حرف وارد کنید"
+                use-input
+                clearable
+                :error="this.Methods_Validation_Check(errors,'user_id')"
+
+            >
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-red">
+                    گزینه ای یافت نشد
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:option="scope">
+                <q-item v-bind="scope.itemProps">
+                  <q-item-section>
+                    <q-item-label>
+                      <strong>{{ scope.opt.label }}</strong> - <span class="text-red-7">{{scope.opt.phone }}</span>
+                    </q-item-label>
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:error>
+                <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'user_id')" />
+              </template>
+            </q-select>
+
+          </div>
+
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-pa-xs">
             <q-input :error="this.Methods_Validation_Check(errors,'bio')" outlined v-model="items.bio"  type="textarea" rows="4" label="بیو (توضیحاتی در مورد نماینده)">
               <template v-slot:error>
@@ -320,6 +525,7 @@ export default {
                 v-model="items.city_id"
                 label="انتخاب شهر"
                 :options="cities"
+                @change="Computed_Get_Cities"
                 @filter="Filter_Cities_Select"
                 emit-value
                 map-options

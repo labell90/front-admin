@@ -374,9 +374,9 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
+              <q-btn :to="{name:'client_profile_index',params:{id:props.row.id}}" glossy title=" پروفایل" class="q-ma-xs" color="teal-8" icon="fas fa-user" size="9px" round  />
               <q-btn :to="{name:'client_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
-              <q-btn :to="{name:'client_profile_index',params:{id:props.row.id}}" glossy title=" پروفایل" class="q-ma-xs" color="blue-8" icon="fas fa-user" size="9px" round  />
             </div>
           </q-td>
         </template>

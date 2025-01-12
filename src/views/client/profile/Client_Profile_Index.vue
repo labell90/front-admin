@@ -30,7 +30,11 @@ export default {
 </script>
 
 <template>
+
   <q-card class="q-mt-md rounded-borders" flat >
+   <q-card-section>
+     <global_actions_header_buttons :index="true" :create="true" route="client"></global_actions_header_buttons>
+   </q-card-section>
 
     <q-card-section>
       <div class="row">
@@ -152,7 +156,6 @@ export default {
 
 
     </q-card-section>
-
   </q-card>
 
 </template>
