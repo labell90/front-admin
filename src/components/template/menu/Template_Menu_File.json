@@ -964,6 +964,65 @@
         ]
 
       },
+      {
+        "fa" : "تولید",
+        "en" : "Production",
+        "icon" : "fas fa-cog",
+        "route_path" : "/",
+        "route_name" : "",
+        "level"      : 0.5,
+
+
+        "subs" : [
+          {
+            "fa" : "نوع تولید",
+            "en" : "Production Types",
+            "icon" : "fa-solid fa-ruler",
+            "route_path" : "/",
+            "route_name" : "",
+            "level"      : 1,
+
+            "subs" : [
+              {
+                "fa" : "ایجاد نوع تولید",
+                "en" : "New Production Types",
+                "route_path" : "/",
+                "route_name" : "production_types_create",
+
+                "level"      : 1,
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست نوع تولید",
+                "en" : "Production_Types_Index",
+                "route_path" : "/",
+                "route_name" : "production_types_index",
+                "level"      : 1,
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          }
+
+
+
+
+
+
+
+        ]
+      },
 
       {
         "fa" : "تنظیمات",
