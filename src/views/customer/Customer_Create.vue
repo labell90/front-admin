@@ -23,6 +23,7 @@ export default {
         city_id:null,
         client_id:null,
         lead_id:null,
+        user_id:null,
         password : null,
         password_confirmation : null,
         bio : null,
@@ -43,7 +44,8 @@ export default {
       cities:[],
       locations:[],
       clients:[],
-      leads:[]
+      leads:[],
+      users:[],
 
     }
   },
@@ -55,6 +57,7 @@ export default {
       "Module_Location_Action_City_Selectable",
       "Module_Location_Action_Index",
       "Module_Client_Search",
+      "Module_Users_Search",
       "Module_Lead_Action_All"
 
     ]),
@@ -84,11 +87,31 @@ export default {
         this.Methods_Notify_Error_Server();
       })
     },
+    Get_Users_Search(params){
+      this.Module_Users_Search(params).then(res => {
+        this.users=[];
+        res.data.result.forEach(item => {
+          this.users.push({label: item.name, value: item.id,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
     Filter_Client_Select (val, update, abort) {
       update(() => {
         if (val && val.replace(/\s+/g, "").length > 2) {
           setTimeout(() => {
             this.Get_Clients_Search({name:val})
+
+          }, 600);
+        }
+      })
+    },
+    Filter_User_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Users_Search({name:val})
 
           }, 600);
         }
@@ -333,6 +356,46 @@ export default {
           </q-select>
 
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.user_id"
+              label="انتخاب کاربر (مدیر) مرتبط"
+              :options="users"
+              @filter="Filter_User_Select"
+              emit-value
+              map-options
+              placeholder="برای جستجو حداقل سه حرف وارد کنید"
+              use-input
+              clearable
+              :error="this.Methods_Validation_Check(errors,'user_id')"
+
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section>
+                  <q-item-label>
+                    <strong>{{ scope.opt.label }}</strong> - <span class="text-red-7">{{scope.opt.phone }}</span>
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'user_id')" />
+            </template>
+          </q-select>
+
+        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-pa-xs">
           <q-input :error="this.Methods_Validation_Check(errors,'bio')" outlined v-model="items.bio"  type="textarea" rows="4" label="بیو (توضیحاتی در مورد مشتری)">
             <template v-slot:error>

@@ -1,8 +1,10 @@
 <script>
 import {mapActions} from "vuex";
+import leads_tags from "@/views/leads/leads/profile/components/Leads_Profile_Tags.vue";
 
 export default {
   name: "Products_Create",
+  components: {leads_tags},
   mounted() {
     this.Get_Product_Groups();
     this.Get_Product_Types();
@@ -11,6 +13,7 @@ export default {
     return {
       loading:false,
       errors:[],
+      options_dialog:false,
       product_types:[],
       product_groups:[],
       items:{
@@ -18,8 +21,9 @@ export default {
         base_store_code:null,
         description:null,
         product_group_id:null,
-        product_type_id:null
-      }
+        product_type_id:null,
+        options:[],
+      },
     }
   },
   methods:{
@@ -121,14 +125,14 @@ export default {
 
     <q-card-section>
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
           <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="نام محصول ">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
           <q-input  :error="this.Methods_Validation_Check(errors,'base_store_code')" outlined v-model="items.base_store_code"  type="text" label="کد پایه انبار">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'base_store_code')" />
@@ -142,7 +146,7 @@ export default {
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
           <q-select
               outlined
               transition-show="flip-up"
@@ -179,7 +183,7 @@ export default {
             </template>
           </q-select>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
           <q-select
               outlined
               transition-show="flip-up"
@@ -216,7 +220,42 @@ export default {
             </template>
           </q-select>
         </div>
-        <div class="col-12 q-pa-xs">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+          <strong class="font-15 text-teal-8">ویژگی های محصول : </strong>
+          <div class="q-mt-md">
+            <q-btn @click="options_dialog = true" glossy rounded label="افزودن ویژگی" color="blue" class="q-mb-md" icon="fas fa-plus-circle"></q-btn>
+
+
+            <q-dialog
+                v-model="options_dialog"
+                position="top"
+            >
+              <q-card style="width: 960px; max-width: 80vw;">
+                <q-card-section>
+                  <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm float-right"/>
+                  <strong class="font-15">افرودن ویژگی به محصول</strong>
+                </q-card-section>
+                <q-separator/>
+                <q-card-section>
+
+                  
+                </q-card-section>
+              </q-card>
+            </q-dialog>
+
+
+            <template v-if="items.options.length < 1">
+              <q-banner dense class="bg-teal-5 text-white rounded-borders text-center">
+                <strong>
+                  هیج ویژگی انتخاب نشده است
+                </strong>
+              </q-banner>
+            </template>
+            <template v-else>
+            </template>
+          </div>
+        </div>
+        <div class="col-12 q-pa-xs q-mt-md">
           <q-btn color="pink-7" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
         </div>
       </div>

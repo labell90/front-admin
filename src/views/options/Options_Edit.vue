@@ -59,15 +59,17 @@ export default {
     },
     Get_Item(){
       this.Module_Options_Show(this.$route.params.id).then(response => {
+        this.items = response.data.result;
         if (this.items.attributes.length){
           let options = [];
           this.items.attributes.forEach(item => {
-            options.push({id:this.item_counter,value:item})
+            options.push({id:this.item_counter,value:item.attribute});
             this.item_counter++;
           })
           this.items.items = options
+        }else{
+          this.items.items=[];
         }
-        this.items = response.data.result;
         this.loading=false;
       }).catch(error =>{
 
@@ -75,6 +77,14 @@ export default {
     },
     Edit_Item(){
       this.loading=true;
+
+      if (this.items.items.length){
+        let options=[];
+        this.items.items.forEach(item => {
+          options.push(item.value);
+        })
+        this.items.items = options;
+      }
       this.Module_Options_Edit(this.items).then(response => {
         this.loading=false;
         this.Methods_Notify_Update();
@@ -178,8 +188,61 @@ export default {
 
 
             </div>
-
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+              <q-select
+                  outlined
+                  transition-show="flip-up"
+                  transition-hide="flip-down"
+                  v-model="items.type"
+                  label="نوع ویژگی"
+                  :options="type_options"
+                  emit-value
+                  map-options
+                  use-input
+              >
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-red">
+                      گزینه ای یافت نشد
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-slot:option="scope">
+                  <q-item v-bind="scope.itemProps">
+                    <q-icon class="q-mr-sm q-mt-xs" size="20px" color="teal-8" :name="scope.opt.icon" />
+                    <q-item-section>
+                      <q-item-label>{{ scope.opt.label }}</q-item-label>
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-slot:error>
+                  <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'type')" />
+                </template>
+              </q-select>
+            </div>
+
+
+            <div v-if="items.type === 'select'" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm">
+              <div>
+                <strong class="text-red">افزودن گزینه های انتخابی</strong>
+                <div class="q-mt-md">
+                  <q-btn size="md" @click="Add_Attributes" glossy color="blue-8" icon="fas fa-plus" label="افزودن گزینه"></q-btn>
+                </div>
+              </div>
+              <div class="q-mt-md q-mb-md row">
+                <div v-for="(option,index) in items.items" class="col-md-3 q-px-sm q-mb-sm">
+
+                  <q-input outlined v-model="option.value"  type="text" :label="'گزینه ' + option.id">
+                    <template v-slot:append>
+                      <q-btn round dense glossy size="sm" color="red-6" icon="fas fa-times" @click="Remove_Attributes(option.id)"/>
+                    </template>
+                  </q-input>
+                </div>
+              </div>
+              <q-separator/>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs q-mt-md">
               <q-input  :error="this.Methods_Validation_Check(errors,'default')" outlined v-model="items.default"  type="text" label="مقدار پیش فرض">
                 <template v-slot:error>
                   <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'default')" />

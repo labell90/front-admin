@@ -23,6 +23,18 @@ export default {
 
         },
 
+        Module_Users_Search(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/users/search',{params : items}).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+
+        },
+
+
         Module_User_Action_Show(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/users/'+item).then(response =>{

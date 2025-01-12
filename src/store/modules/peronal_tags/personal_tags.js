@@ -20,6 +20,15 @@ export default {
                 })
             })
         },
+        Module_personal_tags_Most_Uses(){
+            return new Promise((resolve, reject) => {
+                axios.get('users/dashboard/tags/most/personal').then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
 
         Module_Personal_Tags_Trash_Index(_,items){
             return new Promise((resolve, reject) => {

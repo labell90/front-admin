@@ -1,14 +1,34 @@
 <script>
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "Template_Header_Tags",
-  data() {
-    return {}
-  },
-  methods: {},
   mounted() {
-  }
+    this.Get_Tags();
+  },
+  data() {
+    return {
+      tags:[],
+    }
+  },
+  methods: {
+    ...mapActions([
+        "Module_personal_tags_Most_Uses"
+    ]),
+    Get_Tags(){
+      this.Module_personal_tags_Most_Uses().then(res => {
+        this.tags = res.data.result;
+
+      }).catch(error => {
+
+
+      })
+
+
+
+    }
+
+  },
 
 }
 </script>
@@ -24,7 +44,11 @@ export default {
         style="width: 360px">
       <q-card-section>
         <strong class="text-red">تگ های پر کاربرد</strong>
-
+        <div class="q-mt-md">
+          <div class="q-gutter-xs">
+            <global_items_tag_single v-for="tag in tags" :item="tag"></global_items_tag_single>
+          </div>
+        </div>
 
       </q-card-section>
     </q-menu>
