@@ -262,7 +262,7 @@ export default {
           province_id : this.items.province_id
         }
         this.Module_Location_Action_City_Selectable(items).then(response => {
-          this.items.city_id = null;
+          //this.items.city_id = null;
           this.cities = response;
         });
       }
