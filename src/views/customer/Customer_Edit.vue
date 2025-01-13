@@ -255,6 +255,7 @@ export default {
         }
         this.Module_Location_Action_City_Selectable(items).then(response => {
           // this.items.city_id = null;
+
           this.cities = response;
         });
       }
