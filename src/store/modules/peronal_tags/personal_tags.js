@@ -20,6 +20,15 @@ export default {
                 })
             })
         },
+        Module_personal_tags_Both(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/tags/personal/both',{params:items}).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
         Module_personal_tags_Most_Uses(){
             return new Promise((resolve, reject) => {
                 axios.get('users/dashboard/tags/most/personal').then(response =>{

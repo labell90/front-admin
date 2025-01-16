@@ -26,7 +26,7 @@ export default {
      lead_utm_medium:[],
      lead_utm_source:[],
      items:{
-       country_id : null,
+       country_id : 1,
        province_id : null,
        city_id : null,
        lead_category_id : null,

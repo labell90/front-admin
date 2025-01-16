@@ -20,7 +20,7 @@ export default {
         name:null,
         color_code:'#ba2d8d',
         sender_name:null,
-        country_id:null,
+        country_id:1,
         province_id:null,
         customer_id:null,
         store_type_id:null,
@@ -250,7 +250,11 @@ export default {
       <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
-          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="نام انبار">
+          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label=" ">
+            <template v-slot:label>
+             نام انبار
+              <q-icon name="fa fa-star" color="red" size="12px" class="q-ml-xs"></q-icon>
+            </template>
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
             </template>
@@ -300,7 +304,7 @@ export default {
               transition-show="flip-up"
               transition-hide="flip-down"
               v-model="items.store_type_id"
-              label="انتخاب نوع انبار"
+              label=""
               :options="store_types"
               @filter="Filter_Store_Types_Select"
               emit-value
@@ -308,6 +312,10 @@ export default {
               use-input
               :error="this.Methods_Validation_Check(errors,'store_type_id')"
           >
+            <template v-slot:label>
+              انتخاب نوع انبار
+              <q-icon name="fa fa-star" color="red" size="12px" class="q-ml-xs"></q-icon>
+            </template>
             <template v-slot:no-option>
               <q-item>
                 <q-item-section class="text-red">
@@ -353,6 +361,7 @@ export default {
               use-input
               :error="this.Methods_Validation_Check(errors,'country_id')"
           >
+
             <template v-slot:no-option>
               <q-item>
                 <q-item-section class="text-red">
@@ -382,7 +391,7 @@ export default {
               transition-show="flip-up"
               transition-hide="flip-down"
               v-model="items.province_id"
-              label="انتخاب استان"
+              label=""
               :options="provinces"
               @filter="Filter_Provinces_Select"
               @change="Computed_Get_Cities"
@@ -391,6 +400,10 @@ export default {
               use-input
               :error="this.Methods_Validation_Check(errors,'province_id')"
           >
+            <template v-slot:label>
+              انتخاب استان
+              <q-icon name="fa fa-star" color="red" size="12px" class="q-ml-xs"></q-icon>
+            </template>
             <template v-slot:no-option>
               <q-item>
                 <q-item-section class="text-red">
@@ -416,7 +429,7 @@ export default {
               transition-show="flip-up"
               transition-hide="flip-down"
               v-model="items.city_id"
-              label="انتخاب شهر"
+              label=""
               :options="cities"
               @filter="Filter_Cities_Select"
               emit-value
@@ -425,6 +438,10 @@ export default {
               :error="this.Methods_Validation_Check(errors,'province_id')"
 
           >
+            <template v-slot:label>
+              انتخاب شهر
+              <q-icon name="fa fa-star" color="red" size="12px" class="q-ml-xs"></q-icon>
+            </template>
             <template v-slot:no-option>
               <q-item>
                 <q-item-section class="text-red">

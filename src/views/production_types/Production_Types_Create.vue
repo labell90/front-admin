@@ -46,11 +46,15 @@ export default {
     </q-card-section>
     <q-card-section>
       <div class="row">
+
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="عنوان نوع تولید ">
+
+          <q-input :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="عنوان نوع تولید ">
+
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
             </template>
+
           </q-input>
         </div>
 

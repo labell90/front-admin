@@ -126,7 +126,12 @@ export default {
               <template v-else>
                 <div class="q-gutter-xs">
                   <global_items_tag_single v-for="tag in lead.tags" :item="tag.tag"></global_items_tag_single>
+                  <span @click="tags_dialog=true" class="cursor-pointer">
+                     <q-chip size="sm" class="font-11" label="بیشتر ..." text-color="white" color="blue-7"></q-chip>
+                  </span>
+
                 </div>
+
               </template>
             </div>
           </div>
