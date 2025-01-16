@@ -48,7 +48,11 @@ export default {
     <q-card-section>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
-          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="عنوان نقش">
+          <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="" >
+            <template v-slot:label>
+              عنوان نقش
+              <q-icon name="fa fa-star" color="red" size="12px" class="q-ml-xs"></q-icon>
+            </template>
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
             </template>
