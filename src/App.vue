@@ -5,7 +5,7 @@ import Template_Header_Shortcuts from "@/components/template/header/Template_Hea
 import Template_Menu_Main from "@/components/template/menu/Template_Menu_Main.vue";
 import Template_Title from "@/components/template/Template_Title.vue";
 import Template_Header_Tags from "@/components/template/header/Template_Header_Tags.vue";
-
+import {mapGetters} from "vuex";
 
 export default {
 
@@ -32,6 +32,11 @@ export default {
     toggleRightDrawer() {
       this.rightDrawerOpen = !this.rightDrawerOpen;
     }
+  },
+  computed:{
+    ...mapGetters([
+      "Modules_Authenticate_Getter_Check"
+    ]),
   }
 
 }
@@ -49,7 +54,9 @@ export default {
         </q-toolbar-title>
 <!--        <q-btn dense flat round icon="fas fa-list" @click="toggleRightDrawer" />-->
           <template_header_shortcuts v-if="this.$route.name !== 'auth_login'"  ></template_header_shortcuts>
-          <template_header_tags v-if="this.$route.name !== 'auth_login'"  ></template_header_tags>
+          <template v-if="Modules_Authenticate_Getter_Check" >
+            <template_header_tags  ></template_header_tags>
+          </template>
           <template_header_notification  class="q-ml-xs" v-if="this.$route.name !== 'auth_login'"  ></template_header_notification>
           <template_header_user class="q-ml-md" v-if="this.$route.name !== 'auth_login'"></template_header_user>
       </q-toolbar>

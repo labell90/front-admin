@@ -1,5 +1,5 @@
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapActions} from "vuex";
 
 export default {
   name: "Template_Header_Tags",
@@ -33,39 +33,31 @@ export default {
     Get_Tags(){
       this.Module_personal_tags_Most_Uses().then(res => {
         this.tags = res.data.result;
-
       }).catch(error => {
        this.Methods_Notify_Error_Server();
-
-
       })
-
-
-
     },
     Search_Tag(){
       this.show_personal_tag=false;
       this.loading=true;
       this.Module_personal_tags_Both({name : this.search}).then(res=>{
         this.all_tags = res.data.result;
-
+        this.loading=false;
       }).catch(error => {
         this.Methods_Notify_Error_Server();
         this.loading=false;
-
-
       })
 
     }
 
   },
 
+
 }
 </script>
 
 <template>
   <q-btn title="تگ های پر کاربرد" round>
-
     <q-avatar rounded size="25px">
      <q-icon name="fas fa-tag"></q-icon>
     </q-avatar>
