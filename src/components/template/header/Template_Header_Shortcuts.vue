@@ -72,6 +72,16 @@ export default {
             </q-btn>
           </div>
           <div class="col-md-2 col-sm-3 col-xs-4">
+            <q-btn :to="{name : 'products_index'}" color="indigo" flat icon="fas fa-cubes" round size="17px">
+              <q-tooltip
+                  transition-show="rotate"
+                  transition-hide="rotate"
+              >
+                <strong>محصولات</strong>
+              </q-tooltip>
+            </q-btn>
+          </div>
+          <div class="col-md-2 col-sm-3 col-xs-4">
             <q-btn :to="{name : 'lead_index'}" color="pink-8" flat icon="fas fa-address-card" round size="17px">
               <q-tooltip
                   transition-show="rotate"

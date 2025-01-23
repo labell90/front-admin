@@ -1921,6 +1921,14 @@
     ]
   },
   {
+    "fa" : "مدیریت ویژگی ها",
+    "en" : "Features",
+    "icon" : "fas fa-shield-halved",
+    "route_path" : "/",
+    "route_name" : "features_index",
+    "level"      : 0
+  },
+  {
     "fa" : "تنظیمات عمومی",
     "en" : "Tasks",
     "icon" : "fas fa-list-check",
