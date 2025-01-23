@@ -196,7 +196,11 @@ export default {
                 //Create Form data
                 let data = new FormData();
                 if (items.note){data.append( 'note', items.note)}
-                if (items.ids){data.append( 'ids', items.ids)}
+                if (items.ids) {
+                    items.ids.forEach((id) => {
+                        data.append('ids[]', id);
+                    });
+                }
                 if (items.file){data.append( 'file', items.file,items.file.name)}
                 axios.post('users/leads/leads/actions/note',data).then(response =>{
                     return resolve(response);

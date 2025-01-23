@@ -367,7 +367,7 @@ export default {
         file : this.data_note.file
       }
       this.Module_Lead_Action_Actions_Note(data).then(res => {
-        console.log(res.data)
+
 
         this.Methods_Notify_Message_Success('یادداشت باموفقیت ثبت شد');
         this.multi_note_loading=false;
