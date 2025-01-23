@@ -6,7 +6,7 @@ window.axios = axios;
 
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.baseURL="https:api.labellco.ir"
+window.axios.defaults.baseURL="https://api.labellco.ir"
 
 
 window.axios.interceptors.response.use(
