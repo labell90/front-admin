@@ -45,7 +45,6 @@ export default {
           sortable: false,
           field: row => row.color_code,
         },
-
         {
           name: 'description',
           required: true,
@@ -54,8 +53,6 @@ export default {
           sortable: true,
           field: row => row.description,
         },
-
-
         {
           name: 'created_at',
           required: true,
@@ -64,7 +61,6 @@ export default {
           sortable: true ,
           field: row => row.created_at,
         },
-
         {
           name: 'updated_at',
           required: true,
@@ -73,8 +69,6 @@ export default {
           sortable: true ,
           field: row => row.updated_at,
         },
-
-
         {
           name: 'tools',
           label: 'عملیات',

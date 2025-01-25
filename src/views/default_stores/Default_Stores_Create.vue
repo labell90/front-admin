@@ -44,9 +44,6 @@ export default {
       <global_actions_header_buttons :index="true" route="default_stores"></global_actions_header_buttons>
 
       <q-separator class="q-mt-xl"/>
-
-
-
     </q-card-section>
     <q-card-section>
       <div class="row">

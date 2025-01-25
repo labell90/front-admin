@@ -2,11 +2,12 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Users_Create",
+  name: "Users_Edit",
   mounted() {
     this.Get_Locations();
     this.Get_Item();
     this.Get_Roles();
+    this.Get_Group();
 
   },
   data(){
@@ -19,6 +20,7 @@ export default {
         province_id:null,
         city_id:null,
         role_id:null,
+        group_id:null,
         name:null,
         phone:null,
         email:null,
@@ -34,6 +36,7 @@ export default {
       provinces:[],
       cities:[],
       roles:[],
+      groups :[]
     }
   },
   methods:{
@@ -44,7 +47,8 @@ export default {
       "Module_Location_Action_Country_Selectable",
       "Module_Location_Action_Province_Selectable",
       "Module_Location_Action_City_Selectable",
-        "Module_Role_Action_Index"
+        "Module_Role_Action_Index",
+        "Module_Group_Action_Index"
     ]),
     Get_Item(){
       this.Module_User_Action_Show(this.$route.params.id).then(response => {
@@ -96,6 +100,18 @@ export default {
         })
       })
     },
+    Get_Group(){
+      this.Module_Group_Action_Index({per_page : 1000}).then(res => {
+        this.groups = []
+        res.data.result.data.forEach(group => {
+          this.groups.push({
+            label : group.name,
+            color_code : group.color_code,
+            value : group.id
+          })
+        })
+      })
+    },
     Filter_Countries_Select (val, update, abort) {
       update(() => {
         if (val){
@@ -140,6 +156,17 @@ export default {
         }
       })
     },
+    Filter_Groups_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.groups =  this.groups.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Group();
+        }
+      })
+    },
 
   },
   computed : {
@@ -161,11 +188,12 @@ export default {
           province_id : this.items.province_id
         }
         this.Module_Location_Action_City_Selectable(items).then(response => {
-          this.items.city_id = null;
+        //  this.items.city_id = null;
           this.cities = response;
         });
       }
-    }
+    },
+
 
 
   }
@@ -303,6 +331,7 @@ export default {
                 label="انتخاب شهر"
                 :options="cities"
                 @filter="Filter_Cities_Select"
+                @change="Computed_Get_Cities"
                 emit-value
                 map-options
                 use-input
@@ -367,6 +396,41 @@ export default {
               </template>
             </q-select>
 
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+            <q-select
+                outlined
+                transition-show="flip-up"
+                transition-hide="flip-down"
+                v-model="items.group_id"
+                label="انتخاب گروه"
+                :options="groups"
+                @filter="Filter_Groups_Select"
+                emit-value
+                map-options
+                use-input
+            >
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-red">
+                    گزینه ای یافت نشد
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:option="scope">
+                <q-item v-bind="scope.itemProps">
+                  <q-item-section avatar>
+                    <q-chip :style="'background-color:'+scope.opt.color_code"></q-chip>
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>{{ scope.opt.label }}</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </template>
+              <template v-slot:error>
+
+              </template>
+            </q-select>
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
