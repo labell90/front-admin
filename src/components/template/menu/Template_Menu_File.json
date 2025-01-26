@@ -22,7 +22,7 @@
       {
         "fa" : "بازاریابی",
         "en" : "Marketing",
-        "icon" : "fas fa-tents",
+        "icon" : "fas fa-user-plus",
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1015",
@@ -72,7 +72,7 @@
       {
         "fa" : "فروش",
         "en" : "Campaign_Statuses",
-        "icon" : "fas fa-tents",
+        "icon" : "fas fa-sack-dollar",
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1015",
@@ -94,7 +94,7 @@
       {
         "fa" : "کمپین ها ",
         "en" : "Campaigns",
-        "icon" : "fas fa-clipboard-user",
+        "icon" : "fas fa-tents",
         "route_path" : "/",
         "route_name" : "",
         "level"      : 0.5,
@@ -105,7 +105,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1006",
-            "icon" : "fas fa-address-card font-20",
+            "icon" : "fas fa-tents font-20",
             "level"      : 1,
             "subs" : [
               {
@@ -247,7 +247,7 @@
             "en" : "Categories",
             "route_path" : "/",
             "route_name" : "",
-            "icon" : "fas fa-list font-20",
+            "icon" : "fas fa-layer-group font-20",
             "feature" : "1007",
             "level"      : 1,
 
@@ -387,7 +387,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1012",
-            "icon" : "fas fa-bell font-20",
+            "icon" : "fas fa-people-arrows font-20",
             "level"      : 1,
 
 
@@ -431,7 +431,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1008",
-            "icon" : "fas fa-flag font-20",
+            "icon" : "fas fa-file-contract font-20",
             "level"      : 1,
 
             "subs" : [
@@ -476,7 +476,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1011",
-            "icon" : "fas fa-layer-group font-20",
+            "icon" : "fas fa-window-restore font-20",
             "level"      : 1,
 
 
@@ -521,7 +521,7 @@
           {
             "fa" : "UTM ",
             "en" : "Utms",
-            "icon" : "fas fa-clipboard-user",
+            "icon" : "fas fa-person-chalkboard",
             "route_path" : "/",
             "route_name" : "",
             "level"      : 1,
@@ -532,7 +532,7 @@
                 "route_path" : "/",
                 "route_name" : "",
                 "feature" : "1013",
-                "icon" : "fas fa-layer-group font-20",
+                "icon" : "fas fa-person-chalkboard font-20",
                 "level"      : 1.5,
 
                 "subs" : [
@@ -574,7 +574,7 @@
                 "route_path" : "/",
                 "route_name" : "",
                 "feature" : "1014",
-                "icon" : "fas fa-layer-group font-20",
+                "icon" : "fas fa-person-chalkboard font-20",
                 "level"      : 1.5,
 
 
@@ -630,7 +630,7 @@
   {
     "fa" : "کاربران",
     "en" : "Users",
-    "icon" : "fas fa-window-restore",
+    "icon" : "fas fa-user",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -640,7 +640,7 @@
       {
         "fa" : "مدیران",
         "en" : "Groups management",
-        "icon" : "fas fa-cog",
+        "icon" : "fas fa-user-tie",
         "route_path" : "/",
         "route_name" : "",
         "level"      : 0.5,
@@ -648,7 +648,7 @@
           {
             "fa" : "گروه بندی مدیران",
             "en" : "Groups",
-            "icon" : "fa-solid fa-ruler",
+            "icon" : "fa-solid fa-users-between-lines",
             "route_path" : "/",
             "route_name" : "",
             "level"      : 1,
@@ -694,7 +694,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1010",
-            "icon" : "fas fa-industry font-20",
+            "icon" : "fas fa-user-gear font-20",
             "level"      : 1,
 
 
@@ -743,7 +743,7 @@
       {
         "fa" : "نمایندگان",
         "en" : "Clients management",
-        "icon" : "fas fa-cog",
+        "icon" : "fas fa-people-group",
         "route_path" : "/",
         "route_name" : "",
         "level"      : 0.5,
@@ -751,7 +751,7 @@
           {
             "fa" : "گروه بندی نمایندگان",
             "en" : "Client Groups",
-            "icon" : "fa-solid fa-ruler",
+            "icon" : "fa-solid fa-users-rays",
             "route_path" : "/",
             "route_name" : "",
             "level"      : 1,
@@ -851,7 +851,7 @@
       {
         "fa" : "مشتریان",
         "en" : "Customer management",
-        "icon" : "fas fa-cog",
+        "icon" : "fas fa-person-chalkboard",
         "route_path" : "/",
         "route_name" : "",
         "level"      : 0.5,
@@ -917,7 +917,7 @@
   {
     "fa" : "محصولات",
     "en" : "Products",
-    "icon" : "fa-brands fa-product-hunt",
+    "icon" : "fas fa-cart-shopping",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -927,7 +927,7 @@
       {
         "fa" : "مدیریت محصولات",
         "en" : "Products Management",
-        "icon" : "fas fa-tents",
+        "icon" : "fas fa-cart-plus",
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1015",
@@ -967,7 +967,7 @@
       {
         "fa" : "تولید",
         "en" : "Production",
-        "icon" : "fas fa-cog",
+        "icon" : "fas fa-screwdriver-wrench",
         "route_path" : "/",
         "route_name" : "",
         "level"      : 0.5,
@@ -977,7 +977,7 @@
           {
             "fa" : "نوع تولید",
             "en" : "Production Types",
-            "icon" : "fa-solid fa-ruler",
+            "icon" : "fa-solid fa-wrench",
             "route_path" : "/",
             "route_name" : "",
             "level"      : 1,
@@ -1037,7 +1037,7 @@
           {
             "fa" : "یکاهای اندازه گیری",
             "en" : "Units",
-            "icon" : "fa-solid fa-ruler",
+            "icon" : "fa-solid fa-weight-scale",
             "route_path" : "/",
             "route_name" : "",
             "level"      : 1,
@@ -1077,7 +1077,7 @@
           {
             "fa" : "ویژگی ها",
             "en" : "Options",
-            "icon" : "fa-solid fa-ruler",
+            "icon" : "fa-solid fa-bars",
             "route_path" : "/",
             "route_name" : "",
             "level"      : 1,
@@ -1118,10 +1118,10 @@
           },
           {
             "fa" : "دسته بندی ها",
-            "en" : "Categories",
+            "en" : "Product_Types",
             "route_path" : "/",
             "route_name" : "",
-            "icon" : "fas fa-list font-20",
+            "icon" : "fas fa-layer-group font-20",
             "feature" : "1007",
             "level"      : 1,
 
@@ -1130,9 +1130,9 @@
             "subs" : [
               {
                 "fa" : "ایجاد دسته بندی",
-                "en" : "New category",
+                "en" : "New Type",
                 "route_path" : "/",
-                "route_name" : "lead_categories_create",
+                "route_name" : "product_types_create",
                 "feature_type" : "create",
                 "level"      : 1.5,
 
@@ -1147,7 +1147,7 @@
                 "fa" : "لیست دسته بندی ها",
                 "en" : "Categories",
                 "route_path" : "/",
-                "route_name" : "lead_categories_index",
+                "route_name" : "product_types_index",
                 "feature_type" : "read",
                 "level"      : 1.5,
 
@@ -1171,7 +1171,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1001",
-            "icon" : "fa-brands fa-product-hunt font-20",
+            "icon" : "fas fa-bag-shopping font-20",
             "level"      : 1,
 
 
@@ -1223,7 +1223,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1001",
-            "icon" : "fa-brands fa-product-hunt font-20",
+            "icon" : "fas fa-pencil font-20",
             "level"      : 1,
 
 
@@ -1278,7 +1278,7 @@
   {
     "fa" : "انبار ها",
     "en" : "Stores",
-    "icon" : "fa-solid fa-ruler",
+    "icon" : "fa-solid fa-warehouse",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -1288,7 +1288,7 @@
       {
         "fa" : "مدیریت انبار",
         "en" : "Stores Management",
-        "icon" : "fas fa-tents",
+        "icon" : "fas fa-shop-lock",
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1015",
@@ -1337,7 +1337,7 @@
           {
             "fa" : "عملیات انبار",
             "en" : "Stores Management",
-            "icon" : "fas fa-tents",
+            "icon" : "fas fa-boxes-packing",
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1015",
@@ -1406,7 +1406,7 @@
           {
             "fa" : "نوع انبار ها",
             "en" : "Stores_Types",
-            "icon" : "fa-solid fa-ruler",
+            "icon" : "fa-solid fa-boxes-stacked",
             "route_path" : "/",
             "route_name" : "",
             "level"      : 0,
@@ -1449,7 +1449,7 @@
           {
             "fa" : "انبار پیش فرض",
             "en" : "Default_Stores",
-            "icon" : "fa-solid fa-ruler",
+            "icon" : "fa-solid fa-archway",
             "route_path" : "/",
             "route_name" : "",
             "level"      : 0,
@@ -1508,7 +1508,7 @@
   {
     "fa" : "وظایف",
     "en" : "Tasks",
-    "icon" : "fas fa-list-check",
+    "icon" : "fas fa-pen-to-square",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -1519,7 +1519,7 @@
       {
         "fa" : "مدیریت وظایف",
         "en" : "Tasks Management",
-        "icon" : "fas fa-tents",
+        "icon" : "fas fa-user-pen",
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1015",
@@ -1638,7 +1638,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1001",
-            "icon" : "fas fa-list-check font-20",
+            "icon" : "fas fa-list font-20",
             "level"      : 0.5,
 
 
@@ -1747,7 +1747,7 @@
   {
     "fa" : "مدیریت فایل و گالری",
     "en" : "Tasks",
-    "icon" : "fas fa-list-check",
+    "icon" : "fas fa-file-image",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -1758,7 +1758,7 @@
       {
         "fa" : "فایل ها",
         "en" : "Tasks Management",
-        "icon" : "fas fa-tents",
+        "icon" : "fas fa-file",
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1015",
@@ -1812,8 +1812,8 @@
 
       {
         "fa" : "گالری تصاویر",
-        "en" : "Tasks Management",
-        "icon" : "fas fa-tents",
+        "en" : "Gallery Management",
+        "icon" : "fas fa-image",
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1015",
@@ -1821,7 +1821,7 @@
         "subs" : [
           {
             "fa" : "آپلود تصویر جدید ",
-            "en" : "New Stores",
+            "en" : "New Image",
             "route_path" : "/",
             "route_name" : "stores_create",
 
@@ -1835,7 +1835,7 @@
           },
           {
             "fa" : "لیست تصاویر  ",
-            "en" : "Stores",
+            "en" : "Image List",
             "route_path" : "/",
             "route_name" : "stores_index",
             "level"      : 1,
@@ -1867,7 +1867,7 @@
       {
         "fa" : " تنظیمات",
         "en" : "Tasks Management",
-        "icon" : "fas fa-tents",
+        "icon" : "fas fa-file-circle-question",
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1015",
@@ -1923,7 +1923,7 @@
   {
     "fa" : "مدیریت ویژگی ها",
     "en" : "Features",
-    "icon" : "fas fa-shield-halved",
+    "icon" : "fas fa-hand",
     "route_path" : "/",
     "route_name" : "features_index",
     "level"      : 0
@@ -1931,7 +1931,7 @@
   {
     "fa" : "تنظیمات عمومی",
     "en" : "Tasks",
-    "icon" : "fas fa-list-check",
+    "icon" : "fas fa-gears",
     "route_path" : "/",
     "route_name" : "",
     "level"      : 0,
@@ -1942,7 +1942,7 @@
       {
         "fa" : "مدیریت نقش ها و دسترسی ها",
         "en" : "Tasks Management",
-        "icon" : "fas fa-tents",
+        "icon" : "fas fa-clipboard-user",
         "route_path" : "/",
         "route_name" : "",
         "feature" : "1015",
@@ -1952,7 +1952,7 @@
             "fa" : "افزودن ",
             "en" : "New Stores",
             "route_path" : "/",
-            "route_name" : "stores_create",
+            "route_name" : "roles_create",
 
             "level"      : 1,
 
@@ -1966,7 +1966,7 @@
             "fa" : "لیست ",
             "en" : "Stores",
             "route_path" : "/",
-            "route_name" : "stores_index",
+            "route_name" : "roles_index",
             "level"      : 1,
 
 
@@ -2026,7 +2026,7 @@
       {
         "fa" : "مدیریت تگ ",
         "en" : " Tags Management",
-        "icon" : "fas fa-cog",
+        "icon" : "fas fa-tags",
         "route_path" : "/",
         "route_name" : "",
         "level"      : 0.5,
@@ -2039,7 +2039,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1001",
-            "icon" : "fas fa-user-tie font-20",
+            "icon" : "fas fa-tag font-20",
             "level"      : 0.5,
 
 
@@ -2090,7 +2090,7 @@
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1001",
-            "icon" : "fas fa-user-tie font-20",
+            "icon" : "fas fa-tag font-20",
             "level"      : 0.5,
 
 

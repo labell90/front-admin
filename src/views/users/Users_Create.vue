@@ -448,7 +448,7 @@ export default {
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
-          <q-input :error="this.Methods_Validation_Check(errors,'tel')" outlined v-model="items.tel"  type="text" label="تلفن ثابت">
+          <q-input :error="this.Methods_Validation_Check(errors,'tel')" outlined v-model="items.tel"  oninput="if(this.value.trim() !== '') this.setAttribute('autocomplete', 'off')" type="text" label="تلفن ثابت">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'tel')" />
             </template>
