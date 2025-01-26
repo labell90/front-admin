@@ -11,7 +11,11 @@ export default {
   methods:{
     ...mapGetters([
         "Modules_Authenticate_Getter_User"
-    ])
+    ]),
+    Logout() {
+
+
+    }
   },
   mounted() {
     this.user = this.Modules_Authenticate_Getter_User()
@@ -52,6 +56,7 @@ export default {
           <q-item-section>
             <div>
               <q-icon name="fas fa-cog" size="18px" class="q-mr-sm" color="blue-8" /><span> تنظیمات حساب</span>
+
             </div>
           </q-item-section>
         </q-item>
@@ -59,7 +64,7 @@ export default {
         <q-item clickable>
           <q-item-section>
             <div>
-              <q-icon name="fas fa-sign-out" size="18px" class="q-mr-sm" color="red-8" /><span> خروج از حساب</span>
+              <q-icon name="fas fa-sign-out" size="18px" class="q-mr-sm" color="red-8" @click="Logout" /><span> خروج از حساب</span>
             </div>
           </q-item-section>
         </q-item>

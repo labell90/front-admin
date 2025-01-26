@@ -1,4 +1,4 @@
-<script>
+0<script>
 import {mapGetters} from "vuex";
 
 export default {
