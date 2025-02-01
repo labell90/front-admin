@@ -258,7 +258,7 @@ export default {
 
 
     <q-card-section>
-      {{final_options}}
+
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
           <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="items.name"  type="text" label="نام محصول ">
