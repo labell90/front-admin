@@ -1,5 +1,5 @@
 <script>
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "Template_Header_User",
@@ -12,9 +12,13 @@ export default {
     ...mapGetters([
         "Modules_Authenticate_Getter_User"
     ]),
+    ...mapActions([
+        "Modules_Authenticate_Action_Logout"
+    ]),
     Logout() {
-
-
+      this.Modules_Authenticate_Action_Logout();
+      this.Methods_Notify_Message_Success("از حساب کاربری خود خارج شدید")
+      location.reload();
     }
   },
   mounted() {
@@ -52,7 +56,7 @@ export default {
           </q-item-section>
         </q-item>
         <q-separator />
-        <q-item clickable>
+        <q-item clickable :to="{name : 'setting_profile'}">
           <q-item-section>
             <div>
               <q-icon name="fas fa-cog" size="18px" class="q-mr-sm" color="blue-8" /><span> تنظیمات حساب</span>
@@ -62,9 +66,9 @@ export default {
         </q-item>
         <q-separator />
         <q-item clickable>
-          <q-item-section>
+          <q-item-section @click="Logout">
             <div>
-              <q-icon name="fas fa-sign-out" size="18px" class="q-mr-sm" color="red-8" @click="Logout" /><span> خروج از حساب</span>
+              <q-icon name="fas fa-sign-out" size="18px" class="q-mr-sm" color="red-8"  /><span> خروج از حساب</span>
             </div>
           </q-item-section>
         </q-item>

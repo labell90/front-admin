@@ -51,9 +51,14 @@ export default {
        company_position : null,
        address : null,
        description : null,
+       expertable_type : null,
+       expertable_id : null,
+       reference_type : null,
+       reference_id : null,
        is_special : 0
      },
      extra_fields:[],
+     references:[]
    }
   },
   methods:{
@@ -71,7 +76,8 @@ export default {
         "Module_Lead_Utmsource_Action_Index",
         "Module_Lead_Advsource_Action_Index",
         "Module_Lead_Action_Create",
-        "Module_Lead_Action_Get_Field"
+        "Module_Lead_Action_Get_Field",
+        "Module_Helpers_Action_All_Users"
     ]),
     Create_Item(){
 
@@ -211,6 +217,48 @@ export default {
         }
       }).catch(error => {
         this.Methods_Notify_Error_Server();
+      })
+    },
+
+    Get_References_Search(params){
+      this.Module_Helpers_Action_All_Users(params).then(res => {
+        this.references=[];
+        res.data.result.forEach(item => {
+          this.references.push({label: item.name, value: item.id,type:item.type,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+    Get_Users_Search(params){
+      this.Module_Users_Search(params).then(res => {
+        this.users=[];
+        res.data.result.forEach(item => {
+          this.users.push({label: item.name, value: item.id,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+
+    Filter_References_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_References_Search({name:val})
+
+          }, 600);
+        }
+      })
+    },
+    Filter_User_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Users_Search({name:val})
+
+          }, 600);
+        }
       })
     },
 
@@ -455,6 +503,50 @@ export default {
         </div>
         <div class="col-12 q-mb-md">
           <q-separator/>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.reference_id"
+              label="ارجاع به "
+              :options="references"
+              @filter="Filter_References_Select"
+              emit-value
+              map-options
+              use-input
+              placeholder="برای جستجو حداقل سه حرف وارد کنید"
+              :error="this.Methods_Validation_Check(errors,'reference_id')"
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section>
+                  <q-item-label>
+                    <strong>{{ scope.opt.label }}</strong> - <span class="text-teal-8">{{scope.opt.phone}}</span> - <strong class="text-red-6">(
+                    <template v-if="scope.opt.type === 'user'">
+                      کاربر
+                    </template>
+                    <template v-else>
+                      کارشناس
+                    </template>
+                    )</strong>
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'reference_id')" />
+            </template>
+          </q-select>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-xs">
@@ -750,7 +842,6 @@ export default {
           </q-select>
         </div>
 
-
         <div class="col-12 q-mb-md q-mt-lg">
           <q-icon name="fas fa-location" size="30px" color="teal-8"/>
           <strong class="q-ml-sm">اطلاعات مکانی</strong>
@@ -903,7 +994,6 @@ export default {
           <strong class="q-ml-sm">اطلاعات تکمیلی</strong>
         </div>
         <global_items_extra_fields v-if="extra_fields" :row_classes="'col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm'" :forms="extra_fields" ></global_items_extra_fields>
-
         <div class="col-12 q-pa-xs">
           <q-btn color="pink-7" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
         </div>

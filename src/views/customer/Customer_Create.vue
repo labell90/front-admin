@@ -117,6 +117,7 @@ export default {
         }
       })
     },
+
     Get_Leads_Search(params){
       this.Module_Lead_Action_All(params).then(res => {
         this.leads=[];

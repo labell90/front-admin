@@ -26,6 +26,10 @@ export default {
             state.commit("Modules_Authenticate_Mutation_Login",item);
         },
 
+        //commit logout
+        Modules_Authenticate_Action_Logout(state){
+            state.commit("Modules_Authenticate_Mutation_Logout");
+        },
 
     },
 
@@ -37,6 +41,7 @@ export default {
             localStorage.setItem('auth_user',JSON.stringify(item.user));
         },
 
+
         //Sync auth data from localstorage
         Modules_Authenticate_Mutation_Sync(state){
             if (localStorage.getItem('auth_token') && localStorage.getItem('auth_user')){
@@ -45,7 +50,13 @@ export default {
                     "user" : JSON.parse(localStorage.getItem('auth_user'))
                 }
             }
-        }
+        },
+
+        Modules_Authenticate_Mutation_Logout(state){
+            state.Auth_User = [];
+            localStorage.removeItem('auth_token');
+            localStorage.removeItem('auth_user');
+        },
 
     },
 
