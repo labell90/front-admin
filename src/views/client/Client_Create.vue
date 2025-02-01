@@ -102,6 +102,16 @@ export default {
         this.Methods_Notify_Error_Server();
       })
     },
+    Get_Support_Search(params){
+      this.Module_Users_Search(params).then(res => {
+        this.supports=[];
+        res.data.result.forEach(item => {
+          this.supports.push({label: item.name, value: item.id,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
     Filter_Countries_Select (val, update, abort) {
       update(() => {
         if (val){
@@ -160,7 +170,7 @@ export default {
       update(() => {
         if (val && val.replace(/\s+/g, "").length > 2) {
           setTimeout(() => {
-            this.Get_Users_Search({name:val})
+            this.Get_Support_Search({name:val})
 
           }, 600);
         }
