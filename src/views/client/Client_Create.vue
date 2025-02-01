@@ -21,6 +21,8 @@ export default {
         phone:null,
         country_id:null,
         province_id:null,
+        user_id:null,
+        support_id:null,
         city_id:null,
         password : null,
         password_confirmation : null,
@@ -41,7 +43,9 @@ export default {
       provinces:[],
       cities:[],
       locations:[],
-      client_groups:[]
+      client_groups:[],
+      users:[],
+      supports:[]
     }
   },
   methods:{
@@ -51,7 +55,8 @@ export default {
         "Module_Location_Action_Province_Selectable",
         "Module_Location_Action_City_Selectable",
         "Module_Location_Action_Index",
-        "Module_Client_Groups_All"
+        "Module_Client_Groups_All",
+        "Module_Users_Search"
     ]),
     Get_Locations(){
       this.Module_Location_Action_Index().then(response => {
@@ -85,6 +90,16 @@ export default {
 
       }).catch(error => {
         return this.Methods_Notify_Error_Server();
+      })
+    },
+    Get_Users_Search(params){
+      this.Module_Users_Search(params).then(res => {
+        this.users=[];
+        res.data.result.forEach(item => {
+          this.users.push({label: item.name, value: item.id,phone: item.phone});
+        });
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
       })
     },
     Filter_Countries_Select (val, update, abort) {
@@ -128,6 +143,26 @@ export default {
           })
         }else {
           // this.Computed_Get_Cities();
+        }
+      })
+    },
+    Filter_User_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Users_Search({name:val})
+
+          }, 600);
+        }
+      })
+    },
+    Filter_Support_Select (val, update, abort) {
+      update(() => {
+        if (val && val.replace(/\s+/g, "").length > 2) {
+          setTimeout(() => {
+            this.Get_Users_Search({name:val})
+
+          }, 600);
         }
       })
     },
@@ -205,7 +240,7 @@ export default {
             </template>
           </q-input>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-mb-md">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
           <q-select
               outlined
               transition-show="flip-up"
@@ -242,6 +277,45 @@ export default {
           </q-select>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.user_id"
+              label="انتخاب کارشناس مرتبط"
+              :options="users"
+              @filter="Filter_User_Select"
+              emit-value
+              map-options
+              placeholder="برای جستجو حداقل سه حرف وارد کنید"
+              use-input
+              clearable
+              :error="this.Methods_Validation_Check(errors,'user_id')"
+
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section>
+                  <q-item-label>
+                    <strong>{{ scope.opt.label }}</strong> - <span class="text-red-7">{{scope.opt.phone }}</span>
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'user_id')" />
+            </template>
+          </q-select>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
           <q-input  :error="this.Methods_Validation_Check(errors,'national_code')" outlined v-model="items.national_code"  type="number" label="کد ملی">
             <template v-slot:error>
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'national_code')" />
@@ -254,6 +328,45 @@ export default {
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'email')" />
             </template>
           </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.support_id"
+              label="انتخاب کارشناس پشتیبان"
+              :options="supports"
+              @filter="Filter_Support_Select"
+              emit-value
+              map-options
+              placeholder="برای جستجو حداقل سه حرف وارد کنید"
+              use-input
+              clearable
+              :error="this.Methods_Validation_Check(errors,'support_id')"
+
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section>
+                  <q-item-label>
+                    <strong>{{ scope.opt.label }}</strong> - <span class="text-red-7">{{scope.opt.phone }}</span>
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'support_id')" />
+            </template>
+          </q-select>
+
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-sm q-pa-xs">
