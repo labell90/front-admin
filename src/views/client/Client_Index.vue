@@ -119,6 +119,7 @@ export default {
         }
       ],
       visible_columns:[],
+      tags_dialog:[]
     }
   },
   methods :{
@@ -263,6 +264,7 @@ export default {
 </script>
 
 <template>
+  {{tags_dialog}}
   <q-card>
     <q-card-section>
       <global_actions_header_buttons :create="true" :archive="true" route="client"></global_actions_header_buttons>
@@ -375,8 +377,11 @@ export default {
           <q-td :props="props">
             <div class="text-center">
               <q-btn :to="{name:'client_profile_index',params:{id:props.row.id}}" glossy title=" پروفایل" class="q-ma-xs" color="teal-8" icon="fas fa-user" size="9px" round  />
+              <q-btn @click="tags_dialog[props.row.id]=true"  glossy title=" تگ ها" class="q-ma-xs" color="orange-8" icon="fas fa-tag" size="9px" round  />
               <q-btn :to="{name:'client_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
+
+
             </div>
           </q-td>
         </template>

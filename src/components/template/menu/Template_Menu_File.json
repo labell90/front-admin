@@ -1529,86 +1529,8 @@
             "fa" : "وظایف من ",
             "en" : "New Stores",
             "route_path" : "/",
-            "route_name" : "stores_create",
+            "route_name" : "my_task",
 
-            "level"      : 1,
-
-
-
-            "subs" : [
-
-            ]
-          },
-          {
-            "fa" : "وظایف تیم  ",
-            "en" : "Stores",
-            "route_path" : "/",
-            "route_name" : "stores_index",
-            "level"      : 1,
-
-
-
-            "subs" : [
-
-            ]
-          },
-          {
-            "fa" : "ایجاد وظیفه جدید ",
-            "en" : "Stores",
-            "route_path" : "/",
-            "route_name" : "stores_index",
-            "level"      : 1,
-
-
-
-            "subs" : [
-
-            ]
-          },
-          {
-            "fa" : "وظایف امروز ",
-            "en" : "Stores",
-            "route_path" : "/",
-            "route_name" : "stores_index",
-            "level"      : 1,
-
-
-
-            "subs" : [
-
-            ]
-          },
-          {
-            "fa" : "وظایف در حال انجام ",
-            "en" : "Stores",
-            "route_path" : "/",
-            "route_name" : "stores_index",
-            "level"      : 1,
-
-
-
-            "subs" : [
-
-            ]
-          },
-          {
-            "fa" : "وظایف انجام شده ",
-            "en" : "Stores",
-            "route_path" : "/",
-            "route_name" : "stores_index",
-            "level"      : 1,
-
-
-
-            "subs" : [
-
-            ]
-          },
-          {
-            "fa" : "وظایف در وضعیت های مختلف ",
-            "en" : "Stores",
-            "route_path" : "/",
-            "route_name" : "stores_index",
             "level"      : 1,
 
 
@@ -1617,6 +1539,7 @@
 
             ]
           }
+
 
         ]
 

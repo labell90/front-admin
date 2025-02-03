@@ -4,6 +4,7 @@ import Leads_Multi_Edit from "@/views/leads/leads/Leads_Multi_Edit.vue";
 import { useQuasar} from 'quasar'
 import Leads_Settings_Merge from "@/views/leads/leads/settings/Leads_Settings_Merge.vue";
 import Editor from "@tinymce/tinymce-vue";
+import Leads_Settings_Convert from "@/views/leads/leads/settings/Leads_Settings_Convert.vue";
 
 
 export default {
@@ -12,6 +13,7 @@ export default {
     Editor,
     'lead_multi_edit' : Leads_Multi_Edit,
     'leads_settings_merge' : Leads_Settings_Merge,
+    'leads_settings_convert' : Leads_Settings_Convert
   },
 
   created() {
@@ -739,33 +741,7 @@ export default {
               </q-card-section>
               <q-separator/>
               <q-card-section>
-                <div class="row">
-                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 q-pa-sm">
-                    <div class="q-pa-xs rounded-borders glossy-bg row cursor-pointer" @click="Convert_Client(props.row.id)">
-                      <div class="col-lx-4 col-lg-5 col-md-6">
-                        <img src="assets/images/icons/client-convert.png" width="65" alt="">
-                      </div>
-                      <div class="col-lx-8 col-lg-7 col-md-6">
-                        <div class="q-mt-lg">
-                          <strong class="">تبدیل به نماینده </strong>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 q-pa-sm">
-                    <div class="q-pa-xs rounded-borders glossy-bg row cursor-pointer" @click="Convert_Customer(props.row.id)">
-                      <div class="col-lx-4 col-lg-5 col-md-6">
-                        <img src="assets/images/icons/customer-convert.png" width="65" alt="">
-                      </div>
-                      <div class="col-lx-8 col-lg-7 col-md-6">
-                        <div class="q-mt-lg">
-                          <strong class="">تبدیل به مشتری </strong>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
+           <leads_settings_convert :lead="props.row"></leads_settings_convert>
               </q-card-section>
             </q-card>
           </q-dialog>
