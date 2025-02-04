@@ -3,6 +3,7 @@ import Stores_Create from "@/views/stores/Stores_Create.vue";
 import Stores_Index from "@/views/stores/Stores_Index.vue";
 import Stores_Edit from "@/views/stores/Stores_Edit.vue";
 import Stores_Trash from "@/views/stores/Stores_Trash.vue";
+import Stores_Inventory from "@/views/stores/components/Stores_Inventory.vue";
 
 
 const route_stores = [
@@ -42,6 +43,15 @@ const route_stores = [
         meta : {
             title : ' انبار ها',
             subtitle : 'ویرایش انبار'
+        },
+    },
+    {
+        path : "/stores/inventory/:id",
+        name : "stores_inventory",
+        component : Stores_Inventory,
+        meta : {
+            title : ' انبار ها',
+            subtitle : 'کنترل موجودی انبار'
         },
     },
 

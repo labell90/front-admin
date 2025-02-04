@@ -321,6 +321,7 @@ export default {
           <q-td :props="props">
             <div class="text-center">
               <q-btn :to="{name:'stores_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
+              <q-btn :to="{name:'stores_inventory',params:{id:props.row.id}}" glossy title=" کنترل موجودی" class="q-ma-xs" color="teal-8" icon="fas fa-folder-open" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
           </q-td>

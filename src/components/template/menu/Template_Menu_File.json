@@ -1800,7 +1800,7 @@
             "fa" : "محدودیت اندازه فایل ",
             "en" : "New Stores",
             "route_path" : "/",
-            "route_name" : "stores_create",
+            "route_name" : "roles_create",
 
             "level"      : 1,
 
@@ -1827,7 +1827,7 @@
             "fa" : "تنظیمات فشرده سازی ",
             "en" : "Stores",
             "route_path" : "/",
-            "route_name" : "stores_index",
+            "route_name" : "roles_index",
             "level"      : 1,
 
 
@@ -1864,7 +1864,7 @@
 
       {
         "fa" : "مدیریت نقش ها و دسترسی ها",
-        "en" : "Tasks Management",
+        "en" : "Role Management",
         "icon" : "fas fa-clipboard-user",
         "route_path" : "/",
         "route_name" : "",
@@ -1873,7 +1873,7 @@
         "subs" : [
           {
             "fa" : "افزودن ",
-            "en" : "New Stores",
+            "en" : "New Role",
             "route_path" : "/",
             "route_name" : "roles_create",
 
@@ -1887,7 +1887,7 @@
           },
           {
             "fa" : "لیست ",
-            "en" : "Stores",
+            "en" : "Roles",
             "route_path" : "/",
             "route_name" : "roles_index",
             "level"      : 1,
