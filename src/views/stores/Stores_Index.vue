@@ -116,9 +116,6 @@ export default {
 
 
     ]),
-
-
-
     Items_Get(per_page,page){
       if (!per_page){
         per_page = '';
@@ -158,7 +155,6 @@ export default {
       })
 
     },
-
     updateSelected(newSelection) {
       this.selected = newSelection;
       this.items_selected = newSelection.map(item => item.id);
@@ -186,7 +182,6 @@ export default {
       this.Items_Get(rowsPerPage,page);
 
     },
-
     Items_Search(data){
       this.query_params.search = data;
       this.Items_Get()
@@ -198,36 +193,6 @@ export default {
         }
       })
     },
-    computed : {
-      Computed_Get_Province(){
-        if (this.items.country_id){
-          let items= {
-            locations : this.locations,
-            country_id : this.items.country_id
-          }
-          this.Module_Location_Action_Province_Selectable(items).then(response => {
-            this.provinces = response;
-          });
-        }
-      },
-      Computed_Get_Cities(){
-        if (this.items.province_id){
-          let items= {
-            provinces : this.provinces,
-            province_id : this.items.province_id
-          }
-          this.Module_Location_Action_City_Selectable(items).then(response => {
-            this.items.city_id = null;
-            this.cities = response;
-          });
-        }
-      }
-
-
-    }
-
-
-
   }
 }
 </script>
@@ -321,7 +286,7 @@ export default {
           <q-td :props="props">
             <div class="text-center">
               <q-btn :to="{name:'stores_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
-              <q-btn :to="{name:'stores_inventory',params:{id:props.row.id}}" glossy title=" کنترل موجودی" class="q-ma-xs" color="teal-8" icon="fas fa-folder-open" size="9px" round  />
+              <q-btn :to="{name:'stores_inventory',params:{id:props.row.id}}" glossy title=" کنترل موجودی" class="q-ma-xs" color="teal-8" icon="fas fa-cart-flatbed" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
           </q-td>

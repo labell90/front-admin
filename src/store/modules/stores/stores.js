@@ -11,6 +11,15 @@ export default {
                 })
             })
         },
+        Module_Stores_Inventory_Index(_,items){
+            return new Promise((resolve, reject) => {
+                axios.get('users/stores/'+items.store_id+'/inventories/?per_page='+items.per_page+'&page='+items.page,{params : items.params}).then(response =>{
+                    return resolve(response);
+                }).catch(error =>{
+                    return reject(error);
+                })
+            })
+        },
         Module_Stores_All(){
             return new Promise((resolve, reject) => {
                 axios.get('users/stores/all').then(response =>{
@@ -50,9 +59,6 @@ export default {
             })
 
         },
-
-
-
         Module_Stores_Show(_,item){
             return new Promise((resolve, reject) => {
                 axios.get('users/stores/'+item).then(response =>{
@@ -63,8 +69,6 @@ export default {
             })
 
         },
-
-
         Module_Stores_Create(_,items){
             return new Promise((resolve, reject) => {
                 axios.post('users/stores',items).then(response =>{
@@ -95,9 +99,6 @@ export default {
             })
 
         },
-
-
-
         Module_Stores_Searchable(){
             return new Promise((resolve, reject) => {
                 axios.get('users/stores/searchable').then(response =>{
@@ -108,9 +109,6 @@ export default {
             })
 
         }
-
-
-
 
     }
 
