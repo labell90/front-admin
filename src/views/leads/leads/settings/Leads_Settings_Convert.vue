@@ -114,6 +114,7 @@ export default {
 
     Convert_Item(){
 
+
     },
 
   },
@@ -149,6 +150,9 @@ export default {
 
   </div>
   <template v-if="convert_to_customers">
+    <div class="q-mt-sm q-pa-sm">
+      <strong class="text-red-10">فرم تبدیل به مشتری</strong>
+    </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
         <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="customer_items.name"  type="text" label="نام و نام خانوادگی">
@@ -220,15 +224,14 @@ export default {
         </q-select>
 
       </div>
-
-
-      <div class="col-12 q-pa-xs">
-        <q-btn color="pink-7" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-      </div>
     </div>
+    <q-separator class="q-mt-sm q-mb-sm" ></q-separator>
 
   </template>
   <template v-if="convert_to_clients">
+    <div class="q-mt-sm q-pa-sm">
+      <strong class="text-red-10">فرم تبدیل به نماینده</strong>
+    </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 q-pa-sm">
         <q-input  :error="this.Methods_Validation_Check(errors,'name')" outlined v-model="client_items.name"  type="text" label="نام و نام خانوادگی">
@@ -374,12 +377,15 @@ export default {
       </div>
 
 
-      <div class="col-12 q-pa-xs">
-        <q-btn color="pink-7" :loading="loading" @click="Create_Item" glossy icon="fas fa-plus-circle" label="افزودن آیتم جدید"></q-btn>
-      </div>
-    </div>
 
+    </div>
+    <q-separator class="q-mt-sm q-mb-sm" ></q-separator>
   </template>
+  <div class="q-mt-md text-right">
+    <q-btn color="grey-7" glossy label="بستن" v-close-popup icon="fas fa-times" ></q-btn>
+    <q-btn color="pink-7" glossy label="انجام عملیات" class="q-ml-sm" icon="fas fa-check" :disable="!convert_to_clients && !convert_to_customers" @click="Convert_Item"></q-btn>
+
+  </div>
 
 </template>
 

@@ -1499,6 +1499,113 @@
 
 
         ]
+      },
+      {
+        "fa" : " مدیریت تامین کنندگان",
+        "en" : "Providers Management",
+        "icon" : "fas fa-boxes-stacked",
+        "route_path" : "/",
+        "route_name" : "",
+        "level"      : 0.5,
+
+
+        "subs" : [
+          {
+            "fa" : "تامین کنندگان",
+            "en" : "Providers",
+            "icon" : "fa-solid fa-boxes-stacked",
+            "route_path" : "/",
+            "route_name" : "",
+            "level"      : 0,
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد تامین کنندگان ",
+                "en" : "New Providers",
+                "route_path" : "/",
+                "route_name" : "providers_create",
+
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست تامین کنندگان ",
+                "en" : "Providers_Types",
+                "route_path" : "/",
+                "route_name" : "providers_index",
+                "level"      : 1,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : "دسته بندی تامین کنندگان",
+            "en" : "Providers_Category",
+            "icon" : "fa-solid fa-boxes-stacked",
+            "route_path" : "/",
+            "route_name" : "",
+            "level"      : 0,
+
+
+
+            "subs" : [
+              {
+                "fa" : "ایجاد دسته بندی تامین کنندگان",
+                "en" : "New Providers Category",
+                "route_path" : "/",
+                "route_name" : "providers_category_create",
+
+                "level"      : 1,
+
+
+
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست دسته بندی تامین کنندگان ",
+                "en" : "Providers_Category",
+                "route_path" : "/",
+                "route_name" : "providers_category_index",
+                "level"      : 1,
+
+
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          }
+
+
+
+
+
+
+
+        ]
       }
 
 

@@ -39,6 +39,8 @@ import route_options from "@/router/routes/options/options.js"
 import route_stores_types from "@/router/routes/stores_types/stores_types.js";
 import route_default_stores from "@/router/routes/default_stores/default_stores.js";
 import route_production_types from "@/router/routes/production_types/production_types.js";
+import route_providers_category from "@/router/routes/providers_category/providers_category.js";
+import route_providers from "@/router/routes/providers/providers.js";
 
 
 const routes = [
@@ -77,7 +79,9 @@ const routes = [
     ...route_stores,
     ...route_stores_types,
     ...route_default_stores,
-    ...route_production_types
+    ...route_production_types,
+    ...route_providers_category,
+    ...route_providers
 
 ]
 
