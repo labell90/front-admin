@@ -71,7 +71,7 @@
 
       {
         "fa" : "فروش",
-        "en" : "Campaign_Statuses",
+        "en" : "opportunities",
         "icon" : "fas fa-sack-dollar",
         "route_path" : "/",
         "route_name" : "",
@@ -87,8 +87,124 @@
 
             "subs" : [
             ]
-          }
+          },
+          {
+            "fa" : "مرحله فرصت فروش",
+            "en" : " Opportunity Levels",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1006",
+            "icon" : "fas fa-sack-dollar font-20",
+            "level"      : 1,
+            "subs" : [
+              {
+                "fa" : "ایجاد مرحله فرصت فروش",
+                "en" : "New Opportunity Levels",
+                "route_path" : "/",
+                "route_name" : "opportunity_levels_create",
+                "feature_type" : "create",
+                "level"      : 1,
 
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست مرحله فرصت فروش",
+                "en" : "Opportunity_Levels",
+                "route_path" : "/",
+                "route_name" : "opportunity_levels_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : "وضعیت فرصت فروش",
+            "en" : " Opportunity Statuses",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1006",
+            "icon" : "fas fa-sack-dollar font-20",
+            "level"      : 1,
+            "subs" : [
+              {
+                "fa" : "ایجاد وضعیت فرصت فروش",
+                "en" : "New Opportunity Statuses",
+                "route_path" : "/",
+                "route_name" : "opportunity_statuses_create",
+                "feature_type" : "create",
+                "level"      : 1,
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست وضعیت فرصت فروش",
+                "en" : "Opportunity_Statuses",
+                "route_path" : "/",
+                "route_name" : "opportunity_statuses_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          },
+          {
+            "fa" : " فرصت فروش",
+            "en" : " Opportunities",
+            "route_path" : "/",
+            "route_name" : "",
+            "feature" : "1006",
+            "icon" : "fas fa-sack-dollar font-20",
+            "level"      : 1,
+            "subs" : [
+              {
+                "fa" : "ایجاد فرصت فروش",
+                "en" : "New Opportunities",
+                "route_path" : "/",
+                "route_name" : "opportunities_create",
+                "feature_type" : "create",
+                "level"      : 1,
+
+                "subs" : [
+
+                ]
+              },
+              {
+                "fa" : "لیست فرصت فروش",
+                "en" : "Opportunities",
+                "route_path" : "/",
+                "route_name" : "opportunities_index",
+                "feature_type" : "read",
+                "level"      : 1,
+
+
+
+                "subs" : [
+
+                ]
+              }
+
+
+            ]
+          }
         ]
       },
       {

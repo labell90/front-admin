@@ -52,6 +52,9 @@ import production_types from "@/store/modules/production_types/production_types.
 import helper from "@/store/modules/helpers/helper.js";
 import providers_category from "@/store/modules/providers_category/providers_category.js";
 import providers from "@/store/modules/providers/providers.js";
+import opportunity_levels from "@/store/modules/opportunity_levels/opportunity_levels.js";
+import opportunity_statuses from "@/store/modules/opportunity_statuses/opportunity_statuses.js";
+import opportunities from "@/store/modules/opportunities/opportunities.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -114,7 +117,10 @@ const store = createStore({
         production_types,
         helper,
         providers_category,
-        providers
+        providers,
+        opportunity_levels,
+        opportunity_statuses,
+        opportunities
 
     }
 

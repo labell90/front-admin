@@ -2,7 +2,7 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Providers_Trash",
+  name: "Opportunity_Levels_Trash",
   mounted() {
     this.Items_Get();
   },
@@ -31,56 +31,33 @@ export default {
         },
         {
           name: 'name',
-          value: 'name',
-          label: 'نام تامین کننده',
+          required: true,
+          label: 'نام',
           align: 'left',
           sortable: true,
           field: row => row.name,
         },
-
         {
-          name: 'phone',
-          value: 'phone',
-          label: 'موبایل تامین کننده ',
-          align: 'left',
-          sortable: true,
-          field: row => row.phone,
-        },
-        {
-          name: 'tel',
-          value: 'tel',
-          label: 'تلفن تامین کننده',
+          name: 'color_code',
+          required: true,
+          label: 'رنگ',
           align: 'left',
           sortable: false,
-          field: row => row.tel,
+          field: row => row.color_code,
         },
-        {
-          name: 'created_by',
-          value: 'created_by',
-          label: 'ایجاد',
-          align: 'left',
-          sortable: true ,
-          field: row => row.created_by,
-        },
+
         {
           name: 'created_at',
-          value: 'created_at',
+          required: true,
           label: 'ت ایجاد',
           align: 'left',
           sortable: true ,
           field: row => row.created_at,
         },
-        {
-          name: 'updated_by',
-          value: 'updated_by',
-          label: 'ویرایش',
-          align: 'left',
-          sortable: true ,
-          field: row => row.updated_by,
-        },
+
         {
           name: 'updated_at',
-          value: 'updated_at',
+          required: true,
           label: 'ت ویرایش',
           align: 'left',
           sortable: true ,
@@ -88,19 +65,17 @@ export default {
         },
         {
           name: 'tools',
-          value: 'tools',
           label: 'عملیات',
           align: 'left',
         }
-      ],
+      ]
     }
   },
   methods :{
     ...mapActions([
-      "Module_Providers_Delete",
-      "Module_Providers_Trash_Delete",
-      "Module_Providers_Restore",
-      "Module_Providers_Trash_Index"
+      "Module_Opportunity_Levels_Action_Trash_Index",
+      "Module_Opportunity_Levels_Action_Trash_Delete",
+      "Module_Opportunity_Levels_Action_Restore"
 
 
     ]),
@@ -111,7 +86,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_Providers_Trash_Index({per_page:per_page,page:page}).then(res => {
+      this.Module_Opportunity_Levels_Action_Trash_Index({per_page:per_page,page:page}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -124,7 +99,7 @@ export default {
     },
     Item_Delete(id){
       this.delete_loading=true;
-      this.Module_Providers_Delete(id).then(res => {
+      this.Module_Opportunity_Levels_Action_Trash_Delete(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -143,7 +118,7 @@ export default {
     },
     Item_Restore(id){
       this.delete_loading=true;
-      this.Module_Providers_Restore(id).then(res => {
+      this.Module_Opportunity_Levels_Action_Restore(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
@@ -180,9 +155,11 @@ export default {
 <template>
   <q-card>
     <q-card-section>
-      <strong class="text-grey-10">جستجو و فیلتر پیشرفته</strong>
-      <global_actions_header_buttons :create="true" :index="true"  route="providers"></global_actions_header_buttons>
+      <strong class="text-grey-10">جستجو و فیلتر پیشترفته</strong>
+      <global_actions_header_buttons :create="true" :index="true"  route="opportunity_levels"></global_actions_header_buttons>
       <q-separator class="q-mt-xl"/>
+
+
     </q-card-section>
     <q-card-section>
       <q-table
@@ -203,15 +180,13 @@ export default {
           @request="Items_OnRequest"
       >
         <template v-slot:body-cell-name="props">
-
           <q-td :props="props">
-            <div class="row q-pt-xs q-pb-xs" >
-              <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
-            </div>
+            <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
           </q-td>
         </template>
         <template v-slot:body-cell-color_code="props">
           <q-td :props="props" :style="'background-color:'+props.row.color_code ">
+
           </q-td>
         </template>
 
@@ -240,15 +215,17 @@ export default {
         </template>
         <template v-slot:body-cell-updated_at="props">
           <q-td :props="props" >
+
             <global_filter_date :date="props.row.updated_at" />
+
           </q-td>
         </template>
+
       </q-table>
     </q-card-section>
 
-
-
   </q-card>
+
 
 </template>
 

@@ -2,7 +2,7 @@
 import {mapActions} from "vuex";
 
 export default {
-  name: "Providers_Trash",
+  name: "Opportunities_Trash",
   mounted() {
     this.Items_Get();
   },
@@ -32,27 +32,27 @@ export default {
         {
           name: 'name',
           value: 'name',
-          label: 'نام تامین کننده',
+          label: 'نام',
           align: 'left',
           sortable: true,
           field: row => row.name,
         },
 
         {
-          name: 'phone',
-          value: 'phone',
-          label: 'موبایل تامین کننده ',
+          name: 'customers',
+          value: 'customers',
+          label: 'مشتریان',
           align: 'left',
           sortable: true,
-          field: row => row.phone,
+          field: row => row.customers,
         },
         {
-          name: 'tel',
-          value: 'tel',
-          label: 'تلفن تامین کننده',
+          name: 'price',
+          value: 'price',
+          label: 'قیمت',
           align: 'left',
           sortable: false,
-          field: row => row.tel,
+          field: row => row.price,
         },
         {
           name: 'created_by',
@@ -97,65 +97,65 @@ export default {
   },
   methods :{
     ...mapActions([
-      "Module_Providers_Delete",
-      "Module_Providers_Trash_Delete",
-      "Module_Providers_Restore",
-      "Module_Providers_Trash_Index"
+      "Module_Opportunities_Action_Delete",
+      "Module_Opportunities_Action_Trash_Delete",
+      "Module_Opportunities_Action_Restore",
+      "Module_Opportunities_Action_Trash_Index"
 
 
     ]),
-    Items_Get(per_page,page){
-      if (!per_page){
+    Items_Get(per_page, page) {
+      if (!per_page) {
         per_page = '';
       }
-      if (!page){
+      if (!page) {
         page = '';
       }
-      this.Module_Providers_Trash_Index({per_page:per_page,page:page}).then(res => {
+      this.Module_Opportunities_Action_Trash_Index({per_page: per_page, page: page}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
         this.pagination.rowsNumber = res.data.result.total;
-        this.items_loading=false;
+        this.items_loading = false;
       }).catch(error => {
         this.Methods_Notify_Error_Server();
-        this.items_loading=false;
+        this.items_loading = false;
       })
     },
-    Item_Delete(id){
-      this.delete_loading=true;
-      this.Module_Providers_Delete(id).then(res => {
+    Item_Delete(id) {
+      this.delete_loading = true;
+      this.Module_Opportunities_Action_Trash_Delete(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
         this.Methods_Notify_Delete();
-        this.delete_loading=false;
+        this.delete_loading = false;
       }).catch(error => {
         if (error.response.status === 409) {
-          this.Methods_Notify_Generator( error.response.data.error,'red-8','fas fa-times')
-        }else {
+          this.Methods_Notify_Generator(error.response.data.error, 'red-8', 'fas fa-times')
+        } else {
           this.Methods_Notify_Error_Server();
         }
-        this.delete_loading=false;
+        this.delete_loading = false;
 
       })
 
     },
-    Item_Restore(id){
-      this.delete_loading=true;
-      this.Module_Providers_Restore(id).then(res => {
+    Item_Restore(id) {
+      this.delete_loading = true;
+      this.Module_Opportunities_Action_Restore(id).then(res => {
         this.items = this.items.filter(item => {
           return item.id !== id;
         })
         this.Methods_Notify_Delete();
-        this.delete_loading=false;
+        this.delete_loading = false;
       }).catch(error => {
         if (error.response.status === 409) {
-          this.Methods_Notify_Generator( error.response.data.error,'red-8','fas fa-times')
-        }else {
+          this.Methods_Notify_Generator(error.response.data.error, 'red-8', 'fas fa-times')
+        } else {
           this.Methods_Notify_Error_Server();
         }
-        this.delete_loading=false;
+        this.delete_loading = false;
 
       })
 
@@ -166,9 +166,9 @@ export default {
       this.selected = newSelection;
       this.items_selected = newSelection.map(item => item.id);
     },
-    Items_OnRequest(props){
-      const { page, rowsPerPage, sortBy, descending } = props.pagination
-      this.Items_Get(rowsPerPage,page);
+    Items_OnRequest(props) {
+      const {page, rowsPerPage, sortBy, descending} = props.pagination
+      this.Items_Get(rowsPerPage, page);
 
     },
 
@@ -181,7 +181,7 @@ export default {
   <q-card>
     <q-card-section>
       <strong class="text-grey-10">جستجو و فیلتر پیشرفته</strong>
-      <global_actions_header_buttons :create="true" :index="true"  route="providers"></global_actions_header_buttons>
+      <global_actions_header_buttons :create="true"  :index="true" route="opportunities"></global_actions_header_buttons>
       <q-separator class="q-mt-xl"/>
     </q-card-section>
     <q-card-section>
@@ -205,7 +205,7 @@ export default {
         <template v-slot:body-cell-name="props">
 
           <q-td :props="props">
-            <div class="row q-pt-xs q-pb-xs" >
+            <div class="row q-pt-xs q-pb-xs">
               <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
             </div>
           </q-td>
@@ -218,35 +218,37 @@ export default {
         <template v-slot:body-cell-tools="props">
           <q-td :props="props">
             <div class="text-center">
-              <global_actions_restore_item @Set_Ok="Item_Restore(props.row.id)" :loading="restore_loading"></global_actions_restore_item>
-              <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
+              <global_actions_restore_item @Set_Ok="Item_Restore(props.row.id)"
+                                           :loading="restore_loading"></global_actions_restore_item>
+              <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)"
+                                          :loading="delete_loading"></global_actions_delete_item>
             </div>
           </q-td>
         </template>
         <template v-slot:body-cell-created_by="props">
-          <q-td :props="props" >
-            <global_items_user :user="props.row.created_by" />
+          <q-td :props="props">
+            <global_items_user :user="props.row.created_by"/>
           </q-td>
         </template>
         <template v-slot:body-cell-created_at="props">
-          <q-td :props="props" >
-            <global_filter_date :date="props.row.created_at" />
+          <q-td :props="props">
+            <global_filter_date :date="props.row.created_at"/>
           </q-td>
         </template>
         <template v-slot:body-cell-updated_by="props">
-          <q-td :props="props" >
-            <global_items_user :user="props.row.updated_by" />
+          <q-td :props="props">
+            <global_items_user :user="props.row.updated_by"/>
           </q-td>
         </template>
         <template v-slot:body-cell-updated_at="props">
-          <q-td :props="props" >
-            <global_filter_date :date="props.row.updated_at" />
+          <q-td :props="props">
+
+            <global_filter_date :date="props.row.updated_at"/>
+
           </q-td>
         </template>
       </q-table>
     </q-card-section>
-
-
 
   </q-card>
 

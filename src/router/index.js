@@ -41,6 +41,9 @@ import route_default_stores from "@/router/routes/default_stores/default_stores.
 import route_production_types from "@/router/routes/production_types/production_types.js";
 import route_providers_category from "@/router/routes/providers_category/providers_category.js";
 import route_providers from "@/router/routes/providers/providers.js";
+import route_opportunity_levels from "@/router/routes/opportunity_levels/opportunity_levels.js";
+import route_opportunity_statuses from "@/router/routes/opportunity_statuses/opportunity_statuses.js";
+import route_opportunities from "@/router/routes/opportunities/opportunities.js";
 
 
 const routes = [
@@ -81,7 +84,10 @@ const routes = [
     ...route_default_stores,
     ...route_production_types,
     ...route_providers_category,
-    ...route_providers
+    ...route_providers,
+    ...route_opportunity_levels,
+    ...route_opportunity_statuses,
+    ...route_opportunities
 
 ]
 
