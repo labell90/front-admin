@@ -1335,7 +1335,7 @@
           },
           {
             "fa" : " کد گذاری محصولات",
-            "en" : "Product Codes",
+            "en" : "Products Coding",
             "route_path" : "/",
             "route_name" : "",
             "feature" : "1001",
@@ -1348,9 +1348,9 @@
             "subs" : [
               {
                 "fa" : "ایجاد کد گذاری محصولات  ",
-                "en" : "New Product Codes",
+                "en" : "New Products Coding",
                 "route_path" : "/",
-                "route_name" : "product_code_create",
+                "route_name" : "products_coding_create",
                 "feature_type" : "create",
                 "level"      : 1,
 
@@ -1364,9 +1364,9 @@
               },
               {
                 "fa" : "لیست کد گذاری محصولات",
-                "en" : "Product Code List",
+                "en" : "Products Coding List",
                 "route_path" : "/",
-                "route_name" : "product_code_index",
+                "route_name" : "products_coding_index",
                 "feature_type" : "read",
                 "level"      : 1,
 

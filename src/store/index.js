@@ -55,6 +55,7 @@ import providers from "@/store/modules/providers/providers.js";
 import opportunity_levels from "@/store/modules/opportunity_levels/opportunity_levels.js";
 import opportunity_statuses from "@/store/modules/opportunity_statuses/opportunity_statuses.js";
 import opportunities from "@/store/modules/opportunities/opportunities.js";
+import products_coding from "@/store/modules/products_coding/products_coding.js";
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -120,7 +121,8 @@ const store = createStore({
         providers,
         opportunity_levels,
         opportunity_statuses,
-        opportunities
+        opportunities,
+        products_coding
 
     }
 

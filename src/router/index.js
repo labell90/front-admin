@@ -44,6 +44,7 @@ import route_providers from "@/router/routes/providers/providers.js";
 import route_opportunity_levels from "@/router/routes/opportunity_levels/opportunity_levels.js";
 import route_opportunity_statuses from "@/router/routes/opportunity_statuses/opportunity_statuses.js";
 import route_opportunities from "@/router/routes/opportunities/opportunities.js";
+import route_products_coding from "@/router/routes/products_coding/products_coding.js";
 
 
 const routes = [
@@ -87,7 +88,8 @@ const routes = [
     ...route_providers,
     ...route_opportunity_levels,
     ...route_opportunity_statuses,
-    ...route_opportunities
+    ...route_opportunities,
+    ...route_products_coding
 
 ]
 
