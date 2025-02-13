@@ -35,6 +35,7 @@ export default {
     ...mapActions([
       "Module_Providers_Category_Create",
       "Module_Providers_Category_All",
+        "Module_Providers_Create"
 
     ]),
 
@@ -65,7 +66,7 @@ export default {
 
     Create_Item(){
       this.loading=true;
-      this.Module_Stores_Create(this.items).then(response => {
+      this.Module_Providers_Create(this.items).then(response => {
         this.loading=false;
         this.Methods_Notify_Create();
         this.$router.push({name:'providers_index'});
