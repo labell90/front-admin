@@ -1,8 +1,15 @@
 <script>
 import {mapActions} from "vuex";
+import products_coding from "@/views/products/components/Products_Coding.vue";
+import product_prices from "@/views/products/components/Products_Prices.vue";
 
 export default {
   name: "Stores_Inventory",
+  components: {product_prices, products_coding},
+  mounted() {
+    this.Items_Get();
+    this.Columns_Generate();
+  },
   data(){
     return {
       items:[],
@@ -16,6 +23,7 @@ export default {
       delete_loading:false,
       activation_loading:false,
       items_selected:[],
+      convert_dialog:[],
       selected: [],
       pagination: {
         sortBy : 'id',
@@ -110,6 +118,7 @@ export default {
   methods :{
     ...mapActions([
       "Module_Stores_Inventory_Index",
+        "Module_Stores_Searchable"
     ]),
     Items_Get(per_page,page){
       if (!per_page){
@@ -183,9 +192,137 @@ export default {
 </script>
 
 <template>
-  <div>
+  <q-card>
+    <q-card-section>
+      <q-btn  @click="convert_dialog[props.row.id] = true" class="float-right" color="indigo-8"  glossy icon="fas fa-plus" size="11px" round>
+        <q-tooltip  transition-show="scale" transition-hide="scale" class="bg-blue-grey-9 font-12">
+          افزودن آیتم
+        </q-tooltip>
+      </q-btn>
+      <q-separator class="q-mt-xl"/>
+    </q-card-section>
+    <q-card-section>
+      <div class="q-mb-sm">
+        <q-select
+            outlined
+            transition-show="flip-up"
+            transition-hide="flip-down"
+            v-model="visible_columns"
+            label="موارد قابل مشاهده"
+            :options="columns"
+            emit-value
+            map-options
+            multiple
+            behavior="dialog"
+            use-chips
+        >
+          <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+            <q-item v-bind="itemProps">
+              <q-item-section>
+                <q-item-label v-html="opt.label" />
+              </q-item-section>
+              <q-item-section side>
+                <q-toggle :model-value="selected" @update:model-value="toggleOption(opt)" />
+              </q-item-section>
+            </q-item>
+          </template>
 
-  </div>
+        </q-select>
+      </div>
+
+      <q-table
+          flat
+          bordered
+          :loading="items_loading"
+          :rows="items"
+          title="لیست آیتم ها"
+          title-class="text-teal-8 font-18 font-weight-500"
+          table-header-class="text-red-8"
+          :columns="columns"
+          :visible-columns="visible_columns"
+          separator="cell"
+          selection="multiple"
+          row-key="id"
+          :selected="selected"
+          @update:selected="updateSelected"
+          v-model:pagination="pagination"
+          @request="Items_OnRequest"
+      >
+        <template v-slot:body-cell-name="props">
+          <q-td :props="props">
+            <div class="q-ml-sm q-mt-sm"><strong>{{ props.row.name }}</strong></div>
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-product="props">
+          <q-td :props="props">
+            <span v-if="props.row.product" class="text-grey-8">{{props.row.product.name}}</span>
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-quantity="props">
+          <q-td :props="props">
+            <span v-if="props.row.quantity" class="text-grey-8">{{props.row.quantity}}</span>
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-orderable_quantity="props">
+          <q-td :props="props">
+            <span v-if="props.row.orderable_quantity" class="text-grey-8">{{props.row.orderable_quantity}}</span>
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-reorder_point="props">
+          <q-td :props="props">
+            <span v-if="props.row.quantity" class="text-grey-8">{{props.row.reorder_point}}</span>
+          </q-td>
+        </template>
+
+
+        <template v-slot:body-cell-tools="props">
+          <q-td :props="props">
+            <div class="text-center">
+              <q-btn :to="{name:'products_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
+              <q-btn @click="convert_dialog[props.row.id] = true" glossy class="q-ma-xs" color="purple-9" icon="fas fa-pencil" size="9px" round title="کد گذاری محصول"/>
+              <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
+            </div>
+
+          </q-td>
+
+        </template>
+
+
+        <template v-slot:body-cell-created_by="props">
+          <q-td :props="props" >
+            <global_items_user :user="props.row.created_by" />
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-created_at="props">
+          <q-td :props="props" >
+            <global_filter_date :date="props.row.created_at" />
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-updated_by="props">
+          <q-td :props="props" >
+            <global_items_user :user="props.row.updated_by" />
+          </q-td>
+        </template>
+
+        <template v-slot:body-cell-updated_at="props">
+          <q-td :props="props" >
+
+            <global_filter_date :date="props.row.updated_at" />
+
+          </q-td>
+        </template>
+
+      </q-table>
+    </q-card-section>
+
+  </q-card>
+
 
 </template>
 

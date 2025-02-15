@@ -2,12 +2,17 @@
 import {mapActions} from "vuex";
 import Products_Prices from "@/views/products/components/Products_Prices.vue";
 import leads_tags from "@/views/leads/leads/profile/components/Leads_Profile_Tags.vue";
+import Leads_Settings_Convert from "@/views/leads/leads/settings/Leads_Settings_Convert.vue";
+import Products_Coding from "@/views/products/components/Products_Coding.vue";
 
 export default {
   name: "Products_Index",
   components: {
+    Products_Coding,
     leads_tags,
     'product_prices' : Products_Prices,
+    'leads_settings_convert' : Leads_Settings_Convert,
+    'products_coding' : Products_Coding
   },
   mounted() {
     this.Items_Get();
@@ -26,6 +31,7 @@ export default {
       delete_loading:false,
       activation_loading:false,
       items_selected:[],
+      convert_dialog:[],
       selected: [],
       pagination: {
         sortBy : 'id',
@@ -305,10 +311,30 @@ export default {
             <q-td :props="props">
               <div class="text-center">
               <q-btn :to="{name:'products_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
-              <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
+                <q-btn @click="convert_dialog[props.row.id] = true" glossy class="q-ma-xs" color="purple-9" icon="fas fa-pencil" size="9px" round title="کد گذاری محصول"/>
+                <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
             </div>
+              <q-dialog
+                  v-model="convert_dialog[props.row.id]"
+                  position="top"
+              >
+                <q-card style="width: 960px; max-width: 80vw;">
+                  <q-card-section>
+                    <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+                    <strong class="font-15">کد گذاری محصول : <strong class="text-red">{{props.row.name}}</strong> </strong>
+                    <q-separator class="q-mt-md"/>
+                  </q-card-section>
+                  <products_coding :product="props.row"></products_coding>
+                  <q-separator/>
+                  <q-card-section>
+
+                  </q-card-section>
+                </q-card>
+              </q-dialog>
           </q-td>
+
         </template>
+
 
         <template v-slot:body-cell-created_by="props">
           <q-td :props="props" >
