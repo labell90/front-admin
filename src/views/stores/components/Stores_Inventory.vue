@@ -65,8 +65,6 @@ export default {
           sortable: false,
           field: row => row.order_limit,
         },
-
-
         {
           name: 'created_by',
           value: 'created_by',
@@ -105,6 +103,7 @@ export default {
           label: 'عملیات',
           align: 'left',
         }
+
       ],
       visible_columns:[],
     }
@@ -120,7 +119,7 @@ export default {
       if (!page){
         page = '';
       }
-      this.Module_Stores_Index({store_id:this.$route.params.id,per_page:per_page,page:page,params:this.query_params}).then(res => {
+      this.Module_Stores_Inventory_Index({store_id:this.$route.params.id,per_page:per_page,page:page,params:this.query_params}).then(res => {
         this.items = res.data.result.data;
         this.pagination.page = res.data.result.current_page;
         this.pagination.rowsPerPage = res.data.result.per_page;
@@ -185,6 +184,9 @@ export default {
 </script>
 
 <template>
+  <div>
+
+  </div>
 
 </template>
 

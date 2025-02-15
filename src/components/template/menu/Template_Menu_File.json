@@ -1139,7 +1139,6 @@
 
         ]
       },
-
       {
         "fa" : "تنظیمات",
         "en" : "Setting",
@@ -1147,8 +1146,6 @@
         "route_path" : "/",
         "route_name" : "",
         "level"      : 0.5,
-
-
         "subs" : [
           {
             "fa" : "یکاهای اندازه گیری",
@@ -1183,11 +1180,8 @@
 
 
                 "subs" : [
-
                 ]
               }
-
-
             ]
           },
           {
@@ -1197,8 +1191,6 @@
             "route_path" : "/",
             "route_name" : "",
             "level"      : 1,
-
-
             "subs" : [
               {
                 "fa" : "ایجاد ویژگی ",
@@ -1233,46 +1225,32 @@
             ]
           },
           {
-            "fa" : "دسته بندی ها",
-            "en" : "Product_Types",
+            "fa" : "گروه بندی",
+            "en" : "Product Groups",
             "route_path" : "/",
             "route_name" : "",
             "icon" : "fas fa-layer-group font-20",
             "feature" : "1007",
             "level"      : 1,
-
-
-
             "subs" : [
               {
-                "fa" : "ایجاد دسته بندی",
-                "en" : "New Type",
+                "fa" : "ایجاد گروه محصول",
+                "en" : "New Group",
                 "route_path" : "/",
-                "route_name" : "product_types_create",
+                "route_name" : "product_groups_create",
                 "feature_type" : "create",
                 "level"      : 1.5,
-
-
-
-
                 "subs" : [
 
                 ]
               },
               {
-                "fa" : "لیست دسته بندی ها",
-                "en" : "Categories",
+                "fa" : "لیست گروه بندی ها",
+                "en" : "Groups",
                 "route_path" : "/",
-                "route_name" : "product_types_index",
+                "route_name" : "product_groups_index",
                 "feature_type" : "read",
                 "level"      : 1.5,
-
-
-
-
-
-
-
                 "subs" : [
 
                 ]
@@ -1289,10 +1267,6 @@
             "feature" : "1001",
             "icon" : "fas fa-bag-shopping font-20",
             "level"      : 1,
-
-
-
-
             "subs" : [
               {
                 "fa" : "ایجاد نوع محصولات  ",
@@ -1386,9 +1360,6 @@
 
         ]
       }
-
-
-
     ]
   },
   {
