@@ -103,7 +103,6 @@ export default {
           label: 'عملیات',
           align: 'left',
         }
-
       ],
       visible_columns:[],
     }
