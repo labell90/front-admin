@@ -65,8 +65,6 @@ export default {
           sortable: false,
           field: row => row.order_limit,
         },
-
-
         {
           name: 'created_by',
           value: 'created_by',
@@ -105,6 +103,7 @@ export default {
           label: 'عملیات',
           align: 'left',
         }
+
       ],
       visible_columns:[],
     }
@@ -185,6 +184,9 @@ export default {
 </script>
 
 <template>
+  <div>
+    sfsdfsdf
+  </div>
 
 </template>
 
