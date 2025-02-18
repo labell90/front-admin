@@ -1,8 +1,10 @@
 <script>
 import {mapActions} from "vuex";
+import leads_tags from "@/views/leads/leads/profile/components/Leads_Profile_Tags.vue";
 
 export default {
   name: "Client_Index",
+  components: {leads_tags},
   mounted() {
     this.Items_Get();
     this.Searchable_Get();
@@ -264,7 +266,7 @@ export default {
 </script>
 
 <template>
-  {{tags_dialog}}
+
   <q-card>
     <q-card-section>
       <global_actions_header_buttons :create="true" :archive="true" route="client"></global_actions_header_buttons>
@@ -381,6 +383,21 @@ export default {
               <q-btn :to="{name:'client_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
 
+              <q-dialog
+                  v-model="tags_dialog[props.row.id]"
+                  position="top"
+              >
+                <q-card style="width: 960px; max-width: 80vw;">
+                  <q-card-section>
+                    <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+                    <strong class="font-15">ویرایش تگ های نماینده</strong>
+                  </q-card-section>
+                  <q-separator/>
+                  <q-card-section>
+                    <global_tags ></global_tags>
+                  </q-card-section>
+                </q-card>
+              </q-dialog>
 
             </div>
           </q-td>
