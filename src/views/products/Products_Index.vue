@@ -31,7 +31,6 @@ export default {
       delete_loading:false,
       activation_loading:false,
       items_selected:[],
-      convert_dialog:[],
       selected: [],
       pagination: {
         sortBy : 'id',
@@ -331,6 +330,25 @@ export default {
                   </q-card-section>
                 </q-card>
               </q-dialog>
+              <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
+                <q-btn @click="tags_dialog[props.row.id]=true"  glossy title=" تگ ها" class="q-ma-xs" color="orange-8" icon="fas fa-tag" size="9px" round  />
+                <q-dialog
+                    v-model="tags_dialog[props.row.id]"
+                    position="top"
+                >
+                  <q-card style="width: 960px; max-width: 80vw;">
+                    <q-card-section>
+                      <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+                      <strong class="font-15">ویرایش تگ های محصول</strong>
+                    </q-card-section>
+                    <q-separator/>
+                    <q-card-section>
+                      <global_tags ></global_tags>
+                    </q-card-section>
+                  </q-card>
+                </q-dialog>
+
+              </div>
           </q-td>
 
         </template>

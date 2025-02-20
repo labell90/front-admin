@@ -127,6 +127,7 @@ export default {
         }
       ],
       visible_columns:[],
+      tags_dialog:[]
     }
   },
   methods :{
@@ -358,7 +359,23 @@ export default {
               <q-btn :to="{name:'users_access',params:{id:props.row.id}}" glossy title="مدیریت دسترسی" class="q-ma-xs" color="green-8" icon="fas fa-shield-halved" size="9px" round  />
               <q-btn :to="{name:'users_profile',params:{id:props.row.id}}" glossy title="پروفایل" class="q-ma-xs" color="deep-orange-6" icon="fas fa-user" size="9px" round  />
               <q-btn :to="{name:'users_edit',params:{id:props.row.id}}" glossy title="ویرایش آیتم" class="q-ma-xs" color="blue-8" icon="fas fa-edit" size="9px" round  />
+              <q-btn @click="tags_dialog[props.row.id]=true"  glossy title=" تگ ها" class="q-ma-xs" color="orange-8" icon="fas fa-tag" size="9px" round  />
               <global_actions_delete_item @Set_Ok="Item_Delete(props.row.id)" :loading="delete_loading"></global_actions_delete_item>
+              <q-dialog
+                  v-model="tags_dialog[props.row.id]"
+                  position="top"
+              >
+                <q-card style="width: 960px; max-width: 80vw;">
+                  <q-card-section>
+                    <q-btn size="sm" icon="fas fa-times" glossy round dense v-close-popup color="red" class="q-mr-sm"/>
+                    <strong class="font-15">ویرایش تگ های کاربر</strong>
+                  </q-card-section>
+                  <q-separator/>
+                  <q-card-section>
+                    <global_tags ></global_tags>
+                  </q-card-section>
+                </q-card>
+              </q-dialog>
             </div>
 
           </q-td>

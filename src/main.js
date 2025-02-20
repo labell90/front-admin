@@ -57,6 +57,7 @@ import Global_Item_Extra_Fields from "@/components/globals/items/Global_Item_Ext
 import Global_Items_Tag_Single from "@/components/globals/items/Global_Items_Tag_Single.vue";
 import Global_Filter_Date_Start from "@/components/globals/filters/Global_Filter_Date_Start.vue";
 import Global_Filter_Date_End from "@/components/globals/filters/Global_Filter_Date_End.vue";
+import Tags_Global_Items from "@/views/tags/Tags_Global_Items.vue";
 
 
 
@@ -93,6 +94,7 @@ app.component("global_chips_bool_status",Global_Chips_Bool_Status)
 app.component("global_form_type_icon",Global_Items_Form_Type_Icon)
 app.component("global_items_file_view_by_type",Global_Item_File_View_By_Type)
 app.component("global_leads_note_item",Leads_Profile_Notes_Item)
+app.component('global_tags',Tags_Global_Items)
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
