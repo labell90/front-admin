@@ -129,6 +129,9 @@ export default {
       ],
       visible_columns:[],
       prices_dialog:[],
+      convert_dialog:[],
+      tags_dialog:[]
+
 
     }
   },
@@ -348,7 +351,7 @@ export default {
                   </q-card>
                 </q-dialog>
 
-              </div>
+
           </q-td>
 
         </template>
