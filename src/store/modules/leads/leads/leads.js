@@ -296,9 +296,9 @@ export default {
             })
         },
 
-        Module_Lead_Action_Convert_Client(_,item){
+        Module_Lead_Action_Convert_Client(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/leads/convert/client/'+item).then(response =>{
+                axios.post('users/leads/leads/convert/client/'+items.lead_id,items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);
@@ -307,9 +307,9 @@ export default {
 
         },
 
-        Module_Lead_Action_Convert_Customer(_,item){
+        Module_Lead_Action_Convert_Customer(_,items){
             return new Promise((resolve, reject) => {
-                axios.get('users/leads/leads/convert/customer/'+item).then(response =>{
+                axios.post('users/leads/leads/convert/customer/'+items.lead_id,items).then(response =>{
                     return resolve(response);
                 }).catch(error =>{
                     return reject(error);

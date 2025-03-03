@@ -5,10 +5,12 @@ export default {
     data(){
         return {
             VUE_APP_ASSET:null,
+            VUE_APP_API:null,
         }
     },
     created() {
         this.VUE_APP_ASSET = import.meta.env.VITE_API_ASSET_URL
+        this.VUE_APP_API = import.meta.env.VITE_API_BASE_URL
 
     },
 

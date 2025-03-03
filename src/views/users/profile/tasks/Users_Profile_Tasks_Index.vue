@@ -23,13 +23,13 @@ export default {
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 q-pa-sm" >
 
        <router-link :to="{name:'my_task_doing'}">
-         <div class="q-pa-sm rounded-borders glossy-bg row">
+         <div class="q-pa-sm rounded-borders glossy-bg row" :class="{'glossy-active' : this.$route.name === 'my_task_doing'}">
          <div class="col-lx-4 col-lg-5 col-md-6">
            <img src="assets/images/icons/task_doing.png" width="60" alt="">
          </div>
          <div class="col-lx-8 col-lg-7 col-md-6">
            <div class="q-mt-lg">
-             <strong class=" menu-title"> وظایف در حال انجام</strong>
+             <strong class="menu-title"> وظایف در حال انجام</strong>
            </div>
          </div>
        </div>
@@ -126,6 +126,9 @@ export default {
 <style scoped>
 .glossy-bg{
   background-color: rgba(27, 26, 26, 0.05);
+}
+.glossy-active{
+  border: 2px dashed rgb(28, 159, 85) !important;
 }
 
 .menu-title{

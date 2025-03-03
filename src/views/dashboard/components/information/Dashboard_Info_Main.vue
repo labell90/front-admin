@@ -50,7 +50,7 @@ export default {
   <q-card-section class="q-pa-sm">
     <global_loading_shape v-if="loading"></global_loading_shape>
     <div v-else class="row justify-center">
-      <div class="col-xl-3 q-px-xs q-pa-xs">
+      <div class="col-xl-3 col-lg-3 q-px-xs q-pa-xs">
         <q-card class="bg-indigo-8 glossy">
           <router-link :to="{name : 'users_index'}">
             <q-card-section>
@@ -61,7 +61,7 @@ export default {
           </router-link>
         </q-card>
       </div>
-      <div class="col-xl-3 q-px-xs q-pa-xs">
+      <div class="col-xl-3 col-lg-3 q-px-xs q-pa-xs">
         <q-card class="bg-pink-8 glossy">
           <router-link :to="{name : 'lead_index'}">
             <q-card-section>
@@ -73,7 +73,7 @@ export default {
           </router-link>
         </q-card>
       </div>
-      <div class="col-xl-3 q-px-xs q-pa-xs">
+      <div class="col-xl-3 col-lg-3 q-px-xs q-pa-xs">
         <q-card class="bg-teal-8 glossy">
           <router-link :to="{name : 'campaigns_index'}">
             <q-card-section>
@@ -85,7 +85,7 @@ export default {
 
         </q-card>
       </div>
-      <div class="col-xl-3 q-px-xs q-pa-xs">
+      <div class="col-xl-3 col-lg-3 q-px-xs q-pa-xs">
         <q-card class="bg-dark glossy">
           <router-link :to="{name : 'campaigns_index'}">
             <q-card-section>

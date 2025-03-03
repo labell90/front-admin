@@ -405,6 +405,7 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'country_id')"
           >
             <template v-slot:no-option>
               <q-item>
@@ -441,6 +442,8 @@ export default {
               @change="Computed_Get_Cities"
               emit-value
               map-options
+              :error="this.Methods_Validation_Check(errors,'province_id')"
+
               use-input
           >
             <template v-slot:no-option>
@@ -474,6 +477,7 @@ export default {
               emit-value
               map-options
               use-input
+              :error="this.Methods_Validation_Check(errors,'city_id')"
           >
             <template v-slot:no-option>
               <q-item>

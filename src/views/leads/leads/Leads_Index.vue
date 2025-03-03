@@ -66,7 +66,6 @@ export default {
       items_selected:[],
       selected: [],
       editor_api:null,
-
       pagination: {
         sortBy : 'id',
         descending:true,
@@ -200,14 +199,12 @@ export default {
         this.items_loading=false;
       })
     },
-
     Searchable_Get(){
       this.Module_Lead_Action_Searchable().then(res => {
         this.searchable = res.data.result
         console.log(this.searchable)
       })
     },
-
     Item_Delete(id){
       this.delete_loading=true;
       this.Module_Lead_Action_Delete(id).then(res => {
@@ -227,71 +224,6 @@ export default {
       })
 
     },
-
-    Convert_Client(id) {
-      this.$q.dialog({
-        title: 'آیا اطمینان دارید',
-        message: 'این سرنخ به نماینده تبدیل شود ؟',
-        ok: {
-          glossy: true,
-          color : "green-7"
-        },
-        cancel: {
-          glossy: true,
-          color: 'negative'
-        },
-        persistent: true
-      }).onOk(() => {
-        this.convert_loading=true;
-        this.Module_Lead_Action_Convert_Client(id).then(res => {
-          this.Methods_Notify_Message_Success("سرنخ باموفقیت به نماینده تبدیل شد")
-          this.convert_loading=false;
-        }).catch(error => {
-          if (error.response.status === 409) {
-            this.Methods_Notify_Message_Error(error.response.data.error)
-          }
-          this.convert_loading=false;
-
-        })
-      }).onCancel(() => {
-
-      }).onDismiss(() => {
-
-      })
-    },
-
-    Convert_Customer(id) {
-      this.$q.dialog({
-        title: 'آیا اطمینان دارید',
-        message: 'این سرنخ به مشتری تبدیل شود ؟',
-        ok: {
-          glossy: true,
-          color : "green-7"
-        },
-        cancel: {
-          glossy: true,
-          color: 'negative'
-        },
-        persistent: true
-      }).onOk(() => {
-        this.convert_loading=true;
-        this.Module_Lead_Action_Convert_Customer(id).then(res => {
-          this.Methods_Notify_Message_Success("سرنخ باموفقیت به مشتری تبدیل شد")
-          this.convert_loading=false;
-        }).catch(error => {
-          if (error.response.status === 409) {
-            this.Methods_Notify_Message_Error(error.response.data.error)
-          }
-          this.convert_loading=false;
-
-        })
-      }).onCancel(() => {
-
-      }).onDismiss(() => {
-
-      })
-    },
-
     Item_Actions_Delete(){
       this.actions_loading=true;
       this.Module_Lead_Action_Actions_Delete({ids : this.items_selected}).then(res => {
@@ -310,13 +242,11 @@ export default {
       })
 
     },
-
     Item_Actions_Edit(){
       this.multi_edit_dialog=false;
       this.Methods_Notify_Update();
       this.Items_Get(this.pagination.rowsPerPage,this.pagination.page)
     },
-
     Item_Actions_Text(){
       this.multi_sms_loading = true;
       let data = {
@@ -338,7 +268,6 @@ export default {
 
 
     },
-
     Item_Actions_Email(){
       this.multi_email_loading = true;
       let data = {
@@ -360,7 +289,6 @@ export default {
       })
 
     },
-
     Item_Actions_Note(){
       this.multi_note_loading = true;
       let data = {
@@ -384,7 +312,6 @@ export default {
       })
 
     },
-
     Item_Activation(id){
       this.activation_loading=true;
       this.Module_Lead_Action_Activation(id).then(res => {
@@ -403,17 +330,14 @@ export default {
       })
 
     },
-
     Merge_Leads(){
       this.active_setting=null;
       this.Methods_Notify_Message_Success("سرنخ های مورد نظر باموفقیت ادغام شدند !")
     },
-
     updateSelected(newSelection) {
       this.selected = newSelection;
       this.items_selected = newSelection.map(item => item.id);
     },
-
     Items_OnRequest(props){
       const { page, rowsPerPage, sortBy, descending } = props.pagination
       let sort_type;
@@ -431,20 +355,21 @@ export default {
       this.Items_Get(rowsPerPage,page);
 
     },
-
     Items_Search(data){
       this.query_params.search = data;
       this.Items_Get()
     },
-
     Columns_Generate(){
       this.columns.forEach(item => {
         if (item.value){
           this.visible_columns.push(item.value)
         }
       })
+    },
+    Convert_Lead(lead){
+      this.convert_dialog[lead.lead.id] = false;
+      this.Methods_Notify_Message_Success("تبدیل سرنخ با موفقیت انجام شد")
     }
-
   }
 }
 </script>
@@ -493,7 +418,6 @@ export default {
           </q-card-section>
         </q-card>
       </q-dialog>
-
       <q-separator class="q-mt-xl"/>
       <div class="q-mt-md">
         <strong class="text-teal-8">جستجو و فیلتر پیشترفته</strong>
@@ -530,6 +454,9 @@ export default {
           </template>
 
         </q-select>
+        <q-banner class="q-mt-md q-mb-md bg-blue-7 rounded-borders text-white">
+          موارد تبدیل شده به مشتری با ستاره مشخص شده است
+        </q-banner>
       </div>
       <q-table
           flat
@@ -698,14 +625,20 @@ export default {
             </q-card>
           </q-dialog>
 
-
-
-
         </template>
         <template v-slot:body-cell-name="props">
           <q-td :props="props">
             <router-link :to=" {name:'lead_profile',params:{id:props.row.id}}" >
-              <div class="q-ml-sm q-mt-sm"><strong class="text-indigo-7">{{ props.row.name }}</strong></div>
+
+              <div class="q-ml-sm q-mt-sm">
+                <strong v-if="!props.row.is_convert" class="text-indigo-7">{{ props.row.name }}</strong>
+                <template v-else>
+                  <q-icon name="fas fa-star" color="yellow-10" class="font-18 q-mr-sm"></q-icon>
+                  <strong class="text-teal-8">{{props.row.name}}</strong>
+
+                </template>
+
+              </div>
             </router-link>
           </q-td>
         </template>
@@ -742,7 +675,7 @@ export default {
               </q-card-section>
               <q-separator/>
               <q-card-section>
-           <leads_settings_convert :lead="props.row"></leads_settings_convert>
+           <leads_settings_convert @Converted="(item) => Convert_Lead(item)" :lead="props.row"></leads_settings_convert>
               </q-card-section>
             </q-card>
           </q-dialog>

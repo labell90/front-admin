@@ -4,21 +4,36 @@ import {mapActions} from "vuex";
 export default {
   name: "Leads_Settings_Convert",
   props:['lead'],
+  mounted() {
+    if (this.lead) {
+      this.customer_items.lead_id = this.lead.id;
+      this.customer_items.name = this.lead.name;
+      this.customer_items.email = this.lead.email;
+      this.customer_items.phone = this.lead.phone;
+      this.customer_items.national_code = this.lead.national_code;
+      this.client_items.lead_id = this.lead.id;
+      this.client_items.name = this.lead.name;
+      this.client_items.email = this.lead.email;
+      this.client_items.phone = this.lead.phone;
+      this.client_items.national_code = this.lead.national_code;
+    }
+  },
   data() {
     return {
       errors:[],
       convert_to_customers : false,
       convert_to_clients : false,
-     customer_items:{
+      customer_items:{
+        lead_id:null,
         name:null,
         email:null,
         phone:null,
         client_id:null,
         national_code:null,
-
       },
       clients:[],
       client_items:{
+        lead_id:null,
         client_group_id:null,
         name:null,
         email:null,
@@ -27,16 +42,20 @@ export default {
         support_id:null,
         national_code:null,
       },
-       client_groups:[],
+      client_groups:[],
       users:[],
-      supports:[]
+      supports:[],
+      loading:false,
     }
 
   },
   methods:{
     ...mapActions([
         "Module_Users_Search",
-        "Module_Client_Search"
+        "Module_Client_Search",
+        "Module_Client_Groups_All",
+        "Module_Lead_Action_Convert_Client",
+        "Module_Lead_Action_Convert_Customer"
     ]),
 
     Get_Clients_Search(params){
@@ -86,7 +105,7 @@ export default {
             return item.label !== null && item.label.match(val)
           })
         }else {
-          // this.Computed_Get_Cities();
+          this.Get_Client_Group();
         }
       })
     },
@@ -110,10 +129,35 @@ export default {
         }
       })
     },
-
-
+    Get_Client_Group(){
+      this.Module_Client_Groups_All().then(res => {
+        this.client_groups=[];
+        res.data.result.forEach(item => {
+          this.client_groups.push({label: item.name, value: item.id,color_code: item.color_code});
+        })
+      })
+    },
     Convert_Item(){
+      this.loading=true;
+      let data = {
+        lead : this.lead,
+        is_convert : false
+      }
+      if (this.convert_to_clients){
+        this.Module_Lead_Action_Convert_Client(this.client_items).then(res => {
+        }).catch(error => {
 
+        })
+      }
+      if (this.convert_to_customers){
+        this.Module_Lead_Action_Convert_Customer(this.customer_items).then(res => {
+          data.is_convert=true
+        }).catch(error => {
+
+        })
+      }
+      this.loading=false;
+      this.$emit('Converted',data);
 
     },
 
