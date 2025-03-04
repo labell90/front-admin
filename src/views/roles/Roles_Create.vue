@@ -8,14 +8,17 @@ export default {
       loading:false,
       errors:[],
       items:{
+        parent_id:null,
         name:null,
         description:null,
-      }
+      },
+      roles:[],
     }
   },
   methods:{
     ...mapActions([
-        "Module_Role_Action_Create"
+        "Module_Role_Action_Create",
+        "Module_Role_Action_All"
     ]),
     Create_Item(){
       this.loading=true;
@@ -29,6 +32,27 @@ export default {
           this.errors = error.response.data;
         }
         this.loading=false;
+      })
+    },
+    Get_Roles(){
+      this.Module_Role_Action_All().then(response => {
+        this.roles=[];
+        response.data.result.forEach(role => {
+          this.roles.push({label:role.name, value: role.id});
+        })
+      }).catch(error => {
+        this.Methods_Notify_Error_Server();
+      })
+    },
+    Filter_Roles_Select (val, update, abort) {
+      update(() => {
+        if (val){
+          this.roles =  this.roles.filter(item => {
+            return item.label !== null && item.label.match(val)
+          })
+        }else {
+          this.Get_Roles();
+        }
       })
     },
 
@@ -57,6 +81,40 @@ export default {
               <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'name')" />
             </template>
           </q-input>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
+          <q-select
+              outlined
+              transition-show="flip-up"
+              transition-hide="flip-down"
+              v-model="items.parent_id"
+              label="انتخاب والد"
+              :options="roles"
+              @filter="Filter_Roles_Select"
+              emit-value
+              map-options
+              use-input
+              :error="this.Methods_Validation_Check(errors,'parent_id')"
+          >
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-red">
+                  گزینه ای یافت نشد
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section>
+                  <q-item-label>{{ scope.opt.label }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-slot:error>
+              <global_validations_errors :errors="this.Methods_Validation_Errors(errors,'parent_id')" />
+            </template>
+          </q-select>
+
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 q-pa-xs">
           <q-input  :error="this.Methods_Validation_Check(errors,'description')" outlined v-model="items.description" type="textarea" label="توضیحات">
