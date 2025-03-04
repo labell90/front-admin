@@ -8,9 +8,6 @@ export default {
   mounted() {
     this.Get_Tags();
     this.Get_Personal_Tags();
-    if (this.item_tags){
-      this.tags_selected = this.item_tags;
-    }
     if (this.item_personal_tags){
       this.personal_tags_selected= this.item_personal_tags;
     }

@@ -259,14 +259,11 @@ export default {
 
     }
 
-
-
   }
 }
 </script>
 
 <template>
-
   <q-card>
     <q-card-section>
       <global_actions_header_buttons :create="true" :archive="true" route="client"></global_actions_header_buttons>

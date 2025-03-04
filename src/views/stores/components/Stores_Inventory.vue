@@ -266,6 +266,8 @@ export default {
           </q-td>
         </template>
 
+
+
         <template v-slot:body-cell-orderable_quantity="props">
           <q-td :props="props">
             <span v-if="props.row.orderable_quantity" class="text-grey-8">{{props.row.orderable_quantity}}</span>
@@ -322,7 +324,6 @@ export default {
     </q-card-section>
 
   </q-card>
-
 
 </template>
 
